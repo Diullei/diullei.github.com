@@ -20,7 +20,7 @@ define([
         defaultAction: function (actions) {
             var model = new PostModel();
             model.fetch({
-                url: '/blog/compiled-sources/posts/db-last-post-view.json',
+                url: '/compiled-sources/posts/db-last-post-view.json',
 				//contentType: "charset=utf-8",
                 success: function () {
                     new PostView(model.attributes).render();
@@ -31,7 +31,7 @@ define([
         showPosts: function () {
             var collection = new PostCollection();
             collection.fetch({
-                url: '/blog/compiled-sources/posts/db-posts-view.json',
+                url: '/compiled-sources/posts/db-posts-view.json',
 				//contentType: "charset=utf-8",
                 success: function () {
                     new ListView(collection).render();
@@ -43,7 +43,7 @@ define([
         	console.log(id);
             var model = new PostModel();
             model.fetch({
-                url: '/blog/compiled-sources/posts/db-' + id + '-post-view.json',
+                url: '/compiled-sources/posts/db-' + id + '-post-view.json',
 				//contentType: "charset=utf-8",
                 success: function () {
                 	// TODO: resolver!!
