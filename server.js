@@ -27,8 +27,12 @@ http.createServer(function (request, response) {
     console.log('request starting: ' + request.url);
      
     var filePath = virtual_path + request.url;
+	
+	if(filePath.indexOf('?') != -1)
+		filePath = filePath.substr(0, filePath.indexOf('?'));
+	
     if (filePath == virtual_path + '/')
-        filePath = virtual_path + '/index.htm';
+        filePath = virtual_path + '/index.html';
          
 	console.log(filePath);	 
 		 
