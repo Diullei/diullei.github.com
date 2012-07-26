@@ -10,6 +10,8 @@
 
 @date: 2012-07-19
 
+@deploy: true
+
 @content:
 Existem algumas formas diferentes de ler arquivos usando node.js. Existem métodos síncronos e métodos assíncronos que nos permitem realizar este trabalho. Vou exibir e explicar estas diversas formas no decorrer deste post.
 

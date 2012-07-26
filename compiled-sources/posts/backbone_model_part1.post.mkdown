@@ -1,0 +1,138 @@
+##Introdução
+
+Este é o primeiro artigo de uma sério onde eu pretendo apresentar boas práticas e ferramentas que nos permitirão criar aplicações padronizadas, desacopladas, modulares e de fácil testabilidade. Utilizaremos a princípio os frameworks disponíveis: [Backbone](http://backbonejs.org/), [Jasmine DBB](http://pivotal.github.com/jasmine/), [Sinon.JS](http://sinonjs.org/), [KnockoutJs](http://knockoutjs.com/), [jQuery](http://jquery.com/), [Require.Js](http://requirejs.org/) entre outros. 
+
+##Backbone
+Temos ouvido muito falar sobre Backbone ultimamente. Este framework ganhou favoritismo entre os desenvolvedores javascript e tem sido bastante utilizado por muitos. O Backbone não provê componentes de interface como widgets e controles customizaveis nos deixando livres para escolher com que framework UI iremos querer trabalhar. Ele se concentra apenas na infra estrutura do projeto. Com Backbone podemos escrever aplicativos bem organizados e fácil de ser testado. 
+
+O código fonte fo Backbone é aberto e pode ser encontrado no github [neste](https://github.com/documentcloud/backbone/) endereço e a página oficial do Backbone pode ser acessada a partir [deste](http://backbonejs.org/) link. 
+
+O Backbone possui apenas uma dependência o [Underscore.js](http://documentcloud.github.com/underscore/). O underscode.js dá ao backbone um poderoso suporte a manipulação de arrays, bindings de eventos, suporte a processamento de templates entre outros. O Backbone trabalha bem em conjunto com frameworks de manipulação de DOM como [jQuery](http://jquery.com/), [Zepto](http://zeptojs.com/) e [Ender](http://ender.no.de/) provendo uma propriedade ```Backbone.$``` reservada para o framework dentre estes que estivermos utilizando.
+
+###O Model (Modelo)
+
+O Model é um objeto formado por atributos e métodos pertinentes ao modelo de negócio do nosso aplicativo. Vamos ver um código de exemplo:
+
+<pre><code>var Tarefa = Backbone.Model.extend();
+...
+var minhaTarefa = new Tarefa({
+	descricao: 'Ajustar o código do meu blog para rodar em vários navegadores diferentes', 
+	estaFeito: false
+});</code></pre>
+
+No código acima estamos criando um Model chamado Tarefa para um aplicativo de 'lista de tarefas'. Repare que criamos facilmente um model utilizando ``` Backbone.Model.extend() ```.
+
+Para entender como o Model está situado dentro do backbone e quais suas dependências deixe-me exibir abaixo uma imagem representando os módulos principais do framework que de alguma forma fazem relação com o Model e o próprio Model com suas propriedades e funções principais.
+
+![Valid XHTML](/img/backbone/backbone_core_model.png)
+
+É um diagrama simples que não segue nenhum padrão especifico mais mesmo assim nos permite entender um pouco os itens principais envolvidos quando estamos lidando com Models.
+
+Veja que o **Core** do Backbone tem uma dependência direta ao **Underscore.js**. O Underscore tem um papel importante dentro do Backbone por que é através dele que temos os métodos ```_.extend()``` (bastante utilizado no código do Backbone), o método ```_.clone()```, outros que permitem manipulações de Arrays e etc. 
+
+Encontramos também no **Core** todo o gerenciamento de **Eventos** do framework. É apartir deste módulo de eventos que ganhamos os métodos ```on()```, ```off()``` e ```trigger()```. Praticamente tudo o que ocorre no Backbone é propagado como evento e sempre que estamos manipulando o estado de um Model (exceto quando forçamos a interrupção desta propagação de eventos - veremos como isso é possível) eventos são disparados. Ocorrencias inesperadas como erros e exceções tanbém são propagadas por eventos.
+
+Ainda encontramos no **Core** o modulo **Sync**. Este é o responsável por parte do gerenciamento do ciclo de vida do Model incluindo sua persistência. O Backbone vem com uma implementação nativa para fazer a sincronização de Models utilizando **ajax**. Um model possui uma propriedade chamada ```urlRoot``` que ao ser configurada utiliza verbos HTTP seguindo o padrão **REST** para persistir o modelo. Caso por exemplo tenhamos configurado a url como ```'/pessoas'``` sempre que o método ```fetch()``` for invocado o Model tentará montar uma url se utilizando do seu id configurado em uma requisição do tipo **GET**. Seria algo como ```GET '/pessoas/1'``` caso o id configurado fosse 1. Ao chamarmos o metodo ```save()``` caso o model tenha um id configurado ele irá tentar fazer um update deste objeto Model no repositório chamando ```PUT '/pessoas/1'``` e caso não tivessemos nenhum id configurado a url seria ```POST '/pessoas/1'```. Por convenção utilizamos os métodos **GET** para recuperação de dados, **PUT** para update, **POST** para criar um novo e **DELETE** para excluir.
+
+Ainda falando do **Sync** podemos também reescrever este método para que utilize outras fontes de persistência tais como: localStore, sessioStore, MongoDB, CouthDB entre outros. O Model ainda possui propriedades importante como as funções ```get()/set()``` utilizadas para alterar seu estado, ```initialize()```, ```detalts``` para configurar valores iniciais do Model sempre que uma noa instância for criada sem valores passados no construtor. 
+
+Temos também a função ```validate()``` que é uma função muito importante utilizada para garantir que teremos sempre **um objeto com estado válido**. Um objeto com estado inválido não tem utilizade nenhuma e sempre introduzirá bug no nosso aplicativo. É como se tivessemos em uma auto estrata um veículo sem rodas, teriamos um grande problema por que este estádo para o veículo é um estado inválido para o contexto em que ele se encontra (auto estrada). 
+
+Por fim os métodos ```fetch()``` e ```save()``` dos quais já falamos e que iteragem diretamente com o modulo **Sync** pertencente ao Core do Backbone.
+
+###O Model na pratica
+
+Vimos em um exemplo anterior como criar um Model. Seguindo a apresentação veja que como já foi citado podemos adicionar um método de inicialização no nosso objeto Model inserindo uma função chamada **initialize**. 
+
+<pre><code>var Tarefa = Backbone.Model.extend({
+	initialize: function(descricao, estaFeito) {
+		this.set({descricao: descricao});
+		this.set({estaFeito: estaFeito});
+		/*
+		Nota: Este trecho támbém poderia ter sido escrito da seguinte maneira:
+		...
+		this.set({descricao: descricao, estaFeito: estaFeito});
+		*/
+	}
+});
+
+var umaTarefa = new Tarefa('Refatorar o código da aplicação', true);
+
+console.log(umaTarefa.get('descricao'));
+//=> Refatorar o código da aplicação
+
+console.log(umaTarefa.get('estaFeito'));
+//=> true</code></pre>
+
+Poderemos também passar os valores de inicialização dos atributos ao model da seguinte forma:
+
+<pre><code>...
+new Tarefa({
+	descricao: 'Refatorar o código da aplicação', 
+	estaFeito: true
+});
+...</code></pre>
+
+Em casos raros podemos também sobrescrever o contrutor do model inserindo uma função chamada **constructor**. Este nos dá um controle bem maior para poder manipular como o nosso modelo será construido.
+
+O Model armazena os dados em uma propriedade chamada attributes, entretanto por convenção utilizamos os métodos ```get()``` e ```set()``` para alterar seus dados. Se quisermos um json com os dados do model utilizamos o método ```toJSON()```. Aqui cabe ressaltar que o método ```set()``` pode ser utilizado de algumas formas diferentes onde podemos de uma só vez alterar uma ou mais propriedades e manipular erros.
+
+Exemplos:
+
+<pre><code>...
+model.get("nome");
+model.set("nome", "Diullei Gomes");
+model.set({nome: "Diullei Gomes"});
+model.set({nome: "Diullei Gomes", idade: 29});
+// passando um metodo de manipulação ede erros de validação
+model.set({nome: "Diullei Gomes", idade: 29}, { error: function(model, error) { ... } });
+// quando passamos esta função o Backbone cancela a propagação do evento de erro
+...</code></pre>
+
+###Eventos
+
+Sempre que um valor for alterado no model um evento **change** será disparado. Um evento especifico por atributo também é disparado seguindo o padrão 'change:[nome do atributo]' como por exemplo 'change:nome'. Caso você queira alterar o model sem que um evento 'chage' seja disparado configure o modelo setando a propriedade silent com o valor true: ```{silent: true}```.
+
+Para adicionar funções ao model fazemos da mesma forme que fizemos para adicionar a função 'initialize'. Veja um exemplo:
+
+<pre><code>var Pessoa = Backbone.Model.extend({
+	recuperaNomeCompleto: function(){
+		return this.get('primeiroNome') + ' ' + this.get('segundoNome');
+	}
+});
+
+var umaPessoa = new Pessoa({primeiroNome: 'Diullei', segundoNome: 'Gomes'});
+
+console.log(umaPessoa.recuperaNomeCompleto());
+//=> Diullei Gomes</code></pre>
+
+Uma outra funcionalidade importante do Model como já foi dito é a possibilidade de escrever um validador. Não queremos objetos com estado inválido por motivos que também já foram discutidos. Para isso escreveremos um método validate() para verificar os dados passados para o Model sempre que o método ```set()``` for chamado. Para criar um validador incluimos um método 'validate' no model como segue:
+
+<pre><code>var Pessoa = Backbone.Model.extend({
+	validate: function(attrs){
+		if(attrs.idade <= 0) {
+			return "A idade informada está inválida";
+		}
+	}
+});
+
+var pessoa = new Pessoa();
+
+pessoa.on("error", function(model, error) {
+	console.log('A idade informada: ' + model.get('idade') + ' está errada. Erro: ' + error);
+});
+
+pessoa.set({idade: -1});
+//=> A idade informada: -1 está errada. Erro: A idade informada está inválida</code></pre>
+
+Neste exemplo utilizamos a função ```on()``` para registrar os eventos de callback. A utilização desta função é simples, passamos como primeiro argumento o nome do evento que queremos manipular e uma função de 'callback' que será chamada sempre que este evento for disparado. Temos ainda a função ```off()``` que utilizamos para remover o método de 'callback' do model e a função ```trigger()``` utilizada para disparar estes eventos. Veja [on()](http://backbonejs.org/#Events-on), [off()](http://backbonejs.org/#Events-off), [trigger()](http://backbonejs.org/#Events-trigger).
+
+Caso tenhamos utilizado a propriedade ```silent``` com o valor true podemos ainda chamar a função ```isValid()``` para executar a validação e verificar o nosso model.
+
+O model possui ainda outros métodos e propriedades. Você pode verificar a documentação no [site](http://backbonejs.org/#Model) oficial do Backbone na sessão [Model](http://backbonejs.org/#Model) para saber mais.
+
+Bem, com isso tudo o que vimos até aqui já da pra ter uma boa base de como trabalhar com Models no Backbone. Não fique limitado apenas ao que foi apresentado aqui neste artigo e verifique a documentação do Backbone para saber mais.
+
+Nos próximos artigos seguiremos com a continuação desta matéria.
+
+Abraços!
