@@ -1,0 +1,138 @@
+@id: 5
+
+@title: JavaScript - No Conflict
+
+@by: Diullei Gomes
+
+@tags: JavaScript;Pattern
+
+@category: JavaScript
+
+@date: '2012-07-26'
+
+@deploy: false
+
+@content:
+Você já deve ter visto exemplo de código JQuery, Underscore, Backbone ou outros que utilizassem um método chamado noConflict(). A idéia é entender para que serve este método.
+
+Como o próprio nome já diz este método é colocado na biblioteca para permitir que seu código coesista com outros códigos sem a ocorrencia de conflitos. Seguindo este padrão damos uma oportunidade a quem estiver utilizando nossa biblioteca de poder 'renomear' o objeto glogal utilizado pela biblioteca para permitir sua coexistencia com outras que utilizem o mesmo nome ou com a mesma biblioteca utilizando versões diferentes.
+
+Vamos a um exemplo utilizando duas bibliotecas que utilizam o mesmo nome:
+
+<pre><code>// lib A
+(function(exports){
+	function LibA(){}
+	LibA.prototype.Execute = function(){
+		console.log('lib A');
+	}
+	
+	exports.$ = new LibA();
+})(window);
+
+// lib B
+(function(exports){
+	function LibB(){}
+	LibB.prototype.Execute = function(){
+		console.log('lib B');
+	}
+	
+	exports.$ = new LibB();
+})(window);
+
+$.Execute();
+//=> lib B
+</code></pre>
+
+Note que no exemplo acima estamos criando duas bibliotecas e dando a elas o mesmo alias '$'. Quando a lib A é criada ela cria uma instância glogal chamada $. Caso executemos $.Execute() teremos como resultado o texto 'lib A' no console. Mais veja que logo em seguida criamos a lib B. A lib B tanbém está utilizando o mesmo nome para sua instância global ('$') fazendo com que a instância da lin A sseja sobrescrita. Assim quando chamamos $.Execute() temos como resultado o texto 'lib B'.
+
+Uma forma elegante de permitir que o problema acima seje evitado é utilizar um método noConflict(). Veja o exemplo reescrito:
+
+<pre><code>// lib A
+(function(exports){
+	var oldLib = exports.$;
+	
+	function LibA(){}
+	LibA.prototype.Execute = function(){
+		console.log('lib A');
+	}
+
+	LibA.prototype.noConflict = function(){
+		exports.$ = oldLib;
+		return this;
+	}
+	
+	exports.$ = new LibA();
+})(window);
+
+// lib B
+(function(exports){
+	var oldLib = exports.$;
+
+	function LibB(){}
+	LibB.prototype.Execute = function(){
+		console.log('lib B');
+	}
+	
+	LibB.prototype.noConflict = function(){
+		exports.$ = oldLib;
+		return this;
+	}
+	
+	exports.$ = new LibB();
+})(window);
+
+$libB = $.noConflict();
+
+$.Execute();
+//=> lib A
+
+$libB.Execute();
+//=> lib B
+</code></pre>
+
+Note que no exemplo acima fizemos em lib B um 'backup' do valor de '$' antes de altera-lo. Adicionamos uma função chamada noConflict() com a função de restaurar o antigo valor de '$' e retornar a propria lib B como resultado. Isso permite a quem estiver utilizando o código renomear a instancia de lib B. Ne código acima alteramos o nome de $ para $libB.
+
+Usando este artificio poderiamos também fazer com que 2 ou mais versões de uma mesma biblioteca coesistissem no mesmo código.
+
+Seguem algumas referências a trechos de códigos reais que utilizam este padrão:
+
+**jQuery**
+<pre><code>...
+_$ = window.$,
+...
+noConflict: function( deep ) {
+	if ( window.$ === jQuery ) {
+		window.$ = _$;
+	}
+
+	if ( deep && window.jQuery === jQuery ) {
+		window.jQuery = _jQuery;
+	}
+
+	return jQuery;
+},
+...</code></pre>
+
+**Backbone**
+<pre><code>...
+var previousBackbone = root.Backbone;
+...
+Backbone.noConflict = function() {
+    root.Backbone = previousBackbone;
+    return this;
+};
+...</code></pre>
+
+**Underscore**
+<pre><code>...
+var previousUnderscore = root._;
+...
+_.noConflict = function() {
+    root._ = previousUnderscore;
+    return this;
+  };
+  ...</code></pre>
+  
+Esses são só alguns exemplos.
+
+Abraços!
