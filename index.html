@@ -3,14 +3,14 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Diullei Gomes</title>
+    <title>Rodrigo Vidal</title>
 
-    <link href="css/style2.css" rel="stylesheet" type="text/css" />
-    <link href="css/style1.css" rel="stylesheet" type="text/css" />
-    <script src="js/libs/linqjs/linq.js"></script>
-    <script src="js/libs/date/date.js"></script>
-    <script src="js/libs/date/pretty.js"></script>
-    <script data-main="js/main" src="js/libs/require/require.js"></script>
+    <link href="engine/css/style2.css" rel="stylesheet" type="text/css" />
+    <link href="engine/css/style1.css" rel="stylesheet" type="text/css" />
+    <script src="engine/js/libs/linqjs/linq.js"></script>
+    <script src="engine/js/libs/date/date.js"></script>
+    <script src="engine/js/libs/date/pretty.js"></script>
+    <script data-main="engine/js/main" src="engine/js/libs/require/require.js"></script>
 	<!--[if lte IE 6]><script src="/blog/js/libs/UpdateIE/warning.js"></script><script>window.onload=function(){e()}</script><![endif]-->
 	<!--[if lte IE 7]><script src="/blog/js/libs/UpdateIE/warning.js"></script><script>window.onload=function(){e()}</script><![endif]-->
 	<!--[if lte IE 8]><script src="/blog/js/libs/UpdateIE/warning.js"></script><script>window.onload=function(){e()}</script><![endif]-->
@@ -26,6 +26,75 @@
 		var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
 	  })();
 
+	  var _form_jsFidlle_index = 0;
+	  
+		function postwith(to, data) {			
+			var form = document.createElement("form");
+			form.method="post" ;
+			form.setAttribute("target", "_blank");
+			form.setAttribute("style", "display:none");
+			form.action = to ;
+
+			var jsInput = document.createElement("textarea") ;
+			jsInput.setAttribute("name", 'js') ;
+			jsInput.value = data.js;
+			form.appendChild(jsInput) ;
+			var cssInput = document.createElement("textarea") ;
+			cssInput.setAttribute("name", 'js') ;
+			cssInput.value = data.js;
+			form.appendChild(cssInput) ;
+			var htmlInput = document.createElement("textarea") ;
+			htmlInput.setAttribute("name", 'js') ;
+			htmlInput.value = data.js;
+			form.appendChild(htmlInput) ;
+
+			document.body.appendChild(form) ;
+			form.submit();
+			document.body.removeChild(form) ;
+		}
+	  
+		links = {};
+	  
+		function initJsfiddle() {
+			var pres = document.getElementsByTagName('pre');
+			for(var i=0;i<pres.length;i++){
+				var pre = pres[i];
+				
+				if(!pre.getAttribute('data-stjf'))
+					continue;
+				
+				pre.setAttribute('style', 'position: relative');
+				
+				var link = document.createElement('span');
+				link.setAttribute('style', 'background-color: #fff;position:absolute;top:10px;right:10px;padding:0 10px 0 10px;font-size:.8em;border-radius: 5px;opacity:0.65;-moz-opacity: 0.65;filter: alpha(opacity=65);');
+				
+				var js = pre.getAttribute('data-js') || '';
+				var css = pre.getAttribute('data-css') || '';
+				var html = pre.getAttribute('data-html') || '';
+				
+				if(js == 'content') js = pre.innerText;
+				if(css == 'content') css = pre.innerText;
+				if(html == 'content') html = pre.innerText;
+				
+				var formName = "frm_"+_form_jsFidlle_index++;
+				
+				var data = {};
+				data.js = js;
+				data.css = css;
+				data.html = html;
+				
+				links[formName] = (function (){ 
+					var self = this;
+					return function() {
+						postwith("http://jsfiddle.net/api/post/mootools/1.2/dependencies/more/", self);
+					}					
+				}).apply(data);
+				
+				link.innerHTML = "<a href='javascript:links[\"" + formName + "\"]()'>Try on JsFidlle <img style='width:34px;vertical-align:middle' src='/img/jsfiddle.png' alt='' /></a>";
+				pre.appendChild(link);
+			}
+		}
+	  
 	</script>
 </head>
 <body class="logged_in windows vis-public env-production ">
@@ -35,11 +104,11 @@
 		<div class="container clearfix">
 
 			<div id="user">
-				  <a href="#"><img height="20" src="https://secure.gravatar.com/avatar/5e93890c5b54d18dd454f14789c2b225" width="20"></a>
+				  <a href="#"><img height="20" src="gravatar.com/rodrigovidal777" width="20"></a>
 			</div>
 
 			<a class="site-logo" href="#">
-			    <h1>Diullei Gomes</h1>
+			    <h1>Rodrigo Vidal</h1>
 			</a>
 			<div class="topsearch ">
 				<ul class="top-nav">
@@ -52,7 +121,7 @@
 	<div class="site hfeed">
 		<div class="container hentry">
 
-		<div id="page"><div id="loading" style="text-align:center"><img src="/img/ajax-loader.gif" alt="loading.." /></div></div>  	  
+		<div id="page"><div id="loading" style="text-align:center"><img src="engine/img/ajax-loader.gif" alt="loading.." /></div></div>  	  
 		<br/>
       <div id="disqus_thread"></div>
     </div>
@@ -71,16 +140,23 @@
 		<div class="container clearfix">
 			<ul class="footer_nav">
 				<h4>Contato</h4>
-				<li><a href="http://twitter.com/diullei">Twitter</a></li>
-				<li><a href="https://github.com/diullei">GitHub</a></li>
-		        <li><a href="http://br.linkedin.com/in/diullei">Linkedin</a></li>
+				<li><a href="www.twitter.com/rodrigovidal">Twitter</a></li>
+				<li><a href="github.com/rodrigovidal">GitHub</a></li>
+		        <li><a href="linked.com/rodrigovidal777">Linkedin</a></li>
 			</ul>
 			<ul class="footer_nav">
 				<h4>Blogroll</h4>
-				<li><a href="http://rodrigovidal.net/">Rodrigo Vidal</a></li>
-				<li><a href="http://dotnetarchitects.net/">.NET Architects</a></li>
-		        <li><a href="http://elemarjr.net/">Elemar DEV</a></li>
-		        <li><a href="http://backbonetutorials.com/">Backbone Tutorials</a></li>
+
+				
+
+					<li><a href="Diulete">www.diullei.com</a></li>
+
+				
+
+					<li><a href="Elemar">www.elemarjr.com.br</a></li>
+
+				
+
 			</ul>
 		</div>
 		<!-- /.site -->
@@ -104,8 +180,8 @@
 <!-- /#footer -->
 
 <a href="https://github.com/Diullei/diullei.github.com"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png" alt="Fork me on GitHub"></a>
-	<link rel="stylesheet" href="/css/github.css">
+	<link rel="stylesheet" href="engine/css/github.css">
 	<script src="http://yandex.st/highlightjs/7.0/highlight.min.js"></script>
-  
+	
 </body>
 </html>
