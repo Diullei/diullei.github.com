@@ -2,7 +2,7 @@ exports.cfg = {
 	"name" : "Diullei Gomes",
 	"github" : "https://www.github.com/Diullei",
 	"disqus" : "diulleigomes",
-	"twitter" : "http//www.twitter.com/diullei",
+	"twitter" : "http://www.twitter.com/diullei",
 	"twitterName" : "@diullei",
 	"linkedin" : "http://br.linkedin.com/in/diullei",
 	"email" : "diullei@gmail.com",
