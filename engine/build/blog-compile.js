@@ -1,7 +1,7 @@
 var JsonDatabaseManager = require('./db').JsonDatabaseManager;
 
-var inputFolder = __dirname  + '\\..\\posts';
-var outPutFile = __dirname  + '\\..\\compiled-sources\\posts';
+var inputFolder = __dirname  + '\\..\\..\\blog\\posts';
+var outPutFile = __dirname  + '\\..\\..\\blog\\compiled-sources\\posts';
 
 var db = new JsonDatabaseManager();
 
