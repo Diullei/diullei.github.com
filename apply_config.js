@@ -2,6 +2,10 @@ var config = require('./me.js').cfg,
 	_ = require('./engine/js/libs/underscore/underscore.js'),
 	fs = require('fs');
 
+_.templateSettings.evaluate = /\{\{([\s\S]+?)\}\}/g;
+_.templateSettings.interpolate = /\{\{=([\s\S]+?)\}\}/g;
+_.templateSettings.escape = /\{\{-([\s\S]+?)\}\}/g;
+
 var index_html = fs.readFileSync('engine/index-tmpl.html', 'ascii');
 
 var out_index_html = _.template(index_html)(config);
