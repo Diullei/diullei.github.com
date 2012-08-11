@@ -1,10 +1,12 @@
 var JsonDatabaseManager = require('./db').JsonDatabaseManager;
 
-var inputFolder = __dirname  + '\\..\\..\\blog\\posts';
-var outPutFile = __dirname  + '\\..\\..\\blog\\compiled-sources\\posts';
+function compile() {
+	var inputFolder = __dirname  + '\\..\\..\\blog\\posts';
+	var outPutFile = __dirname  + '\\..\\..\\blog\\compiled-sources\\posts';
 
-var db = new JsonDatabaseManager();
+	var db = new JsonDatabaseManager();
 
-db.createPostIndexerFile(inputFolder, outPutFile);
+	db.createPostIndexerFile(inputFolder, outPutFile);
+}
 
-console.log("successful");
+exports.compile = compile;
