@@ -26,6 +26,75 @@
 		var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
 	  })();
 
+	  var _form_jsFidlle_index = 0;
+	  
+		function postwith(to, data) {			
+			var form = document.createElement("form");
+			form.method="post" ;
+			form.setAttribute("target", "_blank");
+			form.setAttribute("style", "display:none");
+			form.action = to ;
+
+			var jsInput = document.createElement("textarea") ;
+			jsInput.setAttribute("name", 'js') ;
+			jsInput.value = data.js;
+			form.appendChild(jsInput) ;
+			var cssInput = document.createElement("textarea") ;
+			cssInput.setAttribute("name", 'js') ;
+			cssInput.value = data.js;
+			form.appendChild(cssInput) ;
+			var htmlInput = document.createElement("textarea") ;
+			htmlInput.setAttribute("name", 'js') ;
+			htmlInput.value = data.js;
+			form.appendChild(htmlInput) ;
+
+			document.body.appendChild(form) ;
+			form.submit();
+			document.body.removeChild(form) ;
+		}
+	  
+		links = {};
+	  
+		function initJsfiddle() {
+			var pres = document.getElementsByTagName('pre');
+			for(var i=0;i<pres.length;i++){
+				var pre = pres[i];
+				
+				if(!pre.getAttribute('data-stjf'))
+					continue;
+				
+				pre.setAttribute('style', 'position: relative');
+				
+				var link = document.createElement('span');
+				link.setAttribute('style', 'background-color: #fff;position:absolute;top:10px;right:10px;padding:0 10px 0 10px;font-size:.8em;border-radius: 5px;opacity:0.65;-moz-opacity: 0.65;filter: alpha(opacity=65);');
+				
+				var js = pre.getAttribute('data-js') || '';
+				var css = pre.getAttribute('data-css') || '';
+				var html = pre.getAttribute('data-html') || '';
+				
+				if(js == 'content') js = pre.innerText;
+				if(css == 'content') css = pre.innerText;
+				if(html == 'content') html = pre.innerText;
+				
+				var formName = "frm_"+_form_jsFidlle_index++;
+				
+				var data = {};
+				data.js = js;
+				data.css = css;
+				data.html = html;
+				
+				links[formName] = (function (){ 
+					var self = this;
+					return function() {
+						postwith("http://jsfiddle.net/api/post/mootools/1.2/dependencies/more/", self);
+					}					
+				}).apply(data);
+				
+				link.innerHTML = "<a href='javascript:links[\"" + formName + "\"]()'>Try on JsFidlle <img style='width:34px;vertical-align:middle' src='/img/jsfiddle.png' alt='' /></a>";
+				pre.appendChild(link);
+			}
+		}
+	  
 	</script>
 </head>
 <body class="logged_in windows vis-public env-production ">
@@ -106,6 +175,6 @@
 <a href="https://github.com/Diullei/diullei.github.com"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png" alt="Fork me on GitHub"></a>
 	<link rel="stylesheet" href="/css/github.css">
 	<script src="http://yandex.st/highlightjs/7.0/highlight.min.js"></script>
-  
+	
 </body>
 </html>
