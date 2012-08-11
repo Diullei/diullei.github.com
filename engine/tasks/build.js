@@ -1,4 +1,4 @@
-var program = require('./js/libs/commander');
+var program = require('./../js/libs/commander');
 
 program
   .version('0.0.1')
@@ -11,7 +11,7 @@ if(program.compile) {
 	console.log('Compiling resources...\n');
 	
 	try{
-		require('./build/blog-compile').compile();
+		require('./blog-compile').compile();
 		console.log('\nSuccessful');
 	}
 	catch(err){
