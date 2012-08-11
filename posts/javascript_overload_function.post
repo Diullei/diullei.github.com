@@ -10,7 +10,7 @@
 
 @date:'2012-08-08'
 
-@deploy: true
+@deploy: false
 
 @content:
 ## Introdução
