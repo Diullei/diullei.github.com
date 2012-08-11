@@ -29,7 +29,8 @@ define([
             model.content = new Showdown.converter().makeHtml(model.content);
             this.el.html(_.template(postTemplate)(data));
 			
-			initJsfiddle();
+			if(initJsfiddle) 
+				initJsfiddle();
 			
 			$('pre code', this.el).each(function(i, e) {hljs.highlightBlock(e)});
             $('#disqus_thread').show();
