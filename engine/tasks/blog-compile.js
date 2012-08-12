@@ -1,4 +1,4 @@
-var JsonDatabaseManager = require('./db').JsonDatabaseManager;
+var JsonDatabaseManager = require('./../build/db').JsonDatabaseManager;
 
 function compile() {
 	var inputFolder = __dirname  + '\\..\\..\\blog\\posts';
