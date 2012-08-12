@@ -32,7 +32,7 @@ Precisamos primeiro de tudo carregar o módulo fs pois é a partir deste módulo qu
 
 Vamos ver o resultado deste código:
 
-![Valid XHTML](/engine/img/lendo_arquivos/Capture_2012-07-18_203709.png)
+![Valid XHTML](/blog/img/lendo_arquivos/Capture_2012-07-18_203709.png)
 
 Veja que quando escrevemos o conteúdo de *data* no console vemos muitos números estranhos. Esse conteúdo é totalmente diferente do arquivo que estou tentando ler. A documentação nos passa uma dica do que está ocorrendo:
 
@@ -56,7 +56,7 @@ fs.readFile('TEST.txt', 'utf8', function(err,data){
 	console.log(data);
 });</code></pre>
 
-![Valid XHTML](/engine/img/lendo_arquivos/Capture_2012-07-18_203739.png)
+![Valid XHTML](/blog/img/lendo_arquivos/Capture_2012-07-18_203739.png)
 
 *usando o método toString(...)*
 
@@ -71,7 +71,7 @@ fs.readFile('TEST.txt', function(err,data){
 	console.log(data.toString('utf8'));
 });</code></pre>
 
-![Valid XHTML](/engine/img/lendo_arquivos/Capture_2012-07-18_203850.png)
+![Valid XHTML](/blog/img/lendo_arquivos/Capture_2012-07-18_203850.png)
 
 A decisão sobre o tipo de encoding utilizar vai depender de que manipulação precisaremos realizar com o conteúdo do arquivo que estamos lendo. Se queremos enviar este conteúdo pela rede para um cliente manter o buffer do jeito que está armazenado no disco é a melhor escolha. Desse jeito podemos utilizar a propriedade length para para pegar o tamanho do arquivo em bytes por exemplo. Isso é muito útil quando queremos por exemplo enviar o tamanho do nosso arquivo no *Content-Length* no cabeçalho HTTP.
 
@@ -92,7 +92,7 @@ catch (err) {
     console.log(err);
 }</code></pre>
 
-![Valid XHTML](/engine/img/lendo_arquivos/Capture_2012-07-18_225647.png)
+![Valid XHTML](/blog/img/lendo_arquivos/Capture_2012-07-18_225647.png)
 
 Aqui podemos destacar duas grandes diferenças. A primeiro é que não temos mais o nosso método de callback. Não precisamos mais dele já que a execução da leitura será realizada de forma síncrona. A outra diferença é que precisamos gerenciar as exeções por nós mesmo, por isso colocamos o código dentro de um bloco *try...catch*.
 
