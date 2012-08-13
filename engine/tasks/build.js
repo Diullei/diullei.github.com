@@ -54,6 +54,10 @@ _cmd.install = function(){
 		console.log('[install] create directory: /blog/compiled-sources');
 		fs.mkdirSync('../blog/compiled-sources');
 	}
+	if(!directoryExists('../blog/compiled-sources/posts')) {
+		console.log('[install] create directory: /blog/compiled-sources/posts');
+		fs.mkdirSync('../blog/compiled-sources/posts');
+	}
 	if(!directoryExists('../blog/posts')) {
 		console.log('[install] create directory: /blog/posts');
 		fs.mkdirSync('../blog/posts');
