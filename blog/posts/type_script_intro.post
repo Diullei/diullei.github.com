@@ -19,7 +19,7 @@ A Microsoft surpreendeu todos a pouco tempo lançando seu próprio pré-processador
 
 Não é minha intenção convencer você de que TypeScript é a melhor solução do mundo ou que é melhor do que CoffeeScript. Essas discussões no fim das contas não levam a nada. CoffeeScript tem seu espaço assim como o TypeScript. Se você já programou em alguma linguagem fortemente "tipada" como C#, Java ou C++ provavelmente você irá se sentir bem com os recursos fornecidas pelo TypeScript. Nem preciso dizer que se você programa em Python vai se sentir mais a vontade ao utilizar CoffeeScript do que com TypeScript :)
 
-Iniciei um trabalho de tradução da documentação do TypeScript. Você pode acessar a tradução da página oficial do TypeScript aqui [http://diullei.github.com/TypeScript-ptBR/index.html]. A documentação estará sendo traduzida no repositório do [SampaJS](https://github.com/organizations/SampaJS) no github e estará sendo disponibilizada em breve.
+Iniciei um trabalho de tradução da documentação do TypeScript. Você pode acessar a tradução da página oficial do TypeScript aqui [http://diullei.github.com/TypeScript-ptBR/index.html](http://diullei.github.com/TypeScript-ptBR/index.html). A documentação estará sendo traduzida no repositório do [SampaJS](https://github.com/organizations/SampaJS) no github e estará sendo disponibilizada em breve.
 
 Vamos a uma breve introdução sobre TypeScript. A intenção é apresentar alguns recursos básicos interessantes sobre a linguagem.
 
@@ -29,7 +29,7 @@ O compilador do TypeScript é escrito em TypeScript e como o TypeScript compila p
 
 Se você está habituado com o uso do Visual Studio vai ficar feliz! rs... é possível instalar um plugin no Visual Studio 2012 para trabalhar com TypeScript. Se você costuma utilizar Node.js vai se sentir mais a vontade utilizando o TypeScript no Node.js.
 
-Para ver como instalar o TypeScript no Node.js ou no Visual Studio acesse o link: [http://diullei.github.com/TypeScript-ptBR/#Download].
+Para ver como instalar o TypeScript no Node.js ou no Visual Studio acesse o link: [http://diullei.github.com/TypeScript-ptBR/#Download](http://diullei.github.com/TypeScript-ptBR/#Download).
 
 Se você quiser seguir este artigo sem ter o trabalho de instalar o TypeScript você pode utilizar o TypeScript Playground. Trata-se de um compilador online onde podemos experimentar o TypeScript.
 
