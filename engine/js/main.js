@@ -1,5 +1,5 @@
 require.config({
-	urlArgs: "a=4",
+	urlArgs: "a=5",
     paths: {
         jQuery: 'libs/jquery/jquery',
         Underscore: 'libs/underscore/underscore',
