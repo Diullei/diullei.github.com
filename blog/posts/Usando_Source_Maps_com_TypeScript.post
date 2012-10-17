@@ -91,7 +91,7 @@ Tendo compilado o arquivo script.ts agora basta abrir a página ```index.html``` 
 
 ## Conclusão
 
-Como vimos o recurso Source Maps abre muitas possibilidades no tocante a rastreamento de código. Espero que esse recurso seja cada vez mais aprimorado e incorporado e explorado.
+Como vimos o recurso Source Maps abre muitas possibilidades no tocante a rastreamento de código.
 
 * Para saber mais sobre Source Maps acesse [http://www.html5rocks.com/en/tutorials/developertools/sourcemaps/](http://www.html5rocks.com/en/tutorials/developertools/sourcemaps/)
 * Para saber mais sobre TypeScript acesse [http://diullei.github.com/TypeScript-ptBR/](http://diullei.github.com/TypeScript-ptBR/)
