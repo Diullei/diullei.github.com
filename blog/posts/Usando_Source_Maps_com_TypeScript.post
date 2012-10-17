@@ -15,7 +15,7 @@
 @content:
 ## Introduçãos
 
-Existe um recurso bem interessante implementado no Fire Fox e no Chrome chamado [Source Maps](http://www.html5rocks.com/en/tutorials/developertools/sourcemaps/). Para entender do que se trata tenha em mente um arquivo javascript minificado. Para rastrear um bug no código deste arquivo por exemplo teríamos que usar a versão não minificada do mesmo. Uma vez encontrado o bug este seria corrigido e um novo arquivo minificado seria gerado. Um Source Map é um arquivo de mapeamento que faz um dê-para (no nosso caso) do arquivo minificado com o arquivo real. A partir deste mapeamento o browser consegue realizar o debug no arquivo original(não minificado) em bora a execução real esteja ocorrendo no arquivo minificado.
+Existe um recurso bem interessante implementado no Firefox e no Chrome (não sei ao certo quais outros navegadores) chamado [Source Maps](http://www.html5rocks.com/en/tutorials/developertools/sourcemaps/). Para entender do que se trata tenha em mente um arquivo javascript minificado. Para rastrear um bug no código deste arquivo por exemplo teríamos que usar a versão não minificada do mesmo. Uma vez encontrado o bug este seria corrigido e um novo arquivo minificado seria gerado. Um Source Map é um arquivo de mapeamento que faz um dê-para (no nosso caso) do arquivo minificado com o arquivo real. A partir deste mapeamento o browser consegue realizar o debug no arquivo original(não minificado) em bora a execução real esteja ocorrendo no arquivo minificado.
 
 Até aqui isso não agregou muito por que basta referenciar o arquivo original como dito anteriormente. Uma vez que tenhamos o problema rastreado ou a feature implementada minificamos tudo novamente.
 
