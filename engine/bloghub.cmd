@@ -1,0 +1,1 @@
+if %1 == -u (tasks\update.cmd) else node tasks\build.js %1

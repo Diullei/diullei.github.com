@@ -3,7 +3,7 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Diullei Gomes</title>
+    <title>{{= name}}</title>
 
     <link href="engine/css/style2.css" rel="stylesheet" type="text/css" />
     <link href="engine/css/style1.css" rel="stylesheet" type="text/css" />
@@ -90,7 +90,7 @@
 					}					
 				}).apply(data);
 				
-				link.innerHTML = "<a href='javascript:links[\"" + formName + "\"]()'>Try on JsFidlle <img style='width:34px;vertical-align:middle' src='/img/jsfiddle.png' alt='' /></a>";
+				link.innerHTML = "<a href='javascript:links[\"" + formName + "\"]()'>Try on JsFidlle <img style='width:34px;vertical-align:middle' src='/engine/img/jsfiddle.png' alt='' /></a>";
 				pre.appendChild(link);
 			}
 		}
@@ -104,11 +104,11 @@
 		<div class="container clearfix">
 
 			<div id="user">
-				  <a href="#"><img height="20" src="https://secure.gravatar.com/avatar/5e93890c5b54d18dd454f14789c2b225" width="20"></a>
+				  <a href="#"><img height="20" src="{{= gravatar}}" width="20"></a>
 			</div>
 
 			<a class="site-logo" href="#">
-			    <h1>Diullei Gomes</h1>
+			    <h1>{{= name}}</h1>
 			</a>
 			<div class="topsearch ">
 				<ul class="top-nav">
@@ -140,30 +140,18 @@
 		<div class="container clearfix">
 			<ul class="footer_nav">
 				<h4>Contato</h4>
-				<li><a href="http://www.twitter.com/diullei">Twitter</a></li>
-				<li><a href="https://www.github.com/Diullei">GitHub</a></li>
-		        <li><a href="http://br.linkedin.com/in/diullei">Linkedin</a></li>
+				<li><a href="{{= twitter}}">Twitter</a></li>
+				<li><a href="{{= github}}">GitHub</a></li>
+		        <li><a href="{{= linkedin}}">Linkedin</a></li>
 			</ul>
 			<ul class="footer_nav">
 				<h4>Blogroll</h4>
 
-				
+				{{ _.each(blogroll, function(item){ }}
 
-					<li><a href="http://rodrigovidal.net/"> Rodrigo Vidal</a></li>
+					<li><a href="{{= item.url}}"> {{= item.name}}</a></li>
 
-				
-
-					<li><a href="http://dotnetarchitects.net/"> .NET Architects</a></li>
-
-				
-
-					<li><a href="http://elemarjr.net/"> Elemar DEV</a></li>
-
-				
-
-					<li><a href="http://backbonetutorials.com/"> Backbone Tutorials</a></li>
-
-				
+				{{ }); }}
 
 			</ul>
 		</div>
