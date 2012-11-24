@@ -30,8 +30,8 @@ function loadLittleIndex(data){
 
 function loadIndex(uri, callback) {
 	$.ajax({
-		url: "posts/" + uri + "?ms=" + new Date().getTime(),
-		type: 'PUT',
+		url: "/posts/" + uri + "?ms=" + new Date().getTime(),
+		type: 'GET',
 		dataType: 'text',
 		data:{name: name},
 		success: function (text) {
