@@ -32,7 +32,7 @@ function loadIndex(uri, callback) {
 	$.ajax({
 		url: "posts/" + uri + "?ms=" + new Date().getTime(),
 		type: 'PUT',
-		//dataType: 'text',
+		dataType: 'text',
 		data:{name: name},
 		success: function (text) {
 			callback(text);
@@ -45,13 +45,11 @@ function loadIndex(uri, callback) {
 
 function loadPost(hash) {	
 	$.ajax({
-		url: "posts/index.json?ms=" + new Date().getTime(),
+		url: "/posts/index.json?ms=" + new Date().getTime(),
 		type: 'PUT',
-		//dataType: 'json',
+		dataType: 'json',
 		data:{name: name},
 		success: function (index) {
-
-			eval('index = ' + index);
 		
 			var post = hash || window.location.href.split('#')[1];
 			console.log(post);
