@@ -65,7 +65,7 @@ function loadPost(hash) {
 			});
 		},
 		error: function (e) {
-			$('#content').html("<h1>Em manutenção </h1><p></p>");
+			$('#content').html("<h1>Erro :( </h1><p>Ocorreu um erro durante o carregamento desta página.</p>");
 		}
 	});
 }
