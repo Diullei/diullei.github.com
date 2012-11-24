@@ -46,7 +46,7 @@ function loadIndex(uri, callback) {
 function loadPost(hash) {	
 	$.ajax({
 		url: "/posts/index.json?ms=" + new Date().getTime(),
-		type: 'PUT',
+		type: 'GET',
 		dataType: 'json',
 		data:{name: name},
 		success: function (index) {
