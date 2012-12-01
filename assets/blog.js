@@ -69,8 +69,8 @@ function loadPost(hash) {
 				$('pre code', this.el).each(function(i, e) {hljs.highlightBlock(e)});
 				
 				setTimeout(function() {
-					console.log(uri["title"]);
-					console.log(window.location.href);
+					//console.log(uri["title"]);
+					//console.log(window.location.href);
 					DISQUS.reset({
 					  reload: true,
 					  config: function () {  
