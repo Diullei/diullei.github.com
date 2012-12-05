@@ -284,7 +284,7 @@ a {
   color: #444;
 }
 #content p img {
-  float: left;
+  /*float: left;*/
   margin: 0.5em 0.8125em 0.8125em 0;
   padding: 0;
 }

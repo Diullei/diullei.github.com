@@ -1,8 +1,8 @@
 {
 	"last": "7",
-	"7": { "title": "Debugando TyprScript no navegador", "uri": "typeScript-debug.md", "author": "Diullei Gomes", "date": "16-10-2012" },
-	"6": { "title": "Introdução ao TypeScript", "uri": "typeScript-Intro.md", "author": "Diullei Gomes", "date": "12-10-2012" },
-	"5": { "title": "JavaScript - NoConflict", "uri": "no_conflict_pattern.md", "author": "Diullei Gomes", "date": "29-07-2012" },
-	"3": { "title": "Lendo arquivos com Node.js", "uri": "lendo_arquivos_nodejs.md", "author": "Diullei Gomes", "date": "18-07-2012" },
-	"2": { "title": "Configurando o NodeJs com o NotePad++", "uri": "configurar_npp_nodejs.md", "author": "Diullei Gomes", "date": "17-07-2012" }
+	"7": { "title": "Debugando TyprScript no navegador", "uri": "Debugando-TyprScript-no-navegador.md", "author": "Diullei Gomes", "date": "16-10-2012" },
+	"6": { "title": "Introdução ao TypeScript", "uri": "Introducao-ao-TypeScript.md", "author": "Diullei Gomes", "date": "12-10-2012" },
+	"5": { "title": "JavaScript - NoConflict", "uri": "JavaScript-NoConflict.md", "author": "Diullei Gomes", "date": "29-07-2012" },
+	"3": { "title": "Lendo arquivos com Node.js", "uri": "Lendo-arquivos-com-Nodejs.md", "author": "Diullei Gomes", "date": "18-07-2012" },
+	"2": { "title": "Configurando o NodeJs com o NotePad++", "uri": "Configurando-o-NodeJs-com-o-Npp.md", "author": "Diullei Gomes", "date": "17-07-2012" }
 }

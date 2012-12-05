@@ -1,0 +1,185 @@
+﻿<!DOCTYPE html>
+<html class="wf-adelle-n4-active wf-adelle-i4-active wf-adelle-n7-active wf-adelle-i7-active wf-active"><head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diullei Gomes</title>
+    
+    <link rel="stylesheet" type="text/css" href="../assets/screen.css">
+    	
+  </head>
+  <body><div id="container">
+  <div id="nav">
+    
+      <div id="header">
+        <a href="#" id="logo">
+			{=Diullei Gomes}
+		</a>
+		  <div>
+			<span style="font-style:italic;color:#808080">Cristão, Programador .NET apaixonado por Desenvolvimento de Software.</span>
+		  </div>
+		
+		  <div class="extra twitter">
+			<a href="https://twitter.com/diullei" class="twitter-follow-button" data-show-count="false" data-lang="en">Follow @diullei</a>
+			<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+		  </div>
+      </div>
+    
+    <ul id="sections">
+            
+        <li>
+          <a href="#">Artigos</a>
+          
+            <ul id="artigos"><li><a href='Debugando-TyprScript-no-navegador.html'><span>[16-10-2012]</span> Debugando TyprScript no navegador<br/></a></li><li><a href='Introducao-ao-TypeScript.html'><span>[12-10-2012]</span> Introdução ao TypeScript<br/></a></li><li><a href='JavaScript-NoConflict.html'><span>[29-07-2012]</span> JavaScript - NoConflict<br/></a></li><li><a href='Lendo-arquivos-com-Nodejs.html'><span>[18-07-2012]</span> Lendo arquivos com Node.js<br/></a></li><li><a href='Configurando-o-NodeJs-com-o-Npp.html'><span>[17-07-2012]</span> Configurando o NodeJs com o NotePad++<br/></a></li></ul>
+          
+        </li>
+            
+    </ul>
+          
+  </div>
+	<a href="https://github.com/Diullei/diullei.github.com" id="github-ribbon"><img src="../assets/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"></a>
+	  <div id="content">
+			<div id="blog-content">
+				<h1>Lendo arquivos com Node.js</h1><span>by: Diullei Gomes @ 18-07-2012</span><hr/><p>Existem algumas formas diferentes de ler arquivos usando node.js. Existem métodos síncronos e métodos assíncronos que nos permitem realizar este trabalho. Vou exibir e explicar estas diversas formas no decorrer deste post.</p>
+
+<p>Vamos ao nosso primeiro exemplo:</p>
+
+<pre><code>var fs = require('fs');
+
+fs.readFile('TEST.txt', function(err,data){
+    if(err) {
+        console.error("Could not open file: %s", err);
+        process.exit(1);
+    }
+
+    console.log(data);
+});</code></pre>
+
+<p>Precisamos primeiro de tudo carregar o módulo fs pois é a partir deste módulo que teremos acesso aos métodos de leitura e escrita de arquivos. Logo em seguida fazemos uma chamada ao método: <a href="http://nodejs.org/docs/v0.4.8/api/fs.html#fs.readFile">fs.readFile</a>. Esta função recebe na assinatura o nome do arquivo, um parâmetro opcional que define o encoding que será utilizado durante a leitura do arquivo e um método de callback que será utilizado para manipular os dados lidos do disco. Esse método recebe 2 parâmetros <em>err</em> e <em>data</em>. Sempre que ocorrer um erro durante a leitura do arquivo o parâmetro <em>err</em> virá preenchido com as informações referente ao erro. Se o parametro <em>err</em> vier vazio significa que a leitura do arquivo ocorreu sem problemas e então poderemos manipular o pârametro <em>data</em> que possui o conteúdo do arquivo que está sendo lido. Note que fazemos primeiro a verificação de erros antes de prosseguir com a manipulados dos dados.</p>
+
+<p>Vamos ver o resultado deste código:</p>
+
+<p><img src="/posts/img/lendo_arquivos/Capture_2012-07-18_203709.png" alt="Valid XHTML" title="" /></p>
+
+<p>Veja que quando escrevemos o conteúdo de <em>data</em> no console vemos muitos números estranhos. Esse conteúdo é totalmente diferente do arquivo que estou tentando ler. A documentação nos passa uma dica do que está ocorrendo:</p>
+
+<pre>If no encoding is specified, then the raw buffer is returned.</pre>
+
+<p>Ou seja, se não passarmos um valor para o parâmetro encoding (segundo parâmetro da função readFile) o resultado é retornado da forma em que está gravado no disco. </p>
+
+<p>O node nos dá ainda a chance de utilizar o método <a href="http://nodejs.org/docs/v0.4.8/api/buffers.html#buffer.toString">toString</a> no buffer(variável que contém o resultado da leitura do arquivo) passando como parâmetro o encoding desejado.</p>
+
+<p>Vejamos os exemplos abaixo:</p>
+
+<p><em>passando o encoding</em>:</p>
+
+<pre><code>var fs = require('fs');
+
+fs.readFile('TEST.txt', 'utf8', function(err,data){
+    if(err) {
+        console.error("Could not open file: %s", err);
+        process.exit(1);
+    }
+
+    console.log(data);
+});</code></pre>
+
+<p><img src="/posts/img/lendo_arquivos/Capture_2012-07-18_203739.png" alt="Valid XHTML" title="" /></p>
+
+<p><em>usando o método toString(...)</em></p>
+
+<pre><code>var fs = require('fs');
+
+fs.readFile('TEST.txt', function(err,data){
+    if(err) {
+        console.error("Could not open file: %s", err);
+        process.exit(1);
+    }
+
+    console.log(data.toString('utf8'));
+});</code></pre>
+
+<p><img src="/posts/img/lendo_arquivos/Capture_2012-07-18_203850.png" alt="Valid XHTML" title="" /></p>
+
+<p>A decisão sobre o tipo de encoding utilizar vai depender de que manipulação precisaremos realizar com o conteúdo do arquivo que estamos lendo. Se queremos enviar este conteúdo pela rede para um cliente manter o buffer do jeito que está armazenado no disco é a melhor escolha. Desse jeito podemos utilizar a propriedade length para para pegar o tamanho do arquivo em bytes por exemplo. Isso é muito útil quando queremos por exemplo enviar o tamanho do nosso arquivo no <em>Content-Length</em> no cabeçalho HTTP.</p>
+
+<p>Se o que queremos fazer é manipulação de strings a melhor escolha é passar um encoding.</p>
+
+<p>Um ponto importante a se notar é que da forma em que estamos lendo o arquivo temos os dados do arquivo todo armazenado em memória. Em algum momento o garbage collector irá decidir por remover estes dados da memória caso não exista mais nenhuma referência para o mesmo. Outro ponto é que esta operação é uma operação assíncrona.</p>
+
+<p>Vamos ver agora uma implementação síncrona de leitura de arquivos utilizando o método <a href="http://nodejs.org/docs/v0.4.8/api/fs.html#fs.readFileSync">fs.readFileSync</a>. Este método bloqueia o bloco de código e não permite que o código avance sem que a leitura do arquivo seja finalizada. Segue um exemplo:</p>
+
+<pre><code>var fs = require('fs');
+
+try {
+    var data = fs.readFileSync('TEST.txt', 'ascii');
+    console.log(data);
+}
+catch (err) {
+    console.error("There was an error opening the file:");
+    console.log(err);
+}</code></pre>
+
+<p><img src="/posts/img/lendo_arquivos/Capture_2012-07-18_225647.png" alt="Valid XHTML" title="" /></p>
+
+<p>Aqui podemos destacar duas grandes diferenças. A primeiro é que não temos mais o nosso método de callback. Não precisamos mais dele já que a execução da leitura será realizada de forma síncrona. A outra diferença é que precisamos gerenciar as exeções por nós mesmo, por isso colocamos o código dentro de um bloco <em>try...catch</em>.</p>
+
+<p>Até agora vimos métodos de leitura que funcionam muito bem para leitura de arquivos de tamanho razoável. Como todos os dados do arquivo são armazenados por completo na memória se quiséssemos ler um arquivo com alguns <em>gigas</em> de tamanho por exemplo teríamos alguns sérios problemas. Para essa situação de leitura de arquivos maiores iremos utilizar o método <a href="http://nodejs.org/docs/v0.4.8/api/fs.html#fs.createReadStream">fs.createReadStream</a>. Com esse método podemos ler o arquivo definindo um tamanho de memória máximo a ser utilizado. As opções de configuração para utilização deste método são:</p>
+
+<pre><code>{ 
+    flags: 'r',
+    encoding: null,
+    fd: null,
+    mode: 0666,
+    bufferSize: 64 * 1024
+}</code></pre>
+
+<p>Os atributos principais nos quais devemos nos concentrar é o encoding e o bufferSize. Com o atributo bufferSize dizemos o volume de dados que será lido por vez. O valor padrão como exibido acima é 64 kb. Como esse método é assíncrono nós iremos manipular o resultado monitorando alguns eventos específicos. Vamos a um exemplo:</p>
+
+<pre><code>var fs = require('fs');
+
+var read_stream = fs.createReadStream('TEST.txt', {encoding: 'ascii'});
+read_stream.on("data", function(data){
+    process.stdout.write(data);
+});
+read_stream.on("error", function(err){
+    console.error("An error occurred: %s", err)
+});
+read_stream.on("close", function(){
+    console.log("File closed.")
+});</code></pre>
+
+<p>Repare que temos 3 eventos. <em>data</em> que é chamado cada vez que um trecho do arquivo com o tamanho definido no bufferSize for carregado em memória, <em>error</em> que é chamado sempre que um erro ocorrer durante a leitura e <em>close</em> que será chamado quando a leitura for finalizada. Aqui vale notar que trabalhamos com o arquivo pedaço por pedaço e por isso não usamos console.log(...) para não colocar uma quebra de linha a cada leitura de trecho do arquivo. Usamos no lugar o método process.stdout.write  para que a cada final e trecho de leitura não tenhamos nenhum caracter de quebra de linha inserido alterando o conteúdo do nosso arquivo.</p>
+
+<p>Hoje ficamos por aqui.</p>
+
+<p>Um abraço pra todos!</p>
+			</div>
+  
+		   <div id="disqus_thread"></div>
+		   <script>
+				/* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+				var disqus_shortname = 'diulleigomes'; // required: replace example with your forum shortname
+				var disqus_identifier = 'Lendo arquivos com Node.js';
+				var disqus_title = 'Lendo arquivos com Node.js';
+				var disqus_message = 'Lendo arquivos com Node.js';
+				/* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+				(function() {
+					var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+					dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+					(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+				})();
+		   </script>
+			<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+			<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+         
+	  </div>
+  
+</div>
+
+    <script src="assets/jquery.js"></script>
+    <script src="assets/showdown.js"></script>
+	<script src="assets/highlight.min.js"></script>
+	<script src="assets/blog.js"></script>
+
+</body></html>
