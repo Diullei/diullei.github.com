@@ -8,7 +8,7 @@ var menu = "";
 
 for(var prop in posts) {	
 	if(posts[prop].title) {	
-		menu = "<li><a href='" + posts[prop].uri.split('.')[0] + ".html'><span>[" + posts[prop].date + "]</span> " + posts[prop].title + "<br/></a></li>" + menu;
+		menu = "<li><a href='" + posts[prop].uri.split('.')[0] + ".html'>" + posts[prop].title + "<br/></a> <small>" + posts[prop].date + "</small></li>" + menu;
 	}
 }
 

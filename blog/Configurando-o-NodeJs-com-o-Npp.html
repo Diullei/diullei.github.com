@@ -5,42 +5,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Diullei Gomes</title>
     
-    <link rel="stylesheet" type="text/css" href="../assets/screen.css">
-    	
+
+	<link rel="stylesheet" href="/css/maxwidth.css" type="text/css" media="screen" />
+	<link rel="stylesheet" href="/css/bootstrap-1.1.1.min.css" type="text/css" media="screen" />
+	<link rel="stylesheet" href="/css/syntax.css" type="text/css" media="screen" />
+	<link rel="stylesheet" href="/css/site.css" type="text/css" media="screen" />
+	
   </head>
-  <body><div id="container">
-  <div id="nav">
+  
+<div id="top-bar">
+  <div class="center">
+    <header>
+      <h1><a href="/">Diullei Gomes</a><br/><small>Cristão, Programador .NET apaixonado por Desenvolvimento de Software.</small></h1>
+    </header>
     
-      <div id="header">
-        <a href="#" id="logo">
-			{=Diullei Gomes}
-		</a>
-		  <div>
-			<span style="font-style:italic;color:#808080">Cristão, Programador .NET apaixonado por Desenvolvimento de Software.</span>
-		  </div>
-		
-		  <div class="extra twitter">
-			<a href="https://twitter.com/diullei" class="twitter-follow-button" data-show-count="false" data-lang="en">Follow @diullei</a>
-			<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
-		  </div>
-      </div>
-    
-    <ul id="sections">
-            
-        <li>
-          <a href="#">Artigos</a>
-          
-            <ul id="artigos"><li><a href='Debugando-TyprScript-no-navegador.html'><span>[16-10-2012]</span> Debugando TyprScript no navegador<br/></a></li><li><a href='Introducao-ao-TypeScript.html'><span>[12-10-2012]</span> Introdução ao TypeScript<br/></a></li><li><a href='JavaScript-NoConflict.html'><span>[29-07-2012]</span> JavaScript - NoConflict<br/></a></li><li><a href='Lendo-arquivos-com-Nodejs.html'><span>[18-07-2012]</span> Lendo arquivos com Node.js<br/></a></li><li><a href='Configurando-o-NodeJs-com-o-Npp.html'><span>[17-07-2012]</span> Configurando o NodeJs com o NotePad++<br/></a></li></ul>
-          
-        </li>
-            
-    </ul>
-          
+    <nav>
+      <ul>
+		<li><a href="/">Home</a></li>
+		<li><a href="http://www.github.com/diullei">Github</a></li>
+		<li><a href="http://www.tsdpm.com">tsdpm.com</a></li>
+      </ul>
+    </nav>
   </div>
-	<a href="https://github.com/Diullei/diullei.github.com" id="github-ribbon"><img src="../assets/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"></a>
-	  <div id="content">
-			<div id="blog-content">
-				<h1>Configurando o NodeJs com o NotePad++</h1><span>by: Diullei Gomes @ 17-07-2012</span><hr/><p>O note pad++ é na minha opinião um excelente editor. É claro, com o Sublime Text 2 na área muita gente deixou de olhar para p Np++ :). Minha dica de hoje é mostrar como configurar o Np++ para executar arquivos javascript usando o nodeJs.</p>
+</div> 
+ 
+<div class="center">
+	<article id="maincolumn">
+		<h1>Configurando o NodeJs com o NotePad++</h1><span>by: Diullei Gomes @ 17-07-2012</span><hr/><p>O note pad++ é na minha opinião um excelente editor. É claro, com o Sublime Text 2 na área muita gente deixou de olhar para p Np++ :). Minha dica de hoje é mostrar como configurar o Np++ para executar arquivos javascript usando o nodeJs.</p>
 
 <h3 id="nodejs">NodeJs</h3>
 
@@ -110,8 +101,7 @@ node $(FILE_NAME)</code></pre>
 <p>Espero que esta dica seja útil.</p>
 
 <p>Até!</p>
-			</div>
-  
+		
 		   <div id="disqus_thread"></div>
 		   <script>
 				/* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
@@ -128,14 +118,46 @@ node $(FILE_NAME)</code></pre>
 		   </script>
 			<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 			<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
-         
-	  </div>
+		
+	</article>
+
+  <aside id="sidebar">
+	<p>Gostaria de entrar em contato comigo? Me envie um <a href="mailto:diullei@gmail.com">email</a>.</p>
+	<p><a href="https://twitter.com/diullei" class="twitter-follow-button" data-show-count="false" data-lang="en">Follow @diullei</a>
+	<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script></p>
+  
+  <nav> 
+    <section id="recent-posts">
+      <header>
+        <h3>Recent posts</h3>
+      </header>
+
+	  <ul id="artigos"><li><a href='Debugando-TyprScript-no-navegador.html'>Debugando TyprScript no navegador<br/></a> <small>16-10-2012</small></li><li><a href='Introducao-ao-TypeScript.html'>Introdução ao TypeScript<br/></a> <small>12-10-2012</small></li><li><a href='JavaScript-NoConflict.html'>JavaScript - NoConflict<br/></a> <small>29-07-2012</small></li><li><a href='Lendo-arquivos-com-Nodejs.html'>Lendo arquivos com Node.js<br/></a> <small>18-07-2012</small></li><li><a href='Configurando-o-NodeJs-com-o-Npp.html'>Configurando o NodeJs com o NotePad++<br/></a> <small>17-07-2012</small></li></ul>
+	  
+    </section>
+  </nav>
+</aside>	
+  <footer>
+  <p>&copy; Diullei Gomes. 2013</p>
+</footer>
   
 </div>
 
-    <script src="assets/jquery.js"></script>
-    <script src="assets/showdown.js"></script>
-	<script src="assets/highlight.min.js"></script>
-	<script src="assets/blog.js"></script>
+	<script>
+		var _gaq = _gaq || [];
+		_gaq.push(['_setAccount', 'UA-33515162-1']);
+		_gaq.push(['_trackPageview']);
 
+		(function() {
+			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+		})();
+	</script>
+
+    <script src="/assets/jquery.js"></script>
+	<script src="/assets/highlight.min.js"></script>
+</div>
+</body>
+	
 </body></html>
