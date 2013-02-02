@@ -1,0 +1,162 @@
+﻿<!DOCTYPE html>
+<html class="wf-adelle-n4-active wf-adelle-i4-active wf-adelle-n7-active wf-adelle-i7-active wf-active"><head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diullei Gomes</title>
+    
+
+	<link rel="stylesheet" href="/css/maxwidth.css" type="text/css" media="screen" />
+	<link rel="stylesheet" href="/css/bootstrap-1.1.1.min.css" type="text/css" media="screen" />
+	<link rel="stylesheet" href="/css/syntax.css" type="text/css" media="screen" />
+	<link rel="stylesheet" href="/css/site.css" type="text/css" media="screen" />
+	
+  </head>
+  
+<div id="top-bar">
+  <div class="center">
+    <header>
+      <h1><a href="/">Diullei Gomes</a><br/><small>Cristão, Programador .NET apaixonado por Desenvolvimento de Software.</small></h1>
+    </header>
+    
+    <nav>
+      <ul>
+		<li><a href="/">Home</a></li>
+		<li><a href="http://www.github.com/diullei">Github</a></li>
+		<li><a href="http://www.tsdpm.com">tsdpm.com</a></li>
+      </ul>
+    </nav>
+  </div>
+</div> 
+ 
+<div class="center">
+	<article id="maincolumn">
+		<h1>Testando o ultimo build do TypeScript no Visual Studio</h1><span>by: Diullei Gomes @ 02-02-2013</span><hr/><h2 id="introduo">Introdução</h2>
+
+<p>O objetivo deste post é mostrar como você pode atualizar a versão do TypeScript instalada na sua máquina com a ultima versão em desenvolvimento. Isso é legal caso você esteja acompanhando o que o time do TypeScript está preparando para as novas versões. Você vai precisar atualizar um arquivo chamado <code>typescriptSerivces.js</code>. Vamos ver como isso pode ser feito.</p>
+
+<h2 id="obtendoumanovaversodoarquivotypescriptserivcesjs">Obtendo uma nova versão do arquivo typescriptSerivces.js</h2>
+
+<h3 id="primeiraopousandoolkg">Primeira opção: Usando o "LKG"</h3>
+
+<p>LKG é uma sigla que significa "Last Known Good" que significa no nosso contexto algo como "ultimo arquivo bom de que temos conhecimento". Você pode pegar uma cópia deste arquivo no CodePlex <a href="http://typescript.codeplex.com/SourceControl/BrowseLatest?branch=develop">aqui</a>, basta navegar até o diretorio <code>bin</code> e baixar o arquivo <code>typescriptSerivces.js</code>.</p>
+
+<h3 id="compilandoaultimaversodotypescript">Compilando a ultima versão do TypeScript</h3>
+
+<h4 id="prrequisitos">Pré-requisitos</h4>
+
+<p>Você vai precisar das seguintes feramentas instaladas na tua máquina:</p>
+
+<ul>
+<li><a href="http://git-scm.com/downloads">Git</a> - Algumas recomendações para instalação do git no windows
+<ul><li>Não instale com a opção de integração com o Windows Explorer a menos que você vá realmente precisar disso.</li>
+<li>Selecione a opção <em>Run Git from the Windows Command Prompt</em>.</li>
+<li>Selecione <em>Checkout as-is</em> and <em>commit as-is</em></li></ul></li>
+<li><a href="http://nodejs.org/">Node.js</a></li>
+</ul>
+
+<h4 id="clonandootypescript">Clonando o TypeScript</h4>
+
+<pre><code>&gt; git clone https://git01.codeplex.com/typescript
+</code></pre>
+
+<p>Isso irá criar um diretório local chamado <code>typescript</code> com o código fonte do projeto.</p>
+
+<h4 id="selecionarobranchdaultimaversoemdesenvolvimento">Selecionar o <code>Branch</code> da ultima versão em desenvolvimento</h4>
+
+<pre><code>&gt; cd typescript
+
+&gt; git checkout develop
+</code></pre>
+
+<p>O branch <code>develop</code> é onde encontramos as ultimas alterações de código.</p>
+
+<h4 id="instalandoasdependnciasdoprojeto">Instalando as dependências do projeto</h4>
+
+<pre><code>&gt; npm install
+</code></pre>
+
+<p>Isso irá instalar uma ferramenta clamada <a href="https://github.com/mde/jake">jake</a> a qual é usada no build do TypeScript.</p>
+
+<h4 id="compilandootypescript">Compilando o TypeScript</h4>
+
+<pre><code>&gt; .\node_modules\.bin\jake local 
+</code></pre>
+
+<blockquote>
+  <p>NOTA: Sempre que você quiser pegar a ultima versão do código do TypeScript para compilar localmente você pode apagar o folder <code>typescript</code> e repetir todo o procedomento acima ou simplesmente executar o comando <code>git pull</code> para atualizar seu repositório com as ultimas alterações feitas pelo time do TypeScript.</p>
+</blockquote>
+
+<h3 id="atualizandooarquivotypescriptserivcesjs">Atualizando o arquivo typescriptSerivces.js</h3>
+
+<p>Você vai precisar localizar o diretório local onde onde a extensão do TypeScrit está instalada. Procure por um arquivo chamada <code>typescriptSerivces.js</code> em um diretório localizado em um caminho paredico com:</p>
+
+<p><code>C:\Program Files (x86)\Microsoft Visual Studio 11.0\Common7\IDE\Extensions\enn4wcm5.z2b\</code></p>
+
+<p>Note que o ultimo diretório chamado <code>enn4wcm5.z2b</code> vai ter nome diferente em cada máquina. Em alguns casos raros você pode ter mais de um subfolde com a instalação do TypeScript. Se você tiver este cenário identifique pela data de criação o mais recente.</p>
+
+<p>Localize o arquivo <code>typescriptSerivces.js</code>, faça um backup e substitua este arquivo pela ultima versão optida no tópico anterior.</p>
+
+<p>Feito isso, reinicie o Visual Studio e divirta-se!</p>
+
+<p>Um grande abraço e até a próxima!</p>
+		
+		   <div id="disqus_thread"></div>
+		   <script>
+				/* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+				var disqus_shortname = 'diulleigomes'; // required: replace example with your forum shortname
+				var disqus_identifier = 'Testando o ultimo build do TypeScript no Visual Studio';
+				var disqus_title = 'Testando o ultimo build do TypeScript no Visual Studio';
+				var disqus_message = 'Testando o ultimo build do TypeScript no Visual Studio';
+				/* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+				(function() {
+					var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+					dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+					(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+				})();
+		   </script>
+			<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+			<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+		
+	</article>
+
+  <aside id="sidebar">
+	<p>Gostaria de entrar em contato comigo? Me envie um <a href="mailto:diullei@gmail.com">email</a>.</p>
+	<p><a href="https://twitter.com/diullei" class="twitter-follow-button" data-show-count="false" data-lang="en">Follow @diullei</a>
+	<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script></p>
+  
+  <nav> 
+    <section id="recent-posts">
+      <header>
+        <h3>Recent posts</h3>
+      </header>
+
+	  <ul id="artigos"><li><a href='Testando-o-ultimo-build-do-TypeScript-no-VS.html'>Testando o ultimo build do TypeScript no Visual Studio<br/></a> <small>02-02-2013</small></li><li><a href='Debugando-TyprScript-no-navegador.html'>Debugando TyprScript no navegador<br/></a> <small>16-10-2012</small></li><li><a href='Introducao-ao-TypeScript.html'>Introdução ao TypeScript<br/></a> <small>12-10-2012</small></li><li><a href='JavaScript-NoConflict.html'>JavaScript - NoConflict<br/></a> <small>29-07-2012</small></li><li><a href='Lendo-arquivos-com-Nodejs.html'>Lendo arquivos com Node.js<br/></a> <small>18-07-2012</small></li><li><a href='Configurando-o-NodeJs-com-o-Npp.html'>Configurando o NodeJs com o NotePad++<br/></a> <small>17-07-2012</small></li></ul>
+	  
+    </section>
+  </nav>
+</aside>	
+  <footer>
+  <p>&copy; Diullei Gomes. 2013</p>
+</footer>
+  
+</div>
+
+	<script>
+		var _gaq = _gaq || [];
+		_gaq.push(['_setAccount', 'UA-33515162-1']);
+		_gaq.push(['_trackPageview']);
+
+		(function() {
+			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+		})();
+	</script>
+
+    <script src="/assets/jquery.js"></script>
+	<script src="/assets/highlight.min.js"></script>
+</div>
+</body>
+	
+</body></html>
