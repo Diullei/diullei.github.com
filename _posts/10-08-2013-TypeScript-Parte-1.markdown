@@ -95,7 +95,7 @@ Tendo uma definição de tipos bem feita podemos ter um _IntelliSense_ de qualid
 
 ![](https://raw.github.com/Diullei/diullei.github.com/master/_site/images/TypeScript_Parte1/0006.png) 
 
-<h2 id="Tipos-declarados">Tipos declarados</h2>
+## Tipos declarados
 
 Vimos no tópico anterior que podemos escrever um código **TypeScript** definindo tipos e vimos o quanto isso pode ser util nos fornecendo uma checagem do código em tempo de compilação. Um outro recurso muito util do **TypeScript** é a possibilidade de "tipar" um código **JavaScript** existente. Isso é feito utilizando a palavra chave `declare`. 
 
