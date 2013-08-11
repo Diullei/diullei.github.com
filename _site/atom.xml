@@ -4,7 +4,7 @@
  <title>Diullei Gomes</title>
  <link href="http://www.diullei.com/atom.xml" rel="self"/>
  <link href="http://www.diullei.com/"/>
- <updated>2013-08-11T02:03:27-03:00</updated>
+ <updated>2013-08-11T02:23:00-03:00</updated>
  <id>http://www.diullei.com</id>
  <author>
    <name>Diullei Gomes</name>
@@ -61,15 +61,15 @@
 
 &lt;blockquote&gt;&lt;p&gt;&lt;a href=&quot;http://www.typescriptlang.org/Playground/&quot;&gt;&lt;strong&gt;TypeScript&lt;/strong&gt; Playground&lt;/a&gt; - Trata se de um compilador &lt;strong&gt;TypeScript&lt;/strong&gt; online onde podemos testar qualquer código &lt;strong&gt;TypeScript&lt;/strong&gt; e visualizar a saída de código &lt;strong&gt;JavaScript&lt;/strong&gt; em tempo real.&lt;/p&gt;&lt;/blockquote&gt;
 
-&lt;p&gt;&lt;img src=&quot;images/TypeScript_Parte1/0001.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://raw.github.com/Diullei/diullei.github.com/master/_site/images/TypeScript_Parte1/0001.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;Veja que na caixa a esquerda temos nosso código &lt;strong&gt;JavaScript&lt;/strong&gt; original. Já na caixa a direita temos o código gerado pelo compilador do &lt;strong&gt;TypeScript&lt;/strong&gt;, e você vai perceber que a saída de código é essencialmente parecida com o código &lt;strong&gt;JavaScript&lt;/strong&gt; que foi introduzido, tirando algumas pequenas diferenças de espaço em branco.&lt;/p&gt;
 
 &lt;p&gt;No entanto esse código &lt;strong&gt;JavaScript&lt;/strong&gt; tem um bug. Devido a natureza dinâmica do &lt;strong&gt;JavaScrpt&lt;/strong&gt; este bug passou despercebido durante o desenvolvimento deste código. Basta executar o código e veremos o erro ocorrendo:&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;images/TypeScript_Parte1/0002.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://raw.github.com/Diullei/diullei.github.com/master/_site/images/TypeScript_Parte1/0002.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
-&lt;blockquote&gt;&lt;p&gt;É claro que se estivessemos utilizando TDD não teríamos deixado passar um erro como esse ;)&lt;/p&gt;&lt;/blockquote&gt;
+&lt;blockquote&gt;&lt;p&gt;É claro que se estivessemos utilizando TDD não teríamos deixado passar um erro como esse&lt;/p&gt;&lt;/blockquote&gt;
 
 &lt;p&gt;Veja que o construtor do objeto &lt;code&gt;Mensagem&lt;/code&gt; esperava um argumento do tipo string mas o argumento passado foi um objeto. Esse erro poderia ter sido facilmente evitado se tivéssemos utilizado o recurso de definição de tipos do &lt;strong&gt;TypeScript&lt;/strong&gt; (&lt;strong&gt;type anotations&lt;/strong&gt;). Para tanto vamos alterar o código original e definir para o construtor do objeto &lt;code&gt;Mensagem&lt;/code&gt; que seu argumento deverá ser sempre do tipo string. Segue abaixo o código alterado:&lt;/p&gt;
 
@@ -96,19 +96,19 @@
 
 &lt;p&gt;Ao tentar compilar este código o compilador do &lt;strong&gt;TypeScript&lt;/strong&gt; nos dará um erro na linha 9 por que estamos tentanto passar um objeto como argumento de um construtor que espera receber um argumento do tipo string conforme foi definido. Vamos utilizar o &lt;a href=&quot;http://www.typescriptlang.org/Playground/&quot;&gt;&lt;strong&gt;TypeScript&lt;/strong&gt; Playground&lt;/a&gt; para ver isso na prática.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;images/TypeScript_Parte1/0003.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://raw.github.com/Diullei/diullei.github.com/master/_site/images/TypeScript_Parte1/0003.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;Ao alterarmos o código na linha 1 definindo o tipo do argumento &lt;em&gt;texto&lt;/em&gt; do &lt;strong&gt;TypeScript&lt;/strong&gt; passou a emitir um erro na linha 9. Veja este erro com mais detalhe na imagem abaixo:&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;images/TypeScript_Parte1/0004.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://raw.github.com/Diullei/diullei.github.com/master/_site/images/TypeScript_Parte1/0004.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;Veja que esta simples definição de tipo permitiu ao compilador nos fornecer uma experiência de codificação muito melhor do que a que tivemos antes. Agora temos uma verificação estática do nosso código e um erro totalmente detalhado. Tendo esse ferramental a disposição conseguimos facilmente identificar e resolver o problema que antes havia passado por despercebido.&lt;/p&gt;
 
 &lt;p&gt;Tendo uma definição de tipos bem feita podemos ter um &lt;em&gt;IntelliSense&lt;/em&gt; de qualidade se estivermos utilizando uma &lt;em&gt;IDE&lt;/em&gt; com suporte ao &lt;strong&gt;TypeScript&lt;/strong&gt;. Veja por exemplo na imagem abaixo um &lt;em&gt;autoComplete&lt;/em&gt; gerado quando tentamos acessar os membros do argumento &lt;em&gt;texto&lt;/em&gt; da função &lt;code&gt;Mensagem&lt;/code&gt;.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;images/TypeScript_Parte1/0005.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://raw.github.com/Diullei/diullei.github.com/master/_site/images/TypeScript_Parte1/0005.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;images/TypeScript_Parte1/0006.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://raw.github.com/Diullei/diullei.github.com/master/_site/images/TypeScript_Parte1/0006.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;h2&gt;Tipos declarados&lt;/h2&gt;
 
@@ -147,7 +147,7 @@
 
 &lt;p&gt;A Microsoft a tempos tem defendido a idéia de que as linguagens de programação e as ferramentas de desenvolvimento devem trabalhar juntas para criar uma boa experiência de desenvolvimento. Como já foi dito com &lt;strong&gt;TypeScript&lt;/strong&gt; os fornecedores de &lt;em&gt;Editores&lt;/em&gt; e &lt;em&gt;IDEs&lt;/em&gt; tem a possibilidade de prover para o desenvolvedor ferramentas que proporcionam uma experiência de desenvolvimento em &lt;strong&gt;TypeScript&lt;/strong&gt; muito rica incluindo a verificação de tipos e interfaces, navegação de código, refatoração, debug, intelliSense entre outros. A própria Microsoft está disponibilizando um plugin para o &lt;em&gt;Visual Studio 2012&lt;/em&gt; com muitos destes recursos.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;images/TypeScript_Parte1/0008.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://raw.github.com/Diullei/diullei.github.com/master/_site/images/TypeScript_Parte1/0008.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;Existem ainda outros editores no mercado trabalhando no suporte ao &lt;strong&gt;TypeScript&lt;/strong&gt;. Veja mais neste &lt;a href=&quot;http://blogs.msdn.com/b/interoperability/archive/2012/10/01/sublime-text-vi-emacs-typescript-enabled.aspx&quot;&gt;link&lt;/a&gt;.&lt;/p&gt;
 

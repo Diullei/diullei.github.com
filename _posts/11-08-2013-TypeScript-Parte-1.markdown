@@ -49,15 +49,15 @@ Vamos compilar este código utilizando o compilador do **TypeScrit** para visual
 
 > [**TypeScript** Playground](http://www.typescriptlang.org/Playground/) - Trata se de um compilador **TypeScript** online onde podemos testar qualquer código **TypeScript** e visualizar a saída de código **JavaScript** em tempo real.
 
-![](images/TypeScript_Parte1/0001.png) 
+![](https://raw.github.com/Diullei/diullei.github.com/master/_site/images/TypeScript_Parte1/0001.png) 
 
 Veja que na caixa a esquerda temos nosso código **JavaScript** original. Já na caixa a direita temos o código gerado pelo compilador do **TypeScript**, e você vai perceber que a saída de código é essencialmente parecida com o código **JavaScript** que foi introduzido, tirando algumas pequenas diferenças de espaço em branco.
 
 No entanto esse código **JavaScript** tem um bug. Devido a natureza dinâmica do **JavaScrpt** este bug passou despercebido durante o desenvolvimento deste código. Basta executar o código e veremos o erro ocorrendo:
 
-![](images/TypeScript_Parte1/0002.png) 
+![](https://raw.github.com/Diullei/diullei.github.com/master/_site/images/TypeScript_Parte1/0002.png) 
 
-> É claro que se estivessemos utilizando TDD não teríamos deixado passar um erro como esse ;)
+> É claro que se estivessemos utilizando TDD não teríamos deixado passar um erro como esse
 
 Veja que o construtor do objeto `Mensagem` esperava um argumento do tipo string mas o argumento passado foi um objeto. Esse erro poderia ter sido facilmente evitado se tivéssemos utilizado o recurso de definição de tipos do **TypeScript** (**type anotations**). Para tanto vamos alterar o código original e definir para o construtor do objeto `Mensagem` que seu argumento deverá ser sempre do tipo string. Segue abaixo o código alterado:
 
@@ -84,19 +84,19 @@ document.body.appendChild(button);
 
 Ao tentar compilar este código o compilador do **TypeScript** nos dará um erro na linha 9 por que estamos tentanto passar um objeto como argumento de um construtor que espera receber um argumento do tipo string conforme foi definido. Vamos utilizar o [**TypeScript** Playground](http://www.typescriptlang.org/Playground/) para ver isso na prática.
 
-![](images/TypeScript_Parte1/0003.png) 
+![](https://raw.github.com/Diullei/diullei.github.com/master/_site/images/TypeScript_Parte1/0003.png) 
 
 Ao alterarmos o código na linha 1 definindo o tipo do argumento _texto_ do **TypeScript** passou a emitir um erro na linha 9. Veja este erro com mais detalhe na imagem abaixo:
 
-![](images/TypeScript_Parte1/0004.png) 
+![](https://raw.github.com/Diullei/diullei.github.com/master/_site/images/TypeScript_Parte1/0004.png) 
 
 Veja que esta simples definição de tipo permitiu ao compilador nos fornecer uma experiência de codificação muito melhor do que a que tivemos antes. Agora temos uma verificação estática do nosso código e um erro totalmente detalhado. Tendo esse ferramental a disposição conseguimos facilmente identificar e resolver o problema que antes havia passado por despercebido.
 
 Tendo uma definição de tipos bem feita podemos ter um _IntelliSense_ de qualidade se estivermos utilizando uma _IDE_ com suporte ao **TypeScript**. Veja por exemplo na imagem abaixo um _autoComplete_ gerado quando tentamos acessar os membros do argumento _texto_ da função `Mensagem`.
 
-![](images/TypeScript_Parte1/0005.png) 
+![](https://raw.github.com/Diullei/diullei.github.com/master/_site/images/TypeScript_Parte1/0005.png) 
 
-![](images/TypeScript_Parte1/0006.png) 
+![](https://raw.github.com/Diullei/diullei.github.com/master/_site/images/TypeScript_Parte1/0006.png) 
 
 ## Tipos declarados
 
@@ -135,7 +135,7 @@ var mensagem = new Mensagem("Mundo")
 
 A Microsoft a tempos tem defendido a idéia de que as linguagens de programação e as ferramentas de desenvolvimento devem trabalhar juntas para criar uma boa experiência de desenvolvimento. Como já foi dito com **TypeScript** os fornecedores de _Editores_ e _IDEs_ tem a possibilidade de prover para o desenvolvedor ferramentas que proporcionam uma experiência de desenvolvimento em **TypeScript** muito rica incluindo a verificação de tipos e interfaces, navegação de código, refatoração, debug, intelliSense entre outros. A própria Microsoft está disponibilizando um plugin para o _Visual Studio 2012_ com muitos destes recursos.
 
-![](images/TypeScript_Parte1/0008.png) 
+![](https://raw.github.com/Diullei/diullei.github.com/master/_site/images/TypeScript_Parte1/0008.png) 
 
 Existem ainda outros editores no mercado trabalhando no suporte ao **TypeScript**. Veja mais neste [link](http://blogs.msdn.com/b/interoperability/archive/2012/10/01/sublime-text-vi-emacs-typescript-enabled.aspx).
 

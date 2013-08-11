@@ -108,15 +108,15 @@
 
 <blockquote><p><a href="http://www.typescriptlang.org/Playground/"><strong>TypeScript</strong> Playground</a> - Trata se de um compilador <strong>TypeScript</strong> online onde podemos testar qualquer código <strong>TypeScript</strong> e visualizar a saída de código <strong>JavaScript</strong> em tempo real.</p></blockquote>
 
-<p><img src="images/TypeScript_Parte1/0001.png" alt="" /></p>
+<p><img src="https://raw.github.com/Diullei/diullei.github.com/master/_site/images/TypeScript_Parte1/0001.png" alt="" /></p>
 
 <p>Veja que na caixa a esquerda temos nosso código <strong>JavaScript</strong> original. Já na caixa a direita temos o código gerado pelo compilador do <strong>TypeScript</strong>, e você vai perceber que a saída de código é essencialmente parecida com o código <strong>JavaScript</strong> que foi introduzido, tirando algumas pequenas diferenças de espaço em branco.</p>
 
 <p>No entanto esse código <strong>JavaScript</strong> tem um bug. Devido a natureza dinâmica do <strong>JavaScrpt</strong> este bug passou despercebido durante o desenvolvimento deste código. Basta executar o código e veremos o erro ocorrendo:</p>
 
-<p><img src="images/TypeScript_Parte1/0002.png" alt="" /></p>
+<p><img src="https://raw.github.com/Diullei/diullei.github.com/master/_site/images/TypeScript_Parte1/0002.png" alt="" /></p>
 
-<blockquote><p>É claro que se estivessemos utilizando TDD não teríamos deixado passar um erro como esse ;)</p></blockquote>
+<blockquote><p>É claro que se estivessemos utilizando TDD não teríamos deixado passar um erro como esse</p></blockquote>
 
 <p>Veja que o construtor do objeto <code>Mensagem</code> esperava um argumento do tipo string mas o argumento passado foi um objeto. Esse erro poderia ter sido facilmente evitado se tivéssemos utilizado o recurso de definição de tipos do <strong>TypeScript</strong> (<strong>type anotations</strong>). Para tanto vamos alterar o código original e definir para o construtor do objeto <code>Mensagem</code> que seu argumento deverá ser sempre do tipo string. Segue abaixo o código alterado:</p>
 
@@ -143,19 +143,19 @@
 
 <p>Ao tentar compilar este código o compilador do <strong>TypeScript</strong> nos dará um erro na linha 9 por que estamos tentanto passar um objeto como argumento de um construtor que espera receber um argumento do tipo string conforme foi definido. Vamos utilizar o <a href="http://www.typescriptlang.org/Playground/"><strong>TypeScript</strong> Playground</a> para ver isso na prática.</p>
 
-<p><img src="images/TypeScript_Parte1/0003.png" alt="" /></p>
+<p><img src="https://raw.github.com/Diullei/diullei.github.com/master/_site/images/TypeScript_Parte1/0003.png" alt="" /></p>
 
 <p>Ao alterarmos o código na linha 1 definindo o tipo do argumento <em>texto</em> do <strong>TypeScript</strong> passou a emitir um erro na linha 9. Veja este erro com mais detalhe na imagem abaixo:</p>
 
-<p><img src="images/TypeScript_Parte1/0004.png" alt="" /></p>
+<p><img src="https://raw.github.com/Diullei/diullei.github.com/master/_site/images/TypeScript_Parte1/0004.png" alt="" /></p>
 
 <p>Veja que esta simples definição de tipo permitiu ao compilador nos fornecer uma experiência de codificação muito melhor do que a que tivemos antes. Agora temos uma verificação estática do nosso código e um erro totalmente detalhado. Tendo esse ferramental a disposição conseguimos facilmente identificar e resolver o problema que antes havia passado por despercebido.</p>
 
 <p>Tendo uma definição de tipos bem feita podemos ter um <em>IntelliSense</em> de qualidade se estivermos utilizando uma <em>IDE</em> com suporte ao <strong>TypeScript</strong>. Veja por exemplo na imagem abaixo um <em>autoComplete</em> gerado quando tentamos acessar os membros do argumento <em>texto</em> da função <code>Mensagem</code>.</p>
 
-<p><img src="images/TypeScript_Parte1/0005.png" alt="" /></p>
+<p><img src="https://raw.github.com/Diullei/diullei.github.com/master/_site/images/TypeScript_Parte1/0005.png" alt="" /></p>
 
-<p><img src="images/TypeScript_Parte1/0006.png" alt="" /></p>
+<p><img src="https://raw.github.com/Diullei/diullei.github.com/master/_site/images/TypeScript_Parte1/0006.png" alt="" /></p>
 
 <h2>Tipos declarados</h2>
 
@@ -194,7 +194,7 @@
 
 <p>A Microsoft a tempos tem defendido a idéia de que as linguagens de programação e as ferramentas de desenvolvimento devem trabalhar juntas para criar uma boa experiência de desenvolvimento. Como já foi dito com <strong>TypeScript</strong> os fornecedores de <em>Editores</em> e <em>IDEs</em> tem a possibilidade de prover para o desenvolvedor ferramentas que proporcionam uma experiência de desenvolvimento em <strong>TypeScript</strong> muito rica incluindo a verificação de tipos e interfaces, navegação de código, refatoração, debug, intelliSense entre outros. A própria Microsoft está disponibilizando um plugin para o <em>Visual Studio 2012</em> com muitos destes recursos.</p>
 
-<p><img src="images/TypeScript_Parte1/0008.png" alt="" /></p>
+<p><img src="https://raw.github.com/Diullei/diullei.github.com/master/_site/images/TypeScript_Parte1/0008.png" alt="" /></p>
 
 <p>Existem ainda outros editores no mercado trabalhando no suporte ao <strong>TypeScript</strong>. Veja mais neste <a href="http://blogs.msdn.com/b/interoperability/archive/2012/10/01/sublime-text-vi-emacs-typescript-enabled.aspx">link</a>.</p>
 
