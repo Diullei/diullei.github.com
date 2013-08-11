@@ -2,8 +2,6 @@
 layout: layout
 ---
 
-{% assign page = site.posts.first %}
-
 <section class="content">
   <h1>
     <a href="{{ page.url }}">{{ page.title }}</a>
@@ -13,7 +11,7 @@ layout: layout
     {{ page.date | date: "%B %e, %Y" }}
   </section>
 
-  {{ page.content }}
+  {{ content }}
 
   <hr/>
 

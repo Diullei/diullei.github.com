@@ -1,0 +1,748 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+ 
+ <title>Diullei Gomes</title>
+ <link href="http://www.diullei.com/atom.xml" rel="self"/>
+ <link href="http://www.diullei.com/"/>
+ <updated>2013-08-10T22:57:36-03:00</updated>
+ <id>http://www.diullei.com</id>
+ <author>
+   <name>Diullei Gomes</name>
+ </author>
+ 
+ 
+ <entry>
+   <title>Testando o ultimo build do TypeScript no VS</title>
+   <link href="http://www.diullei.com/posts/Testando-o-ultimo-build-do-TypeScript-no-VS"/>
+   <updated>2013-02-02T00:00:00-02:00</updated>
+   <id>http://www.diullei.com/posts/Testando-o-ultimo-build-do-TypeScript-no-VS</id>
+   <content type="html">&lt;h2&gt;Introdução&lt;/h2&gt;
+
+&lt;p&gt;O objetivo deste post é mostrar como você pode atualizar a versão do TypeScript instalada na sua máquina com a ultima versão em desenvolvimento. Isso é legal caso você esteja acompanhando o que o time do TypeScript está preparando para as novas versões. Você vai precisar atualizar um arquivo chamado &lt;code&gt;typescriptSerivces.js&lt;/code&gt;. Vamos ver como isso pode ser feito.&lt;/p&gt;
+
+&lt;h2&gt;Obtendo uma nova versão do arquivo typescriptSerivces.js&lt;/h2&gt;
+
+&lt;h3&gt;Primeira opção: Usando o &amp;ldquo;LKG&amp;rdquo;&lt;/h3&gt;
+
+&lt;p&gt;LKG é uma sigla que significa &amp;ldquo;Last Known Good&amp;rdquo; que significa no nosso contexto algo como &amp;ldquo;ultimo arquivo bom de que temos conhecimento&amp;rdquo;. Você pode pegar uma cópia deste arquivo no CodePlex &lt;a href=&quot;http://typescript.codeplex.com/SourceControl/BrowseLatest?branch=develop&quot;&gt;aqui&lt;/a&gt;, basta navegar até o diretorio &lt;code&gt;bin&lt;/code&gt; e baixar o arquivo &lt;code&gt;typescriptSerivces.js&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h3&gt;Compilando a ultima versão do TypeScript&lt;/h3&gt;
+
+&lt;h4&gt;Pré-requisitos&lt;/h4&gt;
+
+&lt;p&gt;Você vai precisar das seguintes feramentas instaladas na tua máquina:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;http://git-scm.com/downloads&quot;&gt;Git&lt;/a&gt; - Algumas recomendações para instalação do git no windows
+
+&lt;ul&gt;
+&lt;li&gt;Não instale com a opção de integração com o Windows Explorer a menos que você vá realmente precisar disso.&lt;/li&gt;
+&lt;li&gt;Selecione a opção &lt;em&gt;Run Git from the Windows Command Prompt&lt;/em&gt;.&lt;/li&gt;
+&lt;li&gt;Selecione &lt;em&gt;Checkout as-is&lt;/em&gt; and &lt;em&gt;commit as-is&lt;/em&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://nodejs.org/&quot;&gt;Node.js&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;h4&gt;Clonando o TypeScript&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;gt; git clone https://git01.codeplex.com/typescript
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Isso irá criar um diretório local chamado &lt;code&gt;typescript&lt;/code&gt; com o código fonte do projeto.&lt;/p&gt;
+
+&lt;h4&gt;Selecionar o &lt;code&gt;Branch&lt;/code&gt; da ultima versão em desenvolvimento&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;gt; cd typescript
+
+&amp;gt; git checkout develop
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;O branch &lt;code&gt;develop&lt;/code&gt; é onde encontramos as ultimas alterações de código.&lt;/p&gt;
+
+&lt;h4&gt;Instalando as dependências do projeto&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;gt; npm install
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Isso irá instalar uma ferramenta clamada &lt;a href=&quot;https://github.com/mde/jake&quot;&gt;jake&lt;/a&gt; a qual é usada no build do TypeScript.&lt;/p&gt;
+
+&lt;h4&gt;Compilando o TypeScript&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;gt; .\node_modules\.bin\jake local 
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;blockquote&gt;&lt;p&gt;NOTA: Sempre que você quiser pegar a ultima versão do código do TypeScript para compilar localmente você pode apagar o folder &lt;code&gt;typescript&lt;/code&gt; e repetir todo o procedomento acima ou simplesmente executar o comando &lt;code&gt;git pull&lt;/code&gt; para atualizar seu repositório com as ultimas alterações feitas pelo time do TypeScript.&lt;/p&gt;&lt;/blockquote&gt;
+
+&lt;h3&gt;Atualizando o arquivo typescriptSerivces.js&lt;/h3&gt;
+
+&lt;p&gt;Você vai precisar localizar o diretório local onde onde a extensão do TypeScrit está instalada. Procure por um arquivo chamada &lt;code&gt;typescriptSerivces.js&lt;/code&gt; em um diretório localizado em um caminho paredico com:&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;C:\Program Files (x86)\Microsoft Visual Studio 11.0\Common7\IDE\Extensions\enn4wcm5.z2b\&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Note que o ultimo diretório chamado &lt;code&gt;enn4wcm5.z2b&lt;/code&gt; vai ter nome diferente em cada máquina. Em alguns casos raros você pode ter mais de um subfolde com a instalação do TypeScript. Se você tiver este cenário identifique pela data de criação o mais recente.&lt;/p&gt;
+
+&lt;p&gt;Localize o arquivo &lt;code&gt;typescriptSerivces.js&lt;/code&gt;, faça um backup e substitua este arquivo pela ultima versão optida no tópico anterior.&lt;/p&gt;
+
+&lt;p&gt;Feito isso, reinicie o Visual Studio e divirta-se!&lt;/p&gt;
+
+&lt;p&gt;Um grande abraço e até a próxima!&lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>Debugando TypeScript no navegador</title>
+   <link href="http://www.diullei.com/posts/Debugando-TyprScript-no-navegador"/>
+   <updated>2012-10-16T00:00:00-03:00</updated>
+   <id>http://www.diullei.com/posts/Debugando-TyprScript-no-navegador</id>
+   <content type="html">&lt;h2&gt;Introdução&lt;/h2&gt;
+
+&lt;p&gt;Existe um recurso bem interessante implementado no Firefox e no Chrome (não sei ao certo quais outros navegadores) chamado &lt;a href=&quot;http://www.html5rocks.com/en/tutorials/developertools/sourcemaps/&quot;&gt;Source Maps&lt;/a&gt;. Para entender do que se trata tenha em mente um arquivo javascript minificado. Para rastrear um bug no código deste arquivo por exemplo teríamos que usar a versão não minificada do mesmo. Uma vez encontrado o bug este seria corrigido e um novo arquivo minificado seria gerado. Um Source Map é um arquivo de mapeamento que faz um dê-para (no nosso caso) do arquivo minificado com o arquivo real. A partir deste mapeamento o browser consegue realizar o debug no arquivo original(não minificado) em bora a execução real esteja ocorrendo no arquivo minificado.&lt;/p&gt;
+
+&lt;p&gt;Até aqui isso não agregou muito por que basta referenciar o arquivo original como dito anteriormente. Uma vez que tenhamos o problema rastreado ou a feature implementada minificamos tudo novamente.&lt;/p&gt;
+
+&lt;h3&gt;Como isso pode nos ajudar no Debug de código TypeScript?&lt;/h3&gt;
+
+&lt;p&gt;TypeScrit assim como CoffeeScrit e Dart entre outros são pré-processadores que geram no final das contas código JavaScript. Como a maioria dos pré-processadores tenta melhorar a sintaxe do código na escrita de expressões lambda, iterações, classes, interfaces, heranças e etc, temos uma dissonância entre o código escrito em TypeScript por exemplo com o código JavaScript gerado no final.&lt;/p&gt;
+
+&lt;p&gt;Aqui entra em ação o Source Map. Com ele assim como podemos mapear um arquivo minificado com seu arquivo original, podemos também mapear um arquivo TypeScript original com seu código final gerado em JavaScript. Isso abre novas possibilidades de debug. Novas ferramentas de debug e refatoração podem ser criadas a partir deste recurso.&lt;/p&gt;
+
+&lt;p&gt;É aí que entra o assunto deste artigo. Vou mostrar como debugar TypeScript em um navegador com suporte a Source Maps. No meu caso vamos usar o Chrome.&lt;/p&gt;
+
+&lt;h2&gt;Habilitando Source Map no Google Chrome&lt;/h2&gt;
+
+&lt;p&gt;Para habilitar o recurso de source maps no Chrome basta acessar Settings e selecionar a caixa &amp;ldquo;Enable source maps&amp;rdquo;. Veja na imagem abaixo:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/debug_typescript/enable_source_map.png&quot; alt=&quot;Valid XHTML&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Feito isso estamos pronto para debugar nosso código.&lt;/p&gt;
+
+&lt;h2&gt;Criando o nosso código de testes&lt;/h2&gt;
+
+&lt;p&gt;Para exemplo vamos criar um arquivo com um código TypeScript muito simples. Salve o código abaixo em um arquivo chamado &lt;code&gt;script.ts&lt;/code&gt;.&lt;/p&gt;
+
+&lt;table class=&quot;highlighttable&quot;&gt;&lt;tr&gt;&lt;td class=&quot;linenos&quot;&gt;&lt;div class=&quot;linenodiv&quot;&gt;&lt;pre&gt;&lt;code class=&quot;javascript&quot;&gt; 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;span class=&quot;kr&quot;&gt;interface&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;IPessoa&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;nome&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;string&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;sobreNome&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;string&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;nomeCompleto&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;string&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;kr&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Pessoa&lt;/span&gt; &lt;span class=&quot;kr&quot;&gt;implements&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;IPessoa&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;nome&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;string&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    
+    &lt;span class=&quot;nx&quot;&gt;sobreNome&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;string&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+    &lt;span class=&quot;nx&quot;&gt;nomeCompleto&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;string&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;Nome: &amp;quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;nome&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot; &amp;quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;sobreNome&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;pessoa&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Pessoa&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;pessoa&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;nome&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;Diullei&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;pessoa&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;sobreNome&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;Gomes&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;element&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;document&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;getElementById&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;content&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;element&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;innerHTML&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;pessoa&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;nomeCompleto&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+
+
+&lt;p&gt;Agora crie um arquivo chamado &lt;code&gt;index.html&lt;/code&gt; e coloque o código abaixo:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;html&quot;&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;!DOCTYPE HTML&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;html&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;head&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;meta&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;title&amp;gt;&amp;lt;/title&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/head&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;body&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;id=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;content&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;script &lt;/span&gt;&lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;text/javascript&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;src=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;script.js&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;/script&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/body&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/html&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Estes arquivos precisam estar no mesmo folder.&lt;/p&gt;
+
+&lt;h2&gt;Source Maps para TypeScript&lt;/h2&gt;
+
+&lt;p&gt;Tendo nosso pequeno projeto em mãos agora precisamos gerar nosso arquivo source map. Felizmente o time que trabalha no TypeScript fez um trabalho muito bom incluindo um gerador de source maps no &lt;a href=&quot;http://typescript.codeplex.com/SourceControl/changeset/view/d397c54a55db#src%2fcompiler%2fsourceMapping.ts&quot;&gt;compilador do TypeScript&lt;/a&gt;. Embora não seja documentado no help do utilitário de compilação do TypeScript para gerar o arquivo sourcemap basta executar a compilação da seguinte forma: &lt;code&gt;tsc --sourcemap script.ts&lt;/code&gt;. Feito isso repare que um arquivo chamado &lt;code&gt;script.js.map&lt;/code&gt; é gerado. Repare também que este arquivo é referenciado no final do arquivo script.js gerado pelo compilador como na linha abaixo:&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;//@ sourceMappingURL=script.js.map&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Tendo compilado o arquivo script.ts agora basta abrir a página &lt;code&gt;index.html&lt;/code&gt; no Chrome. Coloque um breakpoint no código para ver o debug do TypeScript em ação. Veja na imagem abaixo:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/debug_typescript/debug.png&quot; alt=&quot;Valid XHTML&quot; /&gt;&lt;/p&gt;
+
+&lt;h2&gt;Conclusão&lt;/h2&gt;
+
+&lt;p&gt;Como vimos o recurso Source Maps abre muitas possibilidades no tocante a rastreamento de código.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Para saber mais sobre Source Maps acesse &lt;a href=&quot;http://www.html5rocks.com/en/tutorials/developertools/sourcemaps/&quot;&gt;http://www.html5rocks.com/en/tutorials/developertools/sourcemaps/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Para saber mais sobre TypeScript acesse &lt;a href=&quot;http://diullei.github.com/TypeScript-ptBR/&quot;&gt;http://diullei.github.com/TypeScript-ptBR/&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;Um grande abraço e até a próxima!&lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>Introdução ao TypeScript</title>
+   <link href="http://www.diullei.com/posts/Introducao-ao-TypeScript"/>
+   <updated>2012-10-12T00:00:00-03:00</updated>
+   <id>http://www.diullei.com/posts/Introducao-ao-TypeScript</id>
+   <content type="html">&lt;h2&gt;Introdução&lt;/h2&gt;
+
+&lt;p&gt;A Microsoft surpreendeu todos a pouco tempo lançando seu próprio pré-processador de JavaScript chamado &lt;a href=&quot;http://www.typescriptlang.org/&quot;&gt;TypeScript&lt;/a&gt;. Muitos saíram comparando o TypeScript com &lt;a href=&quot;http://coffeescript.org/&quot;&gt;CofeeScript&lt;/a&gt; chamando o TypeScript de &amp;ldquo;CoffeeScript da Microsoft&amp;rdquo;. Se investigarmos mais a fundo veremos que se trata de uma proposta diferente do CoffeeScript a começar pela sintaxe. Não sou programador CoffeeScript (embora já tenha trabalhado com Coffee não me considero um especialista) e por trabalhar com C# achei a curva de aprendizado do TypeScript muito suave. TypeScript nos permite escrever código puramente JavaScript mesclando ou não o código JavaScript convencional com seu incrível poder de &amp;ldquo;tipagem&amp;rdquo; e sintaxe amigável para codificação OO (Criação de classes e interfaces, utilização de herança etc).&lt;/p&gt;
+
+&lt;p&gt;Não é minha intenção convencer você de que TypeScript é a melhor solução do mundo ou que é melhor do que CoffeeScript. Essas discussões no fim das contas não levam a nada. CoffeeScript tem seu espaço assim como o TypeScript. Se você já programou em alguma linguagem fortemente &amp;ldquo;tipada&amp;rdquo; como C#, Java ou C++ provavelmente você irá se sentir bem com os recursos fornecidas pelo TypeScript. Nem preciso dizer que se você programa em Python vai se sentir mais a vontade ao utilizar CoffeeScript do que com TypeScript :)&lt;/p&gt;
+
+&lt;p&gt;Iniciei um trabalho de tradução da documentação do TypeScript. Você pode acessar a tradução da página oficial do TypeScript aqui &lt;a href=&quot;http://diullei.github.com/TypeScript-ptBR/index.html&quot;&gt;http://diullei.github.com/TypeScript-ptBR/index.html&lt;/a&gt;. A documentação estará sendo traduzida no repositório do &lt;a href=&quot;https://github.com/organizations/SampaJS&quot;&gt;SampaJS&lt;/a&gt; no github e estará sendo disponibilizada em breve.&lt;/p&gt;
+
+&lt;p&gt;Vamos a uma breve introdução sobre TypeScript. A intenção é apresentar alguns recursos básicos interessantes sobre a linguagem.&lt;/p&gt;
+
+&lt;h2&gt;Instalando o TypeScript&lt;/h2&gt;
+
+&lt;p&gt;O compilador do TypeScript é escrito em TypeScript e como o TypeScript compila pra JavaScript ele pode ser executado em qualquer ambiente JavaScript. Assim podemos rodar código TypeScript em qualquer navegador e inclusive no Node.js.&lt;/p&gt;
+
+&lt;p&gt;Se você está habituado com o uso do Visual Studio vai ficar feliz! rs&amp;hellip; é possível instalar um plugin no Visual Studio 2012 para trabalhar com TypeScript. Se você costuma utilizar Node.js vai se sentir mais a vontade utilizando o TypeScript no Node.js.&lt;/p&gt;
+
+&lt;p&gt;Para ver como instalar o TypeScript no Node.js ou no Visual Studio acesse o link: &lt;a href=&quot;http://diullei.github.com/TypeScript-ptBR/#Download&quot;&gt;http://diullei.github.com/TypeScript-ptBR/#Download&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Se você quiser seguir este artigo sem ter o trabalho de instalar o TypeScript você pode utilizar o TypeScript Playground. Trata-se de um compilador online onde podemos experimentar o TypeScript.&lt;/p&gt;
+
+&lt;h2&gt;Direto ao código&lt;/h2&gt;
+
+&lt;p&gt;Para entender como as coisas funcionam vamos criar um código JavaScript bem simples. Este código será alterado no decorrer deste artigo e aos poucos irei apresentar alguns recursos do TypeScript.&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;javascript&quot;&gt;&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;saudacao&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;pessoa&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;Olá &amp;quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;pessoa&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;alguem&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;Diullei Gomes&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;saudacao&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;alguem&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;));&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Crie um arquivo chamado saudacao.ts e salve com o código acima. Aqui repare que o arquivo TypeScript tem extensão &amp;ldquo;.ts&amp;rdquo;. Repare também que este código é um código JavaScript puro. Iremos alterar este código aos poucos.&lt;/p&gt;
+
+&lt;p&gt;Execute &lt;code&gt;tsc saudacao.ts&lt;/code&gt;(Se você instalou a versão Node.js) e veja que será criado um arquivo saudacao.js. Sempre que compilamos um arquivo &amp;ldquo;.ts&amp;rdquo; o compilador do TypeScript gera um arquivo &amp;ldquo;.js&amp;rdquo;. Se você estiver utilizando o Visual Studio verá que o arquivo &amp;ldquo;.js&amp;rdquo; é criado automáticamente sempre que o projeto é compilado.&lt;/p&gt;
+
+&lt;p&gt;O JavaScript é uma linguagem sem tipagem e por isso podemos passar para a função &amp;ldquo;saudacao&amp;rdquo; um numero ou uma expressão como argumento. Embora tenhamos criado o código para receber uma string com um nome este poderá receber qualquer coisa como argumento. É claro que com uma validação extra conseguimos evitar que argumentos que não sejam do tipo string sejam passados para a função. No entanto vamos utilizar um recurso do TypeScript chamado de &amp;ldquo;Type anotation&amp;rdquo; para validar esta passagem de argumento. Altere o código da função &amp;ldquo;saudacao&amp;rdquo; como no código abaixo:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;javascript&quot;&gt;&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;saudacao&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;pessoa&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;string&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;Olá &amp;quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;pessoa&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;alguem&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;Diullei Gomes&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;nb&quot;&gt;document&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;body&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;innerHTML&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;saudacao&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;alguem&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Agora veja que se tentarmos passar um array como argumento o compilador do TypeScrit irá acusar erro.&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;javascript&quot;&gt;&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;saudacao&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;pessoa&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;string&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;Olá &amp;quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;pessoa&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;alguem&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;4&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;saudacao&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;alguem&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;));&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;O que fizemos foi dizer ao TypeScript que nossa função &amp;ldquo;saudacao&amp;rdquo; recebe um argumento do tipo &amp;ldquo;string&amp;rdquo;. Node que mesmo tendo o código com erro o TypeScrit irá gerar o arquivo &amp;ldquo;.js&amp;rdquo;. O TypeScript sempre irá compilar o arquivo, no entanto sempre que existirem erros ele irá alertar estes erros a fim de informar que alguma coisa poderá não funcionar da forma esperada. Isso é feito para permitir integração com código JavaScript convencional.&lt;/p&gt;
+
+&lt;h2&gt;Interfaces&lt;/h2&gt;
+
+&lt;p&gt;Vamos avançar e introduzir o uso de interfaces. Veja o código abaixo:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;javascript&quot;&gt;&lt;span class=&quot;kr&quot;&gt;interface&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Pessoa&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;primeiroNome&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;string&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;ultimoNome&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;string&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;saudacao&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;pessoa&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Pessoa&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;Olá &amp;quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;pessoa&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;primeiroNome&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot; &amp;quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;pessoa&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;ultimoNome&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;alguem&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;primeiroNome&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;Diullei&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;sobreNome&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;Moura&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;ultimoNome&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;Gomes&amp;quot;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;saudacao&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;alguem&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;));&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;No codigo acima criamos uma interface que define dois campos: primeiroNome e ultimoNome. Não vou me aprofundar no conceito de interface mais entenda que interfaces definem contratos. Repare que alteramos a assinatura da função &amp;ldquo;saudacao&amp;rdquo; para receber um argumento do tipo &amp;ldquo;Pessoa&amp;rdquo;. Agora o compilador do TypeScript irá exigir que o argumento da função obedeça o contrato definido na interface, ou seja, precisamos passar um objeto que possua uma propriedade chamada &amp;ldquo;primeiroNome&amp;rdquo; com um valor do tipo string e uma propriedade chamada &amp;ldquo;ultimoNome&amp;rdquo; com um valor do tipo string. Veja que o objeto &amp;ldquo;alguem&amp;rdquo; que estamos passando também possui uma propriedade chamada &amp;ldquo;sobreNome&amp;rdquo; que não interfere de maneira alguma no código já que este objeto obedece a interface. Teríamos um erro se omitíssemos um dos campos exigidos pela interface.&lt;/p&gt;
+
+&lt;h2&gt;Classes&lt;/h2&gt;
+
+&lt;p&gt;Vamos alterar o código acima agora e utilizar o conceito de classes. Veja o código:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;javascript&quot;&gt;&lt;span class=&quot;kr&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Pessoa&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;primeiroNome&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;string&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;ultimoNome&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;string&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;saudacao&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;pessoa&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Pessoa&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;Olá &amp;quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;pessoa&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;primeiroNome&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot; &amp;quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;pessoa&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;ultimoNome&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;alguem&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;primeiroNome&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;Diullei&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;sobreNome&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;Moura&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;ultimoNome&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;Gomes&amp;quot;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;saudacao&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;alguem&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;));&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Se você tentar executar o código acima vai ter um erro. O erro ocorre por que diferente da interface quando usamos uma classe o objeto esperado pela função tem que seguir exatamente as caracteristicas definidas na classe ou ser um tipo que herde desta classe. Se tirarmos a propriedade sobreNome do objeto &amp;ldquo;alguem&amp;rdquo; o código irá compilar sem erro.&lt;/p&gt;
+
+&lt;p&gt;O que foi apresentado até aqui é bem simples mais introduz bem a intenção do TypeScript. Para saber mais acesse a documentação oficial. Estou trabalhando na tradução desta documentação e logo estarei divulgando o link de acesso.&lt;/p&gt;
+
+&lt;h2&gt;O argumento &amp;ldquo;declare&amp;rdquo;&lt;/h2&gt;
+
+&lt;p&gt;Uma caracteristica interessante do TypeScript e a possibilidade de declarar variáveis que não serão geradas no momento da compilação. Isso ajudar a definir objetos que irão existir no ambiente de execução mais que não existem código. Assim não teremos erro de compilação. Um exemplo seria a utilização do jquery &amp;ldquo;$&amp;rdquo; em um browser. Ao escrever o código abaixo o TypeScrit irá acusar erro por não termos declarado o objeto &amp;ldquo;document&amp;rdquo;.&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;javascript&quot;&gt;&lt;span class=&quot;nx&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;body&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;append&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;teste&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Para evitar que tenhamos erro podemos declarar uma variável &amp;ldquo;fantasma&amp;rdquo; que só servirá para garantir a compilação. Esta variável não será gerada pelo compilador e por isso precisamos ter certeza de que neste nosso caso o código será executado em um ambiente no qual o jquery esteja referenciado. Veja o exemplo:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;javascript&quot;&gt;&lt;span class=&quot;nx&quot;&gt;declare&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;any&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;body&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;append&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;teste&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2&gt;Tipos&lt;/h2&gt;
+
+&lt;p&gt;o TypeScript mantém os tipos nativos do JavaScript: number, string, bool entre outros e introduz um tipo novo chamado any. O tipo any é utilizado para representar um valor JavaScript qualquer. Trata-se de um tipo dinâmico que não é validado pelo compilador do TypeScript, ou seja, se você tentar invocar uma função &amp;ldquo;xyz()&amp;rdquo; de um objeto &amp;ldquo;a&amp;rdquo; do tipo &amp;ldquo;any&amp;rdquo; o compilador não irá verificar se o objeto &amp;ldquo;a&amp;rdquo; possui realmente a função &amp;ldquo;xyz()&amp;rdquo;.&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;javascript&quot;&gt;&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;any&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;xyz&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;());&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;blockquote&gt;&lt;p&gt;NOTA: qualquer variável declarada sem um tipo definido será automaticamente classificada pelo TypeScript como uma variável do tipo &amp;ldquo;any&amp;rdquo;.&lt;/p&gt;&lt;/blockquote&gt;
+
+&lt;h2&gt;Funções&lt;/h2&gt;
+
+&lt;p&gt;Com TypeScript podemos definir exatamente os argumentos e o retorno de uma função. Veja o código abaixo:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;javascript&quot;&gt;&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;minhaFuncao&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;number&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;string&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;string&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;minhaFuncao&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(){&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;minhaFuncao&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;arg2&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Vamos entender o código acima. Usando a notação de tipos do TypeScript definimos uma variável chamada &amp;ldquo;minhaFuncao&amp;rdquo; para receber como valor uma função que tenha 2 argumentos um numero e uma string e definimos o retorno desta função para ser do tipo string. Na segunda linda de código foi adicionado o valor &amp;ldquo;function(){ return &amp;lsquo;&amp;rsquo;; }&amp;rdquo; a esta variável.&lt;/p&gt;
+
+&lt;p&gt;Até aqui não temos nenhum erro de compilação por que não foram definidos os argumentos desta função e o TypeScript irá validar o tipo dos argumentos passados para a função apenas quando esta função for invocada.&lt;/p&gt;
+
+&lt;p&gt;Tente alterar o valor do retorno da função para um tipo diferente do tipo &amp;ldquo;string&amp;rdquo; ou alterar o tipo dos argumentos passados na terceira linha quando invocamos a função e verá que o TypeScript acusará erro. Ele vai tentar sempre garantir que a interface da função definida na primeira linha seja obedecida.&lt;/p&gt;
+
+&lt;p&gt;Esse recurso de tipagem de funções fornecido pelo TypeScript é muito interessante quando queremos definir o tipo de uma função de &amp;ldquo;callback&amp;rdquo; na assinatura de uma função qualquer. Veja abaixo um exemplo de uma função chamada &amp;ldquo;ajax&amp;rdquo; que define o tipo do segundo argumento como uma função de &amp;ldquo;callback&amp;rdquo; que tenha um argumento de qualquer tipo e retorne um valor do tipo string:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;javascript&quot;&gt;&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;ajax&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;url&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;string&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;callback&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;any&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;string&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;//...&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2&gt;Conclusão&lt;/h2&gt;
+
+&lt;p&gt;Apresentei apenas o básico sobre TypeScript. Se você gostou do que viu sugiro a leitura da &lt;a href=&quot;http://go.microsoft.com/fwlink/?LinkId=267238&quot;&gt;documentação&lt;/a&gt;. Espero que tenham aproveitado o artigo.&lt;/p&gt;
+
+&lt;p&gt;Até a próxima!&lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>JavaScript NoConflict</title>
+   <link href="http://www.diullei.com/posts/JavaScript-NoConflict"/>
+   <updated>2012-07-29T00:00:00-03:00</updated>
+   <id>http://www.diullei.com/posts/JavaScript-NoConflict</id>
+   <content type="html">&lt;p&gt;Você já deve ter visto exemplos de código &lt;em&gt;JQuery&lt;/em&gt;, &lt;em&gt;Underscore&lt;/em&gt;, &lt;em&gt;Backbone&lt;/em&gt; ou outros que utilizassem um método chamado &lt;code&gt;noConflict()&lt;/code&gt;. Vamos entender para que serve este método.&lt;/p&gt;
+
+&lt;p&gt;Como o próprio nome já diz este método é colocado na biblioteca para permitir que seu código coexista com outros códigos sem a ocorrência de conflitos.&lt;/p&gt;
+
+&lt;p&gt;Vamos a um exemplo utilizando duas bibliotecas que utilizam o mesmo nome:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;javascript&quot;&gt;&lt;span class=&quot;c1&quot;&gt;// libA&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;exports&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;LibA&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(){}&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;LibA&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;prototype&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Execute&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(){&lt;/span&gt;
+        &lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;lib A&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    
+    &lt;span class=&quot;nx&quot;&gt;exports&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;$&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;LibA&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;})(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;window&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;// libB&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;exports&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;LibB&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(){}&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;LibB&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;prototype&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Execute&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(){&lt;/span&gt;
+        &lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;lib B&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    
+    &lt;span class=&quot;nx&quot;&gt;exports&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;$&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;LibB&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;})(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;window&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Execute&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;//=&amp;gt; lib B&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Note que no exemplo acima estamos criando duas bibliotecas e dando a elas o mesmo alias &lt;code&gt;$&lt;/code&gt;. Quando a libA é criada ela cria uma instância global chamada $. Caso executemos $.Execute() teremos como resultado o texto &lt;code&gt;lib A&lt;/code&gt; no console. Mais veja que logo em seguida criamos a libB. A libB também está utilizando o mesmo nome para sua instância global &lt;code&gt;$&lt;/code&gt; fazendo com que a instância da libA seja sobrescrita. Assim quando chamamos $.Execute() temos como resultado o texto &lt;code&gt;lib B&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Uma forma elegante de permitir que o problema acima seja contornado é utilizar um método &lt;code&gt;noConflict()&lt;/code&gt;. Veja o exemplo reescrito:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;javascript&quot;&gt;&lt;span class=&quot;c1&quot;&gt;// lib A&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;exports&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;oldLib&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;exports&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    
+    &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;LibA&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(){}&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;LibA&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;prototype&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Execute&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(){&lt;/span&gt;
+        &lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;lib A&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+    &lt;span class=&quot;nx&quot;&gt;LibA&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;prototype&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;noConflict&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(){&lt;/span&gt;
+        &lt;span class=&quot;nx&quot;&gt;exports&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;$&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;oldLib&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    
+    &lt;span class=&quot;nx&quot;&gt;exports&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;$&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;LibA&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;})(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;window&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;// lib B&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;exports&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;oldLib&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;exports&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+    &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;LibB&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(){}&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;LibB&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;prototype&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Execute&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(){&lt;/span&gt;
+        &lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;lib B&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    
+    &lt;span class=&quot;nx&quot;&gt;LibB&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;prototype&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;noConflict&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(){&lt;/span&gt;
+        &lt;span class=&quot;nx&quot;&gt;exports&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;$&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;oldLib&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    
+    &lt;span class=&quot;nx&quot;&gt;exports&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;$&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;LibB&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;})(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;window&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;$libB&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;noConflict&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Execute&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;//=&amp;gt; lib A&lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;$libB&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Execute&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;//=&amp;gt; lib B&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Note que no exemplo acima fizemos em libB um &amp;lsquo;backup&amp;rsquo; do valor de &lt;code&gt;$&lt;/code&gt; antes de altera-lo. Adicionamos uma função chamada &lt;code&gt;noConflict()&lt;/code&gt; com o objetivo de restaurar o antigo valor de &lt;code&gt;$&lt;/code&gt; e retornar a propria libB como resultado. Isso permite a quem estiver utilizando o código renomear a instância de libB. Veja que no código acima alteramos o nome de &lt;code&gt;$&lt;/code&gt; para $libB.&lt;/p&gt;
+
+&lt;p&gt;Usando este artificio poderíamos também fazer com que 2 ou mais versões de uma mesma biblioteca coexistissem no mesmo código.&lt;/p&gt;
+
+&lt;p&gt;Seguem algumas referências a trechos de códigos reais que utilizam este padrão:&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;jQuery&lt;/strong&gt;&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;javascript&quot;&gt;&lt;span class=&quot;p&quot;&gt;...&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;_$&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;window&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;...&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;noConflict&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;deep&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;window&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;$&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;===&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;jQuery&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;nb&quot;&gt;window&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;$&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;_$&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;deep&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;window&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;jQuery&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;===&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;jQuery&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;nb&quot;&gt;window&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;jQuery&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;_jQuery&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;jQuery&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;...&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;strong&gt;Backbone&lt;/strong&gt;&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;javascript&quot;&gt;&lt;span class=&quot;p&quot;&gt;...&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;previousBackbone&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;root&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Backbone&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;...&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;Backbone&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;noConflict&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;root&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Backbone&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;previousBackbone&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;...&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;strong&gt;Underscore&lt;/strong&gt;&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;javascript&quot;&gt;&lt;span class=&quot;p&quot;&gt;...&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;previousUnderscore&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;root&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;_&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;...&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;_&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;noConflict&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;root&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;_&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;previousUnderscore&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;...&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Esses são só alguns exemplos.&lt;/p&gt;
+
+&lt;p&gt;Abraços!&lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>Lendo arquivos com Nodejs</title>
+   <link href="http://www.diullei.com/posts/Lendo-arquivos-com-Nodejs"/>
+   <updated>2012-07-18T00:00:00-03:00</updated>
+   <id>http://www.diullei.com/posts/Lendo-arquivos-com-Nodejs</id>
+   <content type="html">&lt;p&gt;Existem algumas formas diferentes de ler arquivos usando node.js. Existem métodos síncronos e métodos assíncronos que nos permitem realizar este trabalho. Vou exibir e explicar estas diversas formas no decorrer deste post.&lt;/p&gt;
+
+&lt;p&gt;Vamos ao nosso primeiro exemplo:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;javascript&quot;&gt;&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;fs&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;fs&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;fs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;readFile&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;TEST.txt&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;err&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;err&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;error&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;Could not open file: %s&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;err&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;nx&quot;&gt;process&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;exit&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    
+    &lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Precisamos primeiro de tudo carregar o módulo fs pois é a partir deste módulo que teremos acesso aos métodos de leitura e escrita de arquivos. Logo em seguida fazemos uma chamada ao método: &lt;a href=&quot;http://nodejs.org/docs/v0.4.8/api/fs.html#fs.readFile&quot;&gt;fs.readFile&lt;/a&gt;. Esta função recebe na assinatura o nome do arquivo, um parâmetro opcional que define o encoding que será utilizado durante a leitura do arquivo e um método de callback que será utilizado para manipular os dados lidos do disco. Esse método recebe 2 parâmetros &lt;em&gt;err&lt;/em&gt; e &lt;em&gt;data&lt;/em&gt;. Sempre que ocorrer um erro durante a leitura do arquivo o parâmetro &lt;em&gt;err&lt;/em&gt; virá preenchido com as informações referente ao erro. Se o parametro &lt;em&gt;err&lt;/em&gt; vier vazio significa que a leitura do arquivo ocorreu sem problemas e então poderemos manipular o pârametro &lt;em&gt;data&lt;/em&gt; que possui o conteúdo do arquivo que está sendo lido. Note que fazemos primeiro a verificação de erros antes de prosseguir com a manipulados dos dados.&lt;/p&gt;
+
+&lt;p&gt;Vamos ver o resultado deste código:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/lendo_arquivos/Capture_2012-07-18_203709.png&quot; alt=&quot;Valid XHTML&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Veja que quando escrevemos o conteúdo de &lt;em&gt;data&lt;/em&gt; no console vemos muitos números estranhos. Esse conteúdo é totalmente diferente do arquivo que estou tentando ler. A documentação nos passa uma dica do que está ocorrendo:&lt;/p&gt;
+
+&lt;blockquote&gt;&lt;p&gt;If no encoding is specified, then the raw buffer is returned.&lt;/p&gt;&lt;/blockquote&gt;
+
+&lt;p&gt;Ou seja, se não passarmos um valor para o parâmetro encoding (segundo parâmetro da função readFile) o resultado é retornado da forma em que está gravado no disco.&lt;/p&gt;
+
+&lt;p&gt;O node nos dá ainda a chance de utilizar o método &lt;a href=&quot;http://nodejs.org/docs/v0.4.8/api/buffers.html#buffer.toString&quot;&gt;toString&lt;/a&gt; no buffer(variável que contém o resultado da leitura do arquivo) passando como parâmetro o encoding desejado.&lt;/p&gt;
+
+&lt;p&gt;Vejamos os exemplos abaixo:&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;passando o encoding&lt;/em&gt;:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;javascript&quot;&gt;&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;fs&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;fs&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;fs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;readFile&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;TEST.txt&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;utf8&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;err&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;err&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;error&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;Could not open file: %s&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;err&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;nx&quot;&gt;process&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;exit&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    
+    &lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;img src=&quot;/images/lendo_arquivos/Capture_2012-07-18_203739.png&quot; alt=&quot;Valid XHTML&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;usando o método toString(&amp;hellip;)&lt;/em&gt;&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;javascript&quot;&gt;&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;fs&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;fs&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;fs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;readFile&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;TEST.txt&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;err&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;err&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;error&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;Could not open file: %s&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;err&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;nx&quot;&gt;process&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;exit&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    
+    &lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;toString&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;utf8&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;));&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;img src=&quot;/images/lendo_arquivos/Capture_2012-07-18_203850.png&quot; alt=&quot;Valid XHTML&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;A decisão sobre o tipo de encoding utilizar vai depender de que manipulação precisaremos realizar com o conteúdo do arquivo que estamos lendo. Se queremos enviar este conteúdo pela rede para um cliente manter o buffer do jeito que está armazenado no disco é a melhor escolha. Desse jeito podemos utilizar a propriedade length para para pegar o tamanho do arquivo em bytes por exemplo. Isso é muito útil quando queremos por exemplo enviar o tamanho do nosso arquivo no &lt;em&gt;Content-Length&lt;/em&gt; no cabeçalho HTTP.&lt;/p&gt;
+
+&lt;p&gt;Se o que queremos fazer é manipulação de strings a melhor escolha é passar um encoding.&lt;/p&gt;
+
+&lt;p&gt;Um ponto importante a se notar é que da forma em que estamos lendo o arquivo temos os dados do arquivo todo armazenado em memória. Em algum momento o garbage collector irá decidir por remover estes dados da memória caso não exista mais nenhuma referência para o mesmo. Outro ponto é que esta operação é uma operação assíncrona.&lt;/p&gt;
+
+&lt;p&gt;Vamos ver agora uma implementação síncrona de leitura de arquivos utilizando o método &lt;a href=&quot;http://nodejs.org/docs/v0.4.8/api/fs.html#fs.readFileSync&quot;&gt;fs.readFileSync&lt;/a&gt;. Este método bloqueia o bloco de código e não permite que o código avance sem que a leitura do arquivo seja finalizada. Segue um exemplo:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;javascript&quot;&gt;&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;fs&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;fs&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;try&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;data&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;fs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;readFileSync&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;TEST.txt&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;ascii&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;catch&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;err&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;error&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;There was an error opening the file:&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;err&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;img src=&quot;/images/lendo_arquivos/Capture_2012-07-18_225647.png&quot; alt=&quot;Valid XHTML&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Aqui podemos destacar duas grandes diferenças. A primeiro é que não temos mais o nosso método de callback. Não precisamos mais dele já que a execução da leitura será realizada de forma síncrona. A outra diferença é que precisamos gerenciar as exeções por nós mesmo, por isso colocamos o código dentro de um bloco &lt;em&gt;try&amp;hellip;catch&lt;/em&gt;.&lt;/p&gt;
+
+&lt;p&gt;Até agora vimos métodos de leitura que funcionam muito bem para leitura de arquivos de tamanho razoável. Como todos os dados do arquivo são armazenados por completo na memória se quiséssemos ler um arquivo com alguns &lt;em&gt;gigas&lt;/em&gt; de tamanho por exemplo teríamos alguns sérios problemas. Para essa situação de leitura de arquivos maiores iremos utilizar o método &lt;a href=&quot;http://nodejs.org/docs/v0.4.8/api/fs.html#fs.createReadStream&quot;&gt;fs.createReadStream&lt;/a&gt;. Com esse método podemos ler o arquivo definindo um tamanho de memória máximo a ser utilizado. As opções de configuração para utilização deste método são:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;javascript&quot;&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; 
+    &lt;span class=&quot;nx&quot;&gt;flags&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;r&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;encoding&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;fd&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;mode&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0666&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;bufferSize&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;64&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1024&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Os atributos principais nos quais devemos nos concentrar é o encoding e o bufferSize. Com o atributo bufferSize dizemos o volume de dados que será lido por vez. O valor padrão como exibido acima é 64 kb. Como esse método é assíncrono nós iremos manipular o resultado monitorando alguns eventos específicos. Vamos a um exemplo:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;javascript&quot;&gt;&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;fs&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;fs&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+
+&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;read_stream&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;fs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;createReadStream&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;TEST.txt&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;encoding&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;ascii&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;read_stream&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;on&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;data&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;process&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;stdout&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;write&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;read_stream&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;on&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;error&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;err&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;error&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;An error occurred: %s&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;err&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;read_stream&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;on&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;close&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(){&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;File closed.&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Repare que temos 3 eventos. &lt;em&gt;data&lt;/em&gt; que é chamado cada vez que um trecho do arquivo com o tamanho definido no bufferSize for carregado em memória, &lt;em&gt;error&lt;/em&gt; que é chamado sempre que um erro ocorrer durante a leitura e &lt;em&gt;close&lt;/em&gt; que será chamado quando a leitura for finalizada. Aqui vale notar que trabalhamos com o arquivo pedaço por pedaço e por isso não usamos console.log(&amp;hellip;) para não colocar uma quebra de linha a cada leitura de trecho do arquivo. Usamos no lugar o método process.stdout.write  para que a cada final e trecho de leitura não tenhamos nenhum caracter de quebra de linha inserido alterando o conteúdo do nosso arquivo.&lt;/p&gt;
+
+&lt;p&gt;Hoje ficamos por aqui.&lt;/p&gt;
+
+&lt;p&gt;Um abraço pra todos!&lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>Configurando o Nodejs com o Notepad++</title>
+   <link href="http://www.diullei.com/posts/Configurando-o-NodeJs-com-o-Npp"/>
+   <updated>2012-07-17T00:00:00-03:00</updated>
+   <id>http://www.diullei.com/posts/Configurando-o-NodeJs-com-o-Npp</id>
+   <content type="html">&lt;p&gt;O note pad++ é na minha opinião um excelente editor. É claro, com o Sublime Text 2 na área muita gente deixou de olhar para p Np++ :). Minha dica de hoje é mostrar como configurar o Np++ para executar arquivos javascript usando o nodeJs.&lt;/p&gt;
+
+&lt;h3&gt;NodeJs&lt;/h3&gt;
+
+&lt;p&gt;Caso você não possua o nodejs instalado na sua máquina vá até o site http://www.nodejs.org/ e faça o download. A instalação é bem simples e você encontra no site toda orientação necessária.&lt;/p&gt;
+
+&lt;h3&gt;Configurando o NotePad++ com o NodeJs&lt;/h3&gt;
+
+&lt;p&gt;Primeiro de tudo será necessário instalalar o plugin &lt;strong&gt;NppExec&lt;/strong&gt;. Vá até o menu &lt;strong&gt;Plugins-&gt;Plugin Manager-&gt;Show Plugin Manager&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/npp_node/menu.png&quot; alt=&quot;Valid XHTML&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Na aba Avaliable selecione &lt;strong&gt;NppExec&lt;/strong&gt; e clique em install. Feito isso reinicie o npp++.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/npp_node/install.png&quot; alt=&quot;Valid XHTML&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Feito isso vamos configurar o NppExec.&lt;/p&gt;
+
+&lt;p&gt;Acesse o menu &lt;strong&gt;Plugins-&gt;NppExec&lt;/strong&gt; e selecione &lt;strong&gt;Follow $(CURRENT_DIRECTORY)&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/npp_node/current_dir.png&quot; alt=&quot;Valid XHTML&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Em seguida acesse o menu &lt;strong&gt;PLugins-&gt;NppExec-&gt;Execute&amp;hellip;&lt;/strong&gt;. Na janela que vai aparecer digite:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;javascript&quot;&gt;&lt;span class=&quot;nx&quot;&gt;cd&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;$(CURRENT_DIRECTORY)&amp;quot;&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;node&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;FILE_NAME&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Clique no botão &lt;strong&gt;Save&lt;/strong&gt; e na janela que se abre de o nome &amp;ldquo;Run&amp;rdquo; e clique em &lt;strong&gt;Save&lt;/strong&gt;. Em seguida basta dar ok.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/npp_node/execute.png&quot; alt=&quot;Valid XHTML&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Agora vamos configurar um atalho. Vá no menu &lt;strong&gt;Plugins-&gt;NppExec-&gt;Advanced Options&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/npp_node/advanced_options.png&quot; alt=&quot;Valid XHTML&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Selecione o checkbox &lt;strong&gt;Place to the Macros submenu&lt;/strong&gt;. Selecione &lt;strong&gt;Run&lt;/strong&gt; na combo &lt;strong&gt;Associated script&lt;/strong&gt; e dê o nome &lt;strong&gt;Run Nodejs&lt;/strong&gt; no campo &lt;strong&gt;Item name&lt;/strong&gt;. Em seguida clique no botão &lt;strong&gt;Add/Modify button&lt;/strong&gt;. Clique no botão Ok e reinicie o Np++.&lt;/p&gt;
+
+&lt;p&gt;Vá no menu &lt;strong&gt;Settings-&gt;Short Mapper&lt;/strong&gt;&amp;hellip;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/posts/img/npp_node/advanced_options2.png&quot; alt=&quot;Valid XHTML&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Selecione &lt;strong&gt;Plugin commands&lt;/strong&gt; e localize &lt;strong&gt;Run NodeJs&lt;/strong&gt; na lista de nomes. Clique no botão &lt;strong&gt;Modify&lt;/strong&gt; e e configure a janela seguinte conforme a imagem abaixo:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/npp_node/shortcut.png&quot; alt=&quot;Valid XHTML&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Clique em Ok e pronto!&lt;/p&gt;
+
+&lt;p&gt;Note que no menu &lt;strong&gt;Macro&lt;/strong&gt; irá aparecer o atalho que acabamos de criar.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/npp_node/menu2.png&quot; alt=&quot;Valid XHTML&quot; /&gt;&lt;/p&gt;
+
+&lt;h2&gt;Testando&lt;/h2&gt;
+
+&lt;p&gt;Crie um novo arquivo e escreva o seguinte código:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;javascript&quot;&gt;&lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;np++ test!!!&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Salve o arquivo e tecle o atalho Ctrl+F5.&lt;/p&gt;
+
+&lt;p&gt;Se tudo tiver sido configurado corretamente você terá algo como na imagem abaixo:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/npp_node/fim.png&quot; alt=&quot;Valid XHTML&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;OBS.: O arquivo precisa estar salvo para você conseguir executa-lo.&lt;/p&gt;
+
+&lt;p&gt;Espero que esta dica seja útil.&lt;/p&gt;
+
+&lt;p&gt;Até!&lt;/p&gt;
+</content>
+ </entry>
+ 
+ 
+</feed>

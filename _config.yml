@@ -1,0 +1,12 @@
+markdown: rdiscount
+pygments: true
+permalink: /posts/:title
+rdiscount:
+  extensions: [smart]
+
+name: Diullei Gomes
+url: http://www.diullei.com
+description: Coder, hacker and more...
+twitter: diullei
+github: Diullei
+gravatar_url: http://gravatar.com/avatar/5e93890c5b54d18dd454f14789c2b225
