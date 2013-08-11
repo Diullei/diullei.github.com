@@ -1,7 +1,8 @@
 ---
 layout: post
 title: Debugando TypeScript no navegador
-category: posts
+category: TypeScript
+tags : [TypeScript, JavaScript, Chrome, SourceMaps]
 ---
 
 ## Introdução

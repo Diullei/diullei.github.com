@@ -1,7 +1,8 @@
 ---
 layout: post
 title: TypeScript (Parte 1)
-category: posts
+category: TypeScript - Série
+tags : [TypeScript, JavaScript]
 ---
 
 Embora eu já tenha escrito uma introdução sobre o TypeScript em [outro artigo](/posts/Introducao-ao-TypeScript/) resolvi voltar ao tema e dessa vez escrever uma séria de artigos sobre TypeScript. Neste post estarei novamente introduzindo o TypeScript.

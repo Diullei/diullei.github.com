@@ -1,7 +1,8 @@
 ---
 layout: post
 title: Introdução ao TypeScript
-category: posts
+category: TypeScript
+tags : [TypeScript, JavaScript]
 ---
 
 ## Introdução

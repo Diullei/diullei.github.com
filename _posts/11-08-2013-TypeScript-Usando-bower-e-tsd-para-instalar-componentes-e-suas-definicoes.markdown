@@ -1,7 +1,8 @@
 ---
 layout: post
 title: TypeScript - Usando bower e tsd para instalar componentes e suas definições
-category: posts
+category: TypeScript
+tags : [TypeScript, JavaScript, Bower, tsd]
 ---
 
 A um tempo atraz eu criei uma ferramenta que permite procurar e baixar via linha de comando vários arquivos de definição escritos em TypeScript. Estes arquivos são necessários caso você queira utilizar uma biblioteca como por exemplo o jquery ou o backbone com TypeScript. Para mais informações sobre arquivos de definição TypeScript veja [este link](/posts/TypeScript-Parte-1/#Tipos-declarados).

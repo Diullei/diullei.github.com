@@ -1,7 +1,8 @@
 ---
 layout: post
 title: Lendo arquivos com Nodejs
-category: posts
+category: NodeJs
+tags : [NodeJs]
 ---
 
 Existem algumas formas diferentes de ler arquivos usando node.js. Existem métodos síncronos e métodos assíncronos que nos permitem realizar este trabalho. Vou exibir e explicar estas diversas formas no decorrer deste post.

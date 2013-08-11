@@ -1,7 +1,8 @@
 ---
 layout: post
 title: JavaScript NoConflict
-category: posts
+category: JavaScript
+tags : [JavaScript]
 ---
 
 Você já deve ter visto exemplos de código *JQuery*, *Underscore*, *Backbone* ou outros que utilizassem um método chamado ```noConflict()```. Vamos entender para que serve este método.

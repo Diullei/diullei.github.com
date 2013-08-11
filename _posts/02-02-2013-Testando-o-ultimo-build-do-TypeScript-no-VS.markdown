@@ -1,7 +1,8 @@
 ---
 layout: post
 title: Testando o ultimo build do TypeScript no VS
-category: posts
+category: TypeScript
+tags : [TypeScript, JavaScript]
 ---
 
 ## Introdução

@@ -1,7 +1,8 @@
 ---
 layout: post
 title: Configurando o Nodejs com o Notepad++
-category: posts
+category: NodeJs
+tags : [NodeJs, Notepad++]
 ---
 
 O note pad++ é na minha opinião um excelente editor. É claro, com o Sublime Text 2 na área muita gente deixou de olhar para p Np++ :). Minha dica de hoje é mostrar como configurar o Np++ para executar arquivos javascript usando o nodeJs.
