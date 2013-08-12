@@ -4,7 +4,7 @@
  <title>Diullei Gomes</title>
  <link href="http://www.diullei.com/atom.xml" rel="self"/>
  <link href="http://www.diullei.com/"/>
- <updated>2013-08-12T01:39:17-03:00</updated>
+ <updated>2013-08-12T01:44:56-03:00</updated>
  <id>http://www.diullei.com</id>
  <author>
    <name>Diullei Gomes</name>
@@ -16,7 +16,7 @@
    <link href="http://www.diullei.com/posts/TypeScript-Usando-bower-e-tsd-para-instalar-componentes-e-suas-definicoes"/>
    <updated>2013-08-11T00:00:00-03:00</updated>
    <id>http://www.diullei.com/posts/TypeScript-Usando-bower-e-tsd-para-instalar-componentes-e-suas-definicoes</id>
-   <content type="html">&lt;p&gt;Há algum tempo atrás eu criei uma ferramenta que permite procurar e baixar via linha de comando vários arquivos de definição escritos em TypeScript. Estes arquivos são necessários caso você queira utilizar uma biblioteca como por exemplo o jquery ou o backbone com TypeScript. Para mais informações sobre arquivos de definição TypeScript veja &lt;a href=&quot;/posts/TypeScript-Parte-1/#Tipos-declarados&quot;&gt;este link&lt;/a&gt;.&lt;/p&gt;
+   <content type="html">&lt;p&gt;Há algum tempo atrás eu criei uma ferramenta(&lt;a href=&quot;https://npmjs.org/package/tsd&quot;&gt;tsd&lt;/a&gt;) que permite procurar e baixar via linha de comando vários arquivos de definição escritos em TypeScript. Estes arquivos são necessários caso você queira utilizar uma biblioteca como por exemplo o &lt;code&gt;jquery&lt;/code&gt; ou o &lt;code&gt;backbone&lt;/code&gt; com TypeScript. Para mais informações sobre arquivos de definição TypeScript veja &lt;a href=&quot;/posts/TypeScript-Parte-1/#Tipos-declarados&quot;&gt;este link&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;&lt;a href=&quot;https://twitter.com/joeriks&quot;&gt;Jonas Eriksson&lt;/a&gt; gravou um video bem legal mostrando como utilizar o &lt;a href=&quot;http://bower.io/&quot;&gt;bower&lt;/a&gt; e o &lt;a href=&quot;https://npmjs.org/package/tsd&quot;&gt;tsd&lt;/a&gt; para instalar bibliotecas javascript junto com suas definições TypeScript no Visual Studio. O video ficou pequeno e bem objetivo. Segue abaixo:&lt;/p&gt;
 
