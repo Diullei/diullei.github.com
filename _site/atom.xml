@@ -4,7 +4,7 @@
  <title>Diullei Gomes</title>
  <link href="http://www.diullei.com/atom.xml" rel="self"/>
  <link href="http://www.diullei.com/"/>
- <updated>2013-08-11T05:01:25-03:00</updated>
+ <updated>2013-08-12T01:31:47-03:00</updated>
  <id>http://www.diullei.com</id>
  <author>
    <name>Diullei Gomes</name>
@@ -122,7 +122,8 @@
 
 &lt;p&gt;&lt;img src=&quot;https://raw.github.com/Diullei/diullei.github.com/master/_site/images/TypeScript_Parte1/0006.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
-&lt;h2&gt;Tipos declarados&lt;/h2&gt;
+&lt;h1 id=&quot;Tipos-declarados&quot;&gt;Tipos declarados&lt;/h1&gt;
+
 
 &lt;p&gt;Vimos no tópico anterior que podemos escrever um código &lt;strong&gt;TypeScript&lt;/strong&gt; definindo tipos e vimos o quanto isso pode ser util nos fornecendo uma checagem do código em tempo de compilação. Um outro recurso muito util do &lt;strong&gt;TypeScript&lt;/strong&gt; é a possibilidade de &amp;ldquo;tipar&amp;rdquo; um código &lt;strong&gt;JavaScript&lt;/strong&gt; existente. Isso é feito utilizando a palavra chave &lt;code&gt;declare&lt;/code&gt;.&lt;/p&gt;
 
