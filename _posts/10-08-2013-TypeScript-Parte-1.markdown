@@ -5,7 +5,7 @@ category: TypeScript - Série
 tags : [TypeScript, JavaScript]
 ---
 
-Embora eu já tenha escrito uma introdução sobre o TypeScript em [outro artigo](/posts/Introducao-ao-TypeScript/) resolvi voltar ao tema e dessa vez escrever uma séria de artigos sobre TypeScript. Neste post estarei novamente introduzindo o TypeScript.
+Embora eu já tenha escrito uma introdução sobre o TypeScript em [outro artigo](/posts/Introducao-ao-TypeScript/) resolvi voltar ao tema e dessa vez escrever uma série de artigos sobre TypeScript. Neste post estarei novamente introduzindo o TypeScript.
 
 ## Introdução
 

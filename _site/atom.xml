@@ -4,12 +4,28 @@
  <title>Diullei Gomes</title>
  <link href="http://www.diullei.com/atom.xml" rel="self"/>
  <link href="http://www.diullei.com/"/>
- <updated>2013-08-12T01:44:56-03:00</updated>
+ <updated>2013-08-24T18:22:58-03:00</updated>
  <id>http://www.diullei.com</id>
  <author>
    <name>Diullei Gomes</name>
  </author>
  
+ 
+ <entry>
+   <title>tsi - um REPL TypeScript</title>
+   <link href="http://www.diullei.com/posts/tsi-um-REPL-TypeScript"/>
+   <updated>2013-08-24T00:00:00-03:00</updated>
+   <id>http://www.diullei.com/posts/tsi-um-REPL-TypeScript</id>
+   <content type="html">&lt;p&gt;Resolvi testar um modelo de screencast onde eu posto videos bem pequenos e práticos. Neste video inicial eu vou mostrar uma ferramenta bem legal que encontrei no &lt;a href=&quot;https://github.com/qiemem/tsi&quot;&gt;github&lt;/a&gt;, um &lt;a href=&quot;http://en.wikipedia.org/wiki/Read%E2%80%93eval%E2%80%93print_loop&quot;&gt;REPL&lt;/a&gt; typescript escrito pra &lt;a href=&quot;http://nodejs.org/&quot;&gt;nodejs&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://en.wikipedia.org/wiki/Read%E2%80%93eval%E2%80%93print_loop&quot;&gt;REPL (Read–eval–print loop)&lt;/a&gt; é um ambiente de programação iterativo que nos permite programar via linha de comando de forma dinamica.&lt;/p&gt;
+
+&lt;iframe width=&quot;650&quot; height=&quot;450&quot; src=&quot;//www.youtube.com/embed/EW0rFjQGzXI&quot; frameborder=&quot;0&quot; allowfullscreen&gt;&lt;/iframe&gt;
+
+
+&lt;p&gt;Até a próxima!&lt;/p&gt;
+</content>
+ </entry>
  
  <entry>
    <title>TypeScript - Usando bower e tsd para instalar componentes e suas definições</title>
@@ -32,7 +48,7 @@
    <link href="http://www.diullei.com/posts/TypeScript-Parte-1"/>
    <updated>2013-08-10T00:00:00-03:00</updated>
    <id>http://www.diullei.com/posts/TypeScript-Parte-1</id>
-   <content type="html">&lt;p&gt;Embora eu já tenha escrito uma introdução sobre o TypeScript em &lt;a href=&quot;/posts/Introducao-ao-TypeScript/&quot;&gt;outro artigo&lt;/a&gt; resolvi voltar ao tema e dessa vez escrever uma séria de artigos sobre TypeScript. Neste post estarei novamente introduzindo o TypeScript.&lt;/p&gt;
+   <content type="html">&lt;p&gt;Embora eu já tenha escrito uma introdução sobre o TypeScript em &lt;a href=&quot;/posts/Introducao-ao-TypeScript/&quot;&gt;outro artigo&lt;/a&gt; resolvi voltar ao tema e dessa vez escrever uma série de artigos sobre TypeScript. Neste post estarei novamente introduzindo o TypeScript.&lt;/p&gt;
 
 &lt;h2&gt;Introdução&lt;/h2&gt;
 
