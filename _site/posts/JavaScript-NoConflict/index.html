@@ -71,7 +71,7 @@
 
 <p>Vamos a um exemplo utilizando duas bibliotecas que utilizam o mesmo nome:</p>
 
-<div class="highlight"><pre><code class="javascript"><span class="c1">// libA</span>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// libA</span>
 <span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">exports</span><span class="p">){</span>
     <span class="kd">function</span> <span class="nx">LibA</span><span class="p">(){}</span>
     <span class="nx">LibA</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">Execute</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span>
@@ -92,15 +92,14 @@
 <span class="p">})(</span><span class="nb">window</span><span class="p">);</span>
 
 <span class="nx">$</span><span class="p">.</span><span class="nx">Execute</span><span class="p">();</span>
-<span class="c1">//=&gt; lib B</span>
-</code></pre></div>
+<span class="c1">//=&gt; lib B</span></code></pre></div>
 
 
 <p>Note que no exemplo acima estamos criando duas bibliotecas e dando a elas o mesmo alias <code>$</code>. Quando a libA é criada ela cria uma instância global chamada $. Caso executemos $.Execute() teremos como resultado o texto <code>lib A</code> no console. Mais veja que logo em seguida criamos a libB. A libB também está utilizando o mesmo nome para sua instância global <code>$</code> fazendo com que a instância da libA seja sobrescrita. Assim quando chamamos $.Execute() temos como resultado o texto <code>lib B</code>.</p>
 
 <p>Uma forma elegante de permitir que o problema acima seja contornado é utilizar um método <code>noConflict()</code>. Veja o exemplo reescrito:</p>
 
-<div class="highlight"><pre><code class="javascript"><span class="c1">// lib A</span>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// lib A</span>
 <span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">exports</span><span class="p">){</span>
     <span class="kd">var</span> <span class="nx">oldLib</span> <span class="o">=</span> <span class="nx">exports</span><span class="p">.</span><span class="nx">$</span><span class="p">;</span>
     
@@ -140,8 +139,7 @@
 <span class="c1">//=&gt; lib A</span>
 
 <span class="nx">$libB</span><span class="p">.</span><span class="nx">Execute</span><span class="p">();</span>
-<span class="c1">//=&gt; lib B</span>
-</code></pre></div>
+<span class="c1">//=&gt; lib B</span></code></pre></div>
 
 
 <p>Note que no exemplo acima fizemos em libB um &lsquo;backup&rsquo; do valor de <code>$</code> antes de altera-lo. Adicionamos uma função chamada <code>noConflict()</code> com o objetivo de restaurar o antigo valor de <code>$</code> e retornar a propria libB como resultado. Isso permite a quem estiver utilizando o código renomear a instância de libB. Veja que no código acima alteramos o nome de <code>$</code> para $libB.</p>
@@ -152,7 +150,7 @@
 
 <p><strong>jQuery</strong></p>
 
-<div class="highlight"><pre><code class="javascript"><span class="p">...</span>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="p">...</span>
 <span class="nx">_$</span> <span class="o">=</span> <span class="nb">window</span><span class="p">.</span><span class="nx">$</span><span class="p">,</span>
 <span class="p">...</span>
 <span class="nx">noConflict</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span> <span class="nx">deep</span> <span class="p">)</span> <span class="p">{</span>
@@ -166,34 +164,31 @@
 
     <span class="k">return</span> <span class="nx">jQuery</span><span class="p">;</span>
 <span class="p">},</span>
-<span class="p">...</span>
-</code></pre></div>
+<span class="p">...</span></code></pre></div>
 
 
 <p><strong>Backbone</strong></p>
 
-<div class="highlight"><pre><code class="javascript"><span class="p">...</span>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="p">...</span>
 <span class="kd">var</span> <span class="nx">previousBackbone</span> <span class="o">=</span> <span class="nx">root</span><span class="p">.</span><span class="nx">Backbone</span><span class="p">;</span>
 <span class="p">...</span>
 <span class="nx">Backbone</span><span class="p">.</span><span class="nx">noConflict</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
     <span class="nx">root</span><span class="p">.</span><span class="nx">Backbone</span> <span class="o">=</span> <span class="nx">previousBackbone</span><span class="p">;</span>
     <span class="k">return</span> <span class="k">this</span><span class="p">;</span>
 <span class="p">};</span>
-<span class="p">...</span>
-</code></pre></div>
+<span class="p">...</span></code></pre></div>
 
 
 <p><strong>Underscore</strong></p>
 
-<div class="highlight"><pre><code class="javascript"><span class="p">...</span>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="p">...</span>
 <span class="kd">var</span> <span class="nx">previousUnderscore</span> <span class="o">=</span> <span class="nx">root</span><span class="p">.</span><span class="nx">_</span><span class="p">;</span>
 <span class="p">...</span>
 <span class="nx">_</span><span class="p">.</span><span class="nx">noConflict</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
     <span class="nx">root</span><span class="p">.</span><span class="nx">_</span> <span class="o">=</span> <span class="nx">previousUnderscore</span><span class="p">;</span>
     <span class="k">return</span> <span class="k">this</span><span class="p">;</span>
   <span class="p">};</span>
-  <span class="p">...</span>
-</code></pre></div>
+  <span class="p">...</span></code></pre></div>
 
 
 <p>Esses são só alguns exemplos.</p>
@@ -210,7 +205,9 @@
       </a>
 
       <p>
-        Cristão, Programador .NET apaixonado por Desenvolvimento de Software. TypeScript entusiasta - <a href="https://github.com/borisyankov/DefinitelyTyped" target="_blank">DefinitelyTyped</a> collaborator.
+        Programador .NET - TypeScript - JavaScript - Membro dos times
+        <a href="https://github.com/DefinitelyTyped" target="_blank">DefinitelyTyped</a> e
+        <a href="https://github.com/TypeStrong" target="_blank">TypeStrong</a>.
       </p>
 
       <a href="http://twitter.com/share" class="twitter-share-button" data-count="none" data-via="diullei">Tweet</a>
@@ -237,6 +234,7 @@
   <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
 
 </section>
+
 </body>
 
 <script type="text/javascript">

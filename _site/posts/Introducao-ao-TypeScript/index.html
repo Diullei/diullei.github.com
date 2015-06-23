@@ -89,14 +89,13 @@
 
 <p>Para entender como as coisas funcionam vamos criar um código JavaScript bem simples. Este código será alterado no decorrer deste artigo e aos poucos irei apresentar alguns recursos do TypeScript.</p>
 
-<div class="highlight"><pre><code class="javascript"><span class="kd">function</span> <span class="nx">saudacao</span><span class="p">(</span><span class="nx">pessoa</span><span class="p">){</span>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">function</span> <span class="nx">saudacao</span><span class="p">(</span><span class="nx">pessoa</span><span class="p">){</span>
     <span class="k">return</span> <span class="s2">&quot;Olá &quot;</span> <span class="o">+</span> <span class="nx">pessoa</span><span class="p">;</span>
 <span class="p">}</span>
 
 <span class="kd">var</span> <span class="nx">alguem</span> <span class="o">=</span> <span class="s2">&quot;Diullei Gomes&quot;</span><span class="p">;</span>
 
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">saudacao</span><span class="p">(</span><span class="nx">alguem</span><span class="p">));</span>
-</code></pre></div>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">saudacao</span><span class="p">(</span><span class="nx">alguem</span><span class="p">));</span></code></pre></div>
 
 
 <p>Crie um arquivo chamado saudacao.ts e salve com o código acima. Aqui repare que o arquivo TypeScript tem extensão &ldquo;.ts&rdquo;. Repare também que este código é um código JavaScript puro. Iremos alterar este código aos poucos.</p>
@@ -105,26 +104,24 @@
 
 <p>O JavaScript é uma linguagem sem tipagem e por isso podemos passar para a função &ldquo;saudacao&rdquo; um numero ou uma expressão como argumento. Embora tenhamos criado o código para receber uma string com um nome este poderá receber qualquer coisa como argumento. É claro que com uma validação extra conseguimos evitar que argumentos que não sejam do tipo string sejam passados para a função. No entanto vamos utilizar um recurso do TypeScript chamado de &ldquo;Type anotation&rdquo; para validar esta passagem de argumento. Altere o código da função &ldquo;saudacao&rdquo; como no código abaixo:</p>
 
-<div class="highlight"><pre><code class="javascript"><span class="kd">function</span> <span class="nx">saudacao</span><span class="p">(</span><span class="nx">pessoa</span><span class="o">:</span> <span class="nx">string</span><span class="p">){</span>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">function</span> <span class="nx">saudacao</span><span class="p">(</span><span class="nx">pessoa</span><span class="o">:</span> <span class="nx">string</span><span class="p">){</span>
     <span class="k">return</span> <span class="s2">&quot;Olá &quot;</span> <span class="o">+</span> <span class="nx">pessoa</span><span class="p">;</span>
 <span class="p">}</span>
 
 <span class="kd">var</span> <span class="nx">alguem</span> <span class="o">=</span> <span class="s2">&quot;Diullei Gomes&quot;</span><span class="p">;</span>
 
-<span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="nx">saudacao</span><span class="p">(</span><span class="nx">alguem</span><span class="p">);</span>
-</code></pre></div>
+<span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="nx">saudacao</span><span class="p">(</span><span class="nx">alguem</span><span class="p">);</span></code></pre></div>
 
 
 <p>Agora veja que se tentarmos passar um array como argumento o compilador do TypeScrit irá acusar erro.</p>
 
-<div class="highlight"><pre><code class="javascript"><span class="kd">function</span> <span class="nx">saudacao</span><span class="p">(</span><span class="nx">pessoa</span><span class="o">:</span> <span class="nx">string</span><span class="p">){</span>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">function</span> <span class="nx">saudacao</span><span class="p">(</span><span class="nx">pessoa</span><span class="o">:</span> <span class="nx">string</span><span class="p">){</span>
     <span class="k">return</span> <span class="s2">&quot;Olá &quot;</span> <span class="o">+</span> <span class="nx">pessoa</span><span class="p">;</span>
 <span class="p">}</span>
 
 <span class="kd">var</span> <span class="nx">alguem</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">];</span>
 
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">saudacao</span><span class="p">(</span><span class="nx">alguem</span><span class="p">));</span>
-</code></pre></div>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">saudacao</span><span class="p">(</span><span class="nx">alguem</span><span class="p">));</span></code></pre></div>
 
 
 <p>O que fizemos foi dizer ao TypeScript que nossa função &ldquo;saudacao&rdquo; recebe um argumento do tipo &ldquo;string&rdquo;. Node que mesmo tendo o código com erro o TypeScrit irá gerar o arquivo &ldquo;.js&rdquo;. O TypeScript sempre irá compilar o arquivo, no entanto sempre que existirem erros ele irá alertar estes erros a fim de informar que alguma coisa poderá não funcionar da forma esperada. Isso é feito para permitir integração com código JavaScript convencional.</p>
@@ -133,7 +130,7 @@
 
 <p>Vamos avançar e introduzir o uso de interfaces. Veja o código abaixo:</p>
 
-<div class="highlight"><pre><code class="javascript"><span class="kr">interface</span> <span class="nx">Pessoa</span> <span class="p">{</span>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kr">interface</span> <span class="nx">Pessoa</span> <span class="p">{</span>
     <span class="nx">primeiroNome</span><span class="o">:</span> <span class="nx">string</span><span class="p">;</span>
     <span class="nx">ultimoNome</span><span class="o">:</span> <span class="nx">string</span><span class="p">;</span>
 <span class="p">}</span>
@@ -144,8 +141,7 @@
 
 <span class="kd">var</span> <span class="nx">alguem</span> <span class="o">=</span> <span class="p">{</span> <span class="nx">primeiroNome</span><span class="o">:</span> <span class="s2">&quot;Diullei&quot;</span><span class="p">,</span> <span class="nx">sobreNome</span><span class="o">:</span> <span class="s2">&quot;Moura&quot;</span><span class="p">,</span> <span class="nx">ultimoNome</span><span class="o">:</span> <span class="s2">&quot;Gomes&quot;</span> <span class="p">};</span>
 
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">saudacao</span><span class="p">(</span><span class="nx">alguem</span><span class="p">));</span>
-</code></pre></div>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">saudacao</span><span class="p">(</span><span class="nx">alguem</span><span class="p">));</span></code></pre></div>
 
 
 <p>No codigo acima criamos uma interface que define dois campos: primeiroNome e ultimoNome. Não vou me aprofundar no conceito de interface mais entenda que interfaces definem contratos. Repare que alteramos a assinatura da função &ldquo;saudacao&rdquo; para receber um argumento do tipo &ldquo;Pessoa&rdquo;. Agora o compilador do TypeScript irá exigir que o argumento da função obedeça o contrato definido na interface, ou seja, precisamos passar um objeto que possua uma propriedade chamada &ldquo;primeiroNome&rdquo; com um valor do tipo string e uma propriedade chamada &ldquo;ultimoNome&rdquo; com um valor do tipo string. Veja que o objeto &ldquo;alguem&rdquo; que estamos passando também possui uma propriedade chamada &ldquo;sobreNome&rdquo; que não interfere de maneira alguma no código já que este objeto obedece a interface. Teríamos um erro se omitíssemos um dos campos exigidos pela interface.</p>
@@ -154,7 +150,7 @@
 
 <p>Vamos alterar o código acima agora e utilizar o conceito de classes. Veja o código:</p>
 
-<div class="highlight"><pre><code class="javascript"><span class="kr">class</span> <span class="nx">Pessoa</span> <span class="p">{</span>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kr">class</span> <span class="nx">Pessoa</span> <span class="p">{</span>
     <span class="nx">primeiroNome</span><span class="o">:</span> <span class="nx">string</span><span class="p">;</span>
     <span class="nx">ultimoNome</span><span class="o">:</span> <span class="nx">string</span><span class="p">;</span>
 <span class="p">}</span>
@@ -165,8 +161,7 @@
 
 <span class="kd">var</span> <span class="nx">alguem</span> <span class="o">=</span> <span class="p">{</span> <span class="nx">primeiroNome</span><span class="o">:</span> <span class="s2">&quot;Diullei&quot;</span><span class="p">,</span> <span class="nx">sobreNome</span><span class="o">:</span> <span class="s2">&quot;Moura&quot;</span><span class="p">,</span> <span class="nx">ultimoNome</span><span class="o">:</span> <span class="s2">&quot;Gomes&quot;</span> <span class="p">};</span>
 
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">saudacao</span><span class="p">(</span><span class="nx">alguem</span><span class="p">));</span>
-</code></pre></div>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">saudacao</span><span class="p">(</span><span class="nx">alguem</span><span class="p">));</span></code></pre></div>
 
 
 <p>Se você tentar executar o código acima vai ter um erro. O erro ocorre por que diferente da interface quando usamos uma classe o objeto esperado pela função tem que seguir exatamente as caracteristicas definidas na classe ou ser um tipo que herde desta classe. Se tirarmos a propriedade sobreNome do objeto &ldquo;alguem&rdquo; o código irá compilar sem erro.</p>
@@ -177,26 +172,23 @@
 
 <p>Uma caracteristica interessante do TypeScript e a possibilidade de declarar variáveis que não serão geradas no momento da compilação. Isso ajudar a definir objetos que irão existir no ambiente de execução mais que não existem código. Assim não teremos erro de compilação. Um exemplo seria a utilização do jquery &ldquo;$&rdquo; em um browser. Ao escrever o código abaixo o TypeScrit irá acusar erro por não termos declarado o objeto &ldquo;document&rdquo;.</p>
 
-<div class="highlight"><pre><code class="javascript"><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;body&#39;</span><span class="p">).</span><span class="nx">append</span><span class="p">(</span><span class="s1">&#39;teste&#39;</span><span class="p">);</span>
-</code></pre></div>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;body&#39;</span><span class="p">).</span><span class="nx">append</span><span class="p">(</span><span class="s1">&#39;teste&#39;</span><span class="p">);</span></code></pre></div>
 
 
 <p>Para evitar que tenhamos erro podemos declarar uma variável &ldquo;fantasma&rdquo; que só servirá para garantir a compilação. Esta variável não será gerada pelo compilador e por isso precisamos ter certeza de que neste nosso caso o código será executado em um ambiente no qual o jquery esteja referenciado. Veja o exemplo:</p>
 
-<div class="highlight"><pre><code class="javascript"><span class="nx">declare</span> <span class="kd">var</span> <span class="nx">$</span><span class="o">:</span> <span class="nx">any</span><span class="p">;</span>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">declare</span> <span class="kd">var</span> <span class="nx">$</span><span class="o">:</span> <span class="nx">any</span><span class="p">;</span>
 
-<span class="nx">$</span><span class="p">(</span><span class="s1">&#39;body&#39;</span><span class="p">).</span><span class="nx">append</span><span class="p">(</span><span class="s1">&#39;teste&#39;</span><span class="p">);</span>
-</code></pre></div>
+<span class="nx">$</span><span class="p">(</span><span class="s1">&#39;body&#39;</span><span class="p">).</span><span class="nx">append</span><span class="p">(</span><span class="s1">&#39;teste&#39;</span><span class="p">);</span></code></pre></div>
 
 
 <h2>Tipos</h2>
 
 <p>o TypeScript mantém os tipos nativos do JavaScript: number, string, bool entre outros e introduz um tipo novo chamado any. O tipo any é utilizado para representar um valor JavaScript qualquer. Trata-se de um tipo dinâmico que não é validado pelo compilador do TypeScript, ou seja, se você tentar invocar uma função &ldquo;xyz()&rdquo; de um objeto &ldquo;a&rdquo; do tipo &ldquo;any&rdquo; o compilador não irá verificar se o objeto &ldquo;a&rdquo; possui realmente a função &ldquo;xyz()&rdquo;.</p>
 
-<div class="highlight"><pre><code class="javascript"><span class="kd">var</span> <span class="nx">a</span><span class="o">:</span> <span class="nx">any</span><span class="p">;</span>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">a</span><span class="o">:</span> <span class="nx">any</span><span class="p">;</span>
 
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">a</span><span class="p">.</span><span class="nx">xyz</span><span class="p">());</span>
-</code></pre></div>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">a</span><span class="p">.</span><span class="nx">xyz</span><span class="p">());</span></code></pre></div>
 
 
 <blockquote><p>NOTA: qualquer variável declarada sem um tipo definido será automaticamente classificada pelo TypeScript como uma variável do tipo &ldquo;any&rdquo;.</p></blockquote>
@@ -205,12 +197,11 @@
 
 <p>Com TypeScript podemos definir exatamente os argumentos e o retorno de uma função. Veja o código abaixo:</p>
 
-<div class="highlight"><pre><code class="javascript"><span class="kd">var</span> <span class="nx">minhaFuncao</span><span class="o">:</span> <span class="p">(</span><span class="nx">a</span><span class="o">:</span> <span class="nx">number</span><span class="p">,</span> <span class="nx">b</span><span class="o">:</span> <span class="nx">string</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">string</span><span class="p">;</span>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">minhaFuncao</span><span class="o">:</span> <span class="p">(</span><span class="nx">a</span><span class="o">:</span> <span class="nx">number</span><span class="p">,</span> <span class="nx">b</span><span class="o">:</span> <span class="nx">string</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">string</span><span class="p">;</span>
 
 <span class="nx">minhaFuncao</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span> <span class="k">return</span> <span class="s1">&#39;&#39;</span><span class="p">;</span> <span class="p">};</span>
 
-<span class="nx">minhaFuncao</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;arg2&quot;</span><span class="p">);</span>
-</code></pre></div>
+<span class="nx">minhaFuncao</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;arg2&quot;</span><span class="p">);</span></code></pre></div>
 
 
 <p>Vamos entender o código acima. Usando a notação de tipos do TypeScript definimos uma variável chamada &ldquo;minhaFuncao&rdquo; para receber como valor uma função que tenha 2 argumentos um numero e uma string e definimos o retorno desta função para ser do tipo string. Na segunda linda de código foi adicionado o valor &ldquo;function(){ return &lsquo;&rsquo;; }&rdquo; a esta variável.</p>
@@ -221,10 +212,9 @@
 
 <p>Esse recurso de tipagem de funções fornecido pelo TypeScript é muito interessante quando queremos definir o tipo de uma função de &ldquo;callback&rdquo; na assinatura de uma função qualquer. Veja abaixo um exemplo de uma função chamada &ldquo;ajax&rdquo; que define o tipo do segundo argumento como uma função de &ldquo;callback&rdquo; que tenha um argumento de qualquer tipo e retorne um valor do tipo string:</p>
 
-<div class="highlight"><pre><code class="javascript"><span class="kd">function</span> <span class="nx">ajax</span><span class="p">(</span><span class="nx">url</span><span class="o">:</span> <span class="nx">string</span><span class="p">,</span> <span class="nx">callback</span><span class="o">:</span> <span class="p">(</span><span class="nx">data</span><span class="o">:</span> <span class="nx">any</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">string</span><span class="p">)</span> <span class="p">{</span>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">function</span> <span class="nx">ajax</span><span class="p">(</span><span class="nx">url</span><span class="o">:</span> <span class="nx">string</span><span class="p">,</span> <span class="nx">callback</span><span class="o">:</span> <span class="p">(</span><span class="nx">data</span><span class="o">:</span> <span class="nx">any</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">string</span><span class="p">)</span> <span class="p">{</span>
     <span class="c1">//...</span>
-<span class="p">}</span>
-</code></pre></div>
+<span class="p">}</span></code></pre></div>
 
 
 <h2>Conclusão</h2>
@@ -243,7 +233,9 @@
       </a>
 
       <p>
-        Cristão, Programador .NET apaixonado por Desenvolvimento de Software. TypeScript entusiasta - <a href="https://github.com/borisyankov/DefinitelyTyped" target="_blank">DefinitelyTyped</a> collaborator.
+        Programador .NET - TypeScript - JavaScript - Membro dos times
+        <a href="https://github.com/DefinitelyTyped" target="_blank">DefinitelyTyped</a> e
+        <a href="https://github.com/TypeStrong" target="_blank">TypeStrong</a>.
       </p>
 
       <a href="http://twitter.com/share" class="twitter-share-button" data-count="none" data-via="diullei">Tweet</a>
@@ -270,6 +262,7 @@
   <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
 
 </section>
+
 </body>
 
 <script type="text/javascript">
