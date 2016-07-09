@@ -4,6 +4,8 @@
   <meta charset="utf-8">
   <title>
     
+      Testando o ultimo build do TypeScript no VS &ndash;
+    
     Diullei Gomes
   </title>
 
@@ -55,30 +57,87 @@
       </section>
     </section>
 
-    
-
-<section class="content">
+    <section class="content">
   <h1>
-    <a href="/posts/TypeScript-Guide">TypeScript Guide</a>
+    <a href="/posts/Testando-o-ultimo-build-do-TypeScript-no-VS">Testando o ultimo build do TypeScript no VS</a>
   </h1>
 
   <section class="byline">
-    June 22, 2015
+    February  2, 2013
   </section>
 
-  <p>Comecei a escrever um e-book sobre TypeScript e acredito que este livro poderá contribuir muito no aprendizado desta nova linguagem. Desde o seu release publico a 3 anos atrás o TypeScript tem se mostrado muito promissor e assumido um espaço muito importante no desenvolvido de aplicativos JavaScript. Creio que o TypeScript, a medida que o tempo for passando, vai se tornar uma linguagem bem popular e ter um bom guia escrito em português será de boa ajuda para muitos.</p>
+  <h2>Introdução</h2>
 
-<p>Este livro é aberto a contribuições e pode ser acessar no endereço  <a href="https://github.com/Diullei/typescript-guide">https://github.com/Diullei/typescript-guide</a>.</p>
+<p>O objetivo deste post é mostrar como você pode atualizar a versão do TypeScript instalada na sua máquina com a ultima versão em desenvolvimento. Isso é legal caso você esteja acompanhando o que o time do TypeScript está preparando para as novas versões. Você vai precisar atualizar um arquivo chamado <code>typescriptSerivces.js</code>. Vamos ver como isso pode ser feito.</p>
 
-<p><img src="/images/typescript-guide.jpg" alt="" /></p>
+<h2>Obtendo uma nova versão do arquivo typescriptSerivces.js</h2>
 
-<p>Estou escrevendo este livro utilizando o <a href="https://github.com/GitbookIO/gitbook">GitBook</a>. Essa ferramenta é muito legal e vale apena conhecer se você estiver pensando em escrever um e-book :)</p>
+<h3>Primeira opção: Usando o &ldquo;LKG&rdquo;</h3>
 
-<p>No momento o e-book ainda está em construção e não possui muito conteúdo mas espero que em poucos meses possamos ter bastante coisas legais por lá!</p>
+<p>LKG é uma sigla que significa &ldquo;Last Known Good&rdquo; que significa no nosso contexto algo como &ldquo;ultimo arquivo bom de que temos conhecimento&rdquo;. Você pode pegar uma cópia deste arquivo no CodePlex <a href="http://typescript.codeplex.com/SourceControl/BrowseLatest?branch=develop">aqui</a>, basta navegar até o diretorio <code>bin</code> e baixar o arquivo <code>typescriptSerivces.js</code>.</p>
 
-<h3>Um pouco sobre minhas contribuições com TypeScript</h3>
+<h3>Compilando a ultima versão do TypeScript</h3>
 
-<p>Tenho me envolvido com TypeScript desde sua primeira versão. Fui um dos primeiros a ajudar com as dúvidas sobre TypeScript no StackOverflow e tive a oportunidade de ser o primeiro membro colaborador do repositório <a href="https://github.com/borisyankov/DefinitelyTyped">DefinitelyTyped</a> no Github juntamente com <a href="https://github.com/borisyankov">Boris Yankov</a> (por curiosidade fui o segundo a enviar <a href="https://github.com/borisyankov/DefinitelyTyped/commit/d0661c214948c6876657bc53e2b5bd473c255902">Pull Request</a> para este repositório antes de ser agregado como colaborador, na época existiam apenas 12 tipagens diferentes, hoje contamos com mais de 1000). Este repositório veio a se tornar um dos repositórios mais indispensáveis para todos que desenvolvem em TypeScrpt atulamente contanto com a contribuição de mais de 1000 pessoas ao redor do mundo. Criei a organização <a href="https://github.com/DefinitelyTyped">DefinitelyTyped</a> e fui o criador do <a href="https://github.com/DefinitelyTyped/tsd">TSD - TypeScript package Manager</a>, ferramenta que tem feito parte do ciclo de desenvolvimento dos projetos que utilizam TypeScript atualmente (É possível utilizar o <a href="http://definitelytyped.org/tsd/">site do TSD</a> para localizar as definições). Participei da criação do <a href="https://github.com/DefinitelyTyped/NugetAutomation/issues/1">NugetAutomation</a>, projeto que automatiza a publicação dos arquivos tipados publicados no repositório DefinitelyTyped para o <a href="http://www.nuget.org/packages?q=Definitelytyped">nuget</a>. recentemente me agregei ao time <a href="https://github.com/TypeStrong">TypeStrong</a>, este time tem feito grandes contribuições principalmente no desenvolvimento do pacote <a href="https://atom.io/packages/atom-typescript">atom-typescript</a>.</p>
+<h4>Pré-requisitos</h4>
+
+<p>Você vai precisar das seguintes feramentas instaladas na tua máquina:</p>
+
+<ul>
+<li><a href="http://git-scm.com/downloads">Git</a> - Algumas recomendações para instalação do git no windows
+
+<ul>
+<li>Não instale com a opção de integração com o Windows Explorer a menos que você vá realmente precisar disso.</li>
+<li>Selecione a opção <em>Run Git from the Windows Command Prompt</em>.</li>
+<li>Selecione <em>Checkout as-is</em> and <em>commit as-is</em></li>
+</ul>
+</li>
+<li><a href="http://nodejs.org/">Node.js</a></li>
+</ul>
+
+
+<h4>Clonando o TypeScript</h4>
+
+<pre><code>&gt; git clone https://git01.codeplex.com/typescript
+</code></pre>
+
+<p>Isso irá criar um diretório local chamado <code>typescript</code> com o código fonte do projeto.</p>
+
+<h4>Selecionar o <code>Branch</code> da ultima versão em desenvolvimento</h4>
+
+<pre><code>&gt; cd typescript
+
+&gt; git checkout develop
+</code></pre>
+
+<p>O branch <code>develop</code> é onde encontramos as ultimas alterações de código.</p>
+
+<h4>Instalando as dependências do projeto</h4>
+
+<pre><code>&gt; npm install
+</code></pre>
+
+<p>Isso irá instalar uma ferramenta clamada <a href="https://github.com/mde/jake">jake</a> a qual é usada no build do TypeScript.</p>
+
+<h4>Compilando o TypeScript</h4>
+
+<pre><code>&gt; .\node_modules\.bin\jake local 
+</code></pre>
+
+<blockquote><p>NOTA: Sempre que você quiser pegar a ultima versão do código do TypeScript para compilar localmente você pode apagar o folder <code>typescript</code> e repetir todo o procedomento acima ou simplesmente executar o comando <code>git pull</code> para atualizar seu repositório com as ultimas alterações feitas pelo time do TypeScript.</p></blockquote>
+
+<h3>Atualizando o arquivo typescriptSerivces.js</h3>
+
+<p>Você vai precisar localizar o diretório local onde onde a extensão do TypeScrit está instalada. Procure por um arquivo chamada <code>typescriptSerivces.js</code> em um diretório localizado em um caminho paredico com:</p>
+
+<p><code>C:\Program Files (x86)\Microsoft Visual Studio 11.0\Common7\IDE\Extensions\enn4wcm5.z2b\</code></p>
+
+<p>Note que o ultimo diretório chamado <code>enn4wcm5.z2b</code> vai ter nome diferente em cada máquina. Em alguns casos raros você pode ter mais de um subfolde com a instalação do TypeScript. Se você tiver este cenário identifique pela data de criação o mais recente.</p>
+
+<p>Localize o arquivo <code>typescriptSerivces.js</code>, faça um backup e substitua este arquivo pela ultima versão optida no tópico anterior.</p>
+
+<p>Feito isso, reinicie o Visual Studio e divirta-se!</p>
+
+<p>Um grande abraço e até a próxima!</p>
 
 
   <hr/>
@@ -106,9 +165,9 @@
    <div id="disqus_thread"></div>
    <script>
     var disqus_shortname = 'diulleigomes';
-    var disqus_identifier = '/posts/TypeScript-Guide';
-    var disqus_title = 'TypeScript Guide';
-    var disqus_message = 'TypeScript Guide';
+    var disqus_identifier = '/posts/Testando-o-ultimo-build-do-TypeScript-no-VS';
+    var disqus_title = 'Testando o ultimo build do TypeScript no VS';
+    var disqus_message = 'Testando o ultimo build do TypeScript no VS';
     (function() {
       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
       dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';

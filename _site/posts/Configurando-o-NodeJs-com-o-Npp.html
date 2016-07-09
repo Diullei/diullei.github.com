@@ -4,6 +4,8 @@
   <meta charset="utf-8">
   <title>
     
+      Configurando o Nodejs com o Notepad++ &ndash;
+    
     Diullei Gomes
   </title>
 
@@ -55,30 +57,83 @@
       </section>
     </section>
 
-    
-
-<section class="content">
+    <section class="content">
   <h1>
-    <a href="/posts/TypeScript-Guide">TypeScript Guide</a>
+    <a href="/posts/Configurando-o-NodeJs-com-o-Npp">Configurando o Nodejs com o Notepad++</a>
   </h1>
 
   <section class="byline">
-    June 22, 2015
+    July 17, 2012
   </section>
 
-  <p>Comecei a escrever um e-book sobre TypeScript e acredito que este livro poderá contribuir muito no aprendizado desta nova linguagem. Desde o seu release publico a 3 anos atrás o TypeScript tem se mostrado muito promissor e assumido um espaço muito importante no desenvolvido de aplicativos JavaScript. Creio que o TypeScript, a medida que o tempo for passando, vai se tornar uma linguagem bem popular e ter um bom guia escrito em português será de boa ajuda para muitos.</p>
+  <p>O note pad++ é na minha opinião um excelente editor. É claro, com o Sublime Text 2 na área muita gente deixou de olhar para p Np++ :). Minha dica de hoje é mostrar como configurar o Np++ para executar arquivos javascript usando o nodeJs.</p>
 
-<p>Este livro é aberto a contribuições e pode ser acessar no endereço  <a href="https://github.com/Diullei/typescript-guide">https://github.com/Diullei/typescript-guide</a>.</p>
+<h3>NodeJs</h3>
 
-<p><img src="/images/typescript-guide.jpg" alt="" /></p>
+<p>Caso você não possua o nodejs instalado na sua máquina vá até o site http://www.nodejs.org/ e faça o download. A instalação é bem simples e você encontra no site toda orientação necessária.</p>
 
-<p>Estou escrevendo este livro utilizando o <a href="https://github.com/GitbookIO/gitbook">GitBook</a>. Essa ferramenta é muito legal e vale apena conhecer se você estiver pensando em escrever um e-book :)</p>
+<h3>Configurando o NotePad++ com o NodeJs</h3>
 
-<p>No momento o e-book ainda está em construção e não possui muito conteúdo mas espero que em poucos meses possamos ter bastante coisas legais por lá!</p>
+<p>Primeiro de tudo será necessário instalalar o plugin <strong>NppExec</strong>. Vá até o menu <strong>Plugins->Plugin Manager->Show Plugin Manager</strong>.</p>
 
-<h3>Um pouco sobre minhas contribuições com TypeScript</h3>
+<p><img src="/images/npp_node/menu.png" alt="Valid XHTML" /></p>
 
-<p>Tenho me envolvido com TypeScript desde sua primeira versão. Fui um dos primeiros a ajudar com as dúvidas sobre TypeScript no StackOverflow e tive a oportunidade de ser o primeiro membro colaborador do repositório <a href="https://github.com/borisyankov/DefinitelyTyped">DefinitelyTyped</a> no Github juntamente com <a href="https://github.com/borisyankov">Boris Yankov</a> (por curiosidade fui o segundo a enviar <a href="https://github.com/borisyankov/DefinitelyTyped/commit/d0661c214948c6876657bc53e2b5bd473c255902">Pull Request</a> para este repositório antes de ser agregado como colaborador, na época existiam apenas 12 tipagens diferentes, hoje contamos com mais de 1000). Este repositório veio a se tornar um dos repositórios mais indispensáveis para todos que desenvolvem em TypeScrpt atulamente contanto com a contribuição de mais de 1000 pessoas ao redor do mundo. Criei a organização <a href="https://github.com/DefinitelyTyped">DefinitelyTyped</a> e fui o criador do <a href="https://github.com/DefinitelyTyped/tsd">TSD - TypeScript package Manager</a>, ferramenta que tem feito parte do ciclo de desenvolvimento dos projetos que utilizam TypeScript atualmente (É possível utilizar o <a href="http://definitelytyped.org/tsd/">site do TSD</a> para localizar as definições). Participei da criação do <a href="https://github.com/DefinitelyTyped/NugetAutomation/issues/1">NugetAutomation</a>, projeto que automatiza a publicação dos arquivos tipados publicados no repositório DefinitelyTyped para o <a href="http://www.nuget.org/packages?q=Definitelytyped">nuget</a>. recentemente me agregei ao time <a href="https://github.com/TypeStrong">TypeStrong</a>, este time tem feito grandes contribuições principalmente no desenvolvimento do pacote <a href="https://atom.io/packages/atom-typescript">atom-typescript</a>.</p>
+<p>Na aba Avaliable selecione <strong>NppExec</strong> e clique em install. Feito isso reinicie o npp++.</p>
+
+<p><img src="/images/npp_node/install.png" alt="Valid XHTML" /></p>
+
+<p>Feito isso vamos configurar o NppExec.</p>
+
+<p>Acesse o menu <strong>Plugins->NppExec</strong> e selecione <strong>Follow $(CURRENT_DIRECTORY)</strong>.</p>
+
+<p><img src="/images/npp_node/current_dir.png" alt="Valid XHTML" /></p>
+
+<p>Em seguida acesse o menu <strong>PLugins->NppExec->Execute&hellip;</strong>. Na janela que vai aparecer digite:</p>
+
+<p><figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">cd</span> <span class="s2">&quot;$(CURRENT_DIRECTORY)&quot;</span>
+<span class="nx">node</span> <span class="nx">$</span><span class="p">(</span><span class="nx">FILE_NAME</span><span class="p">)</span></code></pre></figure></p>
+
+<p>Clique no botão <strong>Save</strong> e na janela que se abre de o nome &ldquo;Run&rdquo; e clique em <strong>Save</strong>. Em seguida basta dar ok.</p>
+
+<p><img src="/images/npp_node/execute.png" alt="Valid XHTML" /></p>
+
+<p>Agora vamos configurar um atalho. Vá no menu <strong>Plugins->NppExec->Advanced Options</strong></p>
+
+<p><img src="/images/npp_node/advanced_options.png" alt="Valid XHTML" /></p>
+
+<p>Selecione o checkbox <strong>Place to the Macros submenu</strong>. Selecione <strong>Run</strong> na combo <strong>Associated script</strong> e dê o nome <strong>Run Nodejs</strong> no campo <strong>Item name</strong>. Em seguida clique no botão <strong>Add/Modify button</strong>. Clique no botão Ok e reinicie o Np++.</p>
+
+<p>Vá no menu <strong>Settings->Short Mapper</strong>&hellip;</p>
+
+<p><img src="/posts/img/npp_node/advanced_options2.png" alt="Valid XHTML" /></p>
+
+<p>Selecione <strong>Plugin commands</strong> e localize <strong>Run NodeJs</strong> na lista de nomes. Clique no botão <strong>Modify</strong> e e configure a janela seguinte conforme a imagem abaixo:</p>
+
+<p><img src="/images/npp_node/shortcut.png" alt="Valid XHTML" /></p>
+
+<p>Clique em Ok e pronto!</p>
+
+<p>Note que no menu <strong>Macro</strong> irá aparecer o atalho que acabamos de criar.</p>
+
+<p><img src="/images/npp_node/menu2.png" alt="Valid XHTML" /></p>
+
+<h2>Testando</h2>
+
+<p>Crie um novo arquivo e escreva o seguinte código:</p>
+
+<p><figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;np++ test!!!&#39;</span><span class="p">);</span></code></pre></figure></p>
+
+<p>Salve o arquivo e tecle o atalho Ctrl+F5.</p>
+
+<p>Se tudo tiver sido configurado corretamente você terá algo como na imagem abaixo:</p>
+
+<p><img src="/images/npp_node/fim.png" alt="Valid XHTML" /></p>
+
+<p>OBS.: O arquivo precisa estar salvo para você conseguir executa-lo.</p>
+
+<p>Espero que esta dica seja útil.</p>
+
+<p>Até!</p>
 
 
   <hr/>
@@ -106,9 +161,9 @@
    <div id="disqus_thread"></div>
    <script>
     var disqus_shortname = 'diulleigomes';
-    var disqus_identifier = '/posts/TypeScript-Guide';
-    var disqus_title = 'TypeScript Guide';
-    var disqus_message = 'TypeScript Guide';
+    var disqus_identifier = '/posts/Configurando-o-NodeJs-com-o-Npp';
+    var disqus_title = 'Configurando o Nodejs com o Notepad++';
+    var disqus_message = 'Configurando o Nodejs com o Notepad++';
     (function() {
       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
       dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';

@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+  <meta charset="utf-8">
+  <title>
+    
+      Introdução ao TypeScript &ndash;
+    
+    Diullei Gomes
+  </title>
+
+  <meta name="author" content="Diullei Gomes" />
+  <meta name="description" content="Coder, hacker and more..." />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <link rel="alternate" type="application/rss+xml" href="/atom.xml" />
+
+  <link rel="stylesheet" href="/css/fontawesome.min.css" type="text/css" media="screen, projection" />
+  <link rel="stylesheet" href="/css/base.css" type="text/css" media="screen, projection" />
+  <link rel="stylesheet" href="/css/pygments.css" type="text/css" />
+  <link media="only screen and (max-device-width: 480px)" href="/css/mobile.css" type="text/css" rel="stylesheet" />
+  <link media="only screen and (device-width: 768px)" href="/css/mobile.css" type="text/css" rel="stylesheet" />
+  <link href='http://fonts.googleapis.com/css?family=Yanone+Kaffeesatz' rel='stylesheet' type='text/css'>
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+  <script type="text/javascript" src="/js/application.js"></script>
+</head>
+
+<body>
+  <div id="page-wrap">
+    <section class="sidebar">
+      <a href="/">
+        <img src="http://gravatar.com/avatar/5e93890c5b54d18dd454f14789c2b225?s=150" height="75" width="75" class="avatar" />
+      </a>
+
+      <section class="name">
+        <a href="/">
+          <span id="fname">Diullei</span>
+          <span id="lname">Gomes</span>
+        </a>
+      </section>
+
+      <section class="meta">
+        <a href="https://github.com/Diullei" target="_blank"><i class="icon icon-github"></i></a>
+        <a href="https://twitter.com/diullei" target="_blank"><i class="icon icon-twitter"></i></a>
+        <a href="/atom.xml"><i class="icon icon-rss"></i></a>
+      </section>
+
+      <section class="sections">
+        <ul>
+          <li><a href="/archive.html">Artigos</a></li>
+          <li><a href="/categories.html">Categorias</a></li>
+          <li><a href="/tags.html">Tags</a></li>
+          <li><a href="/about.html">Sobre mim</a></li>
+        </ul>
+      </section>
+    </section>
+
+    <section class="content">
+  <h1>
+    <a href="/posts/Introducao-ao-TypeScript">Introdução ao TypeScript</a>
+  </h1>
+
+  <section class="byline">
+    October 12, 2012
+  </section>
+
+  <h2>Introdução</h2>
+
+<p>A Microsoft surpreendeu todos a pouco tempo lançando seu próprio pré-processador de JavaScript chamado <a href="http://www.typescriptlang.org/">TypeScript</a>. Muitos saíram comparando o TypeScript com <a href="http://coffeescript.org/">CofeeScript</a> chamando o TypeScript de &ldquo;CoffeeScript da Microsoft&rdquo;. Se investigarmos mais a fundo veremos que se trata de uma proposta diferente do CoffeeScript a começar pela sintaxe. Não sou programador CoffeeScript (embora já tenha trabalhado com Coffee não me considero um especialista) e por trabalhar com C# achei a curva de aprendizado do TypeScript muito suave. TypeScript nos permite escrever código puramente JavaScript mesclando ou não o código JavaScript convencional com seu incrível poder de &ldquo;tipagem&rdquo; e sintaxe amigável para codificação OO (Criação de classes e interfaces, utilização de herança etc).</p>
+
+<p>Não é minha intenção convencer você de que TypeScript é a melhor solução do mundo ou que é melhor do que CoffeeScript. Essas discussões no fim das contas não levam a nada. CoffeeScript tem seu espaço assim como o TypeScript. Se você já programou em alguma linguagem fortemente &ldquo;tipada&rdquo; como C#, Java ou C++ provavelmente você irá se sentir bem com os recursos fornecidas pelo TypeScript. Nem preciso dizer que se você programa em Python vai se sentir mais a vontade ao utilizar CoffeeScript do que com TypeScript :)</p>
+
+<p>Iniciei um trabalho de tradução da documentação do TypeScript. Você pode acessar a tradução da página oficial do TypeScript aqui <a href="http://diullei.github.com/TypeScript-ptBR/index.html">http://diullei.github.com/TypeScript-ptBR/index.html</a>. A documentação estará sendo traduzida no repositório do <a href="https://github.com/organizations/SampaJS">SampaJS</a> no github e estará sendo disponibilizada em breve.</p>
+
+<p>Vamos a uma breve introdução sobre TypeScript. A intenção é apresentar alguns recursos básicos interessantes sobre a linguagem.</p>
+
+<h2>Instalando o TypeScript</h2>
+
+<p>O compilador do TypeScript é escrito em TypeScript e como o TypeScript compila pra JavaScript ele pode ser executado em qualquer ambiente JavaScript. Assim podemos rodar código TypeScript em qualquer navegador e inclusive no Node.js.</p>
+
+<p>Se você está habituado com o uso do Visual Studio vai ficar feliz! rs&hellip; é possível instalar um plugin no Visual Studio 2012 para trabalhar com TypeScript. Se você costuma utilizar Node.js vai se sentir mais a vontade utilizando o TypeScript no Node.js.</p>
+
+<p>Para ver como instalar o TypeScript no Node.js ou no Visual Studio acesse o link: <a href="http://diullei.github.com/TypeScript-ptBR/#Download">http://diullei.github.com/TypeScript-ptBR/#Download</a>.</p>
+
+<p>Se você quiser seguir este artigo sem ter o trabalho de instalar o TypeScript você pode utilizar o TypeScript Playground. Trata-se de um compilador online onde podemos experimentar o TypeScript.</p>
+
+<h2>Direto ao código</h2>
+
+<p>Para entender como as coisas funcionam vamos criar um código JavaScript bem simples. Este código será alterado no decorrer deste artigo e aos poucos irei apresentar alguns recursos do TypeScript.</p>
+
+<p><figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">function</span> <span class="nx">saudacao</span><span class="p">(</span><span class="nx">pessoa</span><span class="p">){</span>
+    <span class="k">return</span> <span class="s2">&quot;Olá &quot;</span> <span class="o">+</span> <span class="nx">pessoa</span><span class="p">;</span>
+<span class="p">}</span></p>
+
+<p><span class="kd">var</span> <span class="nx">alguem</span> <span class="o">=</span> <span class="s2">&quot;Diullei Gomes&quot;</span><span class="p">;</span></p>
+
+<p><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">saudacao</span><span class="p">(</span><span class="nx">alguem</span><span class="p">));</span></code></pre></figure></p>
+
+<p>Crie um arquivo chamado saudacao.ts e salve com o código acima. Aqui repare que o arquivo TypeScript tem extensão &ldquo;.ts&rdquo;. Repare também que este código é um código JavaScript puro. Iremos alterar este código aos poucos.</p>
+
+<p>Execute <code>tsc saudacao.ts</code>(Se você instalou a versão Node.js) e veja que será criado um arquivo saudacao.js. Sempre que compilamos um arquivo &ldquo;.ts&rdquo; o compilador do TypeScript gera um arquivo &ldquo;.js&rdquo;. Se você estiver utilizando o Visual Studio verá que o arquivo &ldquo;.js&rdquo; é criado automáticamente sempre que o projeto é compilado.</p>
+
+<p>O JavaScript é uma linguagem sem tipagem e por isso podemos passar para a função &ldquo;saudacao&rdquo; um numero ou uma expressão como argumento. Embora tenhamos criado o código para receber uma string com um nome este poderá receber qualquer coisa como argumento. É claro que com uma validação extra conseguimos evitar que argumentos que não sejam do tipo string sejam passados para a função. No entanto vamos utilizar um recurso do TypeScript chamado de &ldquo;Type anotation&rdquo; para validar esta passagem de argumento. Altere o código da função &ldquo;saudacao&rdquo; como no código abaixo:</p>
+
+<p><figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">function</span> <span class="nx">saudacao</span><span class="p">(</span><span class="nx">pessoa</span><span class="o">:</span> <span class="nx">string</span><span class="p">){</span>
+    <span class="k">return</span> <span class="s2">&quot;Olá &quot;</span> <span class="o">+</span> <span class="nx">pessoa</span><span class="p">;</span>
+<span class="p">}</span></p>
+
+<p><span class="kd">var</span> <span class="nx">alguem</span> <span class="o">=</span> <span class="s2">&quot;Diullei Gomes&quot;</span><span class="p">;</span></p>
+
+<p><span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="nx">saudacao</span><span class="p">(</span><span class="nx">alguem</span><span class="p">);</span></code></pre></figure></p>
+
+<p>Agora veja que se tentarmos passar um array como argumento o compilador do TypeScrit irá acusar erro.</p>
+
+<p><figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">function</span> <span class="nx">saudacao</span><span class="p">(</span><span class="nx">pessoa</span><span class="o">:</span> <span class="nx">string</span><span class="p">){</span>
+    <span class="k">return</span> <span class="s2">&quot;Olá &quot;</span> <span class="o">+</span> <span class="nx">pessoa</span><span class="p">;</span>
+<span class="p">}</span></p>
+
+<p><span class="kd">var</span> <span class="nx">alguem</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">];</span></p>
+
+<p><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">saudacao</span><span class="p">(</span><span class="nx">alguem</span><span class="p">));</span></code></pre></figure></p>
+
+<p>O que fizemos foi dizer ao TypeScript que nossa função &ldquo;saudacao&rdquo; recebe um argumento do tipo &ldquo;string&rdquo;. Node que mesmo tendo o código com erro o TypeScrit irá gerar o arquivo &ldquo;.js&rdquo;. O TypeScript sempre irá compilar o arquivo, no entanto sempre que existirem erros ele irá alertar estes erros a fim de informar que alguma coisa poderá não funcionar da forma esperada. Isso é feito para permitir integração com código JavaScript convencional.</p>
+
+<h2>Interfaces</h2>
+
+<p>Vamos avançar e introduzir o uso de interfaces. Veja o código abaixo:</p>
+
+<p><figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kr">interface</span> <span class="nx">Pessoa</span> <span class="p">{</span>
+    <span class="nx">primeiroNome</span><span class="o">:</span> <span class="nx">string</span><span class="p">;</span>
+    <span class="nx">ultimoNome</span><span class="o">:</span> <span class="nx">string</span><span class="p">;</span>
+<span class="p">}</span></p>
+
+<p><span class="kd">function</span> <span class="nx">saudacao</span><span class="p">(</span><span class="nx">pessoa</span><span class="o">:</span> <span class="nx">Pessoa</span><span class="p">){</span>
+    <span class="k">return</span> <span class="s2">&quot;Olá &quot;</span> <span class="o">+</span> <span class="nx">pessoa</span><span class="p">.</span><span class="nx">primeiroNome</span> <span class="o">+</span> <span class="s2">&quot; &quot;</span> <span class="o">+</span> <span class="nx">pessoa</span><span class="p">.</span><span class="nx">ultimoNome</span><span class="p">;</span>
+<span class="p">}</span></p>
+
+<p><span class="kd">var</span> <span class="nx">alguem</span> <span class="o">=</span> <span class="p">{</span> <span class="nx">primeiroNome</span><span class="o">:</span> <span class="s2">&quot;Diullei&quot;</span><span class="p">,</span> <span class="nx">sobreNome</span><span class="o">:</span> <span class="s2">&quot;Moura&quot;</span><span class="p">,</span> <span class="nx">ultimoNome</span><span class="o">:</span> <span class="s2">&quot;Gomes&quot;</span> <span class="p">};</span></p>
+
+<p><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">saudacao</span><span class="p">(</span><span class="nx">alguem</span><span class="p">));</span></code></pre></figure></p>
+
+<p>No codigo acima criamos uma interface que define dois campos: primeiroNome e ultimoNome. Não vou me aprofundar no conceito de interface mais entenda que interfaces definem contratos. Repare que alteramos a assinatura da função &ldquo;saudacao&rdquo; para receber um argumento do tipo &ldquo;Pessoa&rdquo;. Agora o compilador do TypeScript irá exigir que o argumento da função obedeça o contrato definido na interface, ou seja, precisamos passar um objeto que possua uma propriedade chamada &ldquo;primeiroNome&rdquo; com um valor do tipo string e uma propriedade chamada &ldquo;ultimoNome&rdquo; com um valor do tipo string. Veja que o objeto &ldquo;alguem&rdquo; que estamos passando também possui uma propriedade chamada &ldquo;sobreNome&rdquo; que não interfere de maneira alguma no código já que este objeto obedece a interface. Teríamos um erro se omitíssemos um dos campos exigidos pela interface.</p>
+
+<h2>Classes</h2>
+
+<p>Vamos alterar o código acima agora e utilizar o conceito de classes. Veja o código:</p>
+
+<p><figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kr">class</span> <span class="nx">Pessoa</span> <span class="p">{</span>
+    <span class="nx">primeiroNome</span><span class="o">:</span> <span class="nx">string</span><span class="p">;</span>
+    <span class="nx">ultimoNome</span><span class="o">:</span> <span class="nx">string</span><span class="p">;</span>
+<span class="p">}</span></p>
+
+<p><span class="kd">function</span> <span class="nx">saudacao</span><span class="p">(</span><span class="nx">pessoa</span><span class="o">:</span> <span class="nx">Pessoa</span><span class="p">){</span>
+    <span class="k">return</span> <span class="s2">&quot;Olá &quot;</span> <span class="o">+</span> <span class="nx">pessoa</span><span class="p">.</span><span class="nx">primeiroNome</span> <span class="o">+</span> <span class="s2">&quot; &quot;</span> <span class="o">+</span> <span class="nx">pessoa</span><span class="p">.</span><span class="nx">ultimoNome</span><span class="p">;</span>
+<span class="p">}</span></p>
+
+<p><span class="kd">var</span> <span class="nx">alguem</span> <span class="o">=</span> <span class="p">{</span> <span class="nx">primeiroNome</span><span class="o">:</span> <span class="s2">&quot;Diullei&quot;</span><span class="p">,</span> <span class="nx">sobreNome</span><span class="o">:</span> <span class="s2">&quot;Moura&quot;</span><span class="p">,</span> <span class="nx">ultimoNome</span><span class="o">:</span> <span class="s2">&quot;Gomes&quot;</span> <span class="p">};</span></p>
+
+<p><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">saudacao</span><span class="p">(</span><span class="nx">alguem</span><span class="p">));</span></code></pre></figure></p>
+
+<p>Se você tentar executar o código acima vai ter um erro. O erro ocorre por que diferente da interface quando usamos uma classe o objeto esperado pela função tem que seguir exatamente as caracteristicas definidas na classe ou ser um tipo que herde desta classe. Se tirarmos a propriedade sobreNome do objeto &ldquo;alguem&rdquo; o código irá compilar sem erro.</p>
+
+<p>O que foi apresentado até aqui é bem simples mais introduz bem a intenção do TypeScript. Para saber mais acesse a documentação oficial. Estou trabalhando na tradução desta documentação e logo estarei divulgando o link de acesso.</p>
+
+<h2>O argumento &ldquo;declare&rdquo;</h2>
+
+<p>Uma caracteristica interessante do TypeScript e a possibilidade de declarar variáveis que não serão geradas no momento da compilação. Isso ajudar a definir objetos que irão existir no ambiente de execução mais que não existem código. Assim não teremos erro de compilação. Um exemplo seria a utilização do jquery &ldquo;$&rdquo; em um browser. Ao escrever o código abaixo o TypeScrit irá acusar erro por não termos declarado o objeto &ldquo;document&rdquo;.</p>
+
+<p><figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;body&#39;</span><span class="p">).</span><span class="nx">append</span><span class="p">(</span><span class="s1">&#39;teste&#39;</span><span class="p">);</span></code></pre></figure></p>
+
+<p>Para evitar que tenhamos erro podemos declarar uma variável &ldquo;fantasma&rdquo; que só servirá para garantir a compilação. Esta variável não será gerada pelo compilador e por isso precisamos ter certeza de que neste nosso caso o código será executado em um ambiente no qual o jquery esteja referenciado. Veja o exemplo:</p>
+
+<p><figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">declare</span> <span class="kd">var</span> <span class="nx">$</span><span class="o">:</span> <span class="nx">any</span><span class="p">;</span></p>
+
+<p><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;body&#39;</span><span class="p">).</span><span class="nx">append</span><span class="p">(</span><span class="s1">&#39;teste&#39;</span><span class="p">);</span></code></pre></figure></p>
+
+<h2>Tipos</h2>
+
+<p>o TypeScript mantém os tipos nativos do JavaScript: number, string, bool entre outros e introduz um tipo novo chamado any. O tipo any é utilizado para representar um valor JavaScript qualquer. Trata-se de um tipo dinâmico que não é validado pelo compilador do TypeScript, ou seja, se você tentar invocar uma função &ldquo;xyz()&rdquo; de um objeto &ldquo;a&rdquo; do tipo &ldquo;any&rdquo; o compilador não irá verificar se o objeto &ldquo;a&rdquo; possui realmente a função &ldquo;xyz()&rdquo;.</p>
+
+<p><figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">a</span><span class="o">:</span> <span class="nx">any</span><span class="p">;</span></p>
+
+<p><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">a</span><span class="p">.</span><span class="nx">xyz</span><span class="p">());</span></code></pre></figure></p>
+
+<blockquote><p>NOTA: qualquer variável declarada sem um tipo definido será automaticamente classificada pelo TypeScript como uma variável do tipo &ldquo;any&rdquo;.</p></blockquote>
+
+<h2>Funções</h2>
+
+<p>Com TypeScript podemos definir exatamente os argumentos e o retorno de uma função. Veja o código abaixo:</p>
+
+<p><figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">minhaFuncao</span><span class="o">:</span> <span class="p">(</span><span class="nx">a</span><span class="o">:</span> <span class="nx">number</span><span class="p">,</span> <span class="nx">b</span><span class="o">:</span> <span class="nx">string</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">string</span><span class="p">;</span></p>
+
+<p><span class="nx">minhaFuncao</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span> <span class="k">return</span> <span class="s1">&#39;&#39;</span><span class="p">;</span> <span class="p">};</span></p>
+
+<p><span class="nx">minhaFuncao</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;arg2&quot;</span><span class="p">);</span></code></pre></figure></p>
+
+<p>Vamos entender o código acima. Usando a notação de tipos do TypeScript definimos uma variável chamada &ldquo;minhaFuncao&rdquo; para receber como valor uma função que tenha 2 argumentos um numero e uma string e definimos o retorno desta função para ser do tipo string. Na segunda linda de código foi adicionado o valor &ldquo;function(){ return &lsquo;&rsquo;; }&rdquo; a esta variável.</p>
+
+<p>Até aqui não temos nenhum erro de compilação por que não foram definidos os argumentos desta função e o TypeScript irá validar o tipo dos argumentos passados para a função apenas quando esta função for invocada.</p>
+
+<p>Tente alterar o valor do retorno da função para um tipo diferente do tipo &ldquo;string&rdquo; ou alterar o tipo dos argumentos passados na terceira linha quando invocamos a função e verá que o TypeScript acusará erro. Ele vai tentar sempre garantir que a interface da função definida na primeira linha seja obedecida.</p>
+
+<p>Esse recurso de tipagem de funções fornecido pelo TypeScript é muito interessante quando queremos definir o tipo de uma função de &ldquo;callback&rdquo; na assinatura de uma função qualquer. Veja abaixo um exemplo de uma função chamada &ldquo;ajax&rdquo; que define o tipo do segundo argumento como uma função de &ldquo;callback&rdquo; que tenha um argumento de qualquer tipo e retorne um valor do tipo string:</p>
+
+<p><figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">function</span> <span class="nx">ajax</span><span class="p">(</span><span class="nx">url</span><span class="o">:</span> <span class="nx">string</span><span class="p">,</span> <span class="nx">callback</span><span class="o">:</span> <span class="p">(</span><span class="nx">data</span><span class="o">:</span> <span class="nx">any</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">string</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">//&hellip;</span>
+<span class="p">}</span></code></pre></figure></p>
+
+<h2>Conclusão</h2>
+
+<p>Apresentei apenas o básico sobre TypeScript. Se você gostou do que viu sugiro a leitura da <a href="http://go.microsoft.com/fwlink/?LinkId=267238">documentação</a>. Espero que tenham aproveitado o artigo.</p>
+
+<p>Até a próxima!</p>
+
+
+  <hr/>
+
+  <section class="meta">
+    <section class="copy">
+      <a href="https://twitter.com/diullei" target="_blank">
+        <img src="http://gravatar.com/avatar/5e93890c5b54d18dd454f14789c2b225?s=142" height="50" width="50" />
+      </a>
+
+      <p>
+        Programador .NET - TypeScript - JavaScript - Membro dos times
+        <a href="https://github.com/DefinitelyTyped" target="_blank">DefinitelyTyped</a> e
+        <a href="https://github.com/TypeStrong" target="_blank">TypeStrong</a>.
+      </p>
+
+      <a href="http://twitter.com/share" class="twitter-share-button" data-count="none" data-via="diullei">Tweet</a>
+      <a href="http://twitter.com/diullei" class="twitter-follow-button" data-show-count="false">Follow @diullei</a>
+      <script src="http://platform.twitter.com/widgets.js" type="text/javascript"></script>
+    </section>
+  </section>
+
+  <hr/>
+
+   <div id="disqus_thread"></div>
+   <script>
+    var disqus_shortname = 'diulleigomes';
+    var disqus_identifier = '/posts/Introducao-ao-TypeScript';
+    var disqus_title = 'Introdução ao TypeScript';
+    var disqus_message = 'Introdução ao TypeScript';
+    (function() {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+   </script>
+  <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+</section>
+
+  </div>
+</body>
+
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-33515162-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+</html>

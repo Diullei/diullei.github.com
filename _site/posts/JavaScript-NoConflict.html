@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+  <meta charset="utf-8">
+  <title>
+    
+      JavaScript NoConflict &ndash;
+    
+    Diullei Gomes
+  </title>
+
+  <meta name="author" content="Diullei Gomes" />
+  <meta name="description" content="Coder, hacker and more..." />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <link rel="alternate" type="application/rss+xml" href="/atom.xml" />
+
+  <link rel="stylesheet" href="/css/fontawesome.min.css" type="text/css" media="screen, projection" />
+  <link rel="stylesheet" href="/css/base.css" type="text/css" media="screen, projection" />
+  <link rel="stylesheet" href="/css/pygments.css" type="text/css" />
+  <link media="only screen and (max-device-width: 480px)" href="/css/mobile.css" type="text/css" rel="stylesheet" />
+  <link media="only screen and (device-width: 768px)" href="/css/mobile.css" type="text/css" rel="stylesheet" />
+  <link href='http://fonts.googleapis.com/css?family=Yanone+Kaffeesatz' rel='stylesheet' type='text/css'>
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+  <script type="text/javascript" src="/js/application.js"></script>
+</head>
+
+<body>
+  <div id="page-wrap">
+    <section class="sidebar">
+      <a href="/">
+        <img src="http://gravatar.com/avatar/5e93890c5b54d18dd454f14789c2b225?s=150" height="75" width="75" class="avatar" />
+      </a>
+
+      <section class="name">
+        <a href="/">
+          <span id="fname">Diullei</span>
+          <span id="lname">Gomes</span>
+        </a>
+      </section>
+
+      <section class="meta">
+        <a href="https://github.com/Diullei" target="_blank"><i class="icon icon-github"></i></a>
+        <a href="https://twitter.com/diullei" target="_blank"><i class="icon icon-twitter"></i></a>
+        <a href="/atom.xml"><i class="icon icon-rss"></i></a>
+      </section>
+
+      <section class="sections">
+        <ul>
+          <li><a href="/archive.html">Artigos</a></li>
+          <li><a href="/categories.html">Categorias</a></li>
+          <li><a href="/tags.html">Tags</a></li>
+          <li><a href="/about.html">Sobre mim</a></li>
+        </ul>
+      </section>
+    </section>
+
+    <section class="content">
+  <h1>
+    <a href="/posts/JavaScript-NoConflict">JavaScript NoConflict</a>
+  </h1>
+
+  <section class="byline">
+    July 29, 2012
+  </section>
+
+  <p>Você já deve ter visto exemplos de código <em>JQuery</em>, <em>Underscore</em>, <em>Backbone</em> ou outros que utilizassem um método chamado <code>noConflict()</code>. Vamos entender para que serve este método.</p>
+
+<p>Como o próprio nome já diz este método é colocado na biblioteca para permitir que seu código coexista com outros códigos sem a ocorrência de conflitos.</p>
+
+<p>Vamos a um exemplo utilizando duas bibliotecas que utilizam o mesmo nome:</p>
+
+<p><figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// libA</span>
+<span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">exports</span><span class="p">){</span>
+    <span class="kd">function</span> <span class="nx">LibA</span><span class="p">(){}</span>
+    <span class="nx">LibA</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">Execute</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;lib A&#39;</span><span class="p">);</span>
+    <span class="p">}</span></p>
+
+<pre><code>&lt;span class="nx"&gt;exports&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;$&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="k"&gt;new&lt;/span&gt; &lt;span class="nx"&gt;LibA&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+</code></pre>
+
+<p><span class="p">})(</span><span class="nb">window</span><span class="p">);</span></p>
+
+<p><span class="c1">// libB</span>
+<span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">exports</span><span class="p">){</span>
+    <span class="kd">function</span> <span class="nx">LibB</span><span class="p">(){}</span>
+    <span class="nx">LibB</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">Execute</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;lib B&#39;</span><span class="p">);</span>
+    <span class="p">}</span></p>
+
+<pre><code>&lt;span class="nx"&gt;exports&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;$&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="k"&gt;new&lt;/span&gt; &lt;span class="nx"&gt;LibB&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+</code></pre>
+
+<p><span class="p">})(</span><span class="nb">window</span><span class="p">);</span></p>
+
+<p><span class="nx">$</span><span class="p">.</span><span class="nx">Execute</span><span class="p">();</span>
+<span class="c1">//=&gt; lib B</span></code></pre></figure></p>
+
+<p>Note que no exemplo acima estamos criando duas bibliotecas e dando a elas o mesmo alias <code>$</code>. Quando a libA é criada ela cria uma instância global chamada $. Caso executemos $.Execute() teremos como resultado o texto <code>lib A</code> no console. Mais veja que logo em seguida criamos a libB. A libB também está utilizando o mesmo nome para sua instância global <code>$</code> fazendo com que a instância da libA seja sobrescrita. Assim quando chamamos $.Execute() temos como resultado o texto <code>lib B</code>.</p>
+
+<p>Uma forma elegante de permitir que o problema acima seja contornado é utilizar um método <code>noConflict()</code>. Veja o exemplo reescrito:</p>
+
+<p><figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// lib A</span>
+<span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">exports</span><span class="p">){</span>
+    <span class="kd">var</span> <span class="nx">oldLib</span> <span class="o">=</span> <span class="nx">exports</span><span class="p">.</span><span class="nx">$</span><span class="p">;</span></p>
+
+<pre><code>&lt;span class="kd"&gt;function&lt;/span&gt; &lt;span class="nx"&gt;LibA&lt;/span&gt;&lt;span class="p"&gt;(){}&lt;/span&gt;
+&lt;span class="nx"&gt;LibA&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;prototype&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;Execute&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="p"&gt;(){&lt;/span&gt;
+    &lt;span class="nx"&gt;console&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;log&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;lib A&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+
+&lt;span class="nx"&gt;LibA&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;prototype&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;noConflict&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="p"&gt;(){&lt;/span&gt;
+    &lt;span class="nx"&gt;exports&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;$&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;oldLib&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="k"&gt;this&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+
+&lt;span class="nx"&gt;exports&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;$&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="k"&gt;new&lt;/span&gt; &lt;span class="nx"&gt;LibA&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+</code></pre>
+
+<p><span class="p">})(</span><span class="nb">window</span><span class="p">);</span></p>
+
+<p><span class="c1">// lib B</span>
+<span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">exports</span><span class="p">){</span>
+    <span class="kd">var</span> <span class="nx">oldLib</span> <span class="o">=</span> <span class="nx">exports</span><span class="p">.</span><span class="nx">$</span><span class="p">;</span></p>
+
+<pre><code>&lt;span class="kd"&gt;function&lt;/span&gt; &lt;span class="nx"&gt;LibB&lt;/span&gt;&lt;span class="p"&gt;(){}&lt;/span&gt;
+&lt;span class="nx"&gt;LibB&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;prototype&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;Execute&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="p"&gt;(){&lt;/span&gt;
+    &lt;span class="nx"&gt;console&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;log&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;lib B&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+
+&lt;span class="nx"&gt;LibB&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;prototype&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;noConflict&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="p"&gt;(){&lt;/span&gt;
+    &lt;span class="nx"&gt;exports&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;$&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;oldLib&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="k"&gt;this&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+
+&lt;span class="nx"&gt;exports&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;$&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="k"&gt;new&lt;/span&gt; &lt;span class="nx"&gt;LibB&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+</code></pre>
+
+<p><span class="p">})(</span><span class="nb">window</span><span class="p">);</span></p>
+
+<p><span class="nx">$libB</span> <span class="o">=</span> <span class="nx">$</span><span class="p">.</span><span class="nx">noConflict</span><span class="p">();</span></p>
+
+<p><span class="nx">$</span><span class="p">.</span><span class="nx">Execute</span><span class="p">();</span>
+<span class="c1">//=&gt; lib A</span></p>
+
+<p><span class="nx">$libB</span><span class="p">.</span><span class="nx">Execute</span><span class="p">();</span>
+<span class="c1">//=&gt; lib B</span></code></pre></figure></p>
+
+<p>Note que no exemplo acima fizemos em libB um &lsquo;backup&rsquo; do valor de <code>$</code> antes de altera-lo. Adicionamos uma função chamada <code>noConflict()</code> com o objetivo de restaurar o antigo valor de <code>$</code> e retornar a propria libB como resultado. Isso permite a quem estiver utilizando o código renomear a instância de libB. Veja que no código acima alteramos o nome de <code>$</code> para $libB.</p>
+
+<p>Usando este artificio poderíamos também fazer com que 2 ou mais versões de uma mesma biblioteca coexistissem no mesmo código.</p>
+
+<p>Seguem algumas referências a trechos de códigos reais que utilizam este padrão:</p>
+
+<p><strong>jQuery</strong></p>
+
+<p><figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="p">&hellip;</span>
+<span class="nx"><em>$</span> <span class="o">=</span> <span class="nb">window</span><span class="p">.</span><span class="nx">$</span><span class="p">,</span>
+<span class="p">&hellip;</span>
+<span class="nx">noConflict</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span> <span class="nx">deep</span> <span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span> <span class="nb">window</span><span class="p">.</span><span class="nx">$</span> <span class="o">===</span> <span class="nx">jQuery</span> <span class="p">)</span> <span class="p">{</span>
+        <span class="nb">window</span><span class="p">.</span><span class="nx">$</span> <span class="o">=</span> <span class="nx"></em>$</span><span class="p">;</span>
+    <span class="p">}</span></p>
+
+<pre><code>&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt; &lt;span class="nx"&gt;deep&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class="nb"&gt;window&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;jQuery&lt;/span&gt; &lt;span class="o"&gt;===&lt;/span&gt; &lt;span class="nx"&gt;jQuery&lt;/span&gt; &lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="nb"&gt;window&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;jQuery&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;_jQuery&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+
+&lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="nx"&gt;jQuery&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+</code></pre>
+
+<p><span class="p">},</span>
+<span class="p">&hellip;</span></code></pre></figure></p>
+
+<p><strong>Backbone</strong></p>
+
+<p><figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="p">&hellip;</span>
+<span class="kd">var</span> <span class="nx">previousBackbone</span> <span class="o">=</span> <span class="nx">root</span><span class="p">.</span><span class="nx">Backbone</span><span class="p">;</span>
+<span class="p">&hellip;</span>
+<span class="nx">Backbone</span><span class="p">.</span><span class="nx">noConflict</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">root</span><span class="p">.</span><span class="nx">Backbone</span> <span class="o">=</span> <span class="nx">previousBackbone</span><span class="p">;</span>
+    <span class="k">return</span> <span class="k">this</span><span class="p">;</span>
+<span class="p">};</span>
+<span class="p">&hellip;</span></code></pre></figure></p>
+
+<p><strong>Underscore</strong></p>
+
+<p><figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="p">&hellip;</span>
+<span class="kd">var</span> <span class="nx">previousUnderscore</span> <span class="o">=</span> <span class="nx">root</span><span class="p">.</span><span class="nx"><em></span><span class="p">;</span>
+<span class="p">&hellip;</span>
+<span class="nx"></em></span><span class="p">.</span><span class="nx">noConflict</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">root</span><span class="p">.</span><span class="nx">_</span> <span class="o">=</span> <span class="nx">previousUnderscore</span><span class="p">;</span>
+    <span class="k">return</span> <span class="k">this</span><span class="p">;</span>
+  <span class="p">};</span>
+  <span class="p">&hellip;</span></code></pre></figure></p>
+
+<p>Esses são só alguns exemplos.</p>
+
+<p>Abraços!</p>
+
+
+  <hr/>
+
+  <section class="meta">
+    <section class="copy">
+      <a href="https://twitter.com/diullei" target="_blank">
+        <img src="http://gravatar.com/avatar/5e93890c5b54d18dd454f14789c2b225?s=142" height="50" width="50" />
+      </a>
+
+      <p>
+        Programador .NET - TypeScript - JavaScript - Membro dos times
+        <a href="https://github.com/DefinitelyTyped" target="_blank">DefinitelyTyped</a> e
+        <a href="https://github.com/TypeStrong" target="_blank">TypeStrong</a>.
+      </p>
+
+      <a href="http://twitter.com/share" class="twitter-share-button" data-count="none" data-via="diullei">Tweet</a>
+      <a href="http://twitter.com/diullei" class="twitter-follow-button" data-show-count="false">Follow @diullei</a>
+      <script src="http://platform.twitter.com/widgets.js" type="text/javascript"></script>
+    </section>
+  </section>
+
+  <hr/>
+
+   <div id="disqus_thread"></div>
+   <script>
+    var disqus_shortname = 'diulleigomes';
+    var disqus_identifier = '/posts/JavaScript-NoConflict';
+    var disqus_title = 'JavaScript NoConflict';
+    var disqus_message = 'JavaScript NoConflict';
+    (function() {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+   </script>
+  <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+</section>
+
+  </div>
+</body>
+
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-33515162-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+</html>
