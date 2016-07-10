@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <title>
     
-      tsi - um REPL TypeScript &ndash;
+      TypeScript e o futuro dos arquivos de declaração &ndash;
     
     Diullei Gomes
   </title>
@@ -63,21 +63,40 @@
 
     <section class="content">
   <h1>
-    <a href="/posts/tsi-um-REPL-TypeScript">tsi - um REPL TypeScript</a>
+    <a href="/posts/The-Future-of-Declaration-Files">TypeScript e o futuro dos arquivos de declaração</a>
   </h1>
 
   <section class="byline">
-    August 24, 2013
+    July  9, 2016
   </section>
 
-  <p>Resolvi testar um modelo de screencast onde eu posto videos bem pequenos e práticos. Neste video inicial eu vou mostrar uma ferramenta bem legal que encontrei no <a href="https://github.com/qiemem/tsi">github</a>, um <a href="http://en.wikipedia.org/wiki/Read%E2%80%93eval%E2%80%93print_loop">REPL</a> typescript escrito pra <a href="http://nodejs.org/">nodejs</a>.</p>
+  <p>Alguns anos se passaram desde que a primeira versão do TypeScript veio a público. Agora quando a versão 2.0 está quase sendo lançada vemos o quanto esse projeto evoluiu. Uma das mudanças significativas desta nova versão é com relação aos arquivos de definição.</p>
 
-<p><a href="http://en.wikipedia.org/wiki/Read%E2%80%93eval%E2%80%93print_loop">REPL (Read–eval–print loop)</a> é um ambiente de programação iterativo que nos permite programar via linha de comando de forma dinamica.</p>
+<p>Até hoje, para encontrar um arquivo de definição nós tinhamos 2 opções: ir até o repositório do <a href="https://github.com/DefinitelyTyped/DefinitelyTyped">DefinitelyTyped</a> no github e baixar manualmente o arquivo ou utilizar uma das ferramentas criadas para automatizar esse trabalho, o <a href="https://github.com/DefinitelyTyped/tsd">TSD</a> ou o <a href="https://github.com/typings/typings">typings</a>.</p>
 
-<iframe width="650" height="450" src="//www.youtube.com/embed/EW0rFjQGzXI" frameborder="0" allowfullscreen></iframe>
+<p>Pensando em melhorar esse trabalho o time do TypeScript está colocando suporte à instalaçao desses arquivos direto do <a href="https://www.npmjs.com/">npm</a>. Como um dos administradores do grupo DefinitelyTyped eu me sinto muito feliz por saber que fizemos parte dessa mudança ajudando o time do TypeSript a entender como os membros da comunidade desenvolvem e utilizam esses arquivos. O DefinitelyTyped se tornou o repositório central dos arquivos de definição para o Typescript e é a partir dele que os pacotes no npm são gerados.</p>
 
+<p>Agora para instalar por exemplo a definição do <code>lodash</code> podemos utilizar a seguinte linha de comando:</p>
 
-<p>Até a próxima!</p>
+<pre><code>npm install --save @types/lodash
+</code></pre>
+
+<p>Com isso seremos capazes de utilizar o <code>lodash</code> no nosso código TypeScript. Exemplo:</p>
+
+<pre><code>import * as _ from "lodash";
+_.padStart("Hello TypeScript!", 20, " ");
+</code></pre>
+
+<p>Uma lista de todas as tipagens disponíveis pode ser encontrada neste link: <a href="https://aka.ms/types">https://aka.ms/types</a>.</p>
+
+<p>Se você nao quiser esperar até o release da versão 2.0 você pode instalar o nightly builds. Apenas execute:</p>
+
+<pre><code>npm install -g typescript@next
+</code></pre>
+
+<p>Ferramentas como o TSD e o typings continuarão funcionando mas com certeza será muito mais interessante utilizar o npm.</p>
+
+<p>Bem, é isso, Até a próxima!</p>
 
 
   <hr/>

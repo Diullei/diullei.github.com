@@ -1,15 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
- 
+
  <title>Diullei Gomes</title>
  <link href="http://www.diullei.com/atom.xml" rel="self"/>
  <link href="http://www.diullei.com/"/>
- <updated>2016-07-09T15:14:14-03:00</updated>
+ <updated>2016-07-09T23:38:02-03:00</updated>
  <id>http://www.diullei.com</id>
  <author>
    <name>Diullei Gomes</name>
  </author>
+
  
+ <entry>
+   <title>TypeScript e o futuro dos arquivos de declaração</title>
+   <link href="http://www.diullei.com/posts/The-Future-of-Declaration-Files"/>
+   <updated>2016-07-09T00:00:00-03:00</updated>
+   <id>http://www.diullei.com/posts/The-Future-of-Declaration-Files</id>
+   <content type="html">&lt;p&gt;Alguns anos se passaram desde que a primeira versão do TypeScript veio a público. Agora quando a versão 2.0 está quase sendo lançada vemos o quanto esse projeto evoluiu. Uma das mudanças significativas desta nova versão é com relação aos arquivos de definição.&lt;/p&gt;
+
+&lt;p&gt;Até hoje, para encontrar um arquivo de definição nós tinhamos 2 opções: ir até o repositório do &lt;a href=&quot;https://github.com/DefinitelyTyped/DefinitelyTyped&quot;&gt;DefinitelyTyped&lt;/a&gt; no github e baixar manualmente o arquivo ou utilizar uma das ferramentas criadas para automatizar esse trabalho, o &lt;a href=&quot;https://github.com/DefinitelyTyped/tsd&quot;&gt;TSD&lt;/a&gt; ou o &lt;a href=&quot;https://github.com/typings/typings&quot;&gt;typings&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Pensando em melhorar esse trabalho o time do TypeScript está colocando suporte à instalaçao desses arquivos direto do &lt;a href=&quot;https://www.npmjs.com/&quot;&gt;npm&lt;/a&gt;. Como um dos administradores do grupo DefinitelyTyped eu me sinto muito feliz por saber que fizemos parte dessa mudança ajudando o time do TypeSript a entender como os membros da comunidade desenvolvem e utilizam esses arquivos. O DefinitelyTyped se tornou o repositório central dos arquivos de definição para o Typescript e é a partir dele que os pacotes no npm são gerados.&lt;/p&gt;
+
+&lt;p&gt;Agora para instalar por exemplo a definição do &lt;code&gt;lodash&lt;/code&gt; podemos utilizar a seguinte linha de comando:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;npm install --save @types/lodash
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Com isso seremos capazes de utilizar o &lt;code&gt;lodash&lt;/code&gt; no nosso código TypeScript. Exemplo:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;import * as _ from &quot;lodash&quot;;
+_.padStart(&quot;Hello TypeScript!&quot;, 20, &quot; &quot;);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Uma lista de todas as tipagens disponíveis pode ser encontrada neste link: &lt;a href=&quot;https://aka.ms/types&quot;&gt;https://aka.ms/types&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Se você nao quiser esperar até o release da versão 2.0 você pode instalar o nightly builds. Apenas execute:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;npm install -g typescript@next
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Ferramentas como o TSD e o typings continuarão funcionando mas com certeza será muito mais interessante utilizar o npm.&lt;/p&gt;
+
+&lt;p&gt;Bem, é isso, Até a próxima!&lt;/p&gt;
+</content>
+ </entry>
  
  <entry>
    <title>TypeScript Guide</title>
@@ -943,5 +978,5 @@
 </content>
  </entry>
  
- 
+
 </feed>

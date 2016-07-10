@@ -23,8 +23,12 @@
   <link href='http://fonts.googleapis.com/css?family=Yanone+Kaffeesatz' rel='stylesheet' type='text/css'>
   <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.5.0/styles/default.min.css" type="text/css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.5.0/styles/monokai-sublime.min.css" type="text/css" />
   <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
   <script type="text/javascript" src="/js/application.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.5.0/highlight.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.5.0/languages/typescript.min.js"></script>
 </head>
 
 <body>
@@ -57,19 +61,42 @@
       </section>
     </section>
 
-    <!-- You can edit this whole page, remove it, or use it as basis for any non-post pages you have. -->
-<section class="content">
+    <section class="content">
   <h1>Diullei Gomes</h1>
 
   <p>
-    Programador .NET - TypeScript - JavaScript - Membro dos times
-    <a href="https://github.com/DefinitelyTyped" target="_blank">DefinitelyTyped</a> e
-    <a href="https://github.com/TypeStrong" target="_blank">TypeStrong</a>.
+    Trabalho como programador .NET a muitos anos. Como sou apaixonado pelo que faço nunca consegui me
+    limitar apenas ao "Stack Microsoft" e sempre me envolvi com diversas linguagens: C#, Closure, Haskell,
+    Pythom, F#, JavaScript... e a lista vai longe... Me considero um misto de programador "server side"
+    e "front end" por toda a experiência de trabalho que tive.
   </p>
-  <br/>
-  <br/>
-  <br/>
-  <br/>
+  <p>
+    Gosto muito de me envolver com comunidades de desenvolvedores e projetos open-source e pude contribuir muito
+    com a comunidade <a href="https://www.typescriptlang.org/">TypeScript</a>. Me envolvo com TypeScript desde
+    sua primeira versão sendo um dos primeiros a apoiar com as dúvidas
+    no StackOverflow e tive a oportunidade de ser o primeiro membro colaborador do repositório
+    <a href="https://github.com/DefinitelyTyped/DefinitelyTyped" target="_blank">DefinitelyTyped</a> no
+    Github juntamente com Boris Yankov (por curiosidade fui o segundo a enviar Pull Request para este
+    repositório antes de ser agregado como colaborador, na época existiam apenas 12 tipagens diferentes,
+    hoje contamos com quase 2000).
+
+    Este repositório veio a ser tornar um dos repositórios mais indispensáveis para todos que desenvolvem em TypeScrpt
+    atulamente contando com a contribuição de mais de 1000 pessoas ao redor do mundo.
+    Criei a organização <a href="https://github.com/DefinitelyTyped" target="_blank">DefinitelyTyped</a> e fui o criador do
+    <a href="https://github.com/DefinitelyTyped/tsd" target="_blank">TSD - TypeScript package Manager</a>
+    (Aqui não posso deixar de mencionar que tive imensas contribuições do Bart van der Schoor, um excelente
+    desenvolvedor que tive o prazer de conhecer).
+    O TSD por muito tempo foi uma ferramenta fundamental para todo programador TypeScript
+    apoiando no ciclo de desenvolvimento
+    dos projetos. Embora descontinuado pelo fato do TypeScript estar iniciando o suporte à
+    <a href="https://blogs.msdn.microsoft.com/typescript/2016/06/15/the-future-of-declaration-files/">instalação de dependências via npm</a>,
+    o TSD ainda é uma ferramenta muito utilizada, neste exato momento em que escrevo tenho uma estatistica média de 85mil downloads por mês.
+    Participei também da criação do NugetAutomation, projeto que automatiza a publicação dos arquivos tipados
+    publicados no repositório DefinitelyTyped para o <a href="https://www.nuget.org/packages?q=Definitelytyped">nuget</a>.
+    Também sou menbro do time <a href="https://github.com/TypeStrong">TypeStrong</a>, este
+    time tem feito grandes contribuições para a comunidade principalmente no desenvolvimento do pacote
+    <a href="https://atom.io/packages/atom-typescript">atom-typescript</a>.
+  </p>
 </section>
 
   </div>
@@ -86,4 +113,5 @@
     var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
   })();
 </script>
+<script>hljs.initHighlightingOnLoad();</script>
 </html>
