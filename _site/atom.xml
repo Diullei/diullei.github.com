@@ -4,12 +4,35 @@
  <title>Diullei Gomes</title>
  <link href="http://www.diullei.com/atom.xml" rel="self"/>
  <link href="http://www.diullei.com/"/>
- <updated>2016-07-09T23:38:02-03:00</updated>
+ <updated>2016-07-12T00:45:34-03:00</updated>
  <id>http://www.diullei.com</id>
  <author>
    <name>Diullei Gomes</name>
  </author>
 
+ 
+ <entry>
+   <title>DefinitelyTyped + TypeScript team = TS FTW</title>
+   <link href="http://www.diullei.com/posts/DefinitelyTyped-and-TypeScript-Team"/>
+   <updated>2016-07-11T00:00:00-03:00</updated>
+   <id>http://www.diullei.com/posts/DefinitelyTyped-and-TypeScript-Team</id>
+   <content type="html">&lt;p&gt;&lt;a href=&quot;https://github.com/DefinitelyTyped/DefinitelyTyped&quot;&gt;
+  &lt;div style=&quot;text-align:center&quot;&gt;&lt;img src =&quot;../images/dt-logo.png&quot; /&gt;&lt;/div&gt;
+&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Passando rápido aqui para falar de uma parceria muito legal que irá somar muito para a comunidade TypeScript, na realidade já começou a somar!&lt;/p&gt;
+
+&lt;p&gt;Por alguns anos nós do time &lt;a href=&quot;https://github.com/DefinitelyTyped/DefinitelyTyped&quot;&gt;DefinitelyTyped&lt;/a&gt; temos nos esforçado muito para manter o repositório atualizado e servir os melhores &lt;code&gt;dts&lt;/code&gt;s. Não é uma tarefa fácil, somos um time bastante distribuído pelo mundo, temos gente do Japão, Holanda, EUA, Australia, Russia, Brasil :) entre outros lugares&amp;hellip; todos temos nossos afazeres, nosso trabalho e tarefas pessoais e por dedicação temos cedido parte do nosso tempo ajudando essa comunidade que tem se tornado cada vez mais forte a crescer. Hoje contamos com quase 2000 dts, fruto de muito esforço de muitos membros da comunidade juntamente com nosso time.&lt;/p&gt;
+
+&lt;p&gt;O time do &lt;a href=&quot;https://www.typescriptlang.org/&quot;&gt;TypeScript&lt;/a&gt; sempre se manteve perdo da gente acompanhando nossa evolução e trabalho, e recentemente tivemos o prazer de receber um apoio muito bem vindo! O Time do TypeScript se agregou ao time DefinitelyTyped e desde então começaram a nos ajudar com os PR&amp;rsquo;s. Há um mês atraz mais ou menos tinhamos pelomenos uns 200 PR&amp;rsquo;s pendentes/dia, muita contribuição para dar conta rs&amp;hellip; e agora com essa ajuda de peso estamos conseguindo manter uma média de 50 PR&amp;rsquo;s pendentes/dia. Tem sido uma parceria muito legal.&lt;/p&gt;
+
+&lt;p&gt;Um dos primeiros passos foi levar os dts&amp;rsquo;s para o npm (falei um pouco sobre isso &lt;a href=&quot;/posts/The-Future-of-Declaration-Files&quot;&gt;neste artigo&lt;/a&gt;), e isso não para por ai, o DefinitelyTyped definitivamente faz parte do ciclo de desenvolvimento em TypeScript e muita coisa boa está por vir. Não posso adiantar muita coisa ainda, mas o que posso dizer é que todos nós ganharemos muito com tudo o que está sendo planejado.&lt;/p&gt;
+
+&lt;p&gt;Espero logo logo trazer mais novidades!&lt;/p&gt;
+
+&lt;p&gt;Abraços!&lt;/p&gt;
+</content>
+ </entry>
  
  <entry>
    <title>TypeScript e o futuro dos arquivos de declaração</title>
@@ -43,6 +66,188 @@ _.padStart(&quot;Hello TypeScript!&quot;, 20, &quot; &quot;);
 &lt;p&gt;Ferramentas como o TSD e o typings continuarão funcionando mas com certeza será muito mais interessante utilizar o npm.&lt;/p&gt;
 
 &lt;p&gt;Bem, é isso, Até a próxima!&lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>Spread Operator (Operador de Propagação)</title>
+   <link href="http://www.diullei.com/posts/spread-operator"/>
+   <updated>2016-02-05T00:00:00-02:00</updated>
+   <id>http://www.diullei.com/posts/spread-operator</id>
+   <content type="html">&lt;p&gt;No ultimo argito eu falei de forma bem rapida e simple sobre um recurso muito interessante do TypeScript &lt;code&gt;rest parameters&lt;/code&gt;. Seguindo esta mesma linha hoje eu quero falar sbore um outro recuro muito legal chamado &lt;code&gt;spread operator&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;O &lt;code&gt;Spread Operator&lt;/code&gt; (Operador de Propagação) permite que uma expressão seja expandida em locais onde são esperados vários argumentos (chamadas de função) ou múltiplos elementos (arrays literais).&lt;/p&gt;
+
+&lt;p&gt;Para entender melhor este recurso, como de costume vamos a um exemplo:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;function myFunc(...val: string[]) {
+    //...
+}
+
+let animals = [&#39;dog&#39;, &#39;cat&#39;];
+
+myFunc(&#39;dog&#39;, &#39;cat&#39;);
+
+myFunc(...animals);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Veja que a função &lt;code&gt;myFunc&lt;/code&gt; possui um parâmetro do tipo &lt;a href=&quot;/posts/rest-parameters&quot;&gt;&lt;code&gt;rest parameter&lt;/code&gt;&lt;/a&gt;. Para entender sobre &lt;code&gt;rest parameter&lt;/code&gt; veja o meu &lt;a href=&quot;/posts/rest-parameters&quot;&gt;ultimo artigo&lt;/a&gt;. Esta função pode ser chamada opcionalmente passando um array seguindo a mesma sintaxe usada na assinatura da função &lt;code&gt;...&lt;/code&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;myFunc(...animals);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;onde &lt;code&gt;animals&lt;/code&gt; é o nosso array: &lt;code&gt;let animals = [&#39;dog&#39;, &#39;cat&#39;];&lt;/code&gt;&lt;/p&gt;
+
+&lt;h2&gt;Recuperando valores com destrutores&lt;/h2&gt;
+
+&lt;p&gt;Podemos facilmente recuperar os valores dentro da função &lt;code&gt;myFunc&lt;/code&gt; utilizando um recurso chamado &lt;code&gt;Destructuring&lt;/code&gt; (Veremos este recurso com mais detalhes em outro artigo). Exemplo:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;function myFunc(...val: string[]) {
+    let [val1, val2] = val;
+    //...
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Note que estamos &amp;ldquo;destruindo&amp;rdquo; o valor do array &lt;code&gt;val&lt;/code&gt; em 2 outras variáveis &lt;code&gt;val1&lt;/code&gt; e &lt;code&gt;val2&lt;/code&gt;. Sendo &lt;code&gt;val&lt;/code&gt; um array, estamos criando uma variavel &lt;code&gt;val1&lt;/code&gt; com o primeiro valor de &lt;code&gt;val&lt;/code&gt; e uma outra variavel &lt;code&gt;val2&lt;/code&gt; com o segundo valor de &lt;code&gt;val&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Este recurso também pode ser utilizado na construção de arrays:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;typescript&quot;&gt;let array1 = [1, 2, 3];
+let array2 = [0, ...array1, 4, 5, 6];
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;onde retemos o valor de &lt;code&gt;array2&lt;/code&gt; como: &lt;code&gt;[0, 1, 2, 3, 4, 5, 6]&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Aqui temos outro exemplo concatenando 2 arrays usando a função &lt;code&gt;push&lt;/code&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;typescript&quot;&gt;var arr1 = [0, 1, 2];
+var arr2 = [3, 4, 5];
+arr1.push(...arr2);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;O código acima seria similar à utilização da função &lt;a href=&quot;https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Array/concat&quot;&gt;&lt;code&gt;concat&lt;/code&gt;&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Este reurso está definido na especificação do ES6 e não foi totalmente implementado no TypeScript ainda. Exemplo de sintax que ainda não funciona no TypeScript mas que já pode ser testado utilizando o babeljs por exemplo:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;function foo(x, y, z) { }
+let args = [0, 1, 2];
+foo(...args);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Repare que no exemplo acima o valor do array &lt;code&gt;args&lt;/code&gt; está sendo &amp;ldquo;destruído&amp;rdquo; para alimentar os argumentos da função &lt;code&gt;foo&lt;/code&gt;. Para saber mais sobre Spread Operators no ES6 &lt;a href=&quot;https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_operator&quot;&gt;acesse aqui&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;É isso, Abraços!&lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>TypeScript - Rest Parameters</title>
+   <link href="http://www.diullei.com/posts/rest-parameters"/>
+   <updated>2016-01-15T00:00:00-02:00</updated>
+   <id>http://www.diullei.com/posts/rest-parameters</id>
+   <content type="html">&lt;p&gt;Hoje vou falar rapidamente sobre um recurso muito legal do TypeScript: rest parameters. Se você programa em C# você vai entender bem o conceito, é uma feature similar ao &lt;a href=&quot;https://msdn.microsoft.com/en-us/library/w5zay9db.aspx&quot;&gt;&lt;code&gt;params&lt;/code&gt;&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;No TypeScript este recurso nos permite recuperar todos os parâmetros informados para uma função como um unico argumento do tipo array. Para entender melhor nada melhor do que um exemplo:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;function buildName(firstName: string, ...restOfName: string[]) {
+    return firstName + &quot; &quot; + restOfName.join(&quot; &quot;);
+}
+
+let employeeName = buildName(&quot;Diullei&quot;, &quot;de&quot;, &quot;Moura&quot;, &quot;Gomes&quot;);
+
+//=&amp;gt; Diullei de Moura Gomes
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Note que a assinatura desta função declara 2 parâmetros diferentes: &lt;code&gt;firstName: string&lt;/code&gt; e &lt;code&gt;...restOfName: string[]&lt;/code&gt;. Ao utilizarmos o símbolo &lt;code&gt;...&lt;/code&gt; na declaração do segundo argumento estamos dizendo ao compilador que todos os argumentos passados a para a função &lt;code&gt;buildName&lt;/code&gt; a partir do segundo serão agrupados em um array do tipo &lt;code&gt;string&lt;/code&gt;. Note que o operador &lt;code&gt;...&lt;/code&gt; só pode ser aplicado a um argumento do tipo &lt;code&gt;array&lt;/code&gt; e que este precisa ser sempre o ultimo argumento da função. Este recurso é chamado de &lt;code&gt;Rest Parameter&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Este não é um recurso original do TypeScript e já havia sido definido para o ES6 (&lt;a href=&quot;https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Functions/rest_parameters&quot;&gt;para saber mais sobre rest parameters no ES6&lt;/a&gt;).&lt;/p&gt;
+
+&lt;p&gt;Abraços!&lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>Testando o TypeScript no VSCode (Visual Studio Code)</title>
+   <link href="http://www.diullei.com/posts/TypeScript-vscode"/>
+   <updated>2015-12-03T00:00:00-02:00</updated>
+   <id>http://www.diullei.com/posts/TypeScript-vscode</id>
+   <content type="html">&lt;p&gt;O VSCode é um editor multiplataforma criado pela Microsoft destinado ao desenvolvimento de diversas aplicações contando com o suporte a várias linguagens de programação. O Visual Studio Code foi criado pelo time da Microsoft usando uma mistura de tecnologias de código aberto e baseadas na web, como o Chromium, o Electron app framework do GitHub e o próprio editor Monaco da Microsoft.&lt;/p&gt;
+
+&lt;blockquote&gt;&lt;p&gt;Para facilitar a escrita a partir de agora sempre irei me referir ao visual Studio Code simplesmente como VSCode.&lt;/p&gt;&lt;/blockquote&gt;
+
+&lt;h2&gt;Instalando o VSCode&lt;/h2&gt;
+
+&lt;p&gt;Para instalar o VSCode acesse a página do projeto https://www.visualstudio.com/en-us/products/code-vs.aspx e vá até a seção Download. Selecione a versão do seu sistem operacional e sigua as isntruções de instalação.&lt;/p&gt;
+
+&lt;h2&gt;Criando o primeiro projeto TypeScript&lt;/h2&gt;
+
+&lt;p&gt;Neste pequeno tutorial iremos criar um projeto TypeScript simples. Para iniciar crie um novo diretório chamado &lt;code&gt;MyProject&lt;/code&gt;.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;shell&quot;&gt;mkdir MyProject
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Abra o VSCode e abra o diretório MyProject de dentro do VSCode.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;../images/image006.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Agora, usando o sidebar Explorer, vamos adicionar um novo arquivo chamado &lt;code&gt;tsconfig.json&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;../images/image007.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Digite &lt;code&gt;{ }&lt;/code&gt; e com o cursor no meio das chaves pessione Ctrl+SPACE para abrir as opções disponíveis:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;../images/image008.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Selecione &lt;code&gt;compilerOptions&lt;/code&gt; e pressione ENTER. Vamos configurar o output do projeto para ES5, modulo do tipo AMD e emissão de source maps.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;json&quot;&gt;{
+    &quot;compilerOptions&quot;: {
+        &quot;target&quot;: &quot;ES5&quot;,
+        &quot;module&quot;: &quot;amd&quot;,
+        &quot;sourceMap&quot;: true
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Agora vamos adicionar um novo arquivo chamado &lt;code&gt;main.ts&lt;/code&gt;. Adicione o seguinte código:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;class Person {
+    private _name: string;
+
+    constructor(name: string) {
+        this._name = name;
+    }
+
+    public getName() {
+        return this._name;
+    }
+}
+
+var person = new Person(&#39;joão&#39;);
+
+console.log(person.getName());
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Tente compilar o projeto teclando &lt;code&gt;Ctrl-Shift-B&lt;/code&gt;. Note que o VSCode irá exibir uma mensagem dizendo que não temos uma &lt;code&gt;task&lt;/code&gt; configurada para o nosso projeto (Para saber mais sobre as tasks do vscode acesse: https://code.visualstudio.com/docs/editor/tasks).&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;../images/image009.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Clique em &lt;code&gt;Configure Task Runner&lt;/code&gt; para adicionar uma nova task. um novo arquivo chamado &lt;code&gt;tasks.json&lt;/code&gt; será criado. Altere a linha que contém a chave &lt;code&gt;&quot;args&quot;: [&quot;HelloWorld.ts&quot;]&lt;/code&gt; para &lt;code&gt;&quot;args&quot;: []&lt;/code&gt; e em seguida tente compilar o projeto novamente utilizando &lt;code&gt;Ctrl-Shift-B&lt;/code&gt;. O VSCode irá indicar na barra de status o status da compilação.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;../images/image010.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Note que caso existam erros os memos serão indicados nada barra de status e você poderá clicar em cima do indicador para obter mais detalhes.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;../images/image011.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Após a compilação o VSCode irá gerar os arquivos &lt;code&gt;main.js&lt;/code&gt; e &lt;code&gt;main.js.map&lt;/code&gt;. Trata-se do arquivo JavaScript gerado e do arquivo source map. Agora você pode utilizar o node via linha de comando para executar o código do arquivo main.js.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;shell&quot;&gt;node main.js
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Esse foi um tutorial bem simpels onde tentei apresentar o vscode e mostrar como é fácil iniciar um pequeno projeto em TypeScript. As features do vscode são muito voltadas para o desenvolvimento em TypeScript e eu te incentivo a explorar os varios recursos deste editor.&lt;/p&gt;
+
+&lt;p&gt;Abraços!&lt;/p&gt;
 </content>
  </entry>
  
