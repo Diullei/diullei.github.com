@@ -4,12 +4,72 @@
  <title>Diullei Gomes</title>
  <link href="http://www.diullei.com/atom.xml" rel="self"/>
  <link href="http://www.diullei.com/"/>
- <updated>2016-07-12T00:45:34-03:00</updated>
+ <updated>2016-07-12T23:02:43-03:00</updated>
  <id>http://www.diullei.com</id>
  <author>
    <name>Diullei Gomes</name>
  </author>
 
+ 
+ <entry>
+   <title>TypeScript 2.0 Beta - Non nullable types (Tipos não nulos)</title>
+   <link href="http://www.diullei.com/posts/TypeScript2-Beta-nun-nullable-types"/>
+   <updated>2016-07-12T00:00:00-03:00</updated>
+   <id>http://www.diullei.com/posts/TypeScript2-Beta-nun-nullable-types</id>
+   <content type="html">&lt;p&gt;O TypeScript 2.0 Beta desembarcou com muitas novidades. &lt;a href=&quot;https://blogs.msdn.microsoft.com/typescript/2016/07/11/announcing-typescript-2-0-beta/&quot;&gt;Veja aqui&lt;/a&gt; o post original no blog da Microsoft. No decorrer dos próximos posts vou falar um pouco mais sobre as features dessa nova versão. Para iniciar, hoje quero falar sobre um dos recursos que eu já estava acompanhando e achei muito legal: a definição de tipos não nulos.&lt;/p&gt;
+
+&lt;p&gt;Antes, para que possamos seguir com os exemplo que irei colocar aqui no post vamos instalar essa nova versão:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;npm install -g typescript@beta
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;blockquote&gt;&lt;p&gt;Com este release você já pode testar (caso não tenha testado ainda) a utilização dos &lt;code&gt;dts&lt;/code&gt;s direto do npm. Escrevi sobre isso nesse &lt;a href=&quot;/posts/The-Future-of-Declaration-Files&quot;&gt;outro artigo&lt;/a&gt;.&lt;/p&gt;&lt;/blockquote&gt;
+
+&lt;h2&gt;Tipos não nulos (Non-nullable Types)&lt;/h2&gt;
+
+&lt;p&gt;Essa feature sem dúvidas é uma das mais legais dessa nova versão. &lt;code&gt;null&lt;/code&gt; e &lt;code&gt;undefined&lt;/code&gt; são a origem comum de quase todos os bugs introduzidos durante a programação em JavaScript onde &lt;code&gt;null&lt;/code&gt; se aplica a objetos e &lt;code&gt;undefined&lt;/code&gt; a variáveis, propriedades e funções (pretendo falar mais sobre isso em outro artigo). Nas versões anteriores do TypeScript o tipo &lt;code&gt;null&lt;/code&gt; e o &lt;code&gt;undefined&lt;/code&gt; faziam parte do dominio de todos os outros tipos, ou seja, uma variável declarada como &lt;code&gt;string&lt;/code&gt; poderia em algum momento assumir um valor &lt;code&gt;null&lt;/code&gt;. Com o TypeScript 2.0 a utilização do novo flag &lt;code&gt;--strictNullChecks&lt;/code&gt; durante a compilação muda essa lógica. Agora uma variável do tipo &lt;code&gt;string&lt;/code&gt; passar a ser apenas do tipo &lt;code&gt;string&lt;/code&gt; e nada mais. Exemplo:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;let valor: string = null; // Error
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Mas pera ai, e seu eu quiser que a variável &lt;code&gt;valor&lt;/code&gt; aceite tanto um valor do tipo &lt;code&gt;string&lt;/code&gt; quanto um valor nulo? Simples, basta utilizar o recurso de união de tipos (union types). Exemplo:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;let valor: string | null = null; // Ok!
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Isso transfere para o desenvolvedor a decisão de aceitar ou não um valor &lt;code&gt;null&lt;/code&gt; ou &lt;code&gt;undefined&lt;/code&gt; e protege o código contra bugs que passariam despercebidos.&lt;/p&gt;
+
+&lt;p&gt;Agora observe o seguinte trecho de código:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;declare let names: string[] | undefined;
+
+// Error! &#39;names&#39; is possibly undefined.
+let upperCased = names.map(s =&amp;gt; s.toUpperCase());
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;No exemplo acima teremos um erro. O compilador do TypeScript entende que &lt;code&gt;names&lt;/code&gt; pode ser &lt;code&gt;undefined&lt;/code&gt; devido a sua declaração &lt;code&gt;string[] | undefined&lt;/code&gt;. Mas se tivermos certeza de que nesse caso &lt;code&gt;names&lt;/code&gt; nunca será &lt;code&gt;undefined&lt;/code&gt; e quisermos que este código execute mesmo assim podemos utilizar o operador &lt;code&gt;!&lt;/code&gt; como a seguir:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;let upperCased = names!.map(s =&amp;gt; s.toUpperCase());
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Ao utilizar o oerador &lt;code&gt;!&lt;/code&gt; na variável &lt;code&gt;names!&lt;/code&gt; estamos dizendo ao compilador que temos certeza de que essa variável nunca será &lt;code&gt;undefined&lt;/code&gt; neste ponto do código.&lt;/p&gt;
+
+&lt;h3&gt;Aplicação em parâmetros e propriedades opcionais&lt;/h3&gt;
+
+&lt;p&gt;Uma ressalva com relação a declarações opcionais. Todo parâmetro ou propriedade opcional tem de forma automática o tipo &lt;code&gt;undefined&lt;/code&gt; agregado ao seu tipo original, mesmo quando isso não é declarado de forma explicita no código. por exemplo:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;typescript&quot;&gt;// Compilado com --strictNullChecks
+type T1 = (x?: number) =&amp;gt; string;              // x é do tipo: number | undefined
+type T2 = (x?: number | undefined) =&amp;gt; string;  // x é do tipo: number | undefined
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;por isso um parâmetro ou propriedade opcional sempre será nullable.&lt;/p&gt;
+
+&lt;blockquote&gt;&lt;p&gt;NOTA: Para compilar os exemplos de código acima via linha de comando basta salvar o codigo em um arquivo e executar: &lt;code&gt;tsc file.ts --strictNullChecks&lt;/code&gt;&lt;/p&gt;&lt;/blockquote&gt;
+
+&lt;p&gt;É isso aí pessoal, até a próxima!&lt;/p&gt;
+</content>
+ </entry>
  
  <entry>
    <title>DefinitelyTyped + TypeScript team = TS FTW</title>
@@ -24,7 +84,7 @@
 
 &lt;p&gt;Por alguns anos nós do time &lt;a href=&quot;https://github.com/DefinitelyTyped/DefinitelyTyped&quot;&gt;DefinitelyTyped&lt;/a&gt; temos nos esforçado muito para manter o repositório atualizado e servir os melhores &lt;code&gt;dts&lt;/code&gt;s. Não é uma tarefa fácil, somos um time bastante distribuído pelo mundo, temos gente do Japão, Holanda, EUA, Australia, Russia, Brasil :) entre outros lugares&amp;hellip; todos temos nossos afazeres, nosso trabalho e tarefas pessoais e por dedicação temos cedido parte do nosso tempo ajudando essa comunidade que tem se tornado cada vez mais forte a crescer. Hoje contamos com quase 2000 dts, fruto de muito esforço de muitos membros da comunidade juntamente com nosso time.&lt;/p&gt;
 
-&lt;p&gt;O time do &lt;a href=&quot;https://www.typescriptlang.org/&quot;&gt;TypeScript&lt;/a&gt; sempre se manteve perdo da gente acompanhando nossa evolução e trabalho, e recentemente tivemos o prazer de receber um apoio muito bem vindo! O Time do TypeScript se agregou ao time DefinitelyTyped e desde então começaram a nos ajudar com os PR&amp;rsquo;s. Há um mês atraz mais ou menos tinhamos pelomenos uns 200 PR&amp;rsquo;s pendentes/dia, muita contribuição para dar conta rs&amp;hellip; e agora com essa ajuda de peso estamos conseguindo manter uma média de 50 PR&amp;rsquo;s pendentes/dia. Tem sido uma parceria muito legal.&lt;/p&gt;
+&lt;p&gt;O time do &lt;a href=&quot;https://www.typescriptlang.org/&quot;&gt;TypeScript&lt;/a&gt; sempre se manteve perto da gente acompanhando nossa evolução e trabalho, e recentemente tivemos o prazer de receber um apoio muito bem vindo! O Time do TypeScript se agregou ao time DefinitelyTyped e desde então começaram a nos ajudar com os PR&amp;rsquo;s. Há um mês atraz mais ou menos tinhamos pelo menos uns 200 PR&amp;rsquo;s pendentes/dia, muita contribuição para dar conta rs&amp;hellip; e agora com essa ajuda de peso estamos conseguindo manter uma média de 50 PR&amp;rsquo;s pendentes/dia. Tem sido uma parceria muito legal.&lt;/p&gt;
 
 &lt;p&gt;Um dos primeiros passos foi levar os dts&amp;rsquo;s para o npm (falei um pouco sobre isso &lt;a href=&quot;/posts/The-Future-of-Declaration-Files&quot;&gt;neste artigo&lt;/a&gt;), e isso não para por ai, o DefinitelyTyped definitivamente faz parte do ciclo de desenvolvimento em TypeScript e muita coisa boa está por vir. Não posso adiantar muita coisa ainda, mas o que posso dizer é que todos nós ganharemos muito com tudo o que está sendo planejado.&lt;/p&gt;
 

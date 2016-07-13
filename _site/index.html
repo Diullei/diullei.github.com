@@ -63,28 +63,65 @@
 
 <section class="content">
   <h1>
-    <a href="/posts/DefinitelyTyped-and-TypeScript-Team">DefinitelyTyped + TypeScript team = TS FTW</a>
+    <a href="/posts/TypeScript2-Beta-nun-nullable-types">TypeScript 2.0 Beta - Non nullable types (Tipos não nulos)</a>
   </h1>
 
   <section class="byline">
-    July 11, 2016
+    July 12, 2016
   </section>
 
-  <p><a href="https://github.com/DefinitelyTyped/DefinitelyTyped">
-  <div style="text-align:center"><img src ="../images/dt-logo.png" /></div>
-</a></p>
+  <p>O TypeScript 2.0 Beta desembarcou com muitas novidades. <a href="https://blogs.msdn.microsoft.com/typescript/2016/07/11/announcing-typescript-2-0-beta/">Veja aqui</a> o post original no blog da Microsoft. No decorrer dos próximos posts vou falar um pouco mais sobre as features dessa nova versão. Para iniciar, hoje quero falar sobre um dos recursos que eu já estava acompanhando e achei muito legal: a definição de tipos não nulos.</p>
 
-<p>Passando rápido aqui para falar de uma parceria muito legal que irá somar muito para a comunidade TypeScript, na realidade já começou a somar!</p>
+<p>Antes, para que possamos seguir com os exemplo que irei colocar aqui no post vamos instalar essa nova versão:</p>
 
-<p>Por alguns anos nós do time <a href="https://github.com/DefinitelyTyped/DefinitelyTyped">DefinitelyTyped</a> temos nos esforçado muito para manter o repositório atualizado e servir os melhores <code>dts</code>s. Não é uma tarefa fácil, somos um time bastante distribuído pelo mundo, temos gente do Japão, Holanda, EUA, Australia, Russia, Brasil :) entre outros lugares&hellip; todos temos nossos afazeres, nosso trabalho e tarefas pessoais e por dedicação temos cedido parte do nosso tempo ajudando essa comunidade que tem se tornado cada vez mais forte a crescer. Hoje contamos com quase 2000 dts, fruto de muito esforço de muitos membros da comunidade juntamente com nosso time.</p>
+<pre><code>npm install -g typescript@beta
+</code></pre>
 
-<p>O time do <a href="https://www.typescriptlang.org/">TypeScript</a> sempre se manteve perdo da gente acompanhando nossa evolução e trabalho, e recentemente tivemos o prazer de receber um apoio muito bem vindo! O Time do TypeScript se agregou ao time DefinitelyTyped e desde então começaram a nos ajudar com os PR&rsquo;s. Há um mês atraz mais ou menos tinhamos pelomenos uns 200 PR&rsquo;s pendentes/dia, muita contribuição para dar conta rs&hellip; e agora com essa ajuda de peso estamos conseguindo manter uma média de 50 PR&rsquo;s pendentes/dia. Tem sido uma parceria muito legal.</p>
+<blockquote><p>Com este release você já pode testar (caso não tenha testado ainda) a utilização dos <code>dts</code>s direto do npm. Escrevi sobre isso nesse <a href="/posts/The-Future-of-Declaration-Files">outro artigo</a>.</p></blockquote>
 
-<p>Um dos primeiros passos foi levar os dts&rsquo;s para o npm (falei um pouco sobre isso <a href="/posts/The-Future-of-Declaration-Files">neste artigo</a>), e isso não para por ai, o DefinitelyTyped definitivamente faz parte do ciclo de desenvolvimento em TypeScript e muita coisa boa está por vir. Não posso adiantar muita coisa ainda, mas o que posso dizer é que todos nós ganharemos muito com tudo o que está sendo planejado.</p>
+<h2>Tipos não nulos (Non-nullable Types)</h2>
 
-<p>Espero logo logo trazer mais novidades!</p>
+<p>Essa feature sem dúvidas é uma das mais legais dessa nova versão. <code>null</code> e <code>undefined</code> são a origem comum de quase todos os bugs introduzidos durante a programação em JavaScript onde <code>null</code> se aplica a objetos e <code>undefined</code> a variáveis, propriedades e funções (pretendo falar mais sobre isso em outro artigo). Nas versões anteriores do TypeScript o tipo <code>null</code> e o <code>undefined</code> faziam parte do dominio de todos os outros tipos, ou seja, uma variável declarada como <code>string</code> poderia em algum momento assumir um valor <code>null</code>. Com o TypeScript 2.0 a utilização do novo flag <code>--strictNullChecks</code> durante a compilação muda essa lógica. Agora uma variável do tipo <code>string</code> passar a ser apenas do tipo <code>string</code> e nada mais. Exemplo:</p>
 
-<p>Abraços!</p>
+<pre><code>let valor: string = null; // Error
+</code></pre>
+
+<p>Mas pera ai, e seu eu quiser que a variável <code>valor</code> aceite tanto um valor do tipo <code>string</code> quanto um valor nulo? Simples, basta utilizar o recurso de união de tipos (union types). Exemplo:</p>
+
+<pre><code>let valor: string | null = null; // Ok!
+</code></pre>
+
+<p>Isso transfere para o desenvolvedor a decisão de aceitar ou não um valor <code>null</code> ou <code>undefined</code> e protege o código contra bugs que passariam despercebidos.</p>
+
+<p>Agora observe o seguinte trecho de código:</p>
+
+<pre><code>declare let names: string[] | undefined;
+
+// Error! 'names' is possibly undefined.
+let upperCased = names.map(s =&gt; s.toUpperCase());
+</code></pre>
+
+<p>No exemplo acima teremos um erro. O compilador do TypeScript entende que <code>names</code> pode ser <code>undefined</code> devido a sua declaração <code>string[] | undefined</code>. Mas se tivermos certeza de que nesse caso <code>names</code> nunca será <code>undefined</code> e quisermos que este código execute mesmo assim podemos utilizar o operador <code>!</code> como a seguir:</p>
+
+<pre><code>let upperCased = names!.map(s =&gt; s.toUpperCase());
+</code></pre>
+
+<p>Ao utilizar o oerador <code>!</code> na variável <code>names!</code> estamos dizendo ao compilador que temos certeza de que essa variável nunca será <code>undefined</code> neste ponto do código.</p>
+
+<h3>Aplicação em parâmetros e propriedades opcionais</h3>
+
+<p>Uma ressalva com relação a declarações opcionais. Todo parâmetro ou propriedade opcional tem de forma automática o tipo <code>undefined</code> agregado ao seu tipo original, mesmo quando isso não é declarado de forma explicita no código. por exemplo:</p>
+
+<pre><code class="typescript">// Compilado com --strictNullChecks
+type T1 = (x?: number) =&gt; string;              // x é do tipo: number | undefined
+type T2 = (x?: number | undefined) =&gt; string;  // x é do tipo: number | undefined
+</code></pre>
+
+<p>por isso um parâmetro ou propriedade opcional sempre será nullable.</p>
+
+<blockquote><p>NOTA: Para compilar os exemplos de código acima via linha de comando basta salvar o codigo em um arquivo e executar: <code>tsc file.ts --strictNullChecks</code></p></blockquote>
+
+<p>É isso aí pessoal, até a próxima!</p>
 
 
   <hr/>

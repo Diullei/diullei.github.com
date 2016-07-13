@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <title>
     
-      Testando o ultimo build do TypeScript no VS &ndash;
+      TypeScript 2.0 Beta - Non nullable types (Tipos não nulos) &ndash;
     
     Diullei Gomes
   </title>
@@ -63,85 +63,65 @@
 
     <section class="content">
   <h1>
-    <a href="/posts/Testando-o-ultimo-build-do-TypeScript-no-VS">Testando o ultimo build do TypeScript no VS</a>
+    <a href="/posts/TypeScript2-Beta-nun-nullable-types">TypeScript 2.0 Beta - Non nullable types (Tipos não nulos)</a>
   </h1>
 
   <section class="byline">
-    February  2, 2013
+    July 12, 2016
   </section>
 
-  <h2>Introdução</h2>
+  <p>O TypeScript 2.0 Beta desembarcou com muitas novidades. <a href="https://blogs.msdn.microsoft.com/typescript/2016/07/11/announcing-typescript-2-0-beta/">Veja aqui</a> o post original no blog da Microsoft. No decorrer dos próximos posts vou falar um pouco mais sobre as features dessa nova versão. Para iniciar, hoje quero falar sobre um dos recursos que eu já estava acompanhando e achei muito legal: a definição de tipos não nulos.</p>
 
-<p>O objetivo deste post é mostrar como você pode atualizar a versão do TypeScript instalada na sua máquina com a ultima versão em desenvolvimento. Isso é legal caso você esteja acompanhando o que o time do TypeScript está preparando para as novas versões. Você vai precisar atualizar um arquivo chamado <code>typescriptSerivces.js</code>. Vamos ver como isso pode ser feito.</p>
+<p>Antes, para que possamos seguir com os exemplo que irei colocar aqui no post vamos instalar essa nova versão:</p>
 
-<h2>Obtendo uma nova versão do arquivo typescriptSerivces.js</h2>
-
-<h3>Primeira opção: Usando o &ldquo;LKG&rdquo;</h3>
-
-<p>LKG é uma sigla que significa &ldquo;Last Known Good&rdquo; que significa no nosso contexto algo como &ldquo;ultimo arquivo bom de que temos conhecimento&rdquo;. Você pode pegar uma cópia deste arquivo no CodePlex <a href="http://typescript.codeplex.com/SourceControl/BrowseLatest?branch=develop">aqui</a>, basta navegar até o diretorio <code>bin</code> e baixar o arquivo <code>typescriptSerivces.js</code>.</p>
-
-<h3>Compilando a ultima versão do TypeScript</h3>
-
-<h4>Pré-requisitos</h4>
-
-<p>Você vai precisar das seguintes feramentas instaladas na tua máquina:</p>
-
-<ul>
-<li><a href="http://git-scm.com/downloads">Git</a> - Algumas recomendações para instalação do git no windows
-
-<ul>
-<li>Não instale com a opção de integração com o Windows Explorer a menos que você vá realmente precisar disso.</li>
-<li>Selecione a opção <em>Run Git from the Windows Command Prompt</em>.</li>
-<li>Selecione <em>Checkout as-is</em> and <em>commit as-is</em></li>
-</ul>
-</li>
-<li><a href="http://nodejs.org/">Node.js</a></li>
-</ul>
-
-
-<h4>Clonando o TypeScript</h4>
-
-<pre><code>&gt; git clone https://git01.codeplex.com/typescript
+<pre><code>npm install -g typescript@beta
 </code></pre>
 
-<p>Isso irá criar um diretório local chamado <code>typescript</code> com o código fonte do projeto.</p>
+<blockquote><p>Com este release você já pode testar (caso não tenha testado ainda) a utilização dos <code>dts</code>s direto do npm. Escrevi sobre isso nesse <a href="/posts/The-Future-of-Declaration-Files">outro artigo</a>.</p></blockquote>
 
-<h4>Selecionar o <code>Branch</code> da ultima versão em desenvolvimento</h4>
+<h2>Tipos não nulos (Non-nullable Types)</h2>
 
-<pre><code>&gt; cd typescript
+<p>Essa feature sem dúvidas é uma das mais legais dessa nova versão. <code>null</code> e <code>undefined</code> são a origem comum de quase todos os bugs introduzidos durante a programação em JavaScript onde <code>null</code> se aplica a objetos e <code>undefined</code> a variáveis, propriedades e funções (pretendo falar mais sobre isso em outro artigo). Nas versões anteriores do TypeScript o tipo <code>null</code> e o <code>undefined</code> faziam parte do dominio de todos os outros tipos, ou seja, uma variável declarada como <code>string</code> poderia em algum momento assumir um valor <code>null</code>. Com o TypeScript 2.0 a utilização do novo flag <code>--strictNullChecks</code> durante a compilação muda essa lógica. Agora uma variável do tipo <code>string</code> passar a ser apenas do tipo <code>string</code> e nada mais. Exemplo:</p>
 
-&gt; git checkout develop
+<pre><code>let valor: string = null; // Error
 </code></pre>
 
-<p>O branch <code>develop</code> é onde encontramos as ultimas alterações de código.</p>
+<p>Mas pera ai, e seu eu quiser que a variável <code>valor</code> aceite tanto um valor do tipo <code>string</code> quanto um valor nulo? Simples, basta utilizar o recurso de união de tipos (union types). Exemplo:</p>
 
-<h4>Instalando as dependências do projeto</h4>
-
-<pre><code>&gt; npm install
+<pre><code>let valor: string | null = null; // Ok!
 </code></pre>
 
-<p>Isso irá instalar uma ferramenta clamada <a href="https://github.com/mde/jake">jake</a> a qual é usada no build do TypeScript.</p>
+<p>Isso transfere para o desenvolvedor a decisão de aceitar ou não um valor <code>null</code> ou <code>undefined</code> e protege o código contra bugs que passariam despercebidos.</p>
 
-<h4>Compilando o TypeScript</h4>
+<p>Agora observe o seguinte trecho de código:</p>
 
-<pre><code>&gt; .\node_modules\.bin\jake local 
+<pre><code>declare let names: string[] | undefined;
+
+// Error! 'names' is possibly undefined.
+let upperCased = names.map(s =&gt; s.toUpperCase());
 </code></pre>
 
-<blockquote><p>NOTA: Sempre que você quiser pegar a ultima versão do código do TypeScript para compilar localmente você pode apagar o folder <code>typescript</code> e repetir todo o procedomento acima ou simplesmente executar o comando <code>git pull</code> para atualizar seu repositório com as ultimas alterações feitas pelo time do TypeScript.</p></blockquote>
+<p>No exemplo acima teremos um erro. O compilador do TypeScript entende que <code>names</code> pode ser <code>undefined</code> devido a sua declaração <code>string[] | undefined</code>. Mas se tivermos certeza de que nesse caso <code>names</code> nunca será <code>undefined</code> e quisermos que este código execute mesmo assim podemos utilizar o operador <code>!</code> como a seguir:</p>
 
-<h3>Atualizando o arquivo typescriptSerivces.js</h3>
+<pre><code>let upperCased = names!.map(s =&gt; s.toUpperCase());
+</code></pre>
 
-<p>Você vai precisar localizar o diretório local onde onde a extensão do TypeScrit está instalada. Procure por um arquivo chamada <code>typescriptSerivces.js</code> em um diretório localizado em um caminho paredico com:</p>
+<p>Ao utilizar o oerador <code>!</code> na variável <code>names!</code> estamos dizendo ao compilador que temos certeza de que essa variável nunca será <code>undefined</code> neste ponto do código.</p>
 
-<p><code>C:\Program Files (x86)\Microsoft Visual Studio 11.0\Common7\IDE\Extensions\enn4wcm5.z2b\</code></p>
+<h3>Aplicação em parâmetros e propriedades opcionais</h3>
 
-<p>Note que o ultimo diretório chamado <code>enn4wcm5.z2b</code> vai ter nome diferente em cada máquina. Em alguns casos raros você pode ter mais de um subfolde com a instalação do TypeScript. Se você tiver este cenário identifique pela data de criação o mais recente.</p>
+<p>Uma ressalva com relação a declarações opcionais. Todo parâmetro ou propriedade opcional tem de forma automática o tipo <code>undefined</code> agregado ao seu tipo original, mesmo quando isso não é declarado de forma explicita no código. por exemplo:</p>
 
-<p>Localize o arquivo <code>typescriptSerivces.js</code>, faça um backup e substitua este arquivo pela ultima versão optida no tópico anterior.</p>
+<pre><code class="typescript">// Compilado com --strictNullChecks
+type T1 = (x?: number) =&gt; string;              // x é do tipo: number | undefined
+type T2 = (x?: number | undefined) =&gt; string;  // x é do tipo: number | undefined
+</code></pre>
 
-<p>Feito isso, reinicie o Visual Studio e divirta-se!</p>
+<p>por isso um parâmetro ou propriedade opcional sempre será nullable.</p>
 
-<p>Um grande abraço e até a próxima!</p>
+<blockquote><p>NOTA: Para compilar os exemplos de código acima via linha de comando basta salvar o codigo em um arquivo e executar: <code>tsc file.ts --strictNullChecks</code></p></blockquote>
+
+<p>É isso aí pessoal, até a próxima!</p>
 
 
   <hr/>
