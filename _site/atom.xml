@@ -4,12 +4,70 @@
  <title>Diullei Gomes</title>
  <link href="http://www.diullei.com/atom.xml" rel="self"/>
  <link href="http://www.diullei.com/"/>
- <updated>2016-07-12T23:02:43-03:00</updated>
+ <updated>2016-07-13T23:05:35-03:00</updated>
  <id>http://www.diullei.com</id>
  <author>
    <name>Diullei Gomes</name>
  </author>
 
+ 
+ <entry>
+   <title>TypeScript - Union Types</title>
+   <link href="http://www.diullei.com/posts/union-types"/>
+   <updated>2016-07-13T00:00:00-03:00</updated>
+   <id>http://www.diullei.com/posts/union-types</id>
+   <content type="html">&lt;p&gt;Uma das caracteristicas do JavaScript é que podemos facilmente alterar o tipo de uma variável em tempo de execução simplesmente atribuindo um valor de tipo diferente a esta variável. No momento em que o valor é atribuido o tipo desta variável se altera e a partir daí inúmeros bugs podem surgir se não estivermos atentos.&lt;/p&gt;
+
+&lt;p&gt;Em Typecript quando declaramos uma variável com um tipo específico, &lt;code&gt;string&lt;/code&gt; por exemplo, ela carregará este tipo até o fim, ou seja, em nenhum momento será permitida a atribuição de um valor de tipo diferente nesta variável.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;let val: string;
+// Erro! val só pode receber um valor do tipo string
+val = false;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;O que ocorre é que em JavaScript ocasionalmente teremos variáveis ou parâmetros que irão esperar receber em momentos diferentes, valores de tipos diferentes. Prevendo esse comportamente o TypeScript definiu um tipo chamado &lt;code&gt;any&lt;/code&gt;. Esse tipo aceita qualquer valor de qualquer tipo. O problema aqui é que nem sempre declarar uma variável como &lt;code&gt;any&lt;/code&gt; resolverá nosso problema. Pra que isso fique bem claro vamos a um exemplo:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;typescript&quot;&gt;/**
+ * Takes a string and adds &quot;padding&quot; to the left.
+ * If &#39;padding&#39; is a string, then &#39;padding&#39; is appended to the left side.
+ * If &#39;padding&#39; is a number, then that number of spaces is added to the left side.
+ */
+function padLeft(value: string, padding: any) {
+    if (typeof padding === &quot;number&quot;) {
+        return Array(padding + 1).join(&quot; &quot;) + value;
+    }
+    if (typeof padding === &quot;string&quot;) {
+        return padding + value;
+    }
+    throw new Error(`Expected string or number, got &#39;${padding}&#39;.`);
+}
+
+padLeft(&quot;Hello world&quot;, 4); // retorna &quot;    Hello world&quot;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Note que no código acima o parâmetro &lt;code&gt;padding&lt;/code&gt; está sendo declarado como &lt;code&gt;any&lt;/code&gt;. O que não impede que que passemos um valor diferente de &lt;code&gt;string&lt;/code&gt; ou &lt;code&gt;number&lt;/code&gt; como por exemplo o valor &lt;code&gt;true&lt;/code&gt;. O código acima compila normalmente sem nenhum erro mas falha no momento da execução.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;// compila sem erros mas falha no momento da execução
+let indentedString = padLeft(&quot;Hello world&quot;, true);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Para contornar esse problema o TypeScript possui uma classe especial de declaração de tipos chamado de &amp;ldquo;union types&amp;rdquo; que permite definir no momento da escrita do código quais os valores que serão aceitos pelo parâmetro ou pela variável. Com isso podemos dizer no código acima que queremos que &lt;code&gt;padding&lt;/code&gt; seja um parâmetros de tipo menos permissivo e aceite apenas valores do tipo &lt;code&gt;string&lt;/code&gt; ou &lt;code&gt;number&lt;/code&gt;. Para isso alteramos a assinatura do tipo de &lt;code&gt;any&lt;/code&gt; para &lt;code&gt;string | number&lt;/code&gt;. Vamos alterar a assinatura da função &lt;code&gt;padLeft&lt;/code&gt; para demonstrar esse recurso:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;typescript&quot;&gt;function padLeft(value: string, padding: string | number) {
+    //...
+}
+
+// erro durante a compilação
+let indentedString = padLeft(&quot;Hello world&quot;, true);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Agora temos uma falha no momento da compilação do código. O que aconteceu? O compilador do TypeScript entendeu que &lt;code&gt;padding&lt;/code&gt; pode assumir apenas um valor &lt;code&gt;string&lt;/code&gt; ou &lt;code&gt;number&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Veja como esse recurso nos ajuda a proteger o código de possíveis erros que passariam despercebidos.&lt;/p&gt;
+
+&lt;p&gt;É isso. Até a próxima!&lt;/p&gt;
+</content>
+ </entry>
  
  <entry>
    <title>TypeScript 2.0 Beta - Non nullable types (Tipos não nulos)</title>
@@ -32,7 +90,7 @@
 &lt;pre&gt;&lt;code&gt;let valor: string = null; // Error
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;Mas pera ai, e seu eu quiser que a variável &lt;code&gt;valor&lt;/code&gt; aceite tanto um valor do tipo &lt;code&gt;string&lt;/code&gt; quanto um valor nulo? Simples, basta utilizar o recurso de união de tipos (union types). Exemplo:&lt;/p&gt;
+&lt;p&gt;Mas pera ai, e seu eu quiser que a variável &lt;code&gt;valor&lt;/code&gt; aceite tanto um valor do tipo &lt;code&gt;string&lt;/code&gt; quanto um valor nulo? Simples, basta utilizar o recurso &lt;a href=&quot;/posts/union-types&quot;&gt;&lt;code&gt;union types&lt;/code&gt;&lt;/a&gt;. Exemplo:&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;let valor: string | null = null; // Ok!
 &lt;/code&gt;&lt;/pre&gt;

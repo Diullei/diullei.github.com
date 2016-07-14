@@ -270,3 +270,29 @@ a {
     width: 800px;
     margin: 0 auto;
 }
+
+@media (min-width: 320px) {
+    #page-wrap {
+        width: 100%;
+    }
+
+    .sections li {
+        display: inline;
+        display: inline-block;
+        float: left;
+    }
+
+    .sections li:nth-child(3) {
+       display:none;
+    }
+
+    .sidebar {
+        height: 80px;
+    }
+}
+
+@media (min-width:481px) {
+    #page-wrap {
+        width: 800px;
+    }
+}

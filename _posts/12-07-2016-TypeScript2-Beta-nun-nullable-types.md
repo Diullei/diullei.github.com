@@ -18,7 +18,7 @@ Essa feature sem dúvidas é uma das mais legais dessa nova versão. `null` e `u
 
     let valor: string = null; // Error
 
-Mas pera ai, e seu eu quiser que a variável `valor` aceite tanto um valor do tipo `string` quanto um valor nulo? Simples, basta utilizar o recurso de união de tipos (union types). Exemplo:
+Mas pera ai, e seu eu quiser que a variável `valor` aceite tanto um valor do tipo `string` quanto um valor nulo? Simples, basta utilizar o recurso [`union types`](/posts/union-types). Exemplo:
 
     let valor: string | null = null; // Ok!
 

@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <title>
     
-      TypeScript 2.0 Beta - Non nullable types (Tipos não nulos) &ndash;
+      TypeScript - Union Types &ndash;
     
     Diullei Gomes
   </title>
@@ -63,65 +63,63 @@
 
     <section class="content">
   <h1>
-    <a href="/posts/TypeScript2-Beta-nun-nullable-types">TypeScript 2.0 Beta - Non nullable types (Tipos não nulos)</a>
+    <a href="/posts/union-types">TypeScript - Union Types</a>
   </h1>
 
   <section class="byline">
-    July 12, 2016
+    July 13, 2016
   </section>
 
-  <p>O TypeScript 2.0 Beta desembarcou com muitas novidades. <a href="https://blogs.msdn.microsoft.com/typescript/2016/07/11/announcing-typescript-2-0-beta/">Veja aqui</a> o post original no blog da Microsoft. No decorrer dos próximos posts vou falar um pouco mais sobre as features dessa nova versão. Para iniciar, hoje quero falar sobre um dos recursos que eu já estava acompanhando e achei muito legal: a definição de tipos não nulos.</p>
+  <p>Uma das caracteristicas do JavaScript é que podemos facilmente alterar o tipo de uma variável em tempo de execução simplesmente atribuindo um valor de tipo diferente a esta variável. No momento em que o valor é atribuido o tipo desta variável se altera e a partir daí inúmeros bugs podem surgir se não estivermos atentos.</p>
 
-<p>Antes, para que possamos seguir com os exemplo que irei colocar aqui no post vamos instalar essa nova versão:</p>
+<p>Em Typecript quando declaramos uma variável com um tipo específico, <code>string</code> por exemplo, ela carregará este tipo até o fim, ou seja, em nenhum momento será permitida a atribuição de um valor de tipo diferente nesta variável.</p>
 
-<pre><code>npm install -g typescript@beta
+<pre><code>let val: string;
+// Erro! val só pode receber um valor do tipo string
+val = false;
 </code></pre>
 
-<blockquote><p>Com este release você já pode testar (caso não tenha testado ainda) a utilização dos <code>dts</code>s direto do npm. Escrevi sobre isso nesse <a href="/posts/The-Future-of-Declaration-Files">outro artigo</a>.</p></blockquote>
+<p>O que ocorre é que em JavaScript ocasionalmente teremos variáveis ou parâmetros que irão esperar receber em momentos diferentes, valores de tipos diferentes. Prevendo esse comportamente o TypeScript definiu um tipo chamado <code>any</code>. Esse tipo aceita qualquer valor de qualquer tipo. O problema aqui é que nem sempre declarar uma variável como <code>any</code> resolverá nosso problema. Pra que isso fique bem claro vamos a um exemplo:</p>
 
-<h2>Tipos não nulos (Non-nullable Types)</h2>
+<pre><code class="typescript">/**
+ * Takes a string and adds "padding" to the left.
+ * If 'padding' is a string, then 'padding' is appended to the left side.
+ * If 'padding' is a number, then that number of spaces is added to the left side.
+ */
+function padLeft(value: string, padding: any) {
+    if (typeof padding === "number") {
+        return Array(padding + 1).join(" ") + value;
+    }
+    if (typeof padding === "string") {
+        return padding + value;
+    }
+    throw new Error(`Expected string or number, got '${padding}'.`);
+}
 
-<p>Essa feature sem dúvidas é uma das mais legais dessa nova versão. <code>null</code> e <code>undefined</code> são a origem comum de quase todos os bugs introduzidos durante a programação em JavaScript onde <code>null</code> se aplica a objetos e <code>undefined</code> a variáveis, propriedades e funções (pretendo falar mais sobre isso em outro artigo). Nas versões anteriores do TypeScript o tipo <code>null</code> e o <code>undefined</code> faziam parte do dominio de todos os outros tipos, ou seja, uma variável declarada como <code>string</code> poderia em algum momento assumir um valor <code>null</code>. Com o TypeScript 2.0 a utilização do novo flag <code>--strictNullChecks</code> durante a compilação muda essa lógica. Agora uma variável do tipo <code>string</code> passar a ser apenas do tipo <code>string</code> e nada mais. Exemplo:</p>
-
-<pre><code>let valor: string = null; // Error
+padLeft("Hello world", 4); // retorna "    Hello world"
 </code></pre>
 
-<p>Mas pera ai, e seu eu quiser que a variável <code>valor</code> aceite tanto um valor do tipo <code>string</code> quanto um valor nulo? Simples, basta utilizar o recurso <a href="/posts/union-types"><code>union types</code></a>. Exemplo:</p>
+<p>Note que no código acima o parâmetro <code>padding</code> está sendo declarado como <code>any</code>. O que não impede que que passemos um valor diferente de <code>string</code> ou <code>number</code> como por exemplo o valor <code>true</code>. O código acima compila normalmente sem nenhum erro mas falha no momento da execução.</p>
 
-<pre><code>let valor: string | null = null; // Ok!
+<pre><code>// compila sem erros mas falha no momento da execução
+let indentedString = padLeft("Hello world", true);
 </code></pre>
 
-<p>Isso transfere para o desenvolvedor a decisão de aceitar ou não um valor <code>null</code> ou <code>undefined</code> e protege o código contra bugs que passariam despercebidos.</p>
+<p>Para contornar esse problema o TypeScript possui uma classe especial de declaração de tipos chamado de &ldquo;union types&rdquo; que permite definir no momento da escrita do código quais os valores que serão aceitos pelo parâmetro ou pela variável. Com isso podemos dizer no código acima que queremos que <code>padding</code> seja um parâmetros de tipo menos permissivo e aceite apenas valores do tipo <code>string</code> ou <code>number</code>. Para isso alteramos a assinatura do tipo de <code>any</code> para <code>string | number</code>. Vamos alterar a assinatura da função <code>padLeft</code> para demonstrar esse recurso:</p>
 
-<p>Agora observe o seguinte trecho de código:</p>
+<pre><code class="typescript">function padLeft(value: string, padding: string | number) {
+    //...
+}
 
-<pre><code>declare let names: string[] | undefined;
-
-// Error! 'names' is possibly undefined.
-let upperCased = names.map(s =&gt; s.toUpperCase());
+// erro durante a compilação
+let indentedString = padLeft("Hello world", true);
 </code></pre>
 
-<p>No exemplo acima teremos um erro. O compilador do TypeScript entende que <code>names</code> pode ser <code>undefined</code> devido a sua declaração <code>string[] | undefined</code>. Mas se tivermos certeza de que nesse caso <code>names</code> nunca será <code>undefined</code> e quisermos que este código execute mesmo assim podemos utilizar o operador <code>!</code> como a seguir:</p>
+<p>Agora temos uma falha no momento da compilação do código. O que aconteceu? O compilador do TypeScript entendeu que <code>padding</code> pode assumir apenas um valor <code>string</code> ou <code>number</code>.</p>
 
-<pre><code>let upperCased = names!.map(s =&gt; s.toUpperCase());
-</code></pre>
+<p>Veja como esse recurso nos ajuda a proteger o código de possíveis erros que passariam despercebidos.</p>
 
-<p>Ao utilizar o oerador <code>!</code> na variável <code>names!</code> estamos dizendo ao compilador que temos certeza de que essa variável nunca será <code>undefined</code> neste ponto do código.</p>
-
-<h3>Aplicação em parâmetros e propriedades opcionais</h3>
-
-<p>Uma ressalva com relação a declarações opcionais. Todo parâmetro ou propriedade opcional tem de forma automática o tipo <code>undefined</code> agregado ao seu tipo original, mesmo quando isso não é declarado de forma explicita no código. por exemplo:</p>
-
-<pre><code class="typescript">// Compilado com --strictNullChecks
-type T1 = (x?: number) =&gt; string;              // x é do tipo: number | undefined
-type T2 = (x?: number | undefined) =&gt; string;  // x é do tipo: number | undefined
-</code></pre>
-
-<p>por isso um parâmetro ou propriedade opcional sempre será nullable.</p>
-
-<blockquote><p>NOTA: Para compilar os exemplos de código acima via linha de comando basta salvar o codigo em um arquivo e executar: <code>tsc file.ts --strictNullChecks</code></p></blockquote>
-
-<p>É isso aí pessoal, até a próxima!</p>
+<p>É isso. Até a próxima!</p>
 
 
   <hr/>
