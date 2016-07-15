@@ -4,7 +4,7 @@
  <title>Diullei Gomes</title>
  <link href="http://www.diullei.com/atom.xml" rel="self"/>
  <link href="http://www.diullei.com/"/>
- <updated>2016-07-14T23:38:51-03:00</updated>
+ <updated>2016-07-15T00:04:01-03:00</updated>
  <id>http://www.diullei.com</id>
  <author>
    <name>Diullei Gomes</name>
@@ -18,7 +18,7 @@
    <id>http://www.diullei.com/posts/TypeScript2-Beta-no-vscode</id>
    <content type="html">&lt;p&gt;Tenho escrito alguns posts falando sobre as novidades do &lt;a href=&quot;/posts/TypeScript2-Beta-nun-nullable-types&quot;&gt;TypeScript 2.0 Beta&lt;/a&gt; que foi lançado há alguns dias e algumas pessoas vieram me perguntar como utilizar essa nova versão no Visual Studio Code (&lt;a href=&quot;https://code.visualstudio.com&quot;&gt;vscode&lt;/a&gt;). Resolvi escrever este post para mostrar com é fácil fazer esta configuração. O legal é que podemos fazer esta configuração por projeto, ou seja, posso ter projetos diferentes utilizando versões diferentes do TypeScript sem a necessidade de alterar a minha instalação global :)&lt;/p&gt;
 
-&lt;h2&gt;Configurando um projeto&lt;/h2&gt;
+&lt;h2&gt;Configurando um novo projeto&lt;/h2&gt;
 
 &lt;p&gt;Crie um diretório para o seu projeto e execute dentro deste diretório o seguinte comando:&lt;/p&gt;
 
@@ -30,19 +30,16 @@
 &lt;pre&gt;&lt;code&gt;npm install typescript@beta
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;Esse comando irá instalar o TypeScript dentro de uma pasta local chamada &lt;code&gt;node_modules&lt;/code&gt;. Feito isso vamos abrir o vscode e criar um outro arquivo de configuração que irá informar ao vscode que ele deverá utilizar a versão do TypeScript instalada dentro da pasta node_modules local. Para abrir de forma fácil o vscode dentro do diretório atual basta digitar o comando:&lt;/p&gt;
+&lt;p&gt;Esse comando irá instalar o TypeScript dentro de uma pasta local chamada &lt;code&gt;node_modules&lt;/code&gt;. Feito isso vamos abrir o vscode e criar um outro arquivo de configuração que irá informar ao vscode que ele deverá utilizar a versão do TypeScript instalada dentro da pasta &lt;code&gt;node_modules&lt;/code&gt; local.&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;code .
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Dentro do vscode vá em &lt;code&gt;File &amp;gt; Preferences &amp;gt; Workspace Settings&lt;/code&gt;. note que serão abertos 2 arquivos lado a lado. O arquigo settings.json será criado dentro de um diretório chamado .vscode e é esse arquivo que iremos alterar para informar ao vscode que sempre que estivermos neste diretório a versão do TypeScript que deverá ser utilizada será a versão 2.0 Beta instalada via npm. Para isso altere o conteúdo deste arquivo para o seguinte:&lt;/p&gt;
+&lt;p&gt;Abra o vscode e vá em &lt;code&gt;File &amp;gt; Preferences &amp;gt; Workspace Settings&lt;/code&gt;. note que serão abertos 2 arquivos lado a lado. O arquigo &lt;code&gt;settings.json&lt;/code&gt; será criado dentro de um diretório chamado &lt;code&gt;.vscode&lt;/code&gt; e é esse arquivo que iremos alterar para informar ao vscode que sempre que estivermos neste diretório a versão do TypeScript que deverá ser utilizada será a versão 2.0 Beta instalada via &lt;code&gt;npm&lt;/code&gt;. Para isso altere o conteúdo deste arquivo para o seguinte:&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;{
     &quot;typescript.tsdk&quot;: &quot;node_modules/typescript/lib&quot;
 }
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;Feito isso salve o arquivo. Pronto! Vamos agora testar para ver se está tudo ok. Crie um arquivo chamado tsconfig.json e insira o seguinte código:&lt;/p&gt;
+&lt;p&gt;Feito isso salve o arquivo. Pronto! Vamos agora testar para entender se tudo foi configurado corretamente. Crie um arquivo chamado &lt;code&gt;tsconfig.json&lt;/code&gt; e insira o seguinte código:&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;{
     &quot;compilerOptions&quot;: {
@@ -68,7 +65,7 @@
 }
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;Agora crie um novo arquivo chamado exemplo.ts e insirea o seguinte código:&lt;/p&gt;
+&lt;p&gt;Agora crie um novo arquivo chamado &lt;code&gt;exemplo.ts&lt;/code&gt; e insirea o seguinte código:&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&quot;typescript&quot;&gt;declare let names: string[] | undefined;
 
@@ -76,7 +73,11 @@
 let upperCased = names!.map(s =&amp;gt; s.toUpperCase());
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;Feito isso tente compilar esse código com o comando &lt;code&gt;Ctrl+shift+B&lt;/code&gt;. Repare que o vscode irá exibir uma mensagem dizendo: &lt;code&gt;No task runner configured&lt;/code&gt;. Clique no botão &lt;code&gt;Configue Task Runner&lt;/code&gt; exibido ao lado esquerdo dessa mensagem e selecione &lt;code&gt;TypeScript - tsconfig.json&lt;/code&gt; na lista de opções que será exibida. Com isso o vscode irá criar um novo arquivo dentro da pasta &lt;code&gt;.vscode&lt;/code&gt; chamado tasks.json. Altere a linha &lt;code&gt;&quot;command&quot;: &quot;tsc&quot;&lt;/code&gt; para &lt;code&gt;&quot;command&quot;: &quot;node_modules/.bin/tsc&quot;&lt;/code&gt;. Reinicie o vscode e tente executar novamente o comando de build &lt;code&gt;Ctrl+shift+B&lt;/code&gt;. se tudo foi configurado corretamente o vscode irá compilar o código do arquivo exemplo.ts utilizando a versão local do TypeScript configurada. Note que se você remover o operador &lt;code&gt;!&lt;/code&gt; da quarta linha o vscode já ira informar um erro &lt;code&gt;&#39;names&#39; is possibly undefined&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Feito isso tente compilar esse código com o comando &lt;code&gt;Ctrl+shift+B&lt;/code&gt;. Repare que o vscode irá exibir uma mensagem dizendo: &lt;code&gt;No task runner configured&lt;/code&gt;. Clique no botão &lt;code&gt;Configue Task Runner&lt;/code&gt; exibido ao lado direito dessa mensagem e selecione &lt;code&gt;TypeScript - tsconfig.json&lt;/code&gt; na lista de opções que será exibida. Com isso o vscode irá criar um novo arquivo dentro da pasta &lt;code&gt;.vscode&lt;/code&gt; chamado &lt;code&gt;tasks.json&lt;/code&gt;. Altere a linha &lt;code&gt;&quot;command&quot;: &quot;tsc&quot;&lt;/code&gt; para &lt;code&gt;&quot;command&quot;: &quot;node_modules/.bin/tsc&quot;&lt;/code&gt;. Reinicie o vscode e tente executar novamente o comando de build &lt;code&gt;Ctrl+shift+B&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Se tudo foi configurado corretamente o vscode irá compilar o código do arquivo &lt;code&gt;exemplo.ts&lt;/code&gt; utilizando a versão local do TypeScript configurada. Note que se você remover o operador &lt;code&gt;!&lt;/code&gt; da linha 4 o vscode já ira informar um erro parecido com &lt;code&gt;&#39;names&#39; is possibly undefined&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;É isso. Agora você já pode testar novas features do TypeScript 2.0 no vscode \o/&lt;/p&gt;
 </content>
  </entry>
  
