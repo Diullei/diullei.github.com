@@ -4,7 +4,7 @@
  <title>Diullei Gomes</title>
  <link href="http://www.diullei.com/atom.xml" rel="self"/>
  <link href="http://www.diullei.com/"/>
- <updated>2016-07-15T23:28:56-03:00</updated>
+ <updated>2016-07-16T01:43:06-03:00</updated>
  <id>http://www.diullei.com</id>
  <author>
    <name>Diullei Gomes</name>
@@ -113,6 +113,14 @@ let fn2 = x.fn1;
 // Aqui a função fn3 é do tipo: () =&amp;gt; void
 let fn3 = x.fn2;
 &lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3&gt;Inferência&lt;/h3&gt;
+
+&lt;p&gt;Numa operação ternária entre valores de tipos diferentes &lt;code&gt;... ? a : b&lt;/code&gt; o tipo do valor resultante será &lt;code&gt;A | B&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Numa operação lógica &lt;code&gt;ou&lt;/code&gt; entre valores de tipos diferentes &lt;code&gt;a || b&lt;/code&gt; o tipo do valor resultante será &lt;code&gt;A | B&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Num array de elementos de tipos diferentes &lt;code&gt;[a, b, c, ...]&lt;/code&gt; o tipo deste array será inferido para &lt;code&gt;A | B | C | ...&lt;/code&gt;.&lt;/p&gt;
 
 &lt;h3&gt;Conclusão&lt;/h3&gt;
 

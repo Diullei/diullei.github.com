@@ -110,6 +110,14 @@ let fn2 = x.fn1;
 let fn3 = x.fn2;
 ```
 
+### Inferência
+
+Numa operação ternária entre valores de tipos diferentes `... ? a : b` o tipo do valor resultante será `A | B`.
+
+Numa operação lógica `ou` entre valores de tipos diferentes `a || b` o tipo do valor resultante será `A | B`.
+
+Num array de elementos de tipos diferentes `[a, b, c, ...]` o tipo deste array será inferido para `A | B | C | ...`.
+
 ### Conclusão
 
 Este post foi totalmente teórico e muito dos comportamentos descritos aqui podem ser percebidos de forma intuitiva, no entando, é sempre bom entender um pouco mais esses fundamentos. Até a próxima!
