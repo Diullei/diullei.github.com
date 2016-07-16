@@ -1,7 +1,7 @@
 ---
 layout: post
 title: DefinitelyTyped + TypeScript team = TS FTW
-category: TypeScript
+category: [TypeScript, DefinitelyTyped]
 tags : [TypeScript, JavaScript]
 ---
 

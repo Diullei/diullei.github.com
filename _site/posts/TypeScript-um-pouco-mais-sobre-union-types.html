@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <title>
     
-      TypeScript 2.0 Beta - Non nullable types (Tipos não nulos) &ndash;
+      TypeScript - Um pouco mais sobre Union types &ndash;
     
     Diullei Gomes
   </title>
@@ -68,67 +68,116 @@
 
     <section class="content">
   <h1>
-    <a href="/posts/TypeScript2-Beta-nun-nullable-types">TypeScript 2.0 Beta - Non nullable types (Tipos não nulos)</a>
+    <a href="/posts/TypeScript-um-pouco-mais-sobre-union-types">TypeScript - Um pouco mais sobre Union types</a>
   </h1>
 
   <section class="byline">
-    July 12, 2016
+    July 15, 2016
   </section>
 
-  <p>O TypeScript 2.0 Beta desembarcou com muitas novidades. <a href="https://blogs.msdn.microsoft.com/typescript/2016/07/11/announcing-typescript-2-0-beta/">Veja aqui</a> o post original no blog da Microsoft. No decorrer dos próximos posts vou falar um pouco mais sobre as features dessa nova versão. Para iniciar, hoje quero falar sobre um dos recursos que eu já estava acompanhando e achei muito legal: a definição de tipos não nulos.</p>
+  <p>Esse post é uma continuação do post anterior onde eu falei sobre <a href="/posts/union-types">union types</a>. Meu objetivo aqui é expor algumas propriedades básicas inerentes a declaração dos &ldquo;union types&rdquo;. Para ficar fácel de entender vou colocar um exemplo de código para cada propriedade. Vamos lá!</p>
 
-<p>Antes, para que possamos seguir com os exemplo que irei colocar aqui no post vamos instalar essa nova versão:</p>
+<h2>Identidade</h2>
 
-<pre><code>npm install -g typescript@beta
+<blockquote><p><code>A | A</code> é equivalente a <code>A</code></p></blockquote>
+
+<pre><code class="typescript">class A { /* ... */ }
+
+let a: A | A = new A();
 </code></pre>
 
-<blockquote><p>Com este release você já pode testar (caso não tenha testado ainda) a utilização dos <code>dts</code>s direto do npm. Escrevi sobre isso nesse <a href="/posts/The-Future-of-Declaration-Files">outro artigo</a>.</p></blockquote>
+<h2>Comutativa</h2>
 
-<h2>Tipos não nulos (Non-nullable Types)</h2>
+<blockquote><p><code>A | B</code> é equivalente a <code>B | A</code></p></blockquote>
 
-<p>Essa feature sem dúvidas é uma das mais legais dessa nova versão. <code>null</code> e <code>undefined</code> são a origem comum de quase todos os bugs introduzidos durante a programação em JavaScript onde <code>null</code> se aplica a objetos e <code>undefined</code> a variáveis, propriedades e funções (pretendo falar mais sobre isso em outro artigo). Nas versões anteriores do TypeScript o tipo <code>null</code> e o <code>undefined</code> faziam parte do dominio de todos os outros tipos, ou seja, uma variável declarada como <code>string</code> poderia em algum momento assumir um valor <code>null</code>. Com o TypeScript 2.0 a utilização do novo flag <code>--strictNullChecks</code> durante a compilação muda essa lógica. Agora uma variável do tipo <code>string</code> passar a ser apenas do tipo <code>string</code> e nada mais. Exemplo:</p>
+<pre><code class="typescript">class A { /* ... */ }
+class B { /* ... */ }
 
-<pre><code>let valor: string = null; // Error
+let a: A | B;
+let b: B | A;
+
+a = b;
 </code></pre>
 
-<p>Mas pera ai, e seu eu quiser que a variável <code>valor</code> aceite tanto um valor do tipo <code>string</code> quanto um valor nulo? Simples, basta utilizar o recurso <a href="/posts/union-types"><code>union types</code></a>. Exemplo:</p>
+<blockquote><p>OBS: O tipo resultante de <code>A | B</code> será um tipo com todas as propriedades comuns a <code>A</code> e <code>B</code>. Equivalente a uma intercessão entre os tipos.</p></blockquote>
 
-<pre><code>let valor: string | null = null; // Ok!
+<h2>Associativa</h2>
+
+<blockquote><p><code>(A | B) | C</code> é equivalente a <code>A | (B | C)</code></p></blockquote>
+
+<pre><code class="typescript">class A { /* ... */ }
+class B { /* ... */ }
+class C { /* ... */ }
+
+let a: (A | B) | C;
+let b: A | (B | C);
+
+a = b;
 </code></pre>
 
-<p>Isso transfere para o desenvolvedor a decisão de aceitar ou não um valor <code>null</code> ou <code>undefined</code> e protege o código contra bugs que passariam despercebidos.</p>
+<blockquote><p>O tipo <code>S</code> pode ser associado ao tipo <code>T1 | T2</code> se <code>S</code> for do tipo <code>T1</code> ou <code>S</code> for do tipo <code>T2</code>.</p></blockquote>
 
-<p>Agora observe o seguinte trecho de código:</p>
-
-<pre><code>declare let names: string[] | undefined;
-
-// Error! 'names' is possibly undefined.
-let upperCased = names.map(s =&gt; s.toUpperCase());
+<pre><code class="typescript">let x: string | number;
+x = 'olá'; // OK
+x = 42; // OK
+x = { }; // Erro
 </code></pre>
 
-<p>No exemplo acima teremos um erro. O compilador do TypeScript entende que <code>names</code> pode ser <code>undefined</code> devido a sua declaração <code>string[] | undefined</code>. Mas se tivermos certeza de que nesse caso <code>names</code> nunca será <code>undefined</code> e quisermos que este código execute mesmo assim podemos utilizar o operador <code>!</code> como a seguir:</p>
+<h2>Outros casos notáveis</h2>
 
-<pre><code>let upperCased = names!.map(s =&gt; s.toUpperCase());
+<h3>Herança</h3>
+
+<blockquote><p><code>A | B</code> é equivalente a <code>A</code> se <code>B</code> é um subtipo de <code>A</code></p></blockquote>
+
+<pre><code class="typescript">class A { /* ... */ }
+class B extends A { /* ... */ }
+
+let a: A;
+let b: A | B;
+
+a = b;
 </code></pre>
 
-<p>Ao utilizar o oerador <code>!</code> na variável <code>names!</code> estamos dizendo ao compilador que temos certeza de que essa variável nunca será <code>undefined</code> neste ponto do código.</p>
+<h3>Propriedades</h3>
 
-<h3>Aplicação em parâmetros e propriedades opcionais</h3>
+<blockquote><p>O tipo <code>A | B</code> tem uma propriedade <code>P</code> do tipo <code>X | Y</code> se á tiver uma propriedade <code>P</code> do tipo <code>X</code> e <code>B</code> tiver uma propriedade <code>P</code> do tipo <code>Y</code>. Essas propriedades precisam ter o mesmo tipo de acessor, ou seja precisam ser ao mesmo tempo <code>public</code>, <code>private</code> or <code>protected</code>.</p></blockquote>
 
-<p>Uma ressalva com relação a declarações opcionais. Todo parâmetro ou propriedade opcional tem de forma automática o tipo <code>undefined</code> agregado ao seu tipo original, mesmo quando isso não é declarado de forma explicita no código. por exemplo:</p>
+<pre><code class="typescript">class A { prop: number; }
+class B { prop: string; }
 
-<pre><code class="typescript">// Compilado com --strictNullChecks
-type T1 = (x?: number) =&gt; string;              // x é do tipo: number | undefined
-type T2 = (x?: number | undefined) =&gt; string;  // x é do tipo: number | undefined
+let x: A | B;
+let y = x.prop; // o tipo de y é number | string
 </code></pre>
 
-<p>por isso um parâmetro ou propriedade opcional sempre será nullable.</p>
+<h3>Funções</h3>
 
-<blockquote><p>NOTA: Para compilar os exemplos de código acima via linha de comando basta salvar o codigo em um arquivo e executar: <code>tsc file.ts --strictNullChecks</code></p></blockquote>
+<p>A mesma regra aplicada às propriedades exibida no item anterior também se aplica a funções.</p>
 
-<p>É isso aí pessoal, até a próxima!</p>
+<blockquote><p>Em <code>A | B</code> se <code>A</code> e <code>B</code> tiverem uma função com o mesmo nome <code>X</code>, o tipo resultante terá uma função <code>X</code> identica, caso a funçao <code>X</code> seja identica em <code>A</code> e <code>B</code> ou sobrecarregada caso a função <code>X</code> possua assinatura diferente em <code>A</code> e <code>B</code>.</p></blockquote>
 
-<blockquote><p>Reference: TS v2.0 <a href="https://github.com/Microsoft/TypeScript/pull/7140">https://github.com/Microsoft/TypeScript/pull/7140</a></p></blockquote>
+<pre><code class="typescript">class A {
+    fn1(a: number): string { return ""; }
+    fn2(): void { }
+}
+
+class B {
+    fn1(b: string): number { return 0; }
+    fn2(): void { }
+}
+
+let x: A | B;
+
+// Aqui a função fn2 é do tipo: ((a: number) =&gt; string | (b: string) =&gt; number)
+let fn2 = x.fn1;
+// Aqui a função fn3 é do tipo: () =&gt; void
+let fn3 = x.fn2;
+</code></pre>
+
+<h3>Conclusão</h3>
+
+<p>Este post foi totalmente teórico e muito dos comportamentos descritos aqui podem ser percebidos de forma intuitiva, no entando, é sempre bom entender um pouco mais esses fundamentos. Até a próxima!</p>
+
+<blockquote><p>Reference: TS v1.4 <a href="https://github.com/Microsoft/TypeScript/pull/824">https://github.com/Microsoft/TypeScript/pull/824</a></p></blockquote>
 
 
   <hr/>

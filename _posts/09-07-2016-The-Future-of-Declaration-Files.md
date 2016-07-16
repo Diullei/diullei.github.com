@@ -1,7 +1,7 @@
 ---
 layout: post
 title: TypeScript e o futuro dos arquivos de declaração
-category: TypeScript
+category: [TypeScript, TypeScript v2.0, DefinitelyTyped]
 tags : [TypeScript, JavaScript]
 ---
 

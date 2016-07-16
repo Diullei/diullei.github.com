@@ -13,7 +13,7 @@ Em Typecript quando declaramos uma variável com um tipo específico, `string` p
     // Erro! val só pode receber um valor do tipo string
     val = false;
 
-O que ocorre é que em JavaScript ocasionalmente teremos variáveis ou parâmetros que irão esperar receber em momentos diferentes, valores de tipos diferentes. Prevendo esse comportamente o TypeScript definiu um tipo chamado `any`. Esse tipo aceita qualquer valor de qualquer tipo. O problema aqui é que nem sempre declarar uma variável como `any` resolverá nosso problema. Pra que isso fique bem claro vamos a um exemplo:
+O que ocorre é que em JavaScript ocasionalmente teremos variáveis ou parâmetros que irão esperar receber em momentos diferentes, valores de tipos diferentes. Quando configuramos uma requisição ajax no `jQuery` por exemplo ([jQuery ajax doc](http://api.jquery.com/jquery.ajax/)), a propriedade `jsonp` pode assumir o valor `false` ou um valor do tipo `string`. Prevendo esse comportamente o TypeScript definiu um tipo chamado `any`. Esse tipo aceita qualquer valor de qualquer tipo. O problema aqui é que nem sempre declarar uma variável como `any` resolverá nosso problema. Pra que isso fique bem claro vamos a um exemplo:
 
 ```typescript
 /**
@@ -39,7 +39,7 @@ Note que no código acima o parâmetro `padding` está sendo declarado como `any
     // compila sem erros mas falha no momento da execução
     let indentedString = padLeft("Hello world", true);
 
-Para contornar esse problema o TypeScript possui uma classe especial de declaração de tipos chamado de "union types" que permite definir no momento da escrita do código quais os valores que serão aceitos pelo parâmetro ou pela variável. Com isso podemos dizer no código acima que queremos que `padding` seja um parâmetros de tipo menos permissivo e aceite apenas valores do tipo `string` ou `number`. Para isso alteramos a assinatura do tipo de `any` para `string | number`. Vamos alterar a assinatura da função `padLeft` para demonstrar esse recurso:
+Para contornar esse problema o TypeScript possui uma classe especial de declaração de tipos chamado de "union types" que permite definir no momento da escrita do código quais os valores que serão aceitos pelo parâmetro ou pela variável. Para isso utilizamos o operador `|`. Veja que no código acima que queremos que `padding` seja um parâmetros de tipo menos permissivo e aceite apenas valores do tipo `string` ou `number` e para isso alteramos a assinatura do tipo de `any` para `string | number`. Vamos alterar a assinatura da função `padLeft` para demonstrar esse recurso:
 
 ```typescript
 function padLeft(value: string, padding: string | number) {
@@ -56,4 +56,4 @@ Veja como esse recurso nos ajuda a proteger o código de possíveis erros que pa
 
 É isso. Até a próxima!
 
-> Spec: TS v1.4 [https://github.com/Microsoft/TypeScript/pull/824](https://github.com/Microsoft/TypeScript/pull/824)
+> Reference: TS v1.4 [https://github.com/Microsoft/TypeScript/pull/824](https://github.com/Microsoft/TypeScript/pull/824)

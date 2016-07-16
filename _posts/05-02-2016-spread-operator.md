@@ -73,4 +73,4 @@ Repare que no exemplo acima o valor do array `args` está sendo "destruído" par
 
 É isso, Abraços!
 
-> Spec: TS v1.5 [https://github.com/Microsoft/TypeScript/pull/1931](https://github.com/Microsoft/TypeScript/pull/1931)
+> Reference: TS v1.5 [https://github.com/Microsoft/TypeScript/pull/1931](https://github.com/Microsoft/TypeScript/pull/1931)

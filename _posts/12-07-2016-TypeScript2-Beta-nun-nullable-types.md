@@ -53,4 +53,4 @@ por isso um parâmetro ou propriedade opcional sempre será nullable.
 
 É isso aí pessoal, até a próxima!
 
-> Spec: TS v2.0 [https://github.com/Microsoft/TypeScript/pull/7140](https://github.com/Microsoft/TypeScript/pull/7140)
+> Reference: TS v2.0 [https://github.com/Microsoft/TypeScript/pull/7140](https://github.com/Microsoft/TypeScript/pull/7140)
