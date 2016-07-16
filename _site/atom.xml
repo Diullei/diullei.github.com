@@ -4,12 +4,79 @@
  <title>Diullei Gomes</title>
  <link href="http://www.diullei.com/atom.xml" rel="self"/>
  <link href="http://www.diullei.com/"/>
- <updated>2016-07-16T01:43:06-03:00</updated>
+ <updated>2016-07-16T17:57:22-03:00</updated>
  <id>http://www.diullei.com</id>
  <author>
    <name>Diullei Gomes</name>
  </author>
 
+ 
+ <entry>
+   <title>TypeScript - Type Guards</title>
+   <link href="http://www.diullei.com/posts/TypeScript-Type-Guards"/>
+   <updated>2016-07-16T00:00:00-03:00</updated>
+   <id>http://www.diullei.com/posts/TypeScript-Type-Guards</id>
+   <content type="html">&lt;p&gt;Hoje vamos falar sobre &lt;code&gt;Type Guards&lt;/code&gt;. Trata-se de um recurso do TypeScript que permite, a partir de uma validação de tipo, assumir que uma variável ou argumento declarado com o tipo &lt;code&gt;any&lt;/code&gt; ou proveniente de uma uniao de tipos, é de um tipo específico préviamente verificado sem a necessidade de utilizar cast. Um pouco complicado neh? Nada melhor do que um exemplo para entendermos melhor:&lt;/p&gt;
+
+&lt;p&gt;Código utilizando cast:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;typescript&quot;&gt;function fn(arg: any): any {
+    if (typeof arg === &quot;string&quot;) {
+        return (&amp;lt;string&amp;gt;arg).charCodeAt(0);
+    } else if (typeof arg === &quot;number&quot;) {
+        return (&amp;lt;number&amp;gt;arg).toFixed(10);
+    } else {
+        // aqui arg continua sendo entendido como any
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Código utilizando type guards:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;typescript&quot;&gt;function fn(arg: any): any {
+    if (typeof arg === &quot;string&quot;) {
+        return arg.charCodeAt(0); // arg já é entendido como string aqui
+    } else if (typeof arg === &quot;number&quot;) {
+        return arg.toFixed(10); // arg já é entendido como number aqui
+    } else {
+        // aqui arg continua sendo entendido como any
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Note que o argumento &lt;code&gt;arg&lt;/code&gt; foi declarado como &lt;code&gt;any&lt;/code&gt; e dentro do bloco &lt;code&gt;if&lt;/code&gt; que verifica se o tipo de &lt;code&gt;arg&lt;/code&gt; é &lt;code&gt;string&lt;/code&gt; o compilador entende que &lt;code&gt;arg&lt;/code&gt; é &lt;code&gt;string&lt;/code&gt; e lista no intellisense do editor todos os membros do tipo &lt;code&gt;string&lt;/code&gt;. O mesmo acontece para o bloco de &lt;code&gt;if&lt;/code&gt; que verifica se o tipo é &lt;code&gt;number&lt;/code&gt;. Esse mesmo comportamento ocorre para tipos declarados com o operador de &amp;ldquo;union types&amp;rdquo;.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;typescript&quot;&gt;function fn(arg: string | number): any {
+    if (typeof arg === &quot;string&quot;) {
+        return arg.charCodeAt(0); // arg é entendido como string aqui
+    } else if (typeof arg === &quot;number&quot;) {
+        return arg.toFixed(10); // arg é entendido como number aqui
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Utilizamos o operador &lt;code&gt;typeof&lt;/code&gt; para verificação de tipos primitivos. Caso queiramos utilizar o mesmo recurso para clases pré-definidas utilizamos o operador &lt;code&gt;instanceof&lt;/code&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;typescript&quot;&gt;class A {
+    name: string;
+}
+
+function fn(arg: string | A): any {
+    if (typeof arg === &quot;string&quot;) {
+        return arg.charCodeAt(0); // arg é entendido como string aqui
+    } else if (arg instanceof A) {
+        return arg.name; // arg é entendido como A aqui
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;O legal desse recurso é que não precisamos ficar sujando o código fazendo cast. Uma solução muito mais elegante e limpa.&lt;/p&gt;
+
+&lt;p&gt;Até a próxima!&lt;/p&gt;
+
+&lt;blockquote&gt;&lt;p&gt;Reference: TS v1.4 &lt;a href=&quot;https://github.com/Microsoft/TypeScript/pull/824#issuecomment-58273237&quot;&gt;https://github.com/Microsoft/TypeScript/pull/824#issuecomment-58273237&lt;/a&gt;&lt;/p&gt;&lt;/blockquote&gt;
+</content>
+ </entry>
  
  <entry>
    <title>TypeScript - Um pouco mais sobre Union types</title>
