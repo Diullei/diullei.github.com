@@ -1,11 +1,11 @@
 ---
 layout: post
 title: Spread Operator (Operador de Propagação)
-category: TypeScript
+category: [TypeScript, TypeScript v1.5]
 tags : [TypeScript, JavaScript]
 ---
 
-No ultimo argito eu falei de forma bem rapida e simple sobre um recurso muito interessante do TypeScript `rest parameters`. Seguindo esta mesma linha hoje eu quero falar sbore um outro recuro muito legal chamado `spread operator`.
+No ultimo artigo eu falei de forma bem rapida e simple sobre um recurso muito interessante do TypeScript `rest parameters`. Seguindo esta mesma linha hoje eu quero falar sbore um outro recuro muito legal chamado `spread operator`.
 
 O `Spread Operator` (Operador de Propagação) permite que uma expressão seja expandida em locais onde são esperados vários argumentos (chamadas de função) ou múltiplos elementos (arrays literais).
 
@@ -72,3 +72,5 @@ foo(...args);
 Repare que no exemplo acima o valor do array `args` está sendo "destruído" para alimentar os argumentos da função `foo`. Para saber mais sobre Spread Operators no ES6 [acesse aqui](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_operator).
 
 É isso, Abraços!
+
+> Spec: TS v1.5 [https://github.com/Microsoft/TypeScript/pull/1931](https://github.com/Microsoft/TypeScript/pull/1931)

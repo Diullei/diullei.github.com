@@ -1,7 +1,7 @@
 ---
 layout: post
 title: TypeScript 2.0 Beta - Non nullable types (Tipos não nulos)
-category: TypeScript
+category: [TypeScript, TypeScript v2.0]
 tags : [TypeScript, JavaScript]
 ---
 O TypeScript 2.0 Beta desembarcou com muitas novidades. [Veja aqui](https://blogs.msdn.microsoft.com/typescript/2016/07/11/announcing-typescript-2-0-beta/) o post original no blog da Microsoft. No decorrer dos próximos posts vou falar um pouco mais sobre as features dessa nova versão. Para iniciar, hoje quero falar sobre um dos recursos que eu já estava acompanhando e achei muito legal: a definição de tipos não nulos.
@@ -52,3 +52,5 @@ por isso um parâmetro ou propriedade opcional sempre será nullable.
 > NOTA: Para compilar os exemplos de código acima via linha de comando basta salvar o codigo em um arquivo e executar: `tsc file.ts --strictNullChecks`
 
 É isso aí pessoal, até a próxima!
+
+> Spec: TS v2.0 [https://github.com/Microsoft/TypeScript/pull/7140](https://github.com/Microsoft/TypeScript/pull/7140)

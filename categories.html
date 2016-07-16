@@ -7,10 +7,10 @@ title: "Categorias"
 
   <h1>Categories</h1>
 
-{% for category in site.categories %} 
-  <h2 id="{{ category[0] }}-ref">{{ category[0] | join: "/" }}</h2>
+{% for category in site.categories reversed %}
+  <h3 id="{{ category[0] }}-ref">{{ category[0] | join: "/" }}</h3>
   <ul>
-    {% assign pages_list = category[1] %}  
+    {% assign pages_list = category[1] %}
 
     {% for node in pages_list %}
       {% if node.title != null %}

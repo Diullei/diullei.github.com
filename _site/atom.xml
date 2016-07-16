@@ -4,7 +4,7 @@
  <title>Diullei Gomes</title>
  <link href="http://www.diullei.com/atom.xml" rel="self"/>
  <link href="http://www.diullei.com/"/>
- <updated>2016-07-15T11:07:20-03:00</updated>
+ <updated>2016-07-15T21:40:40-03:00</updated>
  <id>http://www.diullei.com</id>
  <author>
    <name>Diullei Gomes</name>
@@ -136,6 +136,8 @@ let indentedString = padLeft(&quot;Hello world&quot;, true);
 &lt;p&gt;Veja como esse recurso nos ajuda a proteger o código de possíveis erros que passariam despercebidos.&lt;/p&gt;
 
 &lt;p&gt;É isso. Até a próxima!&lt;/p&gt;
+
+&lt;blockquote&gt;&lt;p&gt;Spec: TS v1.4 &lt;a href=&quot;https://github.com/Microsoft/TypeScript/pull/824&quot;&gt;https://github.com/Microsoft/TypeScript/pull/824&lt;/a&gt;&lt;/p&gt;&lt;/blockquote&gt;
 </content>
  </entry>
  
@@ -196,6 +198,8 @@ type T2 = (x?: number | undefined) =&amp;gt; string;  // x é do tipo: number | 
 &lt;blockquote&gt;&lt;p&gt;NOTA: Para compilar os exemplos de código acima via linha de comando basta salvar o codigo em um arquivo e executar: &lt;code&gt;tsc file.ts --strictNullChecks&lt;/code&gt;&lt;/p&gt;&lt;/blockquote&gt;
 
 &lt;p&gt;É isso aí pessoal, até a próxima!&lt;/p&gt;
+
+&lt;blockquote&gt;&lt;p&gt;Spec: TS v2.0 &lt;a href=&quot;https://github.com/Microsoft/TypeScript/pull/7140&quot;&gt;https://github.com/Microsoft/TypeScript/pull/7140&lt;/a&gt;&lt;/p&gt;&lt;/blockquote&gt;
 </content>
  </entry>
  
@@ -262,7 +266,7 @@ _.padStart(&quot;Hello TypeScript!&quot;, 20, &quot; &quot;);
    <link href="http://www.diullei.com/posts/spread-operator"/>
    <updated>2016-02-05T00:00:00-02:00</updated>
    <id>http://www.diullei.com/posts/spread-operator</id>
-   <content type="html">&lt;p&gt;No ultimo argito eu falei de forma bem rapida e simple sobre um recurso muito interessante do TypeScript &lt;code&gt;rest parameters&lt;/code&gt;. Seguindo esta mesma linha hoje eu quero falar sbore um outro recuro muito legal chamado &lt;code&gt;spread operator&lt;/code&gt;.&lt;/p&gt;
+   <content type="html">&lt;p&gt;No ultimo artigo eu falei de forma bem rapida e simple sobre um recurso muito interessante do TypeScript &lt;code&gt;rest parameters&lt;/code&gt;. Seguindo esta mesma linha hoje eu quero falar sbore um outro recuro muito legal chamado &lt;code&gt;spread operator&lt;/code&gt;.&lt;/p&gt;
 
 &lt;p&gt;O &lt;code&gt;Spread Operator&lt;/code&gt; (Operador de Propagação) permite que uma expressão seja expandida em locais onde são esperados vários argumentos (chamadas de função) ou múltiplos elementos (arrays literais).&lt;/p&gt;
 
@@ -325,6 +329,8 @@ foo(...args);
 &lt;p&gt;Repare que no exemplo acima o valor do array &lt;code&gt;args&lt;/code&gt; está sendo &amp;ldquo;destruído&amp;rdquo; para alimentar os argumentos da função &lt;code&gt;foo&lt;/code&gt;. Para saber mais sobre Spread Operators no ES6 &lt;a href=&quot;https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_operator&quot;&gt;acesse aqui&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;É isso, Abraços!&lt;/p&gt;
+
+&lt;blockquote&gt;&lt;p&gt;Spec: TS v1.5 &lt;a href=&quot;https://github.com/Microsoft/TypeScript/pull/1931&quot;&gt;https://github.com/Microsoft/TypeScript/pull/1931&lt;/a&gt;&lt;/p&gt;&lt;/blockquote&gt;
 </content>
  </entry>
  

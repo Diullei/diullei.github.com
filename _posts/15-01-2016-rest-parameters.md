@@ -1,7 +1,7 @@
 ---
 layout: post
 title: TypeScript - Rest Parameters
-category: TypeScript
+category: [TypeScript, TypeScript v1.0]
 tags : [TypeScript, JavaScript]
 ---
 

@@ -1,7 +1,7 @@
 ---
 layout: post
 title: TypeScript - Union Types
-category: TypeScript
+category: [TypeScript, TypeScript v1.4]
 tags : [TypeScript, JavaScript]
 ---
 
@@ -55,3 +55,5 @@ Agora temos uma falha no momento da compilação do código. O que aconteceu? O 
 Veja como esse recurso nos ajuda a proteger o código de possíveis erros que passariam despercebidos.
 
 É isso. Até a próxima!
+
+> Spec: TS v1.4 [https://github.com/Microsoft/TypeScript/pull/824](https://github.com/Microsoft/TypeScript/pull/824)
