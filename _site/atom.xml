@@ -4,12 +4,85 @@
  <title>Diullei Gomes</title>
  <link href="http://www.diullei.com/atom.xml" rel="self"/>
  <link href="http://www.diullei.com/"/>
- <updated>2016-07-16T17:57:22-03:00</updated>
+ <updated>2016-07-18T20:30:06-03:00</updated>
  <id>http://www.diullei.com</id>
  <author>
    <name>Diullei Gomes</name>
  </author>
 
+ 
+ <entry>
+   <title>ES6 - Nova sintaxe para criação de objetos</title>
+   <link href="http://www.diullei.com/posts/Object-literal-features"/>
+   <updated>2016-07-18T00:00:00-03:00</updated>
+   <id>http://www.diullei.com/posts/Object-literal-features</id>
+   <content type="html">&lt;p&gt;Com o ES6 temos a possibilidade de criar objetos com uma sintaxe bem diferente da que estávamos acostumados até agora. Vamos tomar como exemplo a seguinte declarção:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;JavaScript&quot;&gt;const firstName = &#39;Diulle&#39;;
+const secondName = &#39;Gomes&#39;;
+
+let obj = {
+    firstName: firstName,
+    secondName: secondName
+};
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Utilizando a nova sintaxe podemos reescrever esse trecho de código da seguinte forma:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;JavaScript&quot;&gt;const firstName = &#39;Diulle&#39;;
+const secondName = &#39;Gomes&#39;;
+
+let obj = {
+    firstName,
+    secondName
+};
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Note que neste caso o nome da variável será considerado também como nome da propriedade do objeto. Existe ainda uma outra forma conhecida como &amp;ldquo;Computed property key&amp;rdquo; onde podemos passar o resultado de uma expressão na criação de uma propriedade. Veja o seguinte exemplo:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;JavaScript&quot;&gt;const firstName = &#39;firstName&#39;;
+
+let obj = {
+    [firstName]: &#39;Diullei&#39;,
+    [&#39;secondName&#39;]: &#39;Gomes&#39;,
+    [&#39;other&#39; + &#39;name&#39;]: &#39;Moura&#39;
+};
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Essa mesma sintaxe também pode ser aplicada par a criação de funções. Por exemplo, o seguinte trecho de códiogo:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;JavaScript&quot;&gt;const obj = {
+    myMethod: function(x, y) {
+      //...
+    }
+};
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Pode ser reescrito da seguinte forma:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;JavaScript&quot;&gt;const obj = {
+    myMethod(x, y) {
+      //...
+    }
+};
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Ou assim:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;JavaScript&quot;&gt;const obj = {
+    [&#39;myMethod&#39;](x, y) {
+      //...
+    }
+};
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;O objetivo principal dessa alteração toda na sintaxe foi para facilitar a utilização de &lt;code&gt;Symbols&lt;/code&gt; como nome de propriedades. Veremos mais a fundo a utilização de &lt;code&gt;Symbols&lt;/code&gt; em outros artigos.&lt;/p&gt;
+
+&lt;p&gt;O legal é que o &lt;code&gt;TypeScript&lt;/code&gt; já suporta a utilização dessa sintaxe!&lt;/p&gt;
+
+&lt;p&gt;Por hoje é só. Abraços!&lt;/p&gt;
+</content>
+ </entry>
  
  <entry>
    <title>TypeScript - Type Guards</title>
