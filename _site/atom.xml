@@ -4,7 +4,7 @@
  <title>Diullei Gomes</title>
  <link href="http://www.diullei.com/atom.xml" rel="self"/>
  <link href="http://www.diullei.com/"/>
- <updated>2016-07-18T20:30:06-03:00</updated>
+ <updated>2016-07-18T22:35:58-03:00</updated>
  <id>http://www.diullei.com</id>
  <author>
    <name>Diullei Gomes</name>
@@ -76,7 +76,24 @@ let obj = {
 };
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;O objetivo principal dessa alteração toda na sintaxe foi para facilitar a utilização de &lt;code&gt;Symbols&lt;/code&gt; como nome de propriedades. Veremos mais a fundo a utilização de &lt;code&gt;Symbols&lt;/code&gt; em outros artigos.&lt;/p&gt;
+&lt;p&gt;O objetivo principal dessa nova sintaxe é facilitar a utilização de &lt;code&gt;Symbols&lt;/code&gt; como nome de propriedades. Exemplo:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;JavaScript&quot;&gt;const obj = {
+    * [Symbol.iterator]() { // (A)
+        yield &#39;hello&#39;;
+        yield &#39;world&#39;;
+    }
+};
+
+for (const x of obj) {
+    console.log(x);
+}
+// Output:
+// hello
+// world
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;No código acima estamos criando um objeto com um generator identificado por &lt;code&gt;Symbol.iterator&lt;/code&gt;. Veremos mais a fundo a utilização de &lt;code&gt;Symbols&lt;/code&gt; em outros artigos.&lt;/p&gt;
 
 &lt;p&gt;O legal é que o &lt;code&gt;TypeScript&lt;/code&gt; já suporta a utilização dessa sintaxe!&lt;/p&gt;
 

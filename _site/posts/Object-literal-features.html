@@ -135,7 +135,24 @@ let obj = {
 };
 </code></pre>
 
-<p>O objetivo principal dessa alteração toda na sintaxe foi para facilitar a utilização de <code>Symbols</code> como nome de propriedades. Veremos mais a fundo a utilização de <code>Symbols</code> em outros artigos.</p>
+<p>O objetivo principal dessa nova sintaxe é facilitar a utilização de <code>Symbols</code> como nome de propriedades. Exemplo:</p>
+
+<pre><code class="JavaScript">const obj = {
+    * [Symbol.iterator]() { // (A)
+        yield 'hello';
+        yield 'world';
+    }
+};
+
+for (const x of obj) {
+    console.log(x);
+}
+// Output:
+// hello
+// world
+</code></pre>
+
+<p>No código acima estamos criando um objeto com um generator identificado por <code>Symbol.iterator</code>. Veremos mais a fundo a utilização de <code>Symbols</code> em outros artigos.</p>
 
 <p>O legal é que o <code>TypeScript</code> já suporta a utilização dessa sintaxe!</p>
 

@@ -71,7 +71,25 @@ const obj = {
 };
 ```
 
-O objetivo principal dessa alteração toda na sintaxe foi para facilitar a utilização de `Symbols` como nome de propriedades. Veremos mais a fundo a utilização de `Symbols` em outros artigos.
+O objetivo principal dessa nova sintaxe é facilitar a utilização de `Symbols` como nome de propriedades. Exemplo:
+
+```JavaScript
+const obj = {
+    * [Symbol.iterator]() { // (A)
+        yield 'hello';
+        yield 'world';
+    }
+};
+
+for (const x of obj) {
+    console.log(x);
+}
+// Output:
+// hello
+// world
+```
+
+No código acima estamos criando um objeto com um generator identificado por `Symbol.iterator`. Veremos mais a fundo a utilização de `Symbols` em outros artigos.
 
 O legal é que o `TypeScript` já suporta a utilização dessa sintaxe!
 
