@@ -75,7 +75,7 @@ O objetivo principal dessa nova sintaxe é facilitar a utilização de `Symbols`
 
 ```JavaScript
 const obj = {
-    * [Symbol.iterator]() { // (A)
+    * [Symbol.iterator]() {
         yield 'hello';
         yield 'world';
     }
