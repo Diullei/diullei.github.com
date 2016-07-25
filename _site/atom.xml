@@ -4,12 +4,108 @@
  <title>Diullei Gomes</title>
  <link href="http://www.diullei.com/atom.xml" rel="self"/>
  <link href="http://www.diullei.com/"/>
- <updated>2016-07-18T22:35:58-03:00</updated>
+ <updated>2016-07-25T20:12:01-03:00</updated>
  <id>http://www.diullei.com</id>
  <author>
    <name>Diullei Gomes</name>
  </author>
 
+ 
+ <entry>
+   <title>ES6 - strings - Novos métodos</title>
+   <link href="http://www.diullei.com/posts/ES6-strings-new-methods"/>
+   <updated>2016-07-25T00:00:00-03:00</updated>
+   <id>http://www.diullei.com/posts/ES6-strings-new-methods</id>
+   <content type="html">&lt;p&gt;O ES6 trouxe várias features legais para manipulação de strings. Hoje quero falar sobre 4 funções: &lt;code&gt;startsWith&lt;/code&gt;, &lt;code&gt;endsWith&lt;/code&gt;, &lt;code&gt;includes&lt;/code&gt; e &lt;code&gt;repeat&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Se você já precisou verificar o inicio ou final de um texto para validar se o mesmo inicia com algum padrão pré estabelecido você certamente já precisou escrever algum código utilizando a função &lt;code&gt;indexOf&lt;/code&gt;. Exemplo:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;javascript&quot;&gt;var list = [&#39;iPhone 5&#39;, &#39;Moto X2&#39;, &#39;iPad 2&#39;, &#39;iPhone 6&#39;];
+
+
+var iphones = list.filter(function(x) {
+    // verifica se o texto inicia com &quot;iPhone&quot;
+    // esse trecho de código não é nada legível
+    return x.indexOf(&#39;iPhone&#39;) === 0;
+});
+
+iphones.forEach(function(x) {
+    console.log(x);
+});
+// =&amp;gt; iPhone 5
+// =&amp;gt; iPhone 6
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Note que foi necessário utilizar a função &lt;code&gt;indexOf&lt;/code&gt;. Essa função retorna o número correspondente ao caracter no texto (iniciando com zero) que inicia com o padrão passado como parâmetro. No nosso caso &amp;ldquo;iPhone&amp;rdquo;. Caso o padrão não seja encontrado a função retorna o valor -1.&lt;/p&gt;
+
+&lt;p&gt;O que algumas pessoas fazem é adicionar &amp;ldquo;na força&amp;rdquo; um método novo ao objeto &lt;code&gt;string&lt;/code&gt; para que o código fique mais legíveil:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;javascript&quot;&gt;if (!String.prototype.startsWith) {
+    String.prototype.startsWith = function(searchString, position) {
+        position = position || 0;
+        return this.indexOf(searchString, position) === position;
+    };
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Com isso podemos reescrever o código do nosso primeiro exemplo da seguinte forma:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;javascript&quot;&gt;var list = [&#39;iPhone 5&#39;, &#39;Moto X2&#39;, &#39;iPad 2&#39;, &#39;iPhone 6&#39;];
+
+var iphones = list.filter(function(x) {
+    return x.startsWith(&#39;iPhone&#39;);
+});
+
+iphones.forEach(function(x) {
+    console.log(x);
+});
+// =&amp;gt; iPhone 5
+// =&amp;gt; iPhone 6
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Repare que com a utilizção do método &amp;ldquo;startsWith&amp;rdquo; o código ficou mais intuitivo do que o anterior.&lt;/p&gt;
+
+&lt;h2&gt;ES6 - Novas funções&lt;/h2&gt;
+
+&lt;p&gt;Com a chegada do ES6 não precisamos mais fazer essas manobras. Segue abaixo a descrição de algumas funções que foram adicionadas ao javascript:&lt;/p&gt;
+
+&lt;h3&gt;startsWith(&amp;hellip;)&lt;/h3&gt;
+
+&lt;p&gt;Isso mesmo, a função que acabamos de ver nos exemplos anteriores!&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;javascript&quot;&gt;&#39;hello&#39;.startsWith(&#39;hell&#39;);
+//=&amp;gt; true
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3&gt;endsWith(&amp;hellip;)&lt;/h3&gt;
+
+&lt;p&gt;Similar a função &lt;code&gt;startsWith&lt;/code&gt; só que esta verifica se o texto termina com o padrão informado:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;javascript&quot;&gt;&#39;hello&#39;.endsWith(&#39;ello&#39;);
+//=&amp;gt; true
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3&gt;includes(&amp;hellip;)&lt;/h3&gt;
+
+&lt;p&gt;Utilizamos esta função para identificar se um texto contem um outro texto:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;javascript&quot;&gt;&#39;hello&#39;.includes(&#39;ell&#39;);
+//=&amp;gt; true
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;blockquote&gt;&lt;p&gt;No caso acima o texto &amp;ldquo;hello&amp;rdquo; contem uma ocorrencia do outro texto &amp;ldquo;ell&amp;rdquo;&lt;/p&gt;&lt;/blockquote&gt;
+
+&lt;h3&gt;repeat(&amp;hellip;)&lt;/h3&gt;
+
+&lt;p&gt;Utilizamos o &lt;code&gt;repeat&lt;/code&gt; para repetir um texto &lt;code&gt;n&lt;/code&gt; vezes:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;javascript&quot;&gt;&#39;blah &#39;.repeat(3);
+//=&amp;gt; &quot;blah blah blah &quot;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Existem ainda outras funções no objeto &lt;code&gt;string&lt;/code&gt;. Irei apresenta-las num próximo post. Até a próxima!&lt;/p&gt;
+</content>
+ </entry>
  
  <entry>
    <title>ES6 - Nova sintaxe para criação de objetos</title>
@@ -79,7 +175,7 @@ let obj = {
 &lt;p&gt;O objetivo principal dessa nova sintaxe é facilitar a utilização de &lt;code&gt;Symbols&lt;/code&gt; como nome de propriedades. Exemplo:&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&quot;JavaScript&quot;&gt;const obj = {
-    * [Symbol.iterator]() { // (A)
+    * [Symbol.iterator]() {
         yield &#39;hello&#39;;
         yield &#39;world&#39;;
     }

@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <title>
     
-      ES6 - Nova sintaxe para criação de objetos &ndash;
+      ES6 - strings - Novos métodos &ndash;
     
     Diullei Gomes
   </title>
@@ -68,95 +68,101 @@
 
     <section class="content">
   <h1>
-    <a href="/posts/Object-literal-features">ES6 - Nova sintaxe para criação de objetos</a>
+    <a href="/posts/ES6-strings-new-methods">ES6 - strings - Novos métodos</a>
   </h1>
 
   <section class="byline">
-    July 18, 2016
+    July 25, 2016
   </section>
 
-  <p>Com o ES6 temos a possibilidade de criar objetos com uma sintaxe bem diferente da que estávamos acostumados até agora. Vamos tomar como exemplo a seguinte declarção:</p>
+  <p>O ES6 trouxe várias features legais para manipulação de strings. Hoje quero falar sobre 4 funções: <code>startsWith</code>, <code>endsWith</code>, <code>includes</code> e <code>repeat</code>.</p>
 
-<pre><code class="JavaScript">const firstName = 'Diulle';
-const secondName = 'Gomes';
+<p>Se você já precisou verificar o inicio ou final de um texto para validar se o mesmo inicia com algum padrão pré estabelecido você certamente já precisou escrever algum código utilizando a função <code>indexOf</code>. Exemplo:</p>
 
-let obj = {
-    firstName: firstName,
-    secondName: secondName
-};
-</code></pre>
+<pre><code class="javascript">var list = ['iPhone 5', 'Moto X2', 'iPad 2', 'iPhone 6'];
 
-<p>Utilizando a nova sintaxe podemos reescrever esse trecho de código da seguinte forma:</p>
 
-<pre><code class="JavaScript">const firstName = 'Diulle';
-const secondName = 'Gomes';
+var iphones = list.filter(function(x) {
+    // verifica se o texto inicia com "iPhone"
+    // esse trecho de código não é nada legível
+    return x.indexOf('iPhone') === 0;
+});
 
-let obj = {
-    firstName,
-    secondName
-};
-</code></pre>
-
-<p>Note que neste caso o nome da variável será considerado também como nome da propriedade do objeto. Existe ainda uma outra forma conhecida como &ldquo;Computed property key&rdquo; onde podemos passar o resultado de uma expressão na criação de uma propriedade. Veja o seguinte exemplo:</p>
-
-<pre><code class="JavaScript">const firstName = 'firstName';
-
-let obj = {
-    [firstName]: 'Diullei',
-    ['secondName']: 'Gomes',
-    ['other' + 'name']: 'Moura'
-};
-</code></pre>
-
-<p>Essa mesma sintaxe também pode ser aplicada par a criação de funções. Por exemplo, o seguinte trecho de códiogo:</p>
-
-<pre><code class="JavaScript">const obj = {
-    myMethod: function(x, y) {
-      //...
-    }
-};
-</code></pre>
-
-<p>Pode ser reescrito da seguinte forma:</p>
-
-<pre><code class="JavaScript">const obj = {
-    myMethod(x, y) {
-      //...
-    }
-};
-</code></pre>
-
-<p>Ou assim:</p>
-
-<pre><code class="JavaScript">const obj = {
-    ['myMethod'](x, y) {
-      //...
-    }
-};
-</code></pre>
-
-<p>O objetivo principal dessa nova sintaxe é facilitar a utilização de <code>Symbols</code> como nome de propriedades. Exemplo:</p>
-
-<pre><code class="JavaScript">const obj = {
-    * [Symbol.iterator]() {
-        yield 'hello';
-        yield 'world';
-    }
-};
-
-for (const x of obj) {
+iphones.forEach(function(x) {
     console.log(x);
-}
-// Output:
-// hello
-// world
+});
+// =&gt; iPhone 5
+// =&gt; iPhone 6
 </code></pre>
 
-<p>No código acima estamos criando um objeto com um generator identificado por <code>Symbol.iterator</code>. Veremos mais a fundo a utilização de <code>Symbols</code> em outros artigos.</p>
+<p>Note que foi necessário utilizar a função <code>indexOf</code>. Essa função retorna o número correspondente ao caracter no texto (iniciando com zero) que inicia com o padrão passado como parâmetro. No nosso caso &ldquo;iPhone&rdquo;. Caso o padrão não seja encontrado a função retorna o valor -1.</p>
 
-<p>O legal é que o <code>TypeScript</code> já suporta a utilização dessa sintaxe!</p>
+<p>O que algumas pessoas fazem é adicionar &ldquo;na força&rdquo; um método novo ao objeto <code>string</code> para que o código fique mais legíveil:</p>
 
-<p>Por hoje é só. Abraços!</p>
+<pre><code class="javascript">if (!String.prototype.startsWith) {
+    String.prototype.startsWith = function(searchString, position) {
+        position = position || 0;
+        return this.indexOf(searchString, position) === position;
+    };
+}
+</code></pre>
+
+<p>Com isso podemos reescrever o código do nosso primeiro exemplo da seguinte forma:</p>
+
+<pre><code class="javascript">var list = ['iPhone 5', 'Moto X2', 'iPad 2', 'iPhone 6'];
+
+var iphones = list.filter(function(x) {
+    return x.startsWith('iPhone');
+});
+
+iphones.forEach(function(x) {
+    console.log(x);
+});
+// =&gt; iPhone 5
+// =&gt; iPhone 6
+</code></pre>
+
+<p>Repare que com a utilizção do método &ldquo;startsWith&rdquo; o código ficou mais intuitivo do que o anterior.</p>
+
+<h2>ES6 - Novas funções</h2>
+
+<p>Com a chegada do ES6 não precisamos mais fazer essas manobras. Segue abaixo a descrição de algumas funções que foram adicionadas ao javascript:</p>
+
+<h3>startsWith(&hellip;)</h3>
+
+<p>Isso mesmo, a função que acabamos de ver nos exemplos anteriores!</p>
+
+<pre><code class="javascript">'hello'.startsWith('hell');
+//=&gt; true
+</code></pre>
+
+<h3>endsWith(&hellip;)</h3>
+
+<p>Similar a função <code>startsWith</code> só que esta verifica se o texto termina com o padrão informado:</p>
+
+<pre><code class="javascript">'hello'.endsWith('ello');
+//=&gt; true
+</code></pre>
+
+<h3>includes(&hellip;)</h3>
+
+<p>Utilizamos esta função para identificar se um texto contem um outro texto:</p>
+
+<pre><code class="javascript">'hello'.includes('ell');
+//=&gt; true
+</code></pre>
+
+<blockquote><p>No caso acima o texto &ldquo;hello&rdquo; contem uma ocorrencia do outro texto &ldquo;ell&rdquo;</p></blockquote>
+
+<h3>repeat(&hellip;)</h3>
+
+<p>Utilizamos o <code>repeat</code> para repetir um texto <code>n</code> vezes:</p>
+
+<pre><code class="javascript">'blah '.repeat(3);
+//=&gt; "blah blah blah "
+</code></pre>
+
+<p>Existem ainda outras funções no objeto <code>string</code>. Irei apresenta-las num próximo post. Até a próxima!</p>
 
 
   <hr/>
