@@ -23,7 +23,7 @@ class MyClass {
 * Os decorators são sempre chamados quando uma classe é declarada e não quando um objeto é instanciado.
 * Multiplos decorators podem ser declarados para um mesmo target.
 * não é permitida a utilização de decorators em construtores.
-* Os decorators pode mser do tipo: `ClassDecorator`, `PropertyDecorator`, `MethodDecorator` ou `ParameterDecorator`.
+* Os decorators podem ser do tipo: `ClassDecorator`, `PropertyDecorator`, `MethodDecorator` ou `ParameterDecorator`.
 
 ## Decorators em Métodos
 

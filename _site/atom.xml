@@ -4,7 +4,7 @@
  <title>Diullei Gomes</title>
  <link href="http://www.diullei.com/atom.xml" rel="self"/>
  <link href="http://www.diullei.com/"/>
- <updated>2016-07-25T20:13:37-03:00</updated>
+ <updated>2016-10-10T19:23:31+00:00</updated>
  <id>http://www.diullei.com</id>
  <author>
    <name>Diullei Gomes</name>
@@ -14,19 +14,19 @@
  <entry>
    <title>ES6 - strings - Novos métodos</title>
    <link href="http://www.diullei.com/posts/ES6-strings-new-methods"/>
-   <updated>2016-07-25T00:00:00-03:00</updated>
+   <updated>2016-07-25T00:00:00+00:00</updated>
    <id>http://www.diullei.com/posts/ES6-strings-new-methods</id>
    <content type="html">&lt;p&gt;O ES6 trouxe várias features legais para manipulação de strings. Hoje quero falar sobre 4 funções: &lt;code&gt;startsWith&lt;/code&gt;, &lt;code&gt;endsWith&lt;/code&gt;, &lt;code&gt;includes&lt;/code&gt; e &lt;code&gt;repeat&lt;/code&gt;.&lt;/p&gt;
 
 &lt;p&gt;Se você já precisou verificar o inicio ou final de um texto para validar se o mesmo inicia com algum padrão pré estabelecido você certamente já precisou escrever algum código utilizando a função &lt;code&gt;indexOf&lt;/code&gt;. Exemplo:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code class=&quot;javascript&quot;&gt;var list = [&#39;iPhone 5&#39;, &#39;Moto X2&#39;, &#39;iPad 2&#39;, &#39;iPhone 6&#39;];
+&lt;pre&gt;&lt;code class=&quot;javascript&quot;&gt;var list = ['iPhone 5', 'Moto X2', 'iPad 2', 'iPhone 6'];
 
 
 var iphones = list.filter(function(x) {
     // verifica se o texto inicia com &quot;iPhone&quot;
     // esse trecho de código não é nada legível
-    return x.indexOf(&#39;iPhone&#39;) === 0;
+    return x.indexOf('iPhone') === 0;
 });
 
 iphones.forEach(function(x) {
@@ -50,10 +50,10 @@ iphones.forEach(function(x) {
 
 &lt;p&gt;Com isso podemos reescrever o código do nosso primeiro exemplo da seguinte forma:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code class=&quot;javascript&quot;&gt;var list = [&#39;iPhone 5&#39;, &#39;Moto X2&#39;, &#39;iPad 2&#39;, &#39;iPhone 6&#39;];
+&lt;pre&gt;&lt;code class=&quot;javascript&quot;&gt;var list = ['iPhone 5', 'Moto X2', 'iPad 2', 'iPhone 6'];
 
 var iphones = list.filter(function(x) {
-    return x.startsWith(&#39;iPhone&#39;);
+    return x.startsWith('iPhone');
 });
 
 iphones.forEach(function(x) {
@@ -73,7 +73,7 @@ iphones.forEach(function(x) {
 
 &lt;p&gt;Isso mesmo, a função que acabamos de ver nos exemplos anteriores!&lt;/p&gt;
 
-&lt;pre&gt;&lt;code class=&quot;javascript&quot;&gt;&#39;hello&#39;.startsWith(&#39;hell&#39;);
+&lt;pre&gt;&lt;code class=&quot;javascript&quot;&gt;'hello'.startsWith('hell');
 //=&amp;gt; true
 &lt;/code&gt;&lt;/pre&gt;
 
@@ -81,7 +81,7 @@ iphones.forEach(function(x) {
 
 &lt;p&gt;Similar a função &lt;code&gt;startsWith&lt;/code&gt; só que esta verifica se o texto termina com o padrão informado:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code class=&quot;javascript&quot;&gt;&#39;hello&#39;.endsWith(&#39;ello&#39;);
+&lt;pre&gt;&lt;code class=&quot;javascript&quot;&gt;'hello'.endsWith('ello');
 //=&amp;gt; true
 &lt;/code&gt;&lt;/pre&gt;
 
@@ -89,7 +89,7 @@ iphones.forEach(function(x) {
 
 &lt;p&gt;Utilizamos esta função para identificar se um texto contem um outro texto:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code class=&quot;javascript&quot;&gt;&#39;hello&#39;.includes(&#39;ell&#39;);
+&lt;pre&gt;&lt;code class=&quot;javascript&quot;&gt;'hello'.includes('ell');
 //=&amp;gt; true
 &lt;/code&gt;&lt;/pre&gt;
 
@@ -99,7 +99,7 @@ iphones.forEach(function(x) {
 
 &lt;p&gt;Utilizamos o &lt;code&gt;repeat&lt;/code&gt; para repetir um texto &lt;code&gt;n&lt;/code&gt; vezes:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code class=&quot;javascript&quot;&gt;&#39;blah &#39;.repeat(3);
+&lt;pre&gt;&lt;code class=&quot;javascript&quot;&gt;'blah '.repeat(3);
 //=&amp;gt; &quot;blah blah blah &quot;
 &lt;/code&gt;&lt;/pre&gt;
 
@@ -110,12 +110,12 @@ iphones.forEach(function(x) {
  <entry>
    <title>ES6 - Nova sintaxe para criação de objetos</title>
    <link href="http://www.diullei.com/posts/Object-literal-features"/>
-   <updated>2016-07-18T00:00:00-03:00</updated>
+   <updated>2016-07-18T00:00:00+00:00</updated>
    <id>http://www.diullei.com/posts/Object-literal-features</id>
    <content type="html">&lt;p&gt;Com o ES6 temos a possibilidade de criar objetos com uma sintaxe bem diferente da que estávamos acostumados até agora. Vamos tomar como exemplo a seguinte declarção:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code class=&quot;JavaScript&quot;&gt;const firstName = &#39;Diulle&#39;;
-const secondName = &#39;Gomes&#39;;
+&lt;pre&gt;&lt;code class=&quot;JavaScript&quot;&gt;const firstName = 'Diulle';
+const secondName = 'Gomes';
 
 let obj = {
     firstName: firstName,
@@ -125,8 +125,8 @@ let obj = {
 
 &lt;p&gt;Utilizando a nova sintaxe podemos reescrever esse trecho de código da seguinte forma:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code class=&quot;JavaScript&quot;&gt;const firstName = &#39;Diulle&#39;;
-const secondName = &#39;Gomes&#39;;
+&lt;pre&gt;&lt;code class=&quot;JavaScript&quot;&gt;const firstName = 'Diulle';
+const secondName = 'Gomes';
 
 let obj = {
     firstName,
@@ -136,12 +136,12 @@ let obj = {
 
 &lt;p&gt;Note que neste caso o nome da variável será considerado também como nome da propriedade do objeto. Existe ainda uma outra forma conhecida como &amp;ldquo;Computed property key&amp;rdquo; onde podemos passar o resultado de uma expressão na criação de uma propriedade. Veja o seguinte exemplo:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code class=&quot;JavaScript&quot;&gt;const firstName = &#39;firstName&#39;;
+&lt;pre&gt;&lt;code class=&quot;JavaScript&quot;&gt;const firstName = 'firstName';
 
 let obj = {
-    [firstName]: &#39;Diullei&#39;,
-    [&#39;secondName&#39;]: &#39;Gomes&#39;,
-    [&#39;other&#39; + &#39;name&#39;]: &#39;Moura&#39;
+    [firstName]: 'Diullei',
+    ['secondName']: 'Gomes',
+    ['other' + 'name']: 'Moura'
 };
 &lt;/code&gt;&lt;/pre&gt;
 
@@ -166,7 +166,7 @@ let obj = {
 &lt;p&gt;Ou assim:&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&quot;JavaScript&quot;&gt;const obj = {
-    [&#39;myMethod&#39;](x, y) {
+    ['myMethod'](x, y) {
       //...
     }
 };
@@ -176,8 +176,8 @@ let obj = {
 
 &lt;pre&gt;&lt;code class=&quot;JavaScript&quot;&gt;const obj = {
     * [Symbol.iterator]() {
-        yield &#39;hello&#39;;
-        yield &#39;world&#39;;
+        yield 'hello';
+        yield 'world';
     }
 };
 
@@ -200,7 +200,7 @@ for (const x of obj) {
  <entry>
    <title>TypeScript - Type Guards</title>
    <link href="http://www.diullei.com/posts/TypeScript-Type-Guards"/>
-   <updated>2016-07-16T00:00:00-03:00</updated>
+   <updated>2016-07-16T00:00:00+00:00</updated>
    <id>http://www.diullei.com/posts/TypeScript-Type-Guards</id>
    <content type="html">&lt;p&gt;Hoje vamos falar sobre &lt;code&gt;Type Guards&lt;/code&gt;. Trata-se de um recurso do TypeScript que permite, a partir de uma validação de tipo, assumir que uma variável ou argumento declarado com o tipo &lt;code&gt;any&lt;/code&gt; ou proveniente de uma uniao de tipos, é de um tipo específico préviamente verificado sem a necessidade de utilizar cast. Um pouco complicado neh? Nada melhor do que um exemplo para entendermos melhor:&lt;/p&gt;
 
@@ -267,7 +267,7 @@ function fn(arg: string | A): any {
  <entry>
    <title>TypeScript - Um pouco mais sobre Union types</title>
    <link href="http://www.diullei.com/posts/TypeScript-um-pouco-mais-sobre-union-types"/>
-   <updated>2016-07-15T00:00:00-03:00</updated>
+   <updated>2016-07-15T00:00:00+00:00</updated>
    <id>http://www.diullei.com/posts/TypeScript-um-pouco-mais-sobre-union-types</id>
    <content type="html">&lt;p&gt;Esse post é uma continuação do post anterior onde eu falei sobre &lt;a href=&quot;/posts/union-types&quot;&gt;union types&lt;/a&gt;. Meu objetivo aqui é expor algumas propriedades básicas inerentes a declaração dos &amp;ldquo;union types&amp;rdquo;. Para ficar fácel de entender vou colocar um exemplo de código para cada propriedade. Vamos lá!&lt;/p&gt;
 
@@ -312,7 +312,7 @@ a = b;
 &lt;blockquote&gt;&lt;p&gt;O tipo &lt;code&gt;S&lt;/code&gt; pode ser associado ao tipo &lt;code&gt;T1 | T2&lt;/code&gt; se &lt;code&gt;S&lt;/code&gt; for do tipo &lt;code&gt;T1&lt;/code&gt; ou &lt;code&gt;S&lt;/code&gt; for do tipo &lt;code&gt;T2&lt;/code&gt;.&lt;/p&gt;&lt;/blockquote&gt;
 
 &lt;pre&gt;&lt;code class=&quot;typescript&quot;&gt;let x: string | number;
-x = &#39;olá&#39;; // OK
+x = 'olá'; // OK
 x = 42; // OK
 x = { }; // Erro
 &lt;/code&gt;&lt;/pre&gt;
@@ -386,7 +386,7 @@ let fn3 = x.fn2;
  <entry>
    <title>Configurando o TypeScript 2.0 Beta no VSCode</title>
    <link href="http://www.diullei.com/posts/TypeScript2-Beta-no-vscode"/>
-   <updated>2016-07-14T00:00:00-03:00</updated>
+   <updated>2016-07-14T00:00:00+00:00</updated>
    <id>http://www.diullei.com/posts/TypeScript2-Beta-no-vscode</id>
    <content type="html">&lt;p&gt;Tenho escrito alguns posts falando sobre as novidades do &lt;a href=&quot;/posts/TypeScript2-Beta-nun-nullable-types&quot;&gt;TypeScript 2.0 Beta&lt;/a&gt; que foi lançado há alguns dias e algumas pessoas vieram me perguntar como utilizar essa nova versão no Visual Studio Code (&lt;a href=&quot;https://code.visualstudio.com&quot;&gt;vscode&lt;/a&gt;). Resolvi escrever este post para mostrar com é fácil fazer esta configuração. O legal é que podemos fazer esta configuração por projeto, ou seja, posso ter projetos diferentes utilizando versões diferentes do TypeScript sem a necessidade de alterar a minha instalação global :)&lt;/p&gt;
 
@@ -441,13 +441,13 @@ let fn3 = x.fn2;
 
 &lt;pre&gt;&lt;code class=&quot;typescript&quot;&gt;declare let names: string[] | undefined;
 
-// Error! &#39;names&#39; is possibly undefined.
+// Error! 'names' is possibly undefined.
 let upperCased = names!.map(s =&amp;gt; s.toUpperCase());
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;Feito isso tente compilar esse código com o comando &lt;code&gt;Ctrl+shift+B&lt;/code&gt;. Repare que o vscode irá exibir uma mensagem dizendo: &lt;code&gt;No task runner configured&lt;/code&gt;. Clique no botão &lt;code&gt;Configue Task Runner&lt;/code&gt; exibido ao lado direito dessa mensagem e selecione &lt;code&gt;TypeScript - tsconfig.json&lt;/code&gt; na lista de opções que será exibida. Com isso o vscode irá criar um novo arquivo dentro da pasta &lt;code&gt;.vscode&lt;/code&gt; chamado &lt;code&gt;tasks.json&lt;/code&gt;. Altere a linha &lt;code&gt;&quot;command&quot;: &quot;tsc&quot;&lt;/code&gt; para &lt;code&gt;&quot;command&quot;: &quot;node_modules/.bin/tsc&quot;&lt;/code&gt;. Reinicie o vscode e tente executar novamente o comando de build &lt;code&gt;Ctrl+shift+B&lt;/code&gt;.&lt;/p&gt;
 
-&lt;p&gt;Se tudo foi configurado corretamente o vscode irá compilar o código do arquivo &lt;code&gt;exemplo.ts&lt;/code&gt; utilizando a versão local do TypeScript configurada. Note que se você remover o operador &lt;code&gt;!&lt;/code&gt; da linha 4 o vscode já ira informar um erro parecido com &lt;code&gt;&#39;names&#39; is possibly undefined&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Se tudo foi configurado corretamente o vscode irá compilar o código do arquivo &lt;code&gt;exemplo.ts&lt;/code&gt; utilizando a versão local do TypeScript configurada. Note que se você remover o operador &lt;code&gt;!&lt;/code&gt; da linha 4 o vscode já ira informar um erro parecido com &lt;code&gt;'names' is possibly undefined&lt;/code&gt;.&lt;/p&gt;
 
 &lt;p&gt;É isso. Agora você já pode testar novas features do TypeScript 2.0 no vscode \o/&lt;/p&gt;
 </content>
@@ -456,7 +456,7 @@ let upperCased = names!.map(s =&amp;gt; s.toUpperCase());
  <entry>
    <title>TypeScript - Union Types</title>
    <link href="http://www.diullei.com/posts/union-types"/>
-   <updated>2016-07-13T00:00:00-03:00</updated>
+   <updated>2016-07-13T00:00:00+00:00</updated>
    <id>http://www.diullei.com/posts/union-types</id>
    <content type="html">&lt;p&gt;Uma das caracteristicas do JavaScript é que podemos facilmente alterar o tipo de uma variável em tempo de execução simplesmente atribuindo um valor de tipo diferente a esta variável. No momento em que o valor é atribuido o tipo desta variável se altera e a partir daí inúmeros bugs podem surgir se não estivermos atentos.&lt;/p&gt;
 
@@ -471,8 +471,8 @@ val = false;
 
 &lt;pre&gt;&lt;code class=&quot;typescript&quot;&gt;/**
  * Takes a string and adds &quot;padding&quot; to the left.
- * If &#39;padding&#39; is a string, then &#39;padding&#39; is appended to the left side.
- * If &#39;padding&#39; is a number, then that number of spaces is added to the left side.
+ * If 'padding' is a string, then 'padding' is appended to the left side.
+ * If 'padding' is a number, then that number of spaces is added to the left side.
  */
 function padLeft(value: string, padding: any) {
     if (typeof padding === &quot;number&quot;) {
@@ -481,7 +481,7 @@ function padLeft(value: string, padding: any) {
     if (typeof padding === &quot;string&quot;) {
         return padding + value;
     }
-    throw new Error(`Expected string or number, got &#39;${padding}&#39;.`);
+    throw new Error(`Expected string or number, got '${padding}'.`);
 }
 
 padLeft(&quot;Hello world&quot;, 4); // retorna &quot;    Hello world&quot;
@@ -516,7 +516,7 @@ let indentedString = padLeft(&quot;Hello world&quot;, true);
  <entry>
    <title>TypeScript 2.0 Beta - Non nullable types (Tipos não nulos)</title>
    <link href="http://www.diullei.com/posts/TypeScript2-Beta-nun-nullable-types"/>
-   <updated>2016-07-12T00:00:00-03:00</updated>
+   <updated>2016-07-12T00:00:00+00:00</updated>
    <id>http://www.diullei.com/posts/TypeScript2-Beta-nun-nullable-types</id>
    <content type="html">&lt;p&gt;O TypeScript 2.0 Beta desembarcou com muitas novidades. &lt;a href=&quot;https://blogs.msdn.microsoft.com/typescript/2016/07/11/announcing-typescript-2-0-beta/&quot;&gt;Veja aqui&lt;/a&gt; o post original no blog da Microsoft. No decorrer dos próximos posts vou falar um pouco mais sobre as features dessa nova versão. Para iniciar, hoje quero falar sobre um dos recursos que eu já estava acompanhando e achei muito legal: a definição de tipos não nulos.&lt;/p&gt;
 
@@ -545,7 +545,7 @@ let indentedString = padLeft(&quot;Hello world&quot;, true);
 
 &lt;pre&gt;&lt;code&gt;declare let names: string[] | undefined;
 
-// Error! &#39;names&#39; is possibly undefined.
+// Error! 'names' is possibly undefined.
 let upperCased = names.map(s =&amp;gt; s.toUpperCase());
 &lt;/code&gt;&lt;/pre&gt;
 
@@ -578,7 +578,7 @@ type T2 = (x?: number | undefined) =&amp;gt; string;  // x é do tipo: number | 
  <entry>
    <title>DefinitelyTyped + TypeScript team = TS FTW</title>
    <link href="http://www.diullei.com/posts/DefinitelyTyped-and-TypeScript-Team"/>
-   <updated>2016-07-11T00:00:00-03:00</updated>
+   <updated>2016-07-11T00:00:00+00:00</updated>
    <id>http://www.diullei.com/posts/DefinitelyTyped-and-TypeScript-Team</id>
    <content type="html">&lt;p&gt;&lt;a href=&quot;https://github.com/DefinitelyTyped/DefinitelyTyped&quot;&gt;
   &lt;div style=&quot;text-align:center&quot;&gt;&lt;img src =&quot;../images/dt-logo.png&quot; /&gt;&lt;/div&gt;
@@ -601,7 +601,7 @@ type T2 = (x?: number | undefined) =&amp;gt; string;  // x é do tipo: number | 
  <entry>
    <title>TypeScript e o futuro dos arquivos de declaração</title>
    <link href="http://www.diullei.com/posts/The-Future-of-Declaration-Files"/>
-   <updated>2016-07-09T00:00:00-03:00</updated>
+   <updated>2016-07-09T00:00:00+00:00</updated>
    <id>http://www.diullei.com/posts/The-Future-of-Declaration-Files</id>
    <content type="html">&lt;p&gt;Alguns anos se passaram desde que a primeira versão do TypeScript veio a público. Agora quando a versão 2.0 está quase sendo lançada vemos o quanto esse projeto evoluiu. Uma das mudanças significativas desta nova versão é com relação aos arquivos de definição.&lt;/p&gt;
 
@@ -636,7 +636,7 @@ _.padStart(&quot;Hello TypeScript!&quot;, 20, &quot; &quot;);
  <entry>
    <title>Spread Operator (Operador de Propagação)</title>
    <link href="http://www.diullei.com/posts/spread-operator"/>
-   <updated>2016-02-05T00:00:00-02:00</updated>
+   <updated>2016-02-05T00:00:00+00:00</updated>
    <id>http://www.diullei.com/posts/spread-operator</id>
    <content type="html">&lt;p&gt;No ultimo artigo eu falei de forma bem rapida e simple sobre um recurso muito interessante do TypeScript &lt;code&gt;rest parameters&lt;/code&gt;. Seguindo esta mesma linha hoje eu quero falar sbore um outro recuro muito legal chamado &lt;code&gt;spread operator&lt;/code&gt;.&lt;/p&gt;
 
@@ -648,9 +648,9 @@ _.padStart(&quot;Hello TypeScript!&quot;, 20, &quot; &quot;);
     //...
 }
 
-let animals = [&#39;dog&#39;, &#39;cat&#39;];
+let animals = ['dog', 'cat'];
 
-myFunc(&#39;dog&#39;, &#39;cat&#39;);
+myFunc('dog', 'cat');
 
 myFunc(...animals);
 &lt;/code&gt;&lt;/pre&gt;
@@ -660,7 +660,7 @@ myFunc(...animals);
 &lt;pre&gt;&lt;code&gt;myFunc(...animals);
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;onde &lt;code&gt;animals&lt;/code&gt; é o nosso array: &lt;code&gt;let animals = [&#39;dog&#39;, &#39;cat&#39;];&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;onde &lt;code&gt;animals&lt;/code&gt; é o nosso array: &lt;code&gt;let animals = ['dog', 'cat'];&lt;/code&gt;&lt;/p&gt;
 
 &lt;h2&gt;Recuperando valores com destrutores&lt;/h2&gt;
 
@@ -709,7 +709,7 @@ foo(...args);
  <entry>
    <title>TypeScript - Rest Parameters</title>
    <link href="http://www.diullei.com/posts/rest-parameters"/>
-   <updated>2016-01-15T00:00:00-02:00</updated>
+   <updated>2016-01-15T00:00:00+00:00</updated>
    <id>http://www.diullei.com/posts/rest-parameters</id>
    <content type="html">&lt;p&gt;Hoje vou falar rapidamente sobre um recurso muito legal do TypeScript: rest parameters. Se você programa em C# você vai entender bem o conceito, é uma feature similar ao &lt;a href=&quot;https://msdn.microsoft.com/en-us/library/w5zay9db.aspx&quot;&gt;&lt;code&gt;params&lt;/code&gt;&lt;/a&gt;.&lt;/p&gt;
 
@@ -735,7 +735,7 @@ let employeeName = buildName(&quot;Diullei&quot;, &quot;de&quot;, &quot;Moura&qu
  <entry>
    <title>Testando o TypeScript no VSCode (Visual Studio Code)</title>
    <link href="http://www.diullei.com/posts/TypeScript-vscode"/>
-   <updated>2015-12-03T00:00:00-02:00</updated>
+   <updated>2015-12-03T00:00:00+00:00</updated>
    <id>http://www.diullei.com/posts/TypeScript-vscode</id>
    <content type="html">&lt;p&gt;O VSCode é um editor multiplataforma criado pela Microsoft destinado ao desenvolvimento de diversas aplicações contando com o suporte a várias linguagens de programação. O Visual Studio Code foi criado pelo time da Microsoft usando uma mistura de tecnologias de código aberto e baseadas na web, como o Chromium, o Electron app framework do GitHub e o próprio editor Monaco da Microsoft.&lt;/p&gt;
 
@@ -789,7 +789,7 @@ let employeeName = buildName(&quot;Diullei&quot;, &quot;de&quot;, &quot;Moura&qu
     }
 }
 
-var person = new Person(&#39;joão&#39;);
+var person = new Person('joão');
 
 console.log(person.getName());
 &lt;/code&gt;&lt;/pre&gt;
@@ -820,7 +820,7 @@ console.log(person.getName());
  <entry>
    <title>TypeScript Guide</title>
    <link href="http://www.diullei.com/posts/TypeScript-Guide"/>
-   <updated>2015-06-22T00:00:00-03:00</updated>
+   <updated>2015-06-22T00:00:00+00:00</updated>
    <id>http://www.diullei.com/posts/TypeScript-Guide</id>
    <content type="html">&lt;p&gt;Comecei a escrever um e-book sobre TypeScript e acredito que este livro poderá contribuir muito no aprendizado desta nova linguagem. Desde o seu release publico a 3 anos atrás o TypeScript tem se mostrado muito promissor e assumido um espaço muito importante no desenvolvido de aplicativos JavaScript. Creio que o TypeScript, a medida que o tempo for passando, vai se tornar uma linguagem bem popular e ter um bom guia escrito em português será de boa ajuda para muitos.&lt;/p&gt;
 
@@ -841,7 +841,7 @@ console.log(person.getName());
  <entry>
    <title>tsi - um REPL TypeScript</title>
    <link href="http://www.diullei.com/posts/tsi-um-REPL-TypeScript"/>
-   <updated>2013-08-24T00:00:00-03:00</updated>
+   <updated>2013-08-24T00:00:00+00:00</updated>
    <id>http://www.diullei.com/posts/tsi-um-REPL-TypeScript</id>
    <content type="html">&lt;p&gt;Resolvi testar um modelo de screencast onde eu posto videos bem pequenos e práticos. Neste video inicial eu vou mostrar uma ferramenta bem legal que encontrei no &lt;a href=&quot;https://github.com/qiemem/tsi&quot;&gt;github&lt;/a&gt;, um &lt;a href=&quot;http://en.wikipedia.org/wiki/Read%E2%80%93eval%E2%80%93print_loop&quot;&gt;REPL&lt;/a&gt; typescript escrito pra &lt;a href=&quot;http://nodejs.org/&quot;&gt;nodejs&lt;/a&gt;.&lt;/p&gt;
 
@@ -857,7 +857,7 @@ console.log(person.getName());
  <entry>
    <title>TypeScript - Usando bower e tsd para instalar componentes e suas definições</title>
    <link href="http://www.diullei.com/posts/TypeScript-Usando-bower-e-tsd-para-instalar-componentes-e-suas-definicoes"/>
-   <updated>2013-08-11T00:00:00-03:00</updated>
+   <updated>2013-08-11T00:00:00+00:00</updated>
    <id>http://www.diullei.com/posts/TypeScript-Usando-bower-e-tsd-para-instalar-componentes-e-suas-definicoes</id>
    <content type="html">&lt;p&gt;Há algum tempo atrás eu criei uma ferramenta(&lt;a href=&quot;https://npmjs.org/package/tsd&quot;&gt;tsd&lt;/a&gt;) que permite procurar e baixar via linha de comando vários arquivos de definição escritos em TypeScript. Estes arquivos são necessários caso você queira utilizar uma biblioteca como por exemplo o &lt;code&gt;jquery&lt;/code&gt; ou o &lt;code&gt;backbone&lt;/code&gt; com TypeScript. Para mais informações sobre arquivos de definição TypeScript veja &lt;a href=&quot;/posts/TypeScript-Parte-1/#Tipos-declarados&quot;&gt;este link&lt;/a&gt;.&lt;/p&gt;
 
@@ -873,7 +873,7 @@ console.log(person.getName());
  <entry>
    <title>TypeScript (Parte 1)</title>
    <link href="http://www.diullei.com/posts/TypeScript-Parte-1"/>
-   <updated>2013-08-10T00:00:00-03:00</updated>
+   <updated>2013-08-10T00:00:00+00:00</updated>
    <id>http://www.diullei.com/posts/TypeScript-Parte-1</id>
    <content type="html">&lt;p&gt;Embora eu já tenha escrito uma introdução sobre o TypeScript em &lt;a href=&quot;/posts/Introducao-ao-TypeScript/&quot;&gt;outro artigo&lt;/a&gt; resolvi voltar ao tema e dessa vez escrever uma série de artigos sobre TypeScript. Neste post estarei novamente introduzindo o TypeScript.&lt;/p&gt;
 
@@ -1050,7 +1050,7 @@ console.log(person.getName());
  <entry>
    <title>Testando o ultimo build do TypeScript no VS</title>
    <link href="http://www.diullei.com/posts/Testando-o-ultimo-build-do-TypeScript-no-VS"/>
-   <updated>2013-02-02T00:00:00-02:00</updated>
+   <updated>2013-02-02T00:00:00+00:00</updated>
    <id>http://www.diullei.com/posts/Testando-o-ultimo-build-do-TypeScript-no-VS</id>
    <content type="html">&lt;h2&gt;Introdução&lt;/h2&gt;
 
@@ -1130,7 +1130,7 @@ console.log(person.getName());
  <entry>
    <title>Debugando TypeScript no navegador</title>
    <link href="http://www.diullei.com/posts/Debugando-TyprScript-no-navegador"/>
-   <updated>2012-10-16T00:00:00-03:00</updated>
+   <updated>2012-10-16T00:00:00+00:00</updated>
    <id>http://www.diullei.com/posts/Debugando-TyprScript-no-navegador</id>
    <content type="html">&lt;h2&gt;Introdução&lt;/h2&gt;
 
@@ -1251,7 +1251,7 @@ console.log(person.getName());
  <entry>
    <title>Introdução ao TypeScript</title>
    <link href="http://www.diullei.com/posts/Introducao-ao-TypeScript"/>
-   <updated>2012-10-12T00:00:00-03:00</updated>
+   <updated>2012-10-12T00:00:00+00:00</updated>
    <id>http://www.diullei.com/posts/Introducao-ao-TypeScript</id>
    <content type="html">&lt;h2&gt;Introdução&lt;/h2&gt;
 
@@ -1406,7 +1406,7 @@ console.log(person.getName());
  <entry>
    <title>JavaScript NoConflict</title>
    <link href="http://www.diullei.com/posts/JavaScript-NoConflict"/>
-   <updated>2012-07-29T00:00:00-03:00</updated>
+   <updated>2012-07-29T00:00:00+00:00</updated>
    <id>http://www.diullei.com/posts/JavaScript-NoConflict</id>
    <content type="html">&lt;p&gt;Você já deve ter visto exemplos de código &lt;em&gt;JQuery&lt;/em&gt;, &lt;em&gt;Underscore&lt;/em&gt;, &lt;em&gt;Backbone&lt;/em&gt; ou outros que utilizassem um método chamado &lt;code&gt;noConflict()&lt;/code&gt;. Vamos entender para que serve este método.&lt;/p&gt;
 
@@ -1548,7 +1548,7 @@ console.log(person.getName());
  <entry>
    <title>Lendo arquivos com Nodejs</title>
    <link href="http://www.diullei.com/posts/Lendo-arquivos-com-Nodejs"/>
-   <updated>2012-07-18T00:00:00-03:00</updated>
+   <updated>2012-07-18T00:00:00+00:00</updated>
    <id>http://www.diullei.com/posts/Lendo-arquivos-com-Nodejs</id>
    <content type="html">&lt;p&gt;Existem algumas formas diferentes de ler arquivos usando node.js. Existem métodos síncronos e métodos assíncronos que nos permitem realizar este trabalho. Vou exibir e explicar estas diversas formas no decorrer deste post.&lt;/p&gt;
 
@@ -1676,7 +1676,7 @@ console.log(person.getName());
  <entry>
    <title>Configurando o Nodejs com o Notepad++</title>
    <link href="http://www.diullei.com/posts/Configurando-o-NodeJs-com-o-Npp"/>
-   <updated>2012-07-17T00:00:00-03:00</updated>
+   <updated>2012-07-17T00:00:00+00:00</updated>
    <id>http://www.diullei.com/posts/Configurando-o-NodeJs-com-o-Npp</id>
    <content type="html">&lt;p&gt;O note pad++ é na minha opinião um excelente editor. É claro, com o Sublime Text 2 na área muita gente deixou de olhar para p Np++ :). Minha dica de hoje é mostrar como configurar o Np++ para executar arquivos javascript usando o nodeJs.&lt;/p&gt;
 
