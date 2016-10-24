@@ -2,7 +2,7 @@
 layout: post
 title: TypeScript 2.0
 category: TypeScript
-tags : [TypeScript, JavaScript]
+tags : [TypeScript, TypeScript v2.0]
 ---
 
 Finalmente consegui voltar a ativa depois de algum tempo sem escrever. Hoje vou falar sobre a ultima versão do TypeScript, a versão 2.0. Essa versão é o resultado de muito trabalho e esforço do time do TypeScript e da comunidade.
@@ -11,11 +11,13 @@ Para começar a utilizar esta nova versão você pode baixar via npm utilizando 
 
 > npm install -g typescript@2.0
 
+Pronto! Agora você já está pronto para começar a explorar as novas features!
+
 ## Um pouco de história (Acontecimentos principais)
 
 * _TypeScript 0.8_ - Em Outubro de 2012 os desenvolvedores foram surpreendidos com o que muitos chamavam de "O CofeeScript da Microsoft". O TypeScript veio ao mundo e muitos começaram a entender as inúmeras possibilidades de se ter uma linguagem mundialmente popular como o `JavaScript` mesclada a um forte sistema de tipos (que na época nem era tão forte assim rs).
 
-* _DefinitelyTyped_ - Alguns meses depois do lançamento do TypeScript a comunidade começou a se movimentar. Nesta época eu iniciei a construção do [TSD](https://github.com/DefinitelyTyped/tsd) com a intenção de aprender mais sobre TypeScript e ao mesmo tempo criar alguma ferramenta que fosse útil não apenas pra mim, mas para outros desenvolvedores. Conversando em fóruns com outros desenvolvedores entusiastas (que eram poucos na época) eu puder conhecer alguns pessoas que hoje são figuras bastante conhecidas entre os desenvolvedores TypeScript e pudemos juntos montar o time DefinitelyTyped.
+* _DefinitelyTyped_ - Alguns meses depois do lançamento do TypeScript a comunidade começou a se movimentar. Nesta época eu iniciei a construção do [TSD](https://github.com/DefinitelyTyped/tsd) com a intenção de aprender mais sobre TypeScript e ao mesmo tempo criar alguma ferramenta que fosse útil não apenas pra mim, mas para outros desenvolvedores. Conversando em fóruns com outros desenvolvedores entusiastas (que eram poucos na época) eu puder conhecer alguns pessoas que hoje são figuras bastante conhecidas entre os desenvolvedores TypeScript e pudemos juntos montar o time [DefinitelyTyped](https://github.com/DefinitelyTyped).
 
 * _TypeScript 1.0_ - Há alguns anos atrás a versão 1.0 do TypeScript foi disponibilizada e com ela os desenvolvedores puderam entender o potencial do trabalho com JavaScript combinado com um forte sistema de tipagem estática. Alertas de erro em tempo de compilação, editores com recursos de navegação e refatoração, entre outras ferramentas trouxeram para os desenvolvedores um enorme ganho de produtividade.
 
@@ -86,7 +88,7 @@ new Person("Daniel").name = "Dan";
 
 Lindo neh?
 
-Exiastem ainda muitos outros recursos que podem ser acessados [aqui](https://github.com/Microsoft/TypeScript/wiki/What%27s-new-in-TypeScript).
+Exiastem ainda muitos outros recursos que podem ser conferidos [aqui](https://github.com/Microsoft/TypeScript/wiki/What%27s-new-in-TypeScript).
 
 ## O que esperar do futuro?
 
