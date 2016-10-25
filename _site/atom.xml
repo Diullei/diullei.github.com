@@ -4,12 +4,78 @@
  <title>Diullei Gomes</title>
  <link href="http://www.diullei.com/atom.xml" rel="self"/>
  <link href="http://www.diullei.com/"/>
- <updated>2016-10-24T19:57:07+00:00</updated>
+ <updated>2016-10-25T13:07:14+00:00</updated>
  <id>http://www.diullei.com</id>
  <author>
    <name>Diullei Gomes</name>
  </author>
 
+ 
+ <entry>
+   <title>União discriminada de tipos (Tagged union types)</title>
+   <link href="http://www.diullei.com/posts/Tagged-union-types"/>
+   <updated>2016-10-25T00:00:00+00:00</updated>
+   <id>http://www.diullei.com/posts/Tagged-union-types</id>
+   <content type="html">&lt;p&gt;Hoje vou falar sobre uma feature muito legal que desenbarcou junto com a versão 2.0 to TypeScript, a união discriminada de tipos. Trata-se de uma extensão do recurso &lt;a href=&quot;/posts/TypeScript-Type-Guards&quot;&gt;type guards&lt;/a&gt; que baseia a verificação do tipo dentro de um determinado fluxo do código, tomando como base valor de uma propriedade. A definição pode parecer um pouco confusa, por isso vamos a um exemplo:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;typescript&quot;&gt;interface Square {
+    kind: &quot;square&quot;;
+    size: number;
+}
+
+interface Rectangle {
+    kind: &quot;rectangle&quot;;
+    width: number;
+    height: number;
+}
+
+interface Circle {
+    kind: &quot;circle&quot;;
+    radius: number;
+}
+
+type Shape = Square | Rectangle | Circle;
+
+function area(s: Shape) {
+    // Repare que no bloco switch abaixo, o tipo da variável &quot;s&quot; é reconhecido pelo
+    // compilador de forma diferente em cada bloco condicional. O compilador define
+    // o tipo correto baseado no valor da propriedade &quot;kind&quot; definida nas interfaces
+    // acima como um valor constante. Por esse motivo podemos utilizar as propriedades
+    // específicas de cada interface sem precisar fazer uma conversão (cast).
+    switch (s.kind) {
+        case &quot;square&quot;: return s.size * s.size;
+        case &quot;rectangle&quot;: return s.width * s.height;
+        case &quot;circle&quot;: return Math.PI * s.radius * s.radius;
+    }
+}
+
+// Repare como nas funções abaixo o compilador entende a lógica aplicada nos if's e
+// interpreta o tipo de &quot;s&quot; de acordo com a propriedade &quot;kind&quot;.
+
+function test1(s: Shape) {
+    if (s.kind === &quot;square&quot;) {
+        s;  // Aqui &quot;s&quot; é do tipo: &quot;Square&quot;
+    }
+    else {
+        s;  // Aqui &quot;s&quot; é do tipo: &quot;Rectangle | Circle&quot;
+    }
+}
+
+function test2(s: Shape) {
+    if (s.kind === &quot;square&quot; || s.kind === &quot;rectangle&quot;) {
+        return;
+    }
+    s;  // Aqui &quot;s&quot; é do tipo &quot;Circle&quot;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Por enquanto esse recurso opera apenas sobre propriedades tipo &lt;code&gt;string&lt;/code&gt;. Existe a intenção de, no futuro, adicionar suporte a outros tipo como &lt;code&gt;boolean&lt;/code&gt; e &lt;code&gt;number&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Esper oque este post tenha sido útil.&lt;/p&gt;
+
+&lt;p&gt;Até a próxima!&lt;/p&gt;
+</content>
+ </entry>
  
  <entry>
    <title>TypeScript 2.0</title>
@@ -94,7 +160,7 @@ new Person(&quot;Daniel&quot;).name = &quot;Dan&quot;;
 
 &lt;p&gt;Lindo neh?&lt;/p&gt;
 
-&lt;p&gt;Exiastem ainda muitos outros recursos que podem ser conferidos &lt;a href=&quot;https://github.com/Microsoft/TypeScript/wiki/What%27s-new-in-TypeScript&quot;&gt;aqui&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Existem ainda muitos outros recursos que podem ser conferidos &lt;a href=&quot;https://github.com/Microsoft/TypeScript/wiki/What%27s-new-in-TypeScript&quot;&gt;aqui&lt;/a&gt;.&lt;/p&gt;
 
 &lt;h2&gt;O que esperar do futuro?&lt;/h2&gt;
 

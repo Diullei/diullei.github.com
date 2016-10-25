@@ -1,8 +1,8 @@
 ---
 layout: post
 title: TypeScript 2.0
-category: TypeScript
-tags : [TypeScript, TypeScript v2.0]
+category: [TypeScript, TypeScript v2.0]
+tags : [TypeScript]
 ---
 
 Finalmente consegui voltar a ativa depois de algum tempo sem escrever. Hoje vou falar sobre a ultima versão do TypeScript, a versão 2.0. Essa versão é o resultado de muito trabalho e esforço do time do TypeScript e da comunidade.
@@ -88,7 +88,7 @@ new Person("Daniel").name = "Dan";
 
 Lindo neh?
 
-Exiastem ainda muitos outros recursos que podem ser conferidos [aqui](https://github.com/Microsoft/TypeScript/wiki/What%27s-new-in-TypeScript).
+Existem ainda muitos outros recursos que podem ser conferidos [aqui](https://github.com/Microsoft/TypeScript/wiki/What%27s-new-in-TypeScript).
 
 ## O que esperar do futuro?
 

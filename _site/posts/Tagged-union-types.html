@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <title>
     
-      Posts &ndash;
+      União discriminada de tipos (Tagged union types) &ndash;
     
     Diullei Gomes
   </title>
@@ -67,113 +67,95 @@
     </section>
 
     <section class="content">
+  <h1>
+    <a href="/posts/Tagged-union-types">União discriminada de tipos (Tagged union types)</a>
+  </h1>
 
-  <h1>Posts</h1>
+  <section class="byline">
+    October 25, 2016
+  </section>
 
-  <ul class="listing">
-    
-    <li>
-      <span>October 25, 2016</span> <a href="/posts/Tagged-union-types">União discriminada de tipos (Tagged union types)</a>
-    </li>
-    
-    <li>
-      <span>October 24, 2016</span> <a href="/posts/TypeScript-2">TypeScript 2.0</a>
-    </li>
-    
-    <li>
-      <span>July 25, 2016</span> <a href="/posts/ES6-strings-new-methods">ES6 - strings - Novos métodos</a>
-    </li>
-    
-    <li>
-      <span>July 18, 2016</span> <a href="/posts/Object-literal-features">ES6 - Nova sintaxe para criação de objetos</a>
-    </li>
-    
-    <li>
-      <span>July 16, 2016</span> <a href="/posts/TypeScript-Type-Guards">TypeScript - Type Guards</a>
-    </li>
-    
-    <li>
-      <span>July 15, 2016</span> <a href="/posts/TypeScript-um-pouco-mais-sobre-union-types">TypeScript - Um pouco mais sobre Union types</a>
-    </li>
-    
-    <li>
-      <span>July 14, 2016</span> <a href="/posts/TypeScript2-Beta-no-vscode">Configurando o TypeScript 2.0 Beta no VSCode</a>
-    </li>
-    
-    <li>
-      <span>July 13, 2016</span> <a href="/posts/union-types">TypeScript - Union Types</a>
-    </li>
-    
-    <li>
-      <span>July 12, 2016</span> <a href="/posts/TypeScript2-Beta-nun-nullable-types">TypeScript 2.0 Beta - Non nullable types (Tipos não nulos)</a>
-    </li>
-    
-    <li>
-      <span>July 11, 2016</span> <a href="/posts/DefinitelyTyped-and-TypeScript-Team">DefinitelyTyped + TypeScript team = TS FTW</a>
-    </li>
-    
-    <li>
-      <span>July  9, 2016</span> <a href="/posts/The-Future-of-Declaration-Files">TypeScript e o futuro dos arquivos de declaração</a>
-    </li>
-    
-    <li>
-      <span>February  5, 2016</span> <a href="/posts/spread-operator">Spread Operator (Operador de Propagação)</a>
-    </li>
-    
-    <li>
-      <span>January 15, 2016</span> <a href="/posts/rest-parameters">TypeScript - Rest Parameters</a>
-    </li>
-    
-    <li>
-      <span>December  3, 2015</span> <a href="/posts/TypeScript-vscode">Testando o TypeScript no VSCode (Visual Studio Code)</a>
-    </li>
-    
-    <li>
-      <span>June 22, 2015</span> <a href="/posts/TypeScript-Guide">TypeScript Guide</a>
-    </li>
-    
-    <li>
-      <span>August 24, 2013</span> <a href="/posts/tsi-um-REPL-TypeScript">tsi - um REPL TypeScript</a>
-    </li>
-    
-    <li>
-      <span>August 11, 2013</span> <a href="/posts/TypeScript-Usando-bower-e-tsd-para-instalar-componentes-e-suas-definicoes">TypeScript - Usando bower e tsd para instalar componentes e suas definições</a>
-    </li>
-    
-    <li>
-      <span>August 10, 2013</span> <a href="/posts/TypeScript-Parte-1">TypeScript (Parte 1)</a>
-    </li>
-    
-    <li>
-      <span>February  2, 2013</span> <a href="/posts/Testando-o-ultimo-build-do-TypeScript-no-VS">Testando o ultimo build do TypeScript no VS</a>
-    </li>
-    
-    <li>
-      <span>October 16, 2012</span> <a href="/posts/Debugando-TyprScript-no-navegador">Debugando TypeScript no navegador</a>
-    </li>
-    
-    <li>
-      <span>October 12, 2012</span> <a href="/posts/Introducao-ao-TypeScript">Introdução ao TypeScript</a>
-    </li>
-    
-    <li>
-      <span>July 29, 2012</span> <a href="/posts/JavaScript-NoConflict">JavaScript NoConflict</a>
-    </li>
-    
-    <li>
-      <span>July 18, 2012</span> <a href="/posts/Lendo-arquivos-com-Nodejs">Lendo arquivos com Nodejs</a>
-    </li>
-    
-    <li>
-      <span>July 17, 2012</span> <a href="/posts/Configurando-o-NodeJs-com-o-Npp">Configurando o Nodejs com o Notepad++</a>
-    </li>
-    
-  </ul>
-  <br/>
-  <br/>
-  <br/>
-  <br/>
+  <p>Hoje vou falar sobre uma feature muito legal que desenbarcou junto com a versão 2.0 to TypeScript, a união discriminada de tipos. Trata-se de uma extensão do recurso <a href="/posts/TypeScript-Type-Guards">type guards</a> que baseia a verificação do tipo dentro de um determinado fluxo do código, tomando como base valor de uma propriedade. A definição pode parecer um pouco confusa, por isso vamos a um exemplo:</p>
+
+<pre><code class="typescript">interface Square {
+    kind: "square";
+    size: number;
+}
+
+interface Rectangle {
+    kind: "rectangle";
+    width: number;
+    height: number;
+}
+
+interface Circle {
+    kind: "circle";
+    radius: number;
+}
+
+type Shape = Square | Rectangle | Circle;
+
+function area(s: Shape) {
+    // Repare que no bloco switch abaixo, o tipo da variável "s" é reconhecido pelo
+    // compilador de forma diferente em cada bloco condicional. O compilador define
+    // o tipo correto baseado no valor da propriedade "kind" definida nas interfaces
+    // acima como um valor constante. Por esse motivo podemos utilizar as propriedades
+    // específicas de cada interface sem precisar fazer uma conversão (cast).
+    switch (s.kind) {
+        case "square": return s.size * s.size;
+        case "rectangle": return s.width * s.height;
+        case "circle": return Math.PI * s.radius * s.radius;
+    }
+}
+
+// Repare como nas funções abaixo o compilador entende a lógica aplicada nos if's e
+// interpreta o tipo de "s" de acordo com a propriedade "kind".
+
+function test1(s: Shape) {
+    if (s.kind === "square") {
+        s;  // Aqui "s" é do tipo: "Square"
+    }
+    else {
+        s;  // Aqui "s" é do tipo: "Rectangle | Circle"
+    }
+}
+
+function test2(s: Shape) {
+    if (s.kind === "square" || s.kind === "rectangle") {
+        return;
+    }
+    s;  // Aqui "s" é do tipo "Circle"
+}
+</code></pre>
+
+<p>Por enquanto esse recurso opera apenas sobre propriedades tipo <code>string</code>. Existe a intenção de, no futuro, adicionar suporte a outros tipo como <code>boolean</code> e <code>number</code>.</p>
+
+<p>Esper oque este post tenha sido útil.</p>
+
+<p>Até a próxima!</p>
+
+
+  <hr/>
+  <section class="meta">
+    <section class="copy">
+      <a href="https://twitter.com/diullei" target="_blank">
+        <img src="http://gravatar.com/avatar/5e93890c5b54d18dd454f14789c2b225?s=142" height="50" width="50" />
+      </a>
+
+      <p>
+        Programador .NET - TypeScript - JavaScript - Membro dos times
+        <a href="https://github.com/DefinitelyTyped" target="_blank">DefinitelyTyped</a> e
+        <a href="https://github.com/TypeStrong" target="_blank">TypeStrong</a>.
+      </p>
+
+      <a href="http://twitter.com/share" class="twitter-share-button" data-count="none" data-via="diullei">Tweet</a>
+      <a href="http://twitter.com/diullei" class="twitter-follow-button" data-show-count="false">Follow @diullei</a>
+      <script src="http://platform.twitter.com/widgets.js" type="text/javascript"></script>
+    </section>
+  </section>
+  <hr/>
 </section>
+
   </div>
 </body>
 

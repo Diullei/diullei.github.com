@@ -68,96 +68,69 @@
 
 <section class="content">
   <h1>
-    <a href="/posts/TypeScript-2">TypeScript 2.0</a>
+    <a href="/posts/Tagged-union-types">União discriminada de tipos (Tagged union types)</a>
   </h1>
 
   <section class="byline">
-    October 24, 2016
+    October 25, 2016
   </section>
 
-  <p>Finalmente consegui voltar a ativa depois de algum tempo sem escrever. Hoje vou falar sobre a ultima versão do TypeScript, a versão 2.0. Essa versão é o resultado de muito trabalho e esforço do time do TypeScript e da comunidade.</p>
+  <p>Hoje vou falar sobre uma feature muito legal que desenbarcou junto com a versão 2.0 to TypeScript, a união discriminada de tipos. Trata-se de uma extensão do recurso <a href="/posts/TypeScript-Type-Guards">type guards</a> que baseia a verificação do tipo dentro de um determinado fluxo do código, tomando como base valor de uma propriedade. A definição pode parecer um pouco confusa, por isso vamos a um exemplo:</p>
 
-<p>Para começar a utilizar esta nova versão você pode baixar via npm utilizando o seguinte comando:</p>
-
-<blockquote><p>npm install -g typescript@2.0</p></blockquote>
-
-<p>Pronto! Agora você já está pronto para começar a explorar as novas features!</p>
-
-<h2>Um pouco de história (Acontecimentos principais)</h2>
-
-<ul>
-<li><p><em>TypeScript 0.8</em> - Em Outubro de 2012 os desenvolvedores foram surpreendidos com o que muitos chamavam de &ldquo;O CofeeScript da Microsoft&rdquo;. O TypeScript veio ao mundo e muitos começaram a entender as inúmeras possibilidades de se ter uma linguagem mundialmente popular como o <code>JavaScript</code> mesclada a um forte sistema de tipos (que na época nem era tão forte assim rs).</p></li>
-<li><p><em>DefinitelyTyped</em> - Alguns meses depois do lançamento do TypeScript a comunidade começou a se movimentar. Nesta época eu iniciei a construção do <a href="https://github.com/DefinitelyTyped/tsd">TSD</a> com a intenção de aprender mais sobre TypeScript e ao mesmo tempo criar alguma ferramenta que fosse útil não apenas pra mim, mas para outros desenvolvedores. Conversando em fóruns com outros desenvolvedores entusiastas (que eram poucos na época) eu puder conhecer alguns pessoas que hoje são figuras bastante conhecidas entre os desenvolvedores TypeScript e pudemos juntos montar o time <a href="https://github.com/DefinitelyTyped">DefinitelyTyped</a>.</p></li>
-<li><p><em>TypeScript 1.0</em> - Há alguns anos atrás a versão 1.0 do TypeScript foi disponibilizada e com ela os desenvolvedores puderam entender o potencial do trabalho com JavaScript combinado com um forte sistema de tipagem estática. Alertas de erro em tempo de compilação, editores com recursos de navegação e refatoração, entre outras ferramentas trouxeram para os desenvolvedores um enorme ganho de produtividade.</p></li>
-<li><p><em>TypeScript 1.1</em> - A versão 1.1 trouxe um compilador totalmente reescrito que passou a executar 4x mais rápido que o anterior. Com este novo compilador ganhamos, além da velocidade de compilação, uma grande flexibilidade ma interação com o código para adição de novas features. Uma outra grande mudança foi a migração do código do TypeScript do <a href="https://typescript.codeplex.com/">Codeplex</a> para o <a href="https://github.com/Microsoft/TypeScript">Github</a>. Essa sem dúvidade potêncializou muito a comunicação com a comunidade permitindo uma maior participação e contrinbuição, seja ajudando a especificar novas fetures, submetendo bugs ou programando diretamente no código do compilador.</p></li>
-<li><p><em>TypeScript 1.4 e 1.5</em> - Essa versão trouxe um grande suporte a features do <code>ES2015/ES6</code>. Juntamente com isso passamos a ter suporte a modules e decorators, o que permitiu ao time do <code>Angular2</code> adotar o TypeSCript como linguagem oficial. Uma parceria muito produtiva que trouxe ainda muito mais recursos e feedbacks.</p></li>
-<li><p><em>TypeScript 1.6 e 1.8</em> - Com essa versão tivemos muitas melhorias no sistema de tipos do TypeScript. Tivemos a cada release a adição de padrões JavaScript, o que proporcionou um maior suporte a bibliotecas JavaScript existentes. Muitas melhorias no compilador também foram feitas neste período.</p></li>
-<li><p><em>TypeScript 2.0</em> - Finalmente! Agora temos um grande suporte a bibliotecas JavaScript, excelentes ferramentas, um poderoso Language Service e muito mais&hellip; vamos falar um pouco sobre as principais novidades.</p></li>
-</ul>
-
-
-<h2>Novidades no TypeScript 2.0</h2>
-
-<p>Eu já tenho falado a um tempo sobre algumas features planejadas para esta versão. Algumas já haviam sido liberadas para teste em versões beta. Vou tentar mais uma vez destacar as principais features que trouzxeram grandes mudanças para a linguagem:</p>
-
-<h3>Aquisição de definiçoes de tipo (os famosos arquivos .d.ts)</h3>
-
-<p>Grandes ferramentas desenvolvidas pela comunidade (e eu tive a oportunidade de desenvolver uma delas) como o <a href="https://github.com/typings/typings">Typings</a> e o <a href="https://github.com/DefinitelyTyped/tsd">TSD</a> contribuiram bastante para o ecosistema do TypeScript ajudando milhares de desenvlvedores ao redor do munto a obter arquivos de definição para as mais diversas bibliotecas JavaScript, no entanto, existe um gerenciador de download de pacotes que já se popularizou muito entre os desenvolvedores JavaScript e nada melhor do que utilizar este mesmo gerenciador no ciclo de trabalho com TypeScript, o <a href="https://www.npmjs.com/">npm</a>. Um esforço do time do TypeScript junto com o time do DefinitelyTyped e outros membros da comunidade trouxe ao TypeScript a capacidade de obter tipagens diretamente do npm. Isso ajuda a simplificar e muito o workflow de senvolvimento, já que, já temos uma infinidade de ferramentas diferentes que precisam ser utilizadas. Nada melhor do que tentar simplificar as coisas. O TSD e o Typings ajudaram bastante no passado, mas agora com o npm, a tendência é que o trabalho se torne mais simples e padronizado. Por exemplo, se você quiser baixar o arquivo de definição do <code>lodash</code> basta utilizar a seguinte linha de comando:</p>
-
-<blockquote><p>npm install &ndash;save @types/lodash</p></blockquote>
-
-<p>Neste <a href="/posts/The-Future-of-Declaration-Files">post</a> você encontra mais detalhes sobre a aquisição de arquivos de definição direto do npm.</p>
-
-<h3>Tipos não nulos</h3>
-
-<p>Uma das maiores causas de bug em software são falhas relacionadas a tipos nulos. É muito comum um desenvolvedor não verificar se as variáveis e/ou parâmetros estão ou não nulos antes de começar a utilizá-los. Para facilitar nossa vida temos agora a adição deste novo recurso. Em JavaScript além do valor <code>null</code> temos o <code>undefined</code> e estes dois valores se tornam a fonte do mal quando não são bem compreendidos e tratados.</p>
-
-<p>Originalmente no TypeScript todos os tipos eram <code>nullables</code>, ou seja, qualquer tupo poderia arssumir um valor nulo. Agora com o novo compilador os valores null e undefined foram separados como tipos diferentes, ou seja, ao utilizar este novo recurso precisamos de forma declarativa definir se uma variável ou argumento terá o valor <code>null</code> ou <code>undefined</code>. Fazemos isso utilizando o recurso <code>union types</code>. Você pode verificar este <a href="/posts/TypeScript2-Beta-nun-nullable-types">post</a> para entender mais.</p>
-
-<h3>Controle de fluxo por analize de tipos</h3>
-
-<p>Este não é um revcurso novo, foi inserido no TypeScript desde a versão 1.8, no entanto com a versão 2.0 este recurso foi expandido e ganhou muito mais poder, principalmente quando este é combinado com tipos <code>non-nullables</code>. Exemplo:</p>
-
-<pre><code class="typescript">function f(condition: boolean) {
-    let result: number;
-    if (condition) {
-        result = computeImportantStuff();
-    }
-
-    // Ops! 'result' pod nunca ter sido inicializado!
-    return result;
+<pre><code class="typescript">interface Square {
+    kind: "square";
+    size: number;
 }
-</code></pre>
 
-<p>Você pode acessar este <a href="/posts/TypeScript-Type-Guards">post</a> para saber mais.</p>
+interface Rectangle {
+    kind: "rectangle";
+    width: number;
+    height: number;
+}
 
-<h3>Modificador readonly</h3>
+interface Circle {
+    kind: "circle";
+    radius: number;
+}
 
-<p>Agora podemos definir membros imutaveis em TypeScript de forma muito fácil. Basta declarar as propriedades como <code>readonly</code>. Exemplo:</p>
+type Shape = Square | Rectangle | Circle;
 
-<pre><code class="typescript">class Person {
-    readonly name: string;
-
-    constructor(name: string) {
-        if (name.length &lt; 1) {
-            throw new Error("Empty name!");
-        }
-
-        this.name = name;
+function area(s: Shape) {
+    // Repare que no bloco switch abaixo, o tipo da variável "s" é reconhecido pelo
+    // compilador de forma diferente em cada bloco condicional. O compilador define
+    // o tipo correto baseado no valor da propriedade "kind" definida nas interfaces
+    // acima como um valor constante. Por esse motivo podemos utilizar as propriedades
+    // específicas de cada interface sem precisar fazer uma conversão (cast).
+    switch (s.kind) {
+        case "square": return s.size * s.size;
+        case "rectangle": return s.width * s.height;
+        case "circle": return Math.PI * s.radius * s.radius;
     }
 }
 
-// Erro! 'name' é somente leitura.
-new Person("Daniel").name = "Dan";
+// Repare como nas funções abaixo o compilador entende a lógica aplicada nos if's e
+// interpreta o tipo de "s" de acordo com a propriedade "kind".
+
+function test1(s: Shape) {
+    if (s.kind === "square") {
+        s;  // Aqui "s" é do tipo: "Square"
+    }
+    else {
+        s;  // Aqui "s" é do tipo: "Rectangle | Circle"
+    }
+}
+
+function test2(s: Shape) {
+    if (s.kind === "square" || s.kind === "rectangle") {
+        return;
+    }
+    s;  // Aqui "s" é do tipo "Circle"
+}
 </code></pre>
 
-<p>Lindo neh?</p>
+<p>Por enquanto esse recurso opera apenas sobre propriedades tipo <code>string</code>. Existe a intenção de, no futuro, adicionar suporte a outros tipo como <code>boolean</code> e <code>number</code>.</p>
 
-<p>Exiastem ainda muitos outros recursos que podem ser conferidos <a href="https://github.com/Microsoft/TypeScript/wiki/What%27s-new-in-TypeScript">aqui</a>.</p>
-
-<h2>O que esperar do futuro?</h2>
-
-<p>Muita coisa ainda está por vir. O JavaScript é uma das linguagens mais utilizadas no mundo, difícil um programador web hoje em dia não ter escrito ao menos algumas linhas de código em JavaScript. O TypeScript veio para ficar. Novas features virão, novas ferramentas e editores, e quem irá usufruir de tudo isso somos nós desenvolvedores.</p>
+<p>Esper oque este post tenha sido útil.</p>
 
 <p>Até a próxima!</p>
 
