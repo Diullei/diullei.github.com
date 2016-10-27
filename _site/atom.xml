@@ -4,7 +4,7 @@
  <title>Diullei Gomes</title>
  <link href="http://www.diullei.com/atom.xml" rel="self"/>
  <link href="http://www.diullei.com/"/>
- <updated>2016-10-27T01:15:27+00:00</updated>
+ <updated>2016-10-27T01:23:07+00:00</updated>
  <id>http://www.diullei.com</id>
  <author>
    <name>Diullei Gomes</name>
@@ -98,6 +98,9 @@ let result = test(false);
 &lt;p&gt;Agora o compilador irá entender corretamente o código e definir o tipo da variavel &lt;code&gt;result&lt;/code&gt; como &lt;code&gt;number&lt;/code&gt;.&lt;/p&gt;
 
 &lt;p&gt;É isso, até a próxima!&lt;/p&gt;
+
+&lt;blockquote&gt;&lt;p&gt;Reference: TS v2.0 &lt;a href=&quot;https://github.com/Microsoft/TypeScript/pull/8652&quot;&gt;https://github.com/Microsoft/TypeScript/pull/8652&lt;/a&gt;
+&lt;a href=&quot;https://github.com/Microsoft/TypeScript/issues/3076&quot;&gt;https://github.com/Microsoft/TypeScript/issues/3076&lt;/a&gt;&lt;/p&gt;&lt;/blockquote&gt;
 </content>
  </entry>
  
