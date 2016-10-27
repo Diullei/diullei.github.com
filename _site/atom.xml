@@ -4,12 +4,102 @@
  <title>Diullei Gomes</title>
  <link href="http://www.diullei.com/atom.xml" rel="self"/>
  <link href="http://www.diullei.com/"/>
- <updated>2016-10-25T13:07:14+00:00</updated>
+ <updated>2016-10-27T01:15:27+00:00</updated>
  <id>http://www.diullei.com</id>
  <author>
    <name>Diullei Gomes</name>
  </author>
 
+ 
+ <entry>
+   <title>TypeScript e o tipo "never"</title>
+   <link href="http://www.diullei.com/posts/TypeScript-and-the-Never-type"/>
+   <updated>2016-10-26T00:00:00+00:00</updated>
+   <id>http://www.diullei.com/posts/TypeScript-and-the-Never-type</id>
+   <content type="html">&lt;p&gt;Continuando a série de artigos sobre as novidades da versão 2.0 do TypeScript hoje eu vou falar um pouco sobre o tipo &lt;code&gt;never&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Como vimos no post sobre &lt;a href=&quot;/posts/Tagged-union-types&quot;&gt;união discriminada de tipos&lt;/a&gt; e em outro post sobre &lt;a href=&quot;/posts/TypeScript-Type-Guards&quot;&gt;type guards&lt;/a&gt;, o compilador do TypeScript possui um recurso que analiza todas as possíveis rotas de fluxo no código que está sendo compilado com o objetivo de definir da forma mais precisa possível o tipo das variáveis que estão sendo utilizadas (Veja o ultimo post &lt;a href=&quot;/posts/Tagged-union-types&quot;&gt;&amp;ldquo;união discriminada de tipos&amp;rdquo;&lt;/a&gt; para entender um pouco mais).&lt;/p&gt;
+
+&lt;p&gt;Em um aplicativo, em alguns casos, teremos fluxos no código que nuca serão executados. Por causa disso, para prover uma analize de código mais completa o time do TypeScript inseriu um novo tipo chamado &lt;code&gt;never&lt;/code&gt;. Entenda o tipo &lt;code&gt;never&lt;/code&gt; com a representação de valores que nunca serão retornados.&lt;/p&gt;
+
+&lt;p&gt;Encontraremos o tipo &lt;code&gt;never&lt;/code&gt; no código de 2 maneiras diferentes. Ele pode ocorrer naturalmente. Por exemplo:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;typescript&quot;&gt;let result = (() =&amp;gt; {
+    while (true) {
+        //...
+    }
+})();
+// let result: never
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Se observarmos o código da função anônima acima veremos um &amp;ldquo;loop infinito&amp;rdquo;, o código fica eternamente executando dentro do bloco &lt;code&gt;while&lt;/code&gt; e nunca retorna um valor, ou seja, nunca finaliza. Como o compilador do TypeScript analiza todo código que está sendo escrito, ele entende naturalmente que se trata de um bloco de código que nunca será executado e por isso, no nosso caso, ele define o valor de retorno da função como &lt;code&gt;never&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Além de fluxos com &amp;ldquo;loop infinito&amp;rdquo; o compilador também irá inferir o tipo &lt;code&gt;never&lt;/code&gt; para funções que lançam exceção em seu fluxo principal. Exemplo:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;typescript&quot;&gt;function error(message: string): never {
+    throw new Error(message);
+}
+
+// Inferred return type is never
+function fail() {
+    return error(&quot;Something failed&quot;);
+}
+
+let result = fail();
+// let result: never
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;A outra forma de encontrar o tipo &lt;code&gt;never&lt;/code&gt; é quando declaramos diretamente este tipo. Exemplo:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;typescript&quot;&gt;function alwaysNever(): never {
+    throw new Error(&quot;!&quot;);
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3&gt;Confundindo o tipo &amp;ldquo;never&amp;rdquo; com o tipo &amp;ldquo;void&amp;rdquo;&lt;/h3&gt;
+
+&lt;p&gt;É muito comum a primeira vista alguem confundir o tipo &lt;code&gt;never&lt;/code&gt; com o tipo &lt;code&gt;void&lt;/code&gt;, mas se olharmos com mais atenção veremos que são tipos completamente diferentes. Para explicar melhor essa diferença vamos a um caso de uso:&lt;/p&gt;
+
+&lt;p&gt;Antes de termos o tipo &lt;code&gt;never&lt;/code&gt; o código acima (função &lt;code&gt;function alwaysNever() { ... }&lt;/code&gt;) seria reconhecido como sendo do tipo &lt;code&gt;void&lt;/code&gt;. Algo similar ao código abaixo:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;typescript&quot;&gt;function alwaysThrows(): void {
+    throw new Error(&quot;!&quot;);
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Como &lt;code&gt;void&lt;/code&gt; não é um subtipo, a auusencia do tipo &lt;code&gt;never&lt;/code&gt; ocasionava em alguns momentos alguns efeitos colaterais, veja o exemplo abaixo:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;typescript&quot;&gt;function alwaysThrows(): void {
+    throw new Error(&quot;!&quot;);
+}
+
+function test(a: boolean) {
+    return a ? 123 : alwaysThrows();
+}
+
+let result = test(false);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Se verificarmos no código acima, com a ausencia do tipo &lt;code&gt;never&lt;/code&gt; a variável &lt;code&gt;result&lt;/code&gt; assume o tipo &lt;code&gt;number | void&lt;/code&gt;. Isso é um erro por que se verificarmos o retorno da função &lt;code&gt;test(...)&lt;/code&gt; tendo o argument &lt;code&gt;a&lt;/code&gt; como &lt;code&gt;false&lt;/code&gt; teremos na realidade uma exceção e nunca um valor do tipo &lt;code&gt;void&lt;/code&gt;. Com isso em mente o tipo da variável &lt;code&gt;result&lt;/code&gt; deve ser entendido como &lt;code&gt;number&lt;/code&gt; já que temos como unica possibilidadde de retorno é o valor &lt;code&gt;123&lt;/code&gt;. O tipo &lt;code&gt;never&lt;/code&gt; nos ajuda a arrumar este efeito colateral pois &lt;code&gt;never&lt;/code&gt; é um subtipo de todos os outros tipos conhecidos.&lt;/p&gt;
+
+&lt;p&gt;Reescrevendo o código acima temos:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;typescript&quot;&gt;function alwaysThrows(): never {
+    throw new Error(&quot;!&quot;);
+}
+
+function test(a: boolean) {
+    return a ? 123 : alwaysThrows();
+}
+
+let result = test(false);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Agora o compilador irá entender corretamente o código e definir o tipo da variavel &lt;code&gt;result&lt;/code&gt; como &lt;code&gt;number&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;É isso, até a próxima!&lt;/p&gt;
+</content>
+ </entry>
  
  <entry>
    <title>União discriminada de tipos (Tagged union types)</title>
