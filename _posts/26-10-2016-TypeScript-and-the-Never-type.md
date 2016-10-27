@@ -93,5 +93,4 @@ Agora o compilador irá entender corretamente o código e definir o tipo da vari
 
 É isso, até a próxima!
 
-> Reference: TS v2.0 [https://github.com/Microsoft/TypeScript/pull/8652](https://github.com/Microsoft/TypeScript/pull/8652)
-> [https://github.com/Microsoft/TypeScript/issues/3076](https://github.com/Microsoft/TypeScript/issues/3076)
+> Reference: TS v2.0 [pull/8652](https://github.com/Microsoft/TypeScript/pull/8652) e [issues/3076](https://github.com/Microsoft/TypeScript/issues/3076)
