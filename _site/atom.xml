@@ -4,7 +4,7 @@
  <title>Diullei Gomes</title>
  <link href="http://www.diullei.com/atom.xml" rel="self"/>
  <link href="http://www.diullei.com/"/>
- <updated>2016-10-27T01:25:58+00:00</updated>
+ <updated>2016-10-27T01:34:07+00:00</updated>
  <id>http://www.diullei.com</id>
  <author>
    <name>Diullei Gomes</name>
@@ -166,6 +166,8 @@ function test2(s: Shape) {
 &lt;p&gt;Esper oque este post tenha sido útil.&lt;/p&gt;
 
 &lt;p&gt;Até a próxima!&lt;/p&gt;
+
+&lt;blockquote&gt;&lt;p&gt;Reference: TS v2.0 &lt;a href=&quot;https://github.com/Microsoft/TypeScript/pull/9163&quot;&gt;pull/9163&lt;/a&gt;, &lt;a href=&quot;https://github.com/Microsoft/TypeScript/issues/186&quot;&gt;issues/186&lt;/a&gt; e &lt;a href=&quot;https://github.com/Microsoft/TypeScript/issues/1003&quot;&gt;issues/1003&lt;/a&gt;&lt;/p&gt;&lt;/blockquote&gt;
 </content>
  </entry>
  
