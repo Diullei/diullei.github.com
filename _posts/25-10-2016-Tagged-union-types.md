@@ -64,3 +64,5 @@ Por enquanto esse recurso opera apenas sobre propriedades tipo `string`. Existe 
 Esper oque este post tenha sido útil.
 
 Até a próxima!
+
+> Reference: TS v2.0 [pull/9163](https://github.com/Microsoft/TypeScript/pull/9163), [issues/186](https://github.com/Microsoft/TypeScript/issues/186) e [issues/1003](https://github.com/Microsoft/TypeScript/issues/1003)
