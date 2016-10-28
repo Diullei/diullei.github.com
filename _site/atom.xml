@@ -4,12 +4,82 @@
  <title>Diullei Gomes</title>
  <link href="http://www.diullei.com/atom.xml" rel="self"/>
  <link href="http://www.diullei.com/"/>
- <updated>2016-10-27T01:34:07+00:00</updated>
+ <updated>2016-10-27T17:14:27+00:00</updated>
  <id>http://www.diullei.com</id>
  <author>
    <name>Diullei Gomes</name>
  </author>
 
+ 
+ <entry>
+   <title>Definindo o tipo de "this" em funções</title>
+   <link href="http://www.diullei.com/posts/Type-of-this-for-functions"/>
+   <updated>2016-10-27T00:00:00+00:00</updated>
+   <id>http://www.diullei.com/posts/Type-of-this-for-functions</id>
+   <content type="html">&lt;p&gt;O TypeScript 2.0 nos permite definir o tipo da referência &lt;code&gt;this&lt;/code&gt; dentro de uma função. Como sempre, para entender melhor, vamos aos exemplos:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;typescript&quot;&gt;class Test {
+    public doSomething() {
+        let self = this;
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Na função &lt;code&gt;doSomething()&lt;/code&gt; a variavel &lt;code&gt;self&lt;/code&gt; assume o tipo &lt;code&gt;Test&lt;/code&gt;. Até aqui nada novo. Agora vamos a outro exemplo:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;typescript&quot;&gt;function doSomething() {
+    let self = this;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Na função &lt;code&gt;doSomething()&lt;/code&gt; acima a variável &lt;code&gt;self&lt;/code&gt; assume o tipo &lt;code&gt;any&lt;/code&gt;. Isso por que se trata de uma função isolada, fora de uma classe. O que acontece é que agora com a nova versão do TypeScript podemos definir o tipo de &lt;code&gt;this&lt;/code&gt; para funções isoladas. Vamos tomar como base a função &lt;code&gt;doSomething()&lt;/code&gt;. Digamos que queiramos impedir que um desenvolvedor, por engano, tente chamar qualquer método ou atributo de &lt;code&gt;this&lt;/code&gt; dentro desta função. Para isso vamos reescrever essa função da seguinte forma:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;typescript&quot;&gt;function doSomething(this: void) {
+    let self = this;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Agora o tipo de &lt;code&gt;self&lt;/code&gt; é &lt;code&gt;void&lt;/code&gt;. Como &lt;code&gt;void&lt;/code&gt; não poss membros, caso alguem tente chamar qualquer um de seus membros por engano um erro será exibido em tempo de compilação. Utilizamos uma nova notação onde criamos um argumento chamado &lt;code&gt;this&lt;/code&gt; e definimos seu tipo. Esse argumento precisa ser sempre o primeiro argumento dentro da função e ele não será repassado para o código final servindo apenas para informar ao compilador o tipo que queremos definir para &lt;code&gt;this&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Agora vamos a um exemplo mais prático. Veja a seguinte interface:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;typescript&quot;&gt;interface UIElement {
+    addClickListener(onclick: (this: void, e: Event) =&amp;gt; void): void;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Note que a função &lt;code&gt;addClickListener(...)&lt;/code&gt; espera uma outra função como parâmetro que não utilize &lt;code&gt;this&lt;/code&gt; no seu bloco de código. Se temtarmos passar uma função que viole essa definição teremos um erro:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;typescript&quot;&gt;interface UIElement {
+    addClickListener(onclick: (this: void, e: Event) =&amp;gt; void): void;
+}
+
+var uiElement: UIElement = &amp;lt;any&amp;gt;{};
+
+class Handler {
+    info: string;
+    onClickBad(this: Handler, e: Event) {
+        this.info = &quot;message&quot;;
+    };
+}
+let h = new Handler();
+uiElement.addClickListener(h.onClickBad); // erro!
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Veja que dentro da função &lt;code&gt;onClickBad()&lt;/code&gt; estamos usando &lt;code&gt;this&lt;/code&gt; normalmente. Mas se tentarmos passar a função &lt;code&gt;onClickBad&lt;/code&gt; como argumento em &lt;code&gt;addClickListener(...)&lt;/code&gt;&amp;hellip;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;typescript&quot;&gt;uiElement.addClickListener(h.onClickBad); // erro!
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&amp;hellip;teremos um erro de compilação.&lt;/p&gt;
+
+&lt;blockquote&gt;&lt;p&gt;NOTA: Para utilizar este recurso precisamos habilitar a chave &lt;code&gt;--noImplicitThis&lt;/code&gt; bo arquivo &lt;code&gt;tsconfig.json&lt;/code&gt; ou passando diretamente via linha de comando.&lt;/p&gt;&lt;/blockquote&gt;
+
+&lt;p&gt;É isso. Até a próxima.&lt;/p&gt;
+
+&lt;blockquote&gt;&lt;p&gt;Reference: TS v2.0 &lt;a href=&quot;https://github.com/Microsoft/TypeScript/issues/3694&quot;&gt;issues/3694&lt;/a&gt; e &lt;a href=&quot;https://github.com/Microsoft/TypeScript/pull/4910&quot;&gt;pull/4910&lt;/a&gt;&lt;/p&gt;&lt;/blockquote&gt;
+</content>
+ </entry>
  
  <entry>
    <title>TypeScript e o tipo "never"</title>
