@@ -23,7 +23,7 @@ O argumento passado no construtor define o número de elementos que estamos aloc
 
 Veja abaixo uma lista com os tipos de arrays tipados disponíveis:
 
-| Tipo                | Tamanho (byte)   | tipo correspondente em C |
+| Tipo                | Tamanho (byte)   | Tipo correspondente em C |
 |:--------------------|:----------------:|:----------|
 | `Int8Array`         |  1               | int8_t    |
 | `Uint8Array`        |  1               | uint8_t   |
