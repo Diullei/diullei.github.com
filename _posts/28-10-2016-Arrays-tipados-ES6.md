@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Arrays tipados - ES6
-category: [JavaScript]
+category: [JavaScript, ES6]
 tags : [JavaScript, ES6]
 ---
 
