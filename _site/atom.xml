@@ -4,7 +4,7 @@
  <title>Diullei Gomes</title>
  <link href="http://www.diullei.com/atom.xml" rel="self"/>
  <link href="http://www.diullei.com/"/>
- <updated>2016-10-29T05:04:22+00:00</updated>
+ <updated>2016-10-29T05:08:02+00:00</updated>
  <id>http://www.diullei.com</id>
  <author>
    <name>Diullei Gomes</name>
@@ -38,7 +38,7 @@ console.log(arr[0]);
 &lt;tr&gt;
 &lt;th style=&quot;text-align:left;&quot;&gt; Tipo                &lt;/th&gt;
 &lt;th style=&quot;text-align:center;&quot;&gt; Tamanho (byte)   &lt;/th&gt;
-&lt;th style=&quot;text-align:left;&quot;&gt; tipo correspondente em C &lt;/th&gt;
+&lt;th style=&quot;text-align:left;&quot;&gt; Tipo correspondente em C &lt;/th&gt;
 &lt;/tr&gt;
 &lt;/thead&gt;
 &lt;tbody&gt;
