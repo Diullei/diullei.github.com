@@ -4,7 +4,7 @@
  <title>Diullei Gomes</title>
  <link href="http://www.diullei.com/atom.xml" rel="self"/>
  <link href="http://www.diullei.com/"/>
- <updated>2016-10-29T05:00:07+00:00</updated>
+ <updated>2016-10-29T05:04:22+00:00</updated>
  <id>http://www.diullei.com</id>
  <author>
    <name>Diullei Gomes</name>
@@ -12,10 +12,10 @@
 
  
  <entry>
-   <title>Arrays tipados</title>
-   <link href="http://www.diullei.com/posts/Arrays-tipados"/>
+   <title>Arrays tipados - ES6</title>
+   <link href="http://www.diullei.com/posts/Arrays-tipados-ES6"/>
    <updated>2016-10-28T00:00:00+00:00</updated>
-   <id>http://www.diullei.com/posts/Arrays-tipados</id>
+   <id>http://www.diullei.com/posts/Arrays-tipados-ES6</id>
    <content type="html">&lt;p&gt;Os arrays tipados são parte da especificação do ECMAScript 2015 (também conhecido como ES6). Eles foram projetados para facilitar o trabalho com estruturas de dados binárias. Inicialmente os arrays tipados foram introduzidos pelas APIs WebGL com o objetivo de diminuir a dissonância entre as estruturas de dados padrões do &lt;code&gt;JavaScript&lt;/code&gt; e as estruturas de dados do &lt;code&gt;C&lt;/code&gt;, linguagem base da API &lt;code&gt;WebGL&lt;/code&gt;, e com isso permitir ao JavaScript acessar diretamente a estrutura já alocada em memória.&lt;/p&gt;
 
 &lt;p&gt;Você pode acessar este &lt;a href=&quot;http://caniuse.com/#feat=typedarrays&quot;&gt;link&lt;/a&gt; para saber quais browsers já suportam esse recurso: &lt;a href=&quot;http://caniuse.com/#feat=typedarrays&quot;&gt;http://caniuse.com/#feat=typedarrays&lt;/a&gt;&lt;/p&gt;
