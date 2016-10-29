@@ -4,12 +4,154 @@
  <title>Diullei Gomes</title>
  <link href="http://www.diullei.com/atom.xml" rel="self"/>
  <link href="http://www.diullei.com/"/>
- <updated>2016-10-27T17:14:27+00:00</updated>
+ <updated>2016-10-29T05:00:07+00:00</updated>
  <id>http://www.diullei.com</id>
  <author>
    <name>Diullei Gomes</name>
  </author>
 
+ 
+ <entry>
+   <title>Arrays tipados</title>
+   <link href="http://www.diullei.com/posts/Arrays-tipados"/>
+   <updated>2016-10-28T00:00:00+00:00</updated>
+   <id>http://www.diullei.com/posts/Arrays-tipados</id>
+   <content type="html">&lt;p&gt;Os arrays tipados são parte da especificação do ECMAScript 2015 (também conhecido como ES6). Eles foram projetados para facilitar o trabalho com estruturas de dados binárias. Inicialmente os arrays tipados foram introduzidos pelas APIs WebGL com o objetivo de diminuir a dissonância entre as estruturas de dados padrões do &lt;code&gt;JavaScript&lt;/code&gt; e as estruturas de dados do &lt;code&gt;C&lt;/code&gt;, linguagem base da API &lt;code&gt;WebGL&lt;/code&gt;, e com isso permitir ao JavaScript acessar diretamente a estrutura já alocada em memória.&lt;/p&gt;
+
+&lt;p&gt;Você pode acessar este &lt;a href=&quot;http://caniuse.com/#feat=typedarrays&quot;&gt;link&lt;/a&gt; para saber quais browsers já suportam esse recurso: &lt;a href=&quot;http://caniuse.com/#feat=typedarrays&quot;&gt;http://caniuse.com/#feat=typedarrays&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2&gt;Criando Arrays tipados&lt;/h2&gt;
+
+&lt;p&gt;Aqui não existe nenhum segredo, criamos um array tipado da mesma forma que criarpiamos qualquer instância de objeto. em JavaScript:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;javascript&quot;&gt;var arr = new Uint16Array(10);
+arr[0] = 0xFFFF;
+console.log(arr[0]);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;O argumento passado no construtor define o número de elementos que estamos alocando neste array (No exemplo acima estamos alocando 10 elementos do tipo numérico &lt;code&gt;uint16&lt;/code&gt;, o que de acordo com a especificação deste tipo de array irá alocar 20 bytes de memória).&lt;/p&gt;
+
+&lt;p&gt;Veja abaixo uma lista com os tipos de arrays tipados disponíveis:&lt;/p&gt;
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style=&quot;text-align:left;&quot;&gt; Tipo                &lt;/th&gt;
+&lt;th style=&quot;text-align:center;&quot;&gt; Tamanho (byte)   &lt;/th&gt;
+&lt;th style=&quot;text-align:left;&quot;&gt; tipo correspondente em C &lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:left;&quot;&gt; &lt;code&gt;Int8Array&lt;/code&gt;         &lt;/td&gt;
+&lt;td style=&quot;text-align:center;&quot;&gt;  1               &lt;/td&gt;
+&lt;td style=&quot;text-align:left;&quot;&gt; int8_t    &lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:left;&quot;&gt; &lt;code&gt;Uint8Array&lt;/code&gt;        &lt;/td&gt;
+&lt;td style=&quot;text-align:center;&quot;&gt;  1               &lt;/td&gt;
+&lt;td style=&quot;text-align:left;&quot;&gt; uint8_t   &lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:left;&quot;&gt; &lt;code&gt;Uint8ClampedArray&lt;/code&gt; &lt;/td&gt;
+&lt;td style=&quot;text-align:center;&quot;&gt;  1               &lt;/td&gt;
+&lt;td style=&quot;text-align:left;&quot;&gt; uint8_t   &lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:left;&quot;&gt; &lt;code&gt;Int16Array&lt;/code&gt;        &lt;/td&gt;
+&lt;td style=&quot;text-align:center;&quot;&gt;  2               &lt;/td&gt;
+&lt;td style=&quot;text-align:left;&quot;&gt; int16_t   &lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:left;&quot;&gt; &lt;code&gt;Uint16Array&lt;/code&gt;       &lt;/td&gt;
+&lt;td style=&quot;text-align:center;&quot;&gt;  2               &lt;/td&gt;
+&lt;td style=&quot;text-align:left;&quot;&gt; uint16_t  &lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:left;&quot;&gt; &lt;code&gt;Int32Array&lt;/code&gt;        &lt;/td&gt;
+&lt;td style=&quot;text-align:center;&quot;&gt;  4               &lt;/td&gt;
+&lt;td style=&quot;text-align:left;&quot;&gt; int32_t   &lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:left;&quot;&gt; &lt;code&gt;Uint32Array&lt;/code&gt;       &lt;/td&gt;
+&lt;td style=&quot;text-align:center;&quot;&gt;  4               &lt;/td&gt;
+&lt;td style=&quot;text-align:left;&quot;&gt; uint32_t  &lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:left;&quot;&gt; &lt;code&gt;Float32Array&lt;/code&gt;      &lt;/td&gt;
+&lt;td style=&quot;text-align:center;&quot;&gt;  4               &lt;/td&gt;
+&lt;td style=&quot;text-align:left;&quot;&gt; float     &lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:left;&quot;&gt; &lt;code&gt;Float64Array&lt;/code&gt;      &lt;/td&gt;
+&lt;td style=&quot;text-align:center;&quot;&gt;  8               &lt;/td&gt;
+&lt;td style=&quot;text-align:left;&quot;&gt; double    &lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+
+&lt;h2&gt;ArrayBuffer e DataView&lt;/h2&gt;
+
+&lt;p&gt;&lt;code&gt;ArrayBuffer&lt;/code&gt; e &lt;code&gt;DataView&lt;/code&gt; são parte da implementação de arrays tipados. Um &lt;code&gt;ArrayBuffer&lt;/code&gt; básicamente armazena os dados de um array tipado. Por exemplo:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;javascript&quot;&gt;var fileArrayBuffer = reader.readAsArrayBuffer(file);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Neste código &lt;code&gt;ArrayBuffer&lt;/code&gt; ira armazenar todos os bytes do arquivo. Como esse arquivo pode estar em encodes diferentes, precisaremos fazer alguma manipulação para ler seu conteúdo. Por exemplo, se este arquivo for do tipo &lt;code&gt;UTF-8&lt;/code&gt; poderemos associar este &lt;code&gt;ArrayBuffer&lt;/code&gt; ao tipo &lt;code&gt;Uint16Array&lt;/code&gt; para ler corretamente seu conteúdo.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;javascript&quot;&gt;var arr = new Uint16Array(fileArrayBuffer);
+String.fromCharCode(arr[0]); // A
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Já o &lt;code&gt;DataView&lt;/code&gt; é um tipo que nos permite acessar estruturas binrias em memória. Exemplo, se tivermos uma estrutura em &lt;code&gt;C&lt;/code&gt; declarada da seguinte forma:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;c&quot;&gt;struct data {
+    unsigned int id;
+    char[10] username;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Iremos ler esta estrutura em JavaScript com o código:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;javascript&quot;&gt;var buf = new ArrayBuffer(11);
+var id = new Uint8Array(buf, 0, 1);
+var username = new Uint8Array(buf, 1, 10);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Note que se trata de uma leitura sequencial da memória onde o primeiro byte contém o valor de &lt;code&gt;id&lt;/code&gt; e os outros 10 bytes seguintes o valor de &lt;code&gt;username&lt;/code&gt;. Aqui estamos utilizando &lt;code&gt;Uint8Array&lt;/code&gt; como &lt;code&gt;DataView&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h2&gt;Onde esse recurso ja está sendo utilizado?&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;WebGL&lt;/strong&gt; - Utiliza typed arrays em buffer, pixels e mapas de testuras&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Canvas&lt;/strong&gt; - Canvas utiliza um arrau tipado para armazenar uma imagem.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;pre&gt;&lt;code class=&quot;javascript&quot;&gt;var uint8ClampedArray = ctx.getImageData(...).data;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;WebSockets&lt;/strong&gt; - Uma vez habilitado permite a transferência de dados utilizando um &lt;code&gt;ArrayBuffer&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;pre&gt;&lt;code class=&quot;javascript&quot;&gt;webSocket.binaryType = 'arraybuffer';
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Outras APIs&lt;/strong&gt; - &lt;em&gt;File API&lt;/em&gt;, &lt;em&gt;XMLHttpRequest,&lt;/em&gt; &lt;em&gt;Fetch API&lt;/em&gt;, &lt;code&gt;window.postMessage()&lt;/code&gt; entre outros.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;h2&gt;Conclusão&lt;/h2&gt;
+
+&lt;p&gt;Iremos utilizar os Arrays typados em trechos de código muito específicos onde a performance com a manipulação de estruturas de dados mais complexas for importante, como por exemplo a manipulação de imagens e de som.&lt;/p&gt;
+
+&lt;p&gt;É isso, até a próxima.&lt;/p&gt;
+</content>
+ </entry>
  
  <entry>
    <title>Definindo o tipo de "this" em funções</title>
