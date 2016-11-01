@@ -4,12 +4,170 @@
  <title>Diullei Gomes</title>
  <link href="http://www.diullei.com/atom.xml" rel="self"/>
  <link href="http://www.diullei.com/"/>
- <updated>2016-10-29T05:08:02+00:00</updated>
+ <updated>2016-11-01T23:22:01+00:00</updated>
  <id>http://www.diullei.com</id>
  <author>
    <name>Diullei Gomes</name>
  </author>
 
+ 
+ <entry>
+   <title>jQuery - 10 dicas de performance</title>
+   <link href="http://www.diullei.com/posts/jQuery-10-dicas-de-performance"/>
+   <updated>2016-11-01T00:00:00+00:00</updated>
+   <id>http://www.diullei.com/posts/jQuery-10-dicas-de-performance</id>
+   <content type="html">&lt;p&gt;Os anos se passaram e o jQuery continua relevante em pleno 2016. A facilidade de manipulação e a infinidade de artigos na internet ajuda a reforçar a utilização do jQuery e a manter essa biblioteca viva. De fato, poucos anos atrás, escrever codigo compatível com diferentes versões de navegadores seria um trabalho muito árduo se não fosse pelo nosso amigo jQuery.&lt;/p&gt;
+
+&lt;p&gt;O grande problema com o jQuery é que muitos desenvolvedores ignoram as boas práticas e escrevem codigo muito pobres em performance (isso sem falar sobre design de código).&lt;/p&gt;
+
+&lt;h2&gt;Por que performance é importante?&lt;/h2&gt;
+
+&lt;p&gt;Vou expor duas boas razões:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Uma boa performance pode trazer uma boa experiência de uso. Nem sempre seus visitanes vão lhe dizer que seu site está lento, eles simplesmente não vão voltar a acessar o site.&lt;/li&gt;
+&lt;li&gt;O Google leva a performance em consideração para a classificação do seu site no PageRank.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;Então, vamos aos pontos&amp;hellip;&lt;/p&gt;
+
+&lt;h2&gt;1. Use a versão mais atual do jQuery sempre que possível&lt;/h2&gt;
+
+&lt;p&gt;As novas versões sempre trazem melhorias de performance e atualizações de segurança.&lt;/p&gt;
+
+&lt;h2&gt;2. Utilize os seletores da forma correta&lt;/h2&gt;
+
+&lt;p&gt;Cada seletor possui uma performance diferente. Organizando do mais rápido para o mais lento temos:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Seleção por ID - &lt;code&gt;$('#element-id')&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Seleção por Elemento - &lt;code&gt;$('form')&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Seleção por Classe - &lt;code&gt;$('.some-class')&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Seleção por Pseudo Atributo - &lt;code&gt;$('[data-attr]'), $(':hidden')&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;h2&gt;3. O algoritmo de seleção do jQuery funciona da esquerda para a direita&lt;/h2&gt;
+
+&lt;p&gt;Isso significa que o lado direto da query de busca precisa ser o mais específico possivel. Neste caso, queries muito longas acabam não fazendo muito sentido e podem ser evitadas. Exemplo:&lt;/p&gt;
+
+&lt;blockquote&gt;&lt;p&gt;Ruim&lt;/p&gt;&lt;/blockquote&gt;
+
+&lt;pre&gt;&lt;code&gt;$('div.page div.block .element')
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;blockquote&gt;&lt;p&gt;Bom&lt;/p&gt;&lt;/blockquote&gt;
+
+&lt;pre&gt;&lt;code&gt;$('.page div.element')
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;blockquote&gt;&lt;p&gt;Sempre que possível utilize &lt;em&gt;tag + class&lt;/em&gt;&lt;/p&gt;&lt;/blockquote&gt;
+
+&lt;h2&gt;4. Quebre sua query em blocos sempre que possível&lt;/h2&gt;
+
+&lt;p&gt;Seguindo o conceito do item (3) considere os seguintes códigos:&lt;/p&gt;
+
+&lt;blockquote&gt;&lt;p&gt;Ruim&lt;/p&gt;&lt;/blockquote&gt;
+
+&lt;pre&gt;&lt;code&gt;$('#container .element')
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;blockquote&gt;&lt;p&gt;Bom&lt;/p&gt;&lt;/blockquote&gt;
+
+&lt;pre&gt;&lt;code&gt;$('#container').find('.element')
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Lembre-se que a busca é sempre feita da direita para a esquerda e por isso, no primeiro exemplo o jQuery irá primeiro buscar por todos os elementos com a classe &lt;code&gt;element&lt;/code&gt; e depois filtrar todos os elementos que contenham o id &lt;code&gt;container&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Uma outra sintaxe similar ao método &lt;code&gt;find(...)&lt;/code&gt; é:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$('.element', '#container')
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2&gt;5. Faça sempre um cache dos seus seletores&lt;/h2&gt;
+
+&lt;p&gt;Este item é muito simular ao anterior. Os exemplos de código abaixo falam por sí só:&lt;/p&gt;
+
+&lt;blockquote&gt;&lt;p&gt;Ruim&lt;/p&gt;&lt;/blockquote&gt;
+
+&lt;pre&gt;&lt;code&gt;var block = $('.block');
+var elements = $('.block').find('.element');
+var title = $('.block').data('title');
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;blockquote&gt;&lt;p&gt;Bom&lt;/p&gt;&lt;/blockquote&gt;
+
+&lt;pre&gt;&lt;code&gt;var block = $('.block');
+var elements = block.find('.element');
+var title = block.data('title');
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2&gt;6. Evite a manipulação pesada do DOM&lt;/h2&gt;
+
+&lt;p&gt;Você pode se surpreender com a quantidade de elementos que é possível manipular utilizando JavaScript. No entanto, se estes elementos estiverem ligados ao DOM essa surpreza será ruim. Manipular elementos no DOM é uma operação muito lenta e quanto mais elementos você precise manipular, pior será a performance.&lt;/p&gt;
+
+&lt;p&gt;A melhor forma de fazer isso utilizando jQuery é primiro &amp;ldquo;desacoplar&amp;rdquo; esses elementos no DOM, manipular e depois retorná-los ao DOM. Exemplo:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;var elem = $('.element');
+var parent = elem.parent();
+elem.detach();
+... operações muito pesadas, ordenação de tabelas por exemplo ...
+parent.append(elem);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2&gt;7. Evite &amp;ldquo;appends&amp;rdquo; desnecessários&lt;/h2&gt;
+
+&lt;p&gt;Ao invés de ficar utilizando o método &lt;code&gt;append(...)&lt;/code&gt; pra cada elemento que estiver adicionando, procure sempre montar uma string HTML e utiliar o &lt;code&gt;append(...)&lt;/code&gt; de uma só vez.&lt;/p&gt;
+
+&lt;h2&gt;8. Prefira utilizar data() no lugar de attr()&lt;/h2&gt;
+
+&lt;p&gt;O método &lt;code&gt;attr(...)&lt;/code&gt; escreve os atributos direto no DOM, e como falamos no item (6), qualquer manipulação direta do DOM deve ser evitada sempre que possível por questões de performance.&lt;/p&gt;
+
+&lt;blockquote&gt;&lt;p&gt;NOTA: a utilização de &lt;code&gt;data(...)&lt;/code&gt; embora preferível pelas questões citadas, deve ser verificada com cautela. Se voce estiver utilizando uma biblioteca de terceiros que esteja manipulando os atributos direto no DOM você poderá ter problemas.&lt;/p&gt;&lt;/blockquote&gt;
+
+&lt;h2&gt;9. Verifique se o elemento realmente existe antes de usá-lo&lt;/h2&gt;
+
+&lt;blockquote&gt;&lt;p&gt;Ruim&lt;/p&gt;&lt;/blockquote&gt;
+
+&lt;pre&gt;&lt;code&gt;$('.element').slideDown();
+// esse ponto executa uma chamada pesada que efetua vários
+// cálculos mesmo se o elemento não existir
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;blockquote&gt;&lt;p&gt;Bom&lt;/p&gt;&lt;/blockquote&gt;
+
+&lt;pre&gt;&lt;code&gt;var element = $('.element');
+if (element.length) {
+    element.slideDown();
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Verificar se o elemento existe antes de efetuar algumas operações evita que alguns algoritmos sejam executados desnecessáriamente.&lt;/p&gt;
+
+&lt;h2&gt;10. Evite a utilização de loops&lt;/h2&gt;
+
+&lt;blockquote&gt;&lt;p&gt;Ruim&lt;/p&gt;&lt;/blockquote&gt;
+
+&lt;pre&gt;&lt;code&gt;$('.element').each(function() {
+    $(this).something().somethingElse();
+});
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;blockquote&gt;&lt;p&gt;Bom&lt;/p&gt;&lt;/blockquote&gt;
+
+&lt;pre&gt;&lt;code&gt;$('.element').something().somethingElse();
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;A API do jQuery nos permite executar muitas operações em grupo baseado no resultado da query. Utilize as operações em grupo sempre que possível.&lt;/p&gt;
+
+&lt;h2&gt;Conclusão&lt;/h2&gt;
+
+&lt;p&gt;jQuery é sem dúvida uma das bibliotecas javascript mais utilizadas e dificilmente perderá esse ranking. Por isso, vale a pena entender melhor como esta biblioteca funciona para utiliza-la da maneira mais correta possível.&lt;/p&gt;
+
+&lt;p&gt;Até a próxima!&lt;/p&gt;
+</content>
+ </entry>
  
  <entry>
    <title>Arrays tipados - ES6</title>
