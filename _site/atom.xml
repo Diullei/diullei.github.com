@@ -4,12 +4,146 @@
  <title>Diullei Gomes</title>
  <link href="http://www.diullei.com/atom.xml" rel="self"/>
  <link href="http://www.diullei.com/"/>
- <updated>2016-11-01T23:22:01+00:00</updated>
+ <updated>2016-11-21T16:28:43+00:00</updated>
  <id>http://www.diullei.com</id>
  <author>
    <name>Diullei Gomes</name>
  </author>
 
+ 
+ <entry>
+   <title>TypeScript - Decorators</title>
+   <link href="http://www.diullei.com/posts/Decorators-TypeScript"/>
+   <updated>2016-11-21T00:00:00+00:00</updated>
+   <id>http://www.diullei.com/posts/Decorators-TypeScript</id>
+   <content type="html">&lt;p&gt;Fala pessoal! Hoje vou falar sobre uma feature muito legal &lt;code&gt;decorators&lt;/code&gt;. Utilizamos decorators para inserir metadados e comportamentos em uma declaração de classe, propriedade, métodos ou parâmetro de uma função. Trata-se de uma função com uma assunatura específica (de acordo com o &lt;code&gt;target&lt;/code&gt;).&lt;/p&gt;
+
+&lt;p&gt;Para utilizar um decorator precisamos utilizar o simbolo &lt;code&gt;@&lt;/code&gt; junto com o nome do decorator antes do membro do código que estivermos decorando. Exemplo:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;typescript&quot;&gt;class MyClass {
+    @log
+    doSomething(arg) {
+        //...
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;blockquote&gt;&lt;p&gt;NOTA: para utilizar esse recurso é necessário configurar a propriedade &lt;code&gt;experimentalDecorators&lt;/code&gt; no arquivo &lt;code&gt;tsconfig.json&lt;/code&gt;. Para compilar o arquivo via linha de comando utilize: &lt;code&gt;tsc myFile.ts –target ES5  –emitDecoratorMetadata&lt;/code&gt;.
+s&lt;/p&gt;
+
+&lt;h2&gt;Pontos importantes&lt;/h2&gt;&lt;/blockquote&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Os decorators são sempre chamados quando uma classe é declarada e não quando um objeto é instanciado.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Multiplos decorators podem ser declarados para um mesmo target.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;não é permitida a utilização de decorators em construtores.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Os decorators podem ser do tipo: &lt;code&gt;ClassDecorator&lt;/code&gt;, &lt;code&gt;PropertyDecorator&lt;/code&gt;, &lt;code&gt;MethodDecorator&lt;/code&gt; ou &lt;code&gt;ParameterDecorator&lt;/code&gt;.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;h2&gt;Decorators em Métodos&lt;/h2&gt;
+
+&lt;p&gt;Para definir um decorator para um méroto precisamos criar uma função com os seguintes parâmetros:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;target&lt;/code&gt; - Protótipo da classe que possui o método.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;propertyKey&lt;/code&gt; - Nome do método em que estamos aplicando o decorator. Pode ser um &lt;code&gt;string&lt;/code&gt; ou um &lt;a href=&quot;https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Symbol&quot;&gt;&lt;code&gt;Symbol&lt;/code&gt;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;descriptor&lt;/code&gt; - Uma instância da insterface &lt;a href=&quot;https://github.com/Microsoft/TypeScript/blob/727b9a9ceb37c77ba5b69c452cc118a8913d9cf2/src/lib/core.d.ts#L1241&quot;&gt;&lt;code&gt;TypedPropertyDescriptor&lt;/code&gt;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;No primeiro exemplo eu utilizei um decorator chamado &lt;code&gt;@log&lt;/code&gt;. Vamos ver uma possível implementação deste decorator:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;typescript&quot;&gt;function log(target: Object, propertyKey: string, descriptor: TypedPropertyDescriptor&amp;lt;any&amp;gt;) {
+    let originalMethod = descriptor.value; // salvando uma referência para o método original
+
+    // NOTE: não use arrou fynction. Utilize uma declaração normal de função para que o contexto `this` seja interpretado corretamente.
+    descriptor.value = function(...args: any[]) {
+        console.log(&quot;Argumentos da chamada: &quot; + JSON.stringify(args));
+        let result = originalMethod.apply(this, args);               // Executa a função e armazena o resultado
+        console.log(&quot;Valor de retorno: &quot; + result);               
+        return result;                                               // retorna o resultado
+    };
+
+    return descriptor;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Chamando a função:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;typescript&quot;&gt;class MyClass {
+    @log
+    doSomething(arg) {
+        return &quot;Message -- &quot; + arg;
+    }
+}
+
+new MyClass().doSomething(&quot;test&quot;);
+// =&amp;gt; Argumentos da chamada: [&quot;test&quot;]
+// =&amp;gt; Valor de retorno: Message -- test
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Agora que vimos como uma declaração simples de decorator funciona vamos entender como declarar decorators que esperam parâmetros. Para isso precisamos declarar uma função com a assinatura de parâmetros desejado e retornar uma outra função com a mesma assinatura do exemplo anterior. Veja o seguinte código:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;typescript&quot;&gt;function log(showArgs: boolean) {
+    return function(target: Object, propertyKey: string, descriptor: TypedPropertyDescriptor&amp;lt;any&amp;gt;) {
+        let originalMethod = descriptor.value; // salvando uma referência para o método original
+
+        // NOTE: não use arrou fynction. Utilize uma declaração normal de função para que o contexto `this` seja interpretado corretamente.
+        descriptor.value = function(...args: any[]) {
+            if (showArgs) {
+                console.log(&quot;Argumentos da chamada: &quot; + JSON.stringify(args));
+            }
+            let result = originalMethod.apply(this, args);               // Executa a função e armazena o resultado
+            console.log(&quot;Valor de retorno: &quot; + result);               
+            return result;                                               // retorna o resultado
+        };
+
+        return descriptor;
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Mais uma vez vamos chamar a função:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;typescript&quot;&gt;class MyClass {
+    @log(false)
+    doSomething(arg) {
+        return &quot;Message -- &quot; + arg;
+    }
+}
+
+new MyClass().doSomething(&quot;test&quot;);
+// =&amp;gt; Valor de retorno: Message -- test
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;blockquote&gt;&lt;p&gt;NOTA: sempre que utilizarmos uma decorator em uma função estática o target será a propria função ou invés do protótipo da classe.&lt;/p&gt;&lt;/blockquote&gt;
+
+&lt;h2&gt;Decorators em Classes&lt;/h2&gt;
+
+&lt;p&gt;A assinatura da função que define um decorator para uma classe possui apenas o parâmetro &lt;code&gt;target&lt;/code&gt;. Veja o seguinte exemplo:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;typescript&quot;&gt;const __myClassDecoratorMetaData: any = {};
+
+function MyClassDecorator(value: string) {
+  return function (target: Function) {
+      __myClassDecoratorMetaData[target] = value;
+  }
+}
+
+@MyClassDecorator(“my metadata”)
+class MyClass { }
+
+var myClass = new MyClass();
+let value: string = __myClassDecoratorMetaData[myClass.constructor];
+console.log(value); //=&amp;gt; my metadata
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Existe ainda a possibilidade de adicionar decorators em propriedades e argumentos de função. Tentarei cobrir estas outras duas possibilidades em outro artigo.&lt;/p&gt;
+
+&lt;p&gt;Até a próxima!&lt;/p&gt;
+</content>
+ </entry>
  
  <entry>
    <title>jQuery - 10 dicas de performance</title>

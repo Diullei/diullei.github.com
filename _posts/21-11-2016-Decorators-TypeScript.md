@@ -5,7 +5,9 @@ category: [TypeScript, TypeScript v1.5]
 tags : [TypeScript, JavaScript]
 ---
 
-Fala pessoal! Hoje vou falar sobre uma feature muito legal `decorators`. Utilizamos decorators para inserir metadados e comportamentos em uma declaração de classe, propriedade, métodos ou parâmetro de uma métodos. Trata-se de uma função com uma assunatura específica (de acordo com o target). Para utilizar um decorator precisamos utilizar o simbolo `@` junto com o nome do decorator antes do membro do código que estivermos decorando. Exemplo:
+Fala pessoal! Hoje vou falar sobre uma feature muito legal `decorators`. Utilizamos decorators para inserir metadados e comportamentos em uma declaração de classe, propriedade, métodos ou parâmetro de uma função. Trata-se de uma função com uma assunatura específica (de acordo com o `target`).
+
+Para utilizar um decorator precisamos utilizar o simbolo `@` junto com o nome do decorator antes do membro do código que estivermos decorando. Exemplo:
 
 ```typescript
 class MyClass {
@@ -17,19 +19,25 @@ class MyClass {
 ```
 
 > NOTA: para utilizar esse recurso é necessário configurar a propriedade `experimentalDecorators` no arquivo `tsconfig.json`. Para compilar o arquivo via linha de comando utilize: `tsc myFile.ts –target ES5  –emitDecoratorMetadata`.
-
+s
 ## Pontos importantes
 
 * Os decorators são sempre chamados quando uma classe é declarada e não quando um objeto é instanciado.
+
 * Multiplos decorators podem ser declarados para um mesmo target.
+
 * não é permitida a utilização de decorators em construtores.
+
 * Os decorators podem ser do tipo: `ClassDecorator`, `PropertyDecorator`, `MethodDecorator` ou `ParameterDecorator`.
 
 ## Decorators em Métodos
 
-Para definir um decorator para um étido precisamos criar uma função com os seguintes parâmetros:
+Para definir um decorator para um méroto precisamos criar uma função com os seguintes parâmetros:
+
 * `target` - Protótipo da classe que possui o método.
+
 * `propertyKey` - Nome do método em que estamos aplicando o decorator. Pode ser um `string` ou um [`Symbol`](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Symbol)
+
 * `descriptor` - Uma instância da insterface [`TypedPropertyDescriptor`](https://github.com/Microsoft/TypeScript/blob/727b9a9ceb37c77ba5b69c452cc118a8913d9cf2/src/lib/core.d.ts#L1241)
 
 No primeiro exemplo eu utilizei um decorator chamado `@log`. Vamos ver uma possível implementação deste decorator:
@@ -105,7 +113,7 @@ new MyClass().doSomething("test");
 
 ## Decorators em Classes
 
-A assinatura da função que define um decorator para uma classe possui apenas o parâmetro `target`.
+A assinatura da função que define um decorator para uma classe possui apenas o parâmetro `target`. Veja o seguinte exemplo:
 
 ```typescript
 const __myClassDecoratorMetaData: any = {};
@@ -124,13 +132,6 @@ let value: string = __myClassDecoratorMetaData[myClass.constructor];
 console.log(value); //=> my metadata
 ```
 
-## Decorators em propriedades
+Existe ainda a possibilidade de adicionar decorators em propriedades e argumentos de função. Tentarei cobrir estas outras duas possibilidades em outro artigo.
 
-A assinatura da função que define um decorator em uma propiedade possui apenas os parâmetros `target` e `propertyKey`.
-
-
-## Decorators em parâmetros
-
-target: The prototype of the class (Function—it seems Function doesn't work anymore. You should use any or Object here now in order to use the decorator within any class. Or specify the class type(s) you want to restrict it to)
-propertyKey: The name of the method (string | symbol).
-parameterIndex: The index of parameter in the list of the function's parameters (number).
+Até a próxima!
