@@ -75,4 +75,5 @@ theme: icarus
 deploy:
   type: git
   repo: git@github.com:Diullei/diullei.github.com.git
+  branch: master
   message: "Site updated: {{ now('YYYY-MM-DD HH:mm:ss') }}"
