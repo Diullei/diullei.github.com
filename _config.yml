@@ -73,6 +73,6 @@ theme: icarus
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
-  type: github
-  repo: git@github.com:diullei/diullei.github.com.git 
+  type: git
+  repo: git@github.com:Diullei/diullei.github.com.git
   message: "Site updated: {{ now('YYYY-MM-DD HH:mm:ss') }}"
