@@ -5,7 +5,7 @@ category: [TypeScript, TypeScript v1.4]
 tags : [TypeScript, JavaScript]
 ---
 
-Esse post é uma continuação do post anterior onde eu falei sobre [union types](/posts/union-types). Meu objetivo aqui é expor algumas propriedades básicas inerentes a declaração dos "union types". Para ficar fácel de entender vou colocar um exemplo de código para cada propriedade. Vamos lá!
+Esse post é uma continuação do post anterior onde eu falei sobre [union types](/2016/07/13/union-types/). Meu objetivo aqui é expor algumas propriedades básicas inerentes a declaração dos "union types". Para ficar fácel de entender vou colocar um exemplo de código para cada propriedade. Vamos lá!
 
 ## Identidade
 
