@@ -7,7 +7,7 @@ title: Diullei
 subtitle:
 description:
 author: Diullei Gomes
-language: pt-BR
+language: en
 timezone:
 
 # URL
@@ -68,7 +68,7 @@ feed:
   limit: 10
   
 ## Themes: https://hexo.io/themes/
-theme: icarus
+theme: very-simple
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
