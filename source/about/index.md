@@ -1,18 +1,14 @@
 ---
-title: Quem sou eu?
+title: Who am I?
 date: 2017-03-15 22:58:54
 ---
 
-Com esse nome tao diferente não é difícil me encontrar ou descobrir coisas sobre mim no Google. [Duvida?](https://www.google.com.br/search?q=diullei) Mas vamos lá, meu nome é Diullei, sou um Desenvolvedor de Software [Nerd](https://pt.wikipedia.org/wiki/Nerd) apaixonado pelo que faço.
+It's not hard to find me on Google, [Doubt?](https://www.google.com.br/search?q=diullei) My name is Diullei, I'm from Brazil and I'm a Software Developer. I like to say that "I do what I love and I love what I do" :)
 
-Atualmente [Fullstack Developer](http://pt.stackoverflow.com/questions/52450/full-stack-web-developer) na empresa [DYD Creative Solutions](http://www.dyd.com). No meu dia a dia eu gosto de brincar com C#, JavaScript, AngularJS, React, TypeScript, Python, SQL, Asp.NET, Docker, meu [cubo mágico](https://pt.wikipedia.org/wiki/Cubo_de_Rubik), etc, etc... e o que mais aparecer :)
+Currently I live in Oslo - Norway and I work as a [full-stack](https://www.quora.com/What-does-the-term-full-stack-programmer-mean-What-are-the-defining-traits-of-a-full-stack-programmer) Developer at [Resoptima](http://resoptima.com/). Usually I like to play with C#, F#, JavaScript, AngularJS, React, TypeScript, Go, Python, SQL, Asp.NET, [rubik's cube](https://en.wikipedia.org/wiki/Rubik%27s_Cube), etc, etc ...
 
-Gosto de me envolver com comunidades de desenvolvedores e projetos open-source. Tive a oportunidade de contribuir muito com a comunidade [TypeScript](https://www.typescriptlang.org/) criando a organização [DefinitelyTyped](/definitelyTyped/) junto com Boris Yankov. Também fui o criador do [TSD - TypeScript package Manager](/tsd/).
+I like to get involved with developer communities and open-source projects. I had the incredible opportunity to contribute to the [TypeScript](https://www.typescriptlang.org/) community by creating the [DefinitelyTyped](/definitelyTyped/) organization along with Boris Yankov. I'm also author of [TSD - TypeScript package Manager](/tsd/).
 
-## Fale comigo!
+## Talk to me!
 
-Gostaria de fazer contato comigo? envie um email para diullei[at]gmail.com ou por que não, me envie uma mensagem no twitter ([@diullei](http://twitter.com/diullei)).
-
-## Quer me contratar?
-
-Você pode conferir mais sobre minhas habilidades [aqui](/experiencia). Não esqueca de [olhar aqui](/projects) também para conhecer os meus projetos :)
+Would you like to contact me? You can send an email to diullei[at]gmail.com. You can also contact me on twitter ([@diullei](http://twitter.com/diullei)).
