@@ -1,0 +1,101 @@
+<!DOCTYPE html><html><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description"><title>Arrays tipados - ES6 | Diullei</title><link rel="stylesheet" type="text/css" href="/css/normalize.css"><link rel="stylesheet" type="text/css" href="/css/highlight.css"><link rel="stylesheet" type="text/css" href="/css/very-simple.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/font-awesome/4.5.0/css/font-awesome.min.css"><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="alternate" type="application/atom+xml" href="/atom.xml"></head><body><!-- include the sidebar--><!-- include ./includes/sidebar.jade--><!-- Blog title and subtitle--><header><div class="container header"><a id="logo" href="/." class="title">Diullei</a><span class="subtitle"></span><label id="toggle-menu" for="menu" onclick><i class="fa fa-bars"></i></label></div></header><!-- use checkbox hack for toggle nav-bar on small screens--><input id="menu" type="checkbox"><!-- Navigation Links--><nav id="nav"><div class="container"><a href="/" class="sidebar-nav-item active">Home</a><a href="/about" class="sidebar-nav-item">About</a><a href="/archives" class="sidebar-nav-item">Archives</a></div></nav><div id="header-margin-bar"></div><!-- gallery that comes before the header--><div class="wrapper"><div class="container post-header"><h1>Arrays tipados - ES6</h1></div></div><div class="wrapper"><div class="container meta"><div class="post-time">28-10-2016</div><div class="post-categories"><a class="post-category-link" href="/categories/JavaScript/">JavaScript</a>><a class="post-category-link" href="/categories/JavaScript/ES6/">ES6</a></div><div class="post-tags"><a class="post-tag-link" href="/tags/ES6/">ES6</a>/<a class="post-tag-link" href="/tags/JavaScript/">JavaScript</a></div></div></div><article><div class="container post"><p>Os arrays tipados são parte da especificação do ECMAScript 2015 (também conhecido como ES6). Eles foram projetados para facilitar o trabalho com estruturas de dados binárias. Inicialmente os arrays tipados foram introduzidos pelas APIs WebGL com o objetivo de diminuir a dissonância entre as estruturas de dados padrões do <code>JavaScript</code> e as estruturas de dados do <code>C</code>, linguagem base da API <code>WebGL</code>, e com isso permitir ao JavaScript acessar diretamente a estrutura já alocada em memória.</p>
+<p>Você pode acessar este <a href="http://caniuse.com/#feat=typedarrays" target="_blank" rel="noopener">link</a> para saber quais browsers já suportam esse recurso: <a href="http://caniuse.com/#feat=typedarrays" target="_blank" rel="noopener">http://caniuse.com/#feat=typedarrays</a></p>
+<h2 id="Criando-Arrays-tipados"><a href="#Criando-Arrays-tipados" class="headerlink" title="Criando Arrays tipados"></a>Criando Arrays tipados</h2><p>Aqui não existe nenhum segredo, criamos um array tipado da mesma forma que criarpiamos qualquer instância de objeto. em JavaScript:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = <span class="keyword">new</span> <span class="built_in">Uint16Array</span>(<span class="number">10</span>);</span><br><span class="line">arr[<span class="number">0</span>] = <span class="number">0xFFFF</span>;</span><br><span class="line"><span class="built_in">console</span>.log(arr[<span class="number">0</span>]);</span><br></pre></td></tr></table></figure>
+<p>O argumento passado no construtor define o número de elementos que estamos alocando neste array (No exemplo acima estamos alocando 10 elementos do tipo numérico <code>uint16</code>, o que de acordo com a especificação deste tipo de array irá alocar 20 bytes de memória).</p>
+<p>Veja abaixo uma lista com os tipos de arrays tipados disponíveis:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Tipo</th>
+<th style="text-align:center">Tamanho (byte)</th>
+<th style="text-align:left">Tipo correspondente em C</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>Int8Array</code></td>
+<td style="text-align:center">1</td>
+<td style="text-align:left">int8_t</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>Uint8Array</code></td>
+<td style="text-align:center">1</td>
+<td style="text-align:left">uint8_t</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>Uint8ClampedArray</code></td>
+<td style="text-align:center">1</td>
+<td style="text-align:left">uint8_t</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>Int16Array</code></td>
+<td style="text-align:center">2</td>
+<td style="text-align:left">int16_t</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>Uint16Array</code></td>
+<td style="text-align:center">2</td>
+<td style="text-align:left">uint16_t</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>Int32Array</code></td>
+<td style="text-align:center">4</td>
+<td style="text-align:left">int32_t</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>Uint32Array</code></td>
+<td style="text-align:center">4</td>
+<td style="text-align:left">uint32_t</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>Float32Array</code></td>
+<td style="text-align:center">4</td>
+<td style="text-align:left">float</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>Float64Array</code></td>
+<td style="text-align:center">8</td>
+<td style="text-align:left">double</td>
+</tr>
+</tbody>
+</table>
+<h2 id="ArrayBuffer-e-DataView"><a href="#ArrayBuffer-e-DataView" class="headerlink" title="ArrayBuffer e DataView"></a>ArrayBuffer e DataView</h2><p><code>ArrayBuffer</code> e <code>DataView</code> são parte da implementação de arrays tipados. Um <code>ArrayBuffer</code> básicamente armazena os dados de um array tipado. Por exemplo:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> fileArrayBuffer = reader.readAsArrayBuffer(file);</span><br></pre></td></tr></table></figure>
+<p>Neste código <code>ArrayBuffer</code> ira armazenar todos os bytes do arquivo. Como esse arquivo pode estar em encodes diferentes, precisaremos fazer alguma manipulação para ler seu conteúdo. Por exemplo, se este arquivo for do tipo <code>UTF-8</code> poderemos associar este <code>ArrayBuffer</code> ao tipo <code>Uint16Array</code> para ler corretamente seu conteúdo.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = <span class="keyword">new</span> <span class="built_in">Uint16Array</span>(fileArrayBuffer);</span><br><span class="line"><span class="built_in">String</span>.fromCharCode(arr[<span class="number">0</span>]); <span class="comment">// A</span></span><br></pre></td></tr></table></figure>
+<p>Já o <code>DataView</code> é um tipo que nos permite acessar estruturas binrias em memória. Exemplo, se tivermos uma estrutura em <code>C</code> declarada da seguinte forma:</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">data</span> &#123;</span></span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">int</span> id;</span><br><span class="line">    <span class="keyword">char</span>[<span class="number">10</span>] username;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Iremos ler esta estrutura em JavaScript com o código:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> buf = <span class="keyword">new</span> <span class="built_in">ArrayBuffer</span>(<span class="number">11</span>);</span><br><span class="line"><span class="keyword">var</span> id = <span class="keyword">new</span> <span class="built_in">Uint8Array</span>(buf, <span class="number">0</span>, <span class="number">1</span>);</span><br><span class="line"><span class="keyword">var</span> username = <span class="keyword">new</span> <span class="built_in">Uint8Array</span>(buf, <span class="number">1</span>, <span class="number">10</span>);</span><br></pre></td></tr></table></figure>
+<p>Note que se trata de uma leitura sequencial da memória onde o primeiro byte contém o valor de <code>id</code> e os outros 10 bytes seguintes o valor de <code>username</code>. Aqui estamos utilizando <code>Uint8Array</code> como <code>DataView</code>.</p>
+<h2 id="Onde-esse-recurso-ja-esta-sendo-utilizado"><a href="#Onde-esse-recurso-ja-esta-sendo-utilizado" class="headerlink" title="Onde esse recurso ja está sendo utilizado?"></a>Onde esse recurso ja está sendo utilizado?</h2><ul>
+<li><strong>WebGL</strong> - Utiliza typed arrays em buffer, pixels e mapas de testuras</li>
+<li><strong>Canvas</strong> - Canvas utiliza um arrau tipado para armazenar uma imagem.</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> uint8ClampedArray = ctx.getImageData(...).data;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><strong>WebSockets</strong> - Uma vez habilitado permite a transferência de dados utilizando um <code>ArrayBuffer</code>.</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">webSocket.binaryType = <span class="string">'arraybuffer'</span>;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><strong>Outras APIs</strong> - <em>File API</em>, <em>XMLHttpRequest,</em> <em>Fetch API</em>, <code>window.postMessage()</code> entre outros.</li>
+</ul>
+<h2 id="Conclusao"><a href="#Conclusao" class="headerlink" title="Conclusão"></a>Conclusão</h2><p>Iremos utilizar os Arrays typados em trechos de código muito específicos onde a performance com a manipulação de estruturas de dados mais complexas for importante, como por exemplo a manipulação de imagens e de som.</p>
+<p>É isso, até a próxima.</p>
+</div><!-- comment system--><div class="container"><hr><div id="disqus_thread"></div><script type="text/javascript">
+var disqus_shortname = 'diullei-blog';
+var disqus_identifier = '2016/10/28/Arrays-tipados-ES6/';
+var disqus_title = 'Arrays tipados - ES6';
+var disqus_url = 'http://diullei.com/2016/10/28/Arrays-tipados-ES6/';
+(function() {
+   var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+   dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+   (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">Blog comments powered by <span class="logo-disqus">Disqus</span></a></div></article><footer id="footer"><div class="container"><div class="bar"><div class="social"><a href="/atom.xml" target="_blank"><i class="fa fa-rss"></i></a></div><div class="footer">© 2018 <a href="/" rel="nofollow">Diullei Gomes</a>. Powered by <a rel="nofollow" target="_blank" href="https://hexo.io">Hexo</a>. Theme <a target="_blank" href="https://github.com/lotabout/very-simple">very-simple</a>.</div></div></div></footer><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.css"><script src="//cdn.bootcss.com/jquery/2.0.3/jquery.min.js"></script><script src="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.pack.js"></script><script>$(document).ready(function() {
+    $(".fancybox").fancybox();
+});
+</script></body></html>

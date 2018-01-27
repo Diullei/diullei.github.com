@@ -1,0 +1,50 @@
+<!DOCTYPE html><html><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description"><title>Configurando o Nodejs com o Notepad++ | Diullei</title><link rel="stylesheet" type="text/css" href="/css/normalize.css"><link rel="stylesheet" type="text/css" href="/css/highlight.css"><link rel="stylesheet" type="text/css" href="/css/very-simple.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/font-awesome/4.5.0/css/font-awesome.min.css"><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="alternate" type="application/atom+xml" href="/atom.xml"></head><body><!-- include the sidebar--><!-- include ./includes/sidebar.jade--><!-- Blog title and subtitle--><header><div class="container header"><a id="logo" href="/." class="title">Diullei</a><span class="subtitle"></span><label id="toggle-menu" for="menu" onclick><i class="fa fa-bars"></i></label></div></header><!-- use checkbox hack for toggle nav-bar on small screens--><input id="menu" type="checkbox"><!-- Navigation Links--><nav id="nav"><div class="container"><a href="/" class="sidebar-nav-item active">Home</a><a href="/about" class="sidebar-nav-item">About</a><a href="/archives" class="sidebar-nav-item">Archives</a></div></nav><div id="header-margin-bar"></div><!-- gallery that comes before the header--><div class="wrapper"><div class="container post-header"><h1>Configurando o Nodejs com o Notepad++</h1></div></div><div class="wrapper"><div class="container meta"><div class="post-time">17-07-2012</div><div class="post-categories"><a class="post-category-link" href="/categories/NodeJs/">NodeJs</a></div><div class="post-tags"><a class="post-tag-link" href="/tags/NodeJs/">NodeJs</a>/<a class="post-tag-link" href="/tags/Notepad/">Notepad++</a></div></div></div><article><div class="container post"><p>O note pad++ é na minha opinião um excelente editor. É claro, com o Sublime Text 2 na área muita gente deixou de olhar para p Np++ :). Minha dica de hoje é mostrar como configurar o Np++ para executar arquivos javascript usando o nodeJs.</p>
+<p>###NodeJs</p>
+<p>Caso você não possua o nodejs instalado na sua máquina vá até o site <a href="http://www.nodejs.org/" target="_blank" rel="noopener">http://www.nodejs.org/</a> e faça o download. A instalação é bem simples e você encontra no site toda orientação necessária.</p>
+<p>###Configurando o NotePad++ com o NodeJs</p>
+<p>Primeiro de tudo será necessário instalalar o plugin <strong>NppExec</strong>. Vá até o menu <strong>Plugins-&gt;Plugin Manager-&gt;Show Plugin Manager</strong>.</p>
+<p><img src="/images/npp_node/menu.png" alt="Valid XHTML"></p>
+<p>Na aba Avaliable selecione <strong>NppExec</strong> e clique em install. Feito isso reinicie o npp++.</p>
+<p><img src="/images/npp_node/install.png" alt="Valid XHTML"></p>
+<p>Feito isso vamos configurar o NppExec.</p>
+<p>Acesse o menu <strong>Plugins-&gt;NppExec</strong> e selecione <strong>Follow $(CURRENT_DIRECTORY)</strong>.</p>
+<p><img src="/images/npp_node/current_dir.png" alt="Valid XHTML"></p>
+<p>Em seguida acesse o menu <strong>PLugins-&gt;NppExec-&gt;Execute…</strong>. Na janela que vai aparecer digite:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd <span class="string">"$(CURRENT_DIRECTORY)"</span></span><br><span class="line">node $(FILE_NAME)</span><br></pre></td></tr></table></figure>
+<p>Clique no botão <strong>Save</strong> e na janela que se abre de o nome “Run” e clique em <strong>Save</strong>. Em seguida basta dar ok.</p>
+<p><img src="/images/npp_node/execute.png" alt="Valid XHTML"></p>
+<p>Agora vamos configurar um atalho. Vá no menu <strong>Plugins-&gt;NppExec-&gt;Advanced Options</strong></p>
+<p><img src="/images/npp_node/advanced_options.png" alt="Valid XHTML"></p>
+<p>Selecione o checkbox <strong>Place to the Macros submenu</strong>. Selecione <strong>Run</strong> na combo <strong>Associated script</strong> e dê o nome <strong>Run Nodejs</strong> no campo <strong>Item name</strong>. Em seguida clique no botão <strong>Add/Modify button</strong>. Clique no botão Ok e reinicie o Np++.</p>
+<p>Vá no menu <strong>Settings-&gt;Short Mapper</strong>…</p>
+<p><img src="/posts/img/npp_node/advanced_options2.png" alt="Valid XHTML"></p>
+<p>Selecione <strong>Plugin commands</strong> e localize <strong>Run NodeJs</strong> na lista de nomes. Clique no botão <strong>Modify</strong> e e configure a janela seguinte conforme a imagem abaixo:</p>
+<p><img src="/images/npp_node/shortcut.png" alt="Valid XHTML"></p>
+<p>Clique em Ok e pronto!</p>
+<p>Note que no menu <strong>Macro</strong> irá aparecer o atalho que acabamos de criar.</p>
+<p><img src="/images/npp_node/menu2.png" alt="Valid XHTML"></p>
+<p>##Testando</p>
+<p>Crie um novo arquivo e escreva o seguinte código:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="string">'np++ test!!!'</span>);</span><br></pre></td></tr></table></figure>
+<p>Salve o arquivo e tecle o atalho Ctrl+F5.</p>
+<p>Se tudo tiver sido configurado corretamente você terá algo como na imagem abaixo:</p>
+<p><img src="/images/npp_node/fim.png" alt="Valid XHTML"></p>
+<p>OBS.: O arquivo precisa estar salvo para você conseguir executa-lo.</p>
+<p>Espero que esta dica seja útil.</p>
+<p>Até!</p>
+</div><!-- comment system--><div class="container"><hr><div id="disqus_thread"></div><script type="text/javascript">
+var disqus_shortname = 'diullei-blog';
+var disqus_identifier = '2012/07/17/Configurando-o-NodeJs-com-o-Npp/';
+var disqus_title = 'Configurando o Nodejs com o Notepad++';
+var disqus_url = 'http://diullei.com/2012/07/17/Configurando-o-NodeJs-com-o-Npp/';
+(function() {
+   var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+   dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+   (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">Blog comments powered by <span class="logo-disqus">Disqus</span></a></div></article><footer id="footer"><div class="container"><div class="bar"><div class="social"><a href="/atom.xml" target="_blank"><i class="fa fa-rss"></i></a></div><div class="footer">© 2018 <a href="/" rel="nofollow">Diullei Gomes</a>. Powered by <a rel="nofollow" target="_blank" href="https://hexo.io">Hexo</a>. Theme <a target="_blank" href="https://github.com/lotabout/very-simple">very-simple</a>.</div></div></div></footer><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.css"><script src="//cdn.bootcss.com/jquery/2.0.3/jquery.min.js"></script><script src="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.pack.js"></script><script>$(document).ready(function() {
+    $(".fancybox").fancybox();
+});
+</script></body></html>

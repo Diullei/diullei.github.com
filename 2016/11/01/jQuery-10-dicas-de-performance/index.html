@@ -1,0 +1,108 @@
+<!DOCTYPE html><html><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description"><title>jQuery - 10 dicas de performance | Diullei</title><link rel="stylesheet" type="text/css" href="/css/normalize.css"><link rel="stylesheet" type="text/css" href="/css/highlight.css"><link rel="stylesheet" type="text/css" href="/css/very-simple.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/font-awesome/4.5.0/css/font-awesome.min.css"><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="alternate" type="application/atom+xml" href="/atom.xml"></head><body><!-- include the sidebar--><!-- include ./includes/sidebar.jade--><!-- Blog title and subtitle--><header><div class="container header"><a id="logo" href="/." class="title">Diullei</a><span class="subtitle"></span><label id="toggle-menu" for="menu" onclick><i class="fa fa-bars"></i></label></div></header><!-- use checkbox hack for toggle nav-bar on small screens--><input id="menu" type="checkbox"><!-- Navigation Links--><nav id="nav"><div class="container"><a href="/" class="sidebar-nav-item active">Home</a><a href="/about" class="sidebar-nav-item">About</a><a href="/archives" class="sidebar-nav-item">Archives</a></div></nav><div id="header-margin-bar"></div><!-- gallery that comes before the header--><div class="wrapper"><div class="container post-header"><h1>jQuery - 10 dicas de performance</h1></div></div><div class="wrapper"><div class="container meta"><div class="post-time">01-11-2016</div><div class="post-categories"><a class="post-category-link" href="/categories/JavaScript/">JavaScript</a>><a class="post-category-link" href="/categories/JavaScript/jQuery/">jQuery</a></div><div class="post-tags"><a class="post-tag-link" href="/tags/JavaScript/">JavaScript</a>/<a class="post-tag-link" href="/tags/jQuery/">jQuery</a></div></div></div><article><div class="container post"><p>Os anos se passaram e o jQuery continua relevante em pleno 2016. A facilidade de manipulação e a infinidade de artigos na internet ajuda a reforçar a utilização do jQuery e a manter essa biblioteca viva. De fato, poucos anos atrás, escrever codigo compatível com diferentes versões de navegadores seria um trabalho muito árduo se não fosse pelo nosso amigo jQuery.</p>
+<p>O grande problema com o jQuery é que muitos desenvolvedores ignoram as boas práticas e escrevem codigo muito pobres em performance (isso sem falar sobre design de código).</p>
+<h2 id="Por-que-performance-e-importante"><a href="#Por-que-performance-e-importante" class="headerlink" title="Por que performance é importante?"></a>Por que performance é importante?</h2><p>Vou expor duas boas razões:</p>
+<ul>
+<li>Uma boa performance pode trazer uma boa experiência de uso. Nem sempre seus visitanes vão lhe dizer que seu site está lento, eles simplesmente não vão voltar a acessar o site.</li>
+<li>O Google leva a performance em consideração para a classificação do seu site no PageRank.</li>
+</ul>
+<p>Então, vamos aos pontos…</p>
+<h2 id="1-Use-a-versao-mais-atual-do-jQuery-sempre-que-possivel"><a href="#1-Use-a-versao-mais-atual-do-jQuery-sempre-que-possivel" class="headerlink" title="1. Use a versão mais atual do jQuery sempre que possível"></a>1. Use a versão mais atual do jQuery sempre que possível</h2><p>As novas versões sempre trazem melhorias de performance e atualizações de segurança.</p>
+<h2 id="2-Utilize-os-seletores-da-forma-correta"><a href="#2-Utilize-os-seletores-da-forma-correta" class="headerlink" title="2. Utilize os seletores da forma correta"></a>2. Utilize os seletores da forma correta</h2><p>Cada seletor possui uma performance diferente. Organizando do mais rápido para o mais lento temos:</p>
+<ul>
+<li>Seleção por ID - <code>$(&#39;#element-id&#39;)</code></li>
+<li>Seleção por Elemento - <code>$(&#39;form&#39;)</code></li>
+<li>Seleção por Classe - <code>$(&#39;.some-class&#39;)</code></li>
+<li>Seleção por Pseudo Atributo - <code>$(&#39;[data-attr]&#39;), $(&#39;:hidden&#39;)</code></li>
+</ul>
+<h2 id="3-O-algoritmo-de-selecao-do-jQuery-funciona-da-esquerda-para-a-direita"><a href="#3-O-algoritmo-de-selecao-do-jQuery-funciona-da-esquerda-para-a-direita" class="headerlink" title="3. O algoritmo de seleção do jQuery funciona da esquerda para a direita"></a>3. O algoritmo de seleção do jQuery funciona da esquerda para a direita</h2><p>Isso significa que o lado direto da query de busca precisa ser o mais específico possivel. Neste caso, queries muito longas acabam não fazendo muito sentido e podem ser evitadas. Exemplo:</p>
+<blockquote>
+<p>Ruim</p>
+</blockquote>
+<pre><code>$(&apos;div.page div.block .element&apos;)
+</code></pre><blockquote>
+<p>Bom</p>
+</blockquote>
+<pre><code>$(&apos;.page div.element&apos;)
+</code></pre><blockquote>
+<p>Sempre que possível utilize <em>tag + class</em></p>
+</blockquote>
+<h2 id="4-Quebre-sua-query-em-blocos-sempre-que-possivel"><a href="#4-Quebre-sua-query-em-blocos-sempre-que-possivel" class="headerlink" title="4. Quebre sua query em blocos sempre que possível"></a>4. Quebre sua query em blocos sempre que possível</h2><p>Seguindo o conceito do item (3) considere os seguintes códigos:</p>
+<blockquote>
+<p>Ruim</p>
+</blockquote>
+<pre><code>$(&apos;#container .element&apos;)
+</code></pre><blockquote>
+<p>Bom</p>
+</blockquote>
+<pre><code>$(&apos;#container&apos;).find(&apos;.element&apos;)
+</code></pre><p>Lembre-se que a busca é sempre feita da direita para a esquerda e por isso, no primeiro exemplo o jQuery irá primeiro buscar por todos os elementos com a classe <code>element</code> e depois filtrar todos os elementos que contenham o id <code>container</code>.</p>
+<p>Uma outra sintaxe similar ao método <code>find(...)</code> é:</p>
+<pre><code>$(&apos;.element&apos;, &apos;#container&apos;)
+</code></pre><h2 id="5-Faca-sempre-um-cache-dos-seus-seletores"><a href="#5-Faca-sempre-um-cache-dos-seus-seletores" class="headerlink" title="5. Faça sempre um cache dos seus seletores"></a>5. Faça sempre um cache dos seus seletores</h2><p>Este item é muito simular ao anterior. Os exemplos de código abaixo falam por sí só:</p>
+<blockquote>
+<p>Ruim</p>
+</blockquote>
+<pre><code>var block = $(&apos;.block&apos;);
+var elements = $(&apos;.block&apos;).find(&apos;.element&apos;);
+var title = $(&apos;.block&apos;).data(&apos;title&apos;);
+</code></pre><blockquote>
+<p>Bom</p>
+</blockquote>
+<pre><code>var block = $(&apos;.block&apos;);
+var elements = block.find(&apos;.element&apos;);
+var title = block.data(&apos;title&apos;);
+</code></pre><h2 id="6-Evite-a-manipulacao-pesada-do-DOM"><a href="#6-Evite-a-manipulacao-pesada-do-DOM" class="headerlink" title="6. Evite a manipulação pesada do DOM"></a>6. Evite a manipulação pesada do DOM</h2><p>Você pode se surpreender com a quantidade de elementos que é possível manipular utilizando JavaScript. No entanto, se estes elementos estiverem ligados ao DOM essa surpreza será ruim. Manipular elementos no DOM é uma operação muito lenta e quanto mais elementos você precise manipular, pior será a performance.</p>
+<p>A melhor forma de fazer isso utilizando jQuery é primiro “desacoplar” esses elementos no DOM, manipular e depois retorná-los ao DOM. Exemplo:</p>
+<pre><code>var elem = $(&apos;.element&apos;);
+var parent = elem.parent();
+elem.detach();
+... operações muito pesadas, ordenação de tabelas por exemplo ...
+parent.append(elem);
+</code></pre><h2 id="7-Evite-“appends”-desnecessarios"><a href="#7-Evite-“appends”-desnecessarios" class="headerlink" title="7. Evite “appends” desnecessários"></a>7. Evite “appends” desnecessários</h2><p>Ao invés de ficar utilizando o método <code>append(...)</code> pra cada elemento que estiver adicionando, procure sempre montar uma string HTML e utiliar o <code>append(...)</code> de uma só vez.</p>
+<h2 id="8-Prefira-utilizar-data-no-lugar-de-attr"><a href="#8-Prefira-utilizar-data-no-lugar-de-attr" class="headerlink" title="8. Prefira utilizar data() no lugar de attr()"></a>8. Prefira utilizar data() no lugar de attr()</h2><p>O método <code>attr(...)</code> escreve os atributos direto no DOM, e como falamos no item (6), qualquer manipulação direta do DOM deve ser evitada sempre que possível por questões de performance.</p>
+<blockquote>
+<p>NOTA: a utilização de <code>data(...)</code> embora preferível pelas questões citadas, deve ser verificada com cautela. Se voce estiver utilizando uma biblioteca de terceiros que esteja manipulando os atributos direto no DOM você poderá ter problemas.</p>
+</blockquote>
+<h2 id="9-Verifique-se-o-elemento-realmente-existe-antes-de-usa-lo"><a href="#9-Verifique-se-o-elemento-realmente-existe-antes-de-usa-lo" class="headerlink" title="9. Verifique se o elemento realmente existe antes de usá-lo"></a>9. Verifique se o elemento realmente existe antes de usá-lo</h2><blockquote>
+<p>Ruim</p>
+</blockquote>
+<pre><code>$(&apos;.element&apos;).slideDown();
+// esse ponto executa uma chamada pesada que efetua vários
+// cálculos mesmo se o elemento não existir
+</code></pre><blockquote>
+<p>Bom</p>
+</blockquote>
+<pre><code>var element = $(&apos;.element&apos;);
+if (element.length) {
+    element.slideDown();
+}
+</code></pre><p>Verificar se o elemento existe antes de efetuar algumas operações evita que alguns algoritmos sejam executados desnecessáriamente.</p>
+<h2 id="10-Evite-a-utilizacao-de-loops"><a href="#10-Evite-a-utilizacao-de-loops" class="headerlink" title="10. Evite a utilização de loops"></a>10. Evite a utilização de loops</h2><blockquote>
+<p>Ruim</p>
+</blockquote>
+<pre><code>$(&apos;.element&apos;).each(function() {
+    $(this).something().somethingElse();
+});
+</code></pre><blockquote>
+<p>Bom</p>
+</blockquote>
+<pre><code>$(&apos;.element&apos;).something().somethingElse();
+</code></pre><p>A API do jQuery nos permite executar muitas operações em grupo baseado no resultado da query. Utilize as operações em grupo sempre que possível.</p>
+<h2 id="Conclusao"><a href="#Conclusao" class="headerlink" title="Conclusão"></a>Conclusão</h2><p>jQuery é sem dúvida uma das bibliotecas javascript mais utilizadas e dificilmente perderá esse ranking. Por isso, vale a pena entender melhor como esta biblioteca funciona para utiliza-la da maneira mais correta possível.</p>
+<p>Até a próxima!</p>
+</div><!-- comment system--><div class="container"><hr><div id="disqus_thread"></div><script type="text/javascript">
+var disqus_shortname = 'diullei-blog';
+var disqus_identifier = '2016/11/01/jQuery-10-dicas-de-performance/';
+var disqus_title = 'jQuery - 10 dicas de performance';
+var disqus_url = 'http://diullei.com/2016/11/01/jQuery-10-dicas-de-performance/';
+(function() {
+   var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+   dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+   (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">Blog comments powered by <span class="logo-disqus">Disqus</span></a></div></article><footer id="footer"><div class="container"><div class="bar"><div class="social"><a href="/atom.xml" target="_blank"><i class="fa fa-rss"></i></a></div><div class="footer">© 2018 <a href="/" rel="nofollow">Diullei Gomes</a>. Powered by <a rel="nofollow" target="_blank" href="https://hexo.io">Hexo</a>. Theme <a target="_blank" href="https://github.com/lotabout/very-simple">very-simple</a>.</div></div></div></footer><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.css"><script src="//cdn.bootcss.com/jquery/2.0.3/jquery.min.js"></script><script src="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.pack.js"></script><script>$(document).ready(function() {
+    $(".fancybox").fancybox();
+});
+</script></body></html>
