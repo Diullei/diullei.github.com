@@ -1,25 +1,81 @@
-<!DOCTYPE html><html><head><meta name="generator" content="Hexo 3.8.0"><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description"><title>Diullei</title><link rel="stylesheet" type="text/css" href="/css/normalize.css"><link rel="stylesheet" type="text/css" href="/css/highlight.css"><link rel="stylesheet" type="text/css" href="/css/very-simple.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/font-awesome/4.5.0/css/font-awesome.min.css"><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="alternate" type="application/atom+xml" href="/atom.xml"></head><body><!-- include the sidebar--><!-- include ./includes/sidebar.jade--><!-- Blog title and subtitle--><header><div class="container header"><a id="logo" href="/." class="title">Diullei</a><span class="subtitle"></span><label id="toggle-menu" for="menu" onclick=""><i class="fa fa-bars"></i></label></div></header><!-- use checkbox hack for toggle nav-bar on small screens--><input id="menu" type="checkbox"><!-- Navigation Links--><nav id="nav"><div class="container"><a href="/" class="sidebar-nav-item active">Home</a><a href="/about" class="sidebar-nav-item">About</a><a href="/archives" class="sidebar-nav-item">Archives</a></div></nav><div id="header-margin-bar"></div><article><div id="index-main" class="container entries"><div class="post-entry"><div class="post-time">31-03-2017</div><div class="post-desc"><div class="post-title"><a href="/2017/03/31/keyof/">Operador keyof</a></div><div class="post-content"><p>Por ser uma linguagem dinâmica, o JavaScript algumas vezes torna difícil a representação de algumas operações em um sistema tipado. Por exemplo, vejamos a seguinte função:</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">prop</span>(<span class="params">obj, propertyName</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> obj[propertyName];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>Essa função aceita um objeto e um nome de propriedade e retorna o valor correspondente desta propriedade. É importante observar que diferentes propriedades em um objeto possuem diferentes tipos. Com isso em mente, como podemos definir o tipo de retorno desta função?</p>
-<p>Vamos a uma primeira tentativa:</p>
-<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">prop</span>(<span class="params">obj: &#123;&#125;, propertyName: <span class="built_in">string</span></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> obj[propertyName];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>Adicionamos 2 anotações <code>obj: {}, propertyName: string</code>. Com isso estamos dizendo que <code>obj</code> precisa ser um objeto e que <code>propertyName</code> precisa ser do tipo string. </p>
-<p>Agora como definir o tipo de retorno desta função?</p></div><div class="post-meta"><div class="post-tags"><a class="post-tag-link" href="/tags/JavaScript/">JavaScript</a>/<a class="post-tag-link" href="/tags/TypeScript/">TypeScript</a></div><div class="post-categories"><a class="post-category-link" href="/categories/TypeScript/">TypeScript</a>><a class="post-category-link" href="/categories/TypeScript/TypeScript-v2-1/">TypeScript v2.1</a></div></div></div></div><div class="post-entry"><div class="post-time">21-11-2016</div><div class="post-desc"><div class="post-title"><a href="/2016/11/21/Decorators-TypeScript/">TypeScript - Decorators</a></div><div class="post-content"><p>Fala pessoal! Hoje vou falar sobre uma feature muito legal <code>decorators</code>. Utilizamos decorators para inserir metadados e comportamentos em uma declaração de classe, propriedade, métodos ou parâmetro de uma função. Trata-se de uma função com uma assunatura específica (de acordo com o <code>target</code>).</p>
-<p>Para utilizar um decorator precisamos utilizar o simbolo <code>@</code> junto com o nome do decorator antes do membro do código que estivermos decorando. Exemplo:</p>
-<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> MyClass &#123;</span><br><span class="line">    <span class="meta">@log</span></span><br><span class="line">    doSomething(arg) &#123;</span><br><span class="line">        <span class="comment">//...</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>NOTA: para utilizar esse recurso é necessário configurar a propriedade <code>experimentalDecorators</code> no arquivo <code>tsconfig.json</code>. Para compilar o arquivo via linha de comando utilize: <code>tsc myFile.ts –target ES5  –emitDecoratorMetadata</code>.</p>
-</blockquote></div><div class="post-meta"><div class="post-tags"><a class="post-tag-link" href="/tags/JavaScript/">JavaScript</a>/<a class="post-tag-link" href="/tags/TypeScript/">TypeScript</a></div><div class="post-categories"><a class="post-category-link" href="/categories/TypeScript/">TypeScript</a>><a class="post-category-link" href="/categories/TypeScript/TypeScript-v1-5/">TypeScript v1.5</a></div></div></div></div><div class="post-entry"><div class="post-time">01-11-2016</div><div class="post-desc"><div class="post-title"><a href="/2016/11/01/jQuery-10-dicas-de-performance/">jQuery - 10 dicas de performance</a></div><div class="post-content"><p>Os anos se passaram e o jQuery continua relevante em pleno 2016. A facilidade de manipulação e a infinidade de artigos na internet ajuda a reforçar a utilização do jQuery e a manter essa biblioteca viva. De fato, poucos anos atrás, escrever codigo compatível com diferentes versões de navegadores seria um trabalho muito árduo se não fosse pelo nosso amigo jQuery.</p>
-<p>O grande problema com o jQuery é que muitos desenvolvedores ignoram as boas práticas e escrevem codigo muito pobres em performance (isso sem falar sobre design de código).</p>
-<h2 id="Por-que-performance-e-importante"><a href="#Por-que-performance-e-importante" class="headerlink" title="Por que performance é importante?"></a>Por que performance é importante?</h2><p>Vou expor duas boas razões:</p>
-<ul>
-<li>Uma boa performance pode trazer uma boa experiência de uso. Nem sempre seus visitanes vão lhe dizer que seu site está lento, eles simplesmente não vão voltar a acessar o site.</li>
-<li>O Google leva a performance em consideração para a classificação do seu site no PageRank.</li>
-</ul>
-<p>Então, vamos aos pontos…</p></div><div class="post-meta"><div class="post-tags"><a class="post-tag-link" href="/tags/JavaScript/">JavaScript</a>/<a class="post-tag-link" href="/tags/jQuery/">jQuery</a></div><div class="post-categories"><a class="post-category-link" href="/categories/JavaScript/">JavaScript</a>><a class="post-category-link" href="/categories/JavaScript/jQuery/">jQuery</a></div></div></div></div><div class="post-entry"><div class="post-time">28-10-2016</div><div class="post-desc"><div class="post-title"><a href="/2016/10/28/Arrays-tipados-ES6/">Arrays tipados - ES6</a></div><div class="post-content"><p>Os arrays tipados são parte da especificação do ECMAScript 2015 (também conhecido como ES6). Eles foram projetados para facilitar o trabalho com estruturas de dados binárias. Inicialmente os arrays tipados foram introduzidos pelas APIs WebGL com o objetivo de diminuir a dissonância entre as estruturas de dados padrões do <code>JavaScript</code> e as estruturas de dados do <code>C</code>, linguagem base da API <code>WebGL</code>, e com isso permitir ao JavaScript acessar diretamente a estrutura já alocada em memória.</p>
-<p>Você pode acessar este <a href="http://caniuse.com/#feat=typedarrays" target="_blank" rel="noopener">link</a> para saber quais browsers já suportam esse recurso: <a href="http://caniuse.com/#feat=typedarrays" target="_blank" rel="noopener">http://caniuse.com/#feat=typedarrays</a></p>
-<h2 id="Criando-Arrays-tipados"><a href="#Criando-Arrays-tipados" class="headerlink" title="Criando Arrays tipados"></a>Criando Arrays tipados</h2><p>Aqui não existe nenhum segredo, criamos um array tipado da mesma forma que criarpiamos qualquer instância de objeto. em JavaScript:</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = <span class="keyword">new</span> <span class="built_in">Uint16Array</span>(<span class="number">10</span>);</span><br><span class="line">arr[<span class="number">0</span>] = <span class="number">0xFFFF</span>;</span><br><span class="line"><span class="built_in">console</span>.log(arr[<span class="number">0</span>]);</span><br></pre></td></tr></table></figure></div><div class="post-meta"><div class="post-tags"><a class="post-tag-link" href="/tags/ES6/">ES6</a>/<a class="post-tag-link" href="/tags/JavaScript/">JavaScript</a></div><div class="post-categories"><a class="post-category-link" href="/categories/JavaScript/">JavaScript</a>><a class="post-category-link" href="/categories/JavaScript/ES6/">ES6</a></div></div></div></div></div></article><div class="container page-navigator-wrapper"><div class="page-navigator"><span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a></div></div><footer id="footer"><div class="container"><div class="bar"><div class="social"><a href="/atom.xml" target="_blank"><i class="fa fa-rss"></i></a></div><div class="footer">© 2019 <a href="/" rel="nofollow">Diullei Gomes</a>. Powered by <a rel="nofollow" target="_blank" href="https://hexo.io">Hexo</a>. Theme <a target="_blank" href="https://github.com/lotabout/very-simple">very-simple</a>.</div></div></div></footer><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.css"><script src="//cdn.bootcss.com/jquery/2.0.3/jquery.min.js"></script><script src="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.pack.js"></script><script>$(document).ready(function() {
-    $(".fancybox").fancybox();
-});
-</script></body></html>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diullei</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=M+PLUS+1p:wght@500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+        integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA=="
+        crossorigin="anonymous" />
+</head>
+
+<body>
+    <style>
+        body {
+            background-color: black;
+            color: white;
+        }
+
+        .name-container {
+            margin: auto;
+            width: 50%;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .name {
+            margin-top: 10%;
+            font-family: 'M PLUS 1p', sans-serif;
+            font-size: 3rem;
+        }
+
+        .flex-control-nav {
+            margin-top: -10px;
+            padding-inline-start: 0px;
+            font-size: 2rem;
+        }
+
+        .flex-control-nav li {
+            display: inline;
+        }
+
+        .flex-control-nav a>span {
+            font-size: 0;
+        }
+
+        .flex-control-nav .fa-github {
+            color: white;
+            text-decoration: none;
+        }
+
+        .flex-control-nav .fa-stack-overflow {
+            color: #F48024;
+            text-decoration: none;
+        }
+
+        .flex-control-nav .fa-twitter {
+            color: #1DA1F2;
+            text-decoration: none;
+        }
+
+        .flex-control-nav .fa-linkedin {
+            color: #0e76a8;
+            text-decoration: none;
+        }
+    </style>
+
+    <div class="name-container">
+        <div class="name">Diullei</div>
+        <ul class="flex-control-nav">
+            <li><a href="http://github.com/Diullei"><i class="fab fa-github"></i><span>Github</span></a></li>
+            <li><a href="https://stackoverflow.com/users/1614863/diullei"><i class="fab fa-stack-overflow"></i><span>Stackoverflow</span></a></li>
+            <li><a href="https://twitter.com/diullei"><i class="fab fa-twitter"></i><span>Twitter</span></a></li>
+            <li><a href="https://www.linkedin.com/in/diullei/"><i class="fab fa-linkedin"></i><span>Linkedin</span></a></li>
+        </ul>
+    </div>
+</body>
+
+</html>
