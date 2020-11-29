@@ -1,0 +1,1031 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Where to move next?</title>
+</head>
+
+<body>
+    <img class="image01" src="assets/migration-01.png" />
+    <img class="image02" src="assets/1200px-UK_location_in_the_EU_2016.svg.png" />
+    <div class="content">
+        <h1 class="title">Where to move next?</h1>
+
+        <div class="section01 shadow">
+            <section>
+                <strong class="number01 title2">2.4 million</strong> of people migrate annually to europe in average
+                looking for new
+                opportunities and better life quality. There are several factors that influence this moving decision, and to assist this task, this guide
+                classifies European countries in the following characteristics:
+                <strong>Safety</strong>,
+                <strong>Education</strong>, <strong>Health</strong>, <strong>Environmental quality</strong> and
+                <strong>Inclusiveness</strong>.
+            </section>
+        </div>
+
+        <div class="checkbox-form shadow">
+            Select the most important features to you and we will list the countries that most fit your criteria:
+            <form>
+                <p>
+                    <input type="checkbox" id="safety" checked="checked" />
+                    <label for="safety">Safety</label>
+                </p>
+                <p>
+                    <input type="checkbox" id="education" checked="checked" />
+                    <label for="education">Education</label>
+                </p>
+                <p>
+                    <input type="checkbox" id="health" checked="checked" />
+                    <label for="health">Health</label>
+                </p>
+                <p>
+                    <input type="checkbox" id="inclusiveness" checked="checked" />
+                    <label for="inclusiveness">Inclusiveness</label>
+                </p>
+                <p>
+                    <input type="checkbox" id="environmental_quality" checked="checked" />
+                    <label for="environmental_quality">Environment</label>
+                </p>
+            </form>
+        </div>
+
+        <div class="table-container shadow">
+            <div style="padding: 20px;">
+                <div style="text-align: justify;">
+                    <span class="number01 title2" id="selected-country"></span> is the best place to move
+                    according to
+                    the selected filter. The list below shows the combined percentage value of <span
+                        id="selected-filter"></span> between European countries based on the <a
+                        href="https://www.socialprogress.org/">Social Progress Index (SPI)</a> score.
+                    <strong>Click on the bars below to see more details about the countries</strong>.
+                </div>
+            </div>
+
+            <table style="padding-left: 20px; padding-bottom: 20px;">
+                <tr>
+                    <td valign="top">
+                        <table class="table" id="table-countries"></table>
+                    </td>
+                    <td valign="top">
+                        <div style="margin-left: 69px;margin-top: -20px;" class="right-name"></div>
+                        <div style="width: 500px;margin-top: -25px;">
+                            <div id="chart_div"></div>
+                        </div>
+                        <br />
+                        <div style="margin-left: 69px;margin-top: -20px;" class="second-name"></div>
+                        <div style="width: 400px;">
+                            <div id="comparison_chart_div"></div>
+                        </div>
+                        <div style="
+                        margin-left: 70px;
+                        margin-right: 10px;
+                    ">
+                            <br />
+                            <hr />
+                            <h2 style="width: 400px;">Top countries per characteristic:</h2>
+                            <table>
+                                <tr>
+                                    <td><strong>Safety</strong></td>
+                                    <td><img style="border: 1px solid #ccc" width="10px" src="/assets/flags/is.svg">
+                                        Iceland</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Education</strong></td>
+                                    <td><img style="border: 1px solid #ccc" width="10px" src="/assets/flags/cz.svg">
+                                        Czechia</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Health</strong></td>
+                                    <td><img style="border: 1px solid #ccc" width="10px" src="/assets/flags/ch.svg">
+                                        Switzerland</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Inclusiveness</strong></td>
+                                    <td><img style="border: 1px solid #ccc" width="10px" src="/assets/flags/dk.svg">
+                                        Denmark</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Environmental quality</strong></td>
+                                    <td><img style="border: 1px solid #ccc" width="10px" src="/assets/flags/ee.svg">
+                                        Estonia</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="table-container shadow">
+            <div style="
+            text-align: center;
+            padding: 20px;
+            font-size: 12px;
+            color: #363636;
+            font-style: italic;
+        ">
+                * Source data: <strong>Social Progress Index (SPI)</strong> - <a
+                    href="https://www.socialprogress.org/">https://www.socialprogress.org/</a>,
+                <strong>Eurostat</strong> - <a href="https://ec.europa.eu/">https://ec.europa.eu/</a>.
+            </div>
+        </div>
+
+    </div>
+
+    <style>
+        body {
+            background-color: #fefbf2;
+            font-family: Arial, Helvetica, sans-serif;
+            color: #2b3c5d;
+        }
+
+        .title {
+            text-shadow: 4px 4px 0px rgba(0, 0, 0, 0.2);
+        }
+
+        .title2 {
+            text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.2);
+        }
+
+        .table-bar-row {
+            cursor: pointer;
+        }
+
+        .shadow {
+            box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.19);
+        }
+
+        .image01 {
+            z-index: -1;
+            position: fixed;
+            left: -20%;
+            top: 0;
+            /* width: 100%; */
+            height: auto;
+            opacity: 0.2;
+        }
+
+        .image02 {
+            z-index: -1;
+            position: fixed;
+            right: -25%;
+            top: -100px;
+            /* width: 100%; */
+            height: auto;
+            opacity: 0.2;
+        }
+
+        .content {
+            z-index: 2;
+            width: 1000px;
+            margin: auto;
+            padding: 10px;
+        }
+
+        h1 {
+            font-size: 50px;
+        }
+
+        .section01 {
+            /* background-color: #ebeae4; */
+            /* padding: 15px; */
+            /* border: 3px solid #e3e0d8;
+            border-radius: 5px; */
+            padding: 20px;
+            background-color: #fff;
+            text-align: justify;
+            /* margin-top: -20px; */
+        }
+
+        .number01 {
+            float: left;
+            font-size: 35px;
+            line-height: 1;
+            font-weight: bold;
+            margin-right: 9px;
+        }
+
+        .table {
+            border-collapse: collapse;
+        }
+
+        .table-container {
+            margin-top: 10px;
+            /* padding: 10px; */
+            background-color: #fff;
+            width: 100%;
+        }
+
+        .stacked-bar-cell {
+            width: 350px;
+        }
+
+        .country-cell {
+            text-align: right;
+            font-size: 12px;
+        }
+
+        .bar {
+            background-color: #7fa7d3;
+            ;
+            display: inline-block;
+            height: 15px;
+        }
+
+        .bar-value {
+            position: relative;
+            margin-left: 5px;
+            font-size: 12px;
+            top: -3px;
+        }
+
+        .checkbox-form p {
+            display: inline-flex;
+            width: 150px;
+        }
+
+        .checkbox-form {
+            margin-top: 10px;
+            padding: 10px;
+            background-color: #fff;
+            text-align: center;
+        }
+
+        /* table,
+        th,
+        td {
+            border: 1px solid black;
+        } */
+
+        /* Base for label styling */
+        [type="checkbox"]:not(:checked),
+        [type="checkbox"]:checked {
+            position: absolute;
+            left: -9999px;
+        }
+
+        [type="checkbox"]:not(:checked)+label,
+        [type="checkbox"]:checked+label {
+            position: relative;
+            padding-left: 1.95em;
+            cursor: pointer;
+        }
+
+        /* checkbox aspect */
+        [type="checkbox"]:not(:checked)+label:before,
+        [type="checkbox"]:checked+label:before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 1.25em;
+            height: 1.25em;
+            border: 2px solid #ccc;
+            background: #fff;
+            border-radius: 4px;
+            box-shadow: inset 0 1px 3px rgba(0, 0, 0, .1);
+        }
+
+        /* checked mark aspect */
+        [type="checkbox"]:not(:checked)+label:after,
+        [type="checkbox"]:checked+label:after {
+            content: '\2713\0020';
+            position: absolute;
+            top: .15em;
+            left: .22em;
+            font-size: 1.3em;
+            line-height: 0.8;
+            color: #09ad7e;
+            transition: all .2s;
+            font-family: 'Lucida Sans Unicode', 'Arial Unicode MS', Arial;
+        }
+
+        /* checked mark aspect changes */
+        [type="checkbox"]:not(:checked)+label:after {
+            opacity: 0;
+            transform: scale(0);
+        }
+
+        [type="checkbox"]:checked+label:after {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        /* disabled checkbox */
+        [type="checkbox"]:disabled:not(:checked)+label:before,
+        [type="checkbox"]:disabled:checked+label:before {
+            box-shadow: none;
+            border-color: #bbb;
+            background-color: #ddd;
+        }
+
+        [type="checkbox"]:disabled:checked+label:after {
+            color: #999;
+        }
+
+        [type="checkbox"]:disabled+label {
+            color: #aaa;
+        }
+
+        /* accessibility */
+        [type="checkbox"]:checked:focus+label:before,
+        [type="checkbox"]:not(:checked):focus+label:before {
+            border: 2px dotted blue;
+        }
+
+        /* hover style just for information */
+        label:hover:before {
+            border: 2px solid #4778d9 !important;
+        }
+    </style>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"
+        integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+
+    <script>
+        const data = [
+            {
+                "country": "Albania",
+                "year": 2019,
+                "safety": 73.77999877929688,
+                "education": 92.61000061035156,
+                "health": 72.52999877929688,
+                "environmental_quality": 86.68000030517578,
+                "inclusiveness": 45.61999893188477,
+                "code": "AL",
+                "avg": 74.24399948120117
+            },
+            {
+                "country": "Armenia",
+                "year": 2019,
+                "safety": 72.75,
+                "education": 93.4499969482422,
+                "health": 67.45999908447266,
+                "environmental_quality": 71.7300033569336,
+                "inclusiveness": 42.29999923706055,
+                "code": "AM",
+                "avg": 69.53799972534179
+            },
+            {
+                "country": "Austria",
+                "year": 2019,
+                "safety": 88.8499984741211,
+                "education": 97.9800033569336,
+                "health": 86.01000213623047,
+                "environmental_quality": 90.01000213623047,
+                "inclusiveness": 62.52000045776367,
+                "code": "AT",
+                "avg": 85.07400131225586
+            },
+            {
+                "country": "Azerbaijan",
+                "year": 2019,
+                "safety": 66.5,
+                "education": 84.9800033569336,
+                "health": 48.66999816894531,
+                "environmental_quality": 66.12999725341797,
+                "inclusiveness": 21.670000076293945,
+                "code": "AZ",
+                "avg": 57.589999771118165
+            },
+            {
+                "country": "Belarus",
+                "year": 2019,
+                "safety": 75.16000366210938,
+                "education": 95.80999755859376,
+                "health": 68.11000061035156,
+                "environmental_quality": 69.73999786376953,
+                "inclusiveness": 53.59000015258789,
+                "code": "BY",
+                "avg": 72.48199996948242
+            },
+            {
+                "country": "Belgium",
+                "year": 2019,
+                "safety": 80.44000244140625,
+                "education": 95.26000213623048,
+                "health": 85.47000122070312,
+                "environmental_quality": 89.19000244140625,
+                "inclusiveness": 74.55999755859375,
+                "code": "BE",
+                "avg": 84.98400115966797
+            },
+            {
+                "country": "Bosnia H.",
+                "year": 2019,
+                "safety": 72.83000183105469,
+                "education": 85.6500015258789,
+                "health": 66.75,
+                "environmental_quality": 66.43000030517578,
+                "inclusiveness": 41.61999893188477,
+                "code": "BA",
+                "avg": 66.65600051879883
+            },
+            {
+                "country": "Bulgaria",
+                "year": 2019,
+                "safety": 79.30000305175781,
+                "education": 88.75,
+                "health": 65.19000244140625,
+                "environmental_quality": 79.56999969482422,
+                "inclusiveness": 57.02999877929688,
+                "code": "BG",
+                "avg": 73.96800079345704
+            },
+            {
+                "country": "Croatia",
+                "year": 2019,
+                "safety": 75.1500015258789,
+                "education": 96.83000183105469,
+                "health": 75.47000122070312,
+                "environmental_quality": 84.43000030517578,
+                "inclusiveness": 50.040000915527344,
+                "code": "HR",
+                "avg": 76.38400115966797
+            },
+            {
+                "country": "Cyprus",
+                "year": 2019,
+                "safety": 82.26000213623047,
+                "education": 94.66999816894531,
+                "health": 85.66000366210938,
+                "environmental_quality": 86.05999755859375,
+                "inclusiveness": 58.02999877929688,
+                "code": "CY",
+                "avg": 81.33600006103515
+            },
+            {
+                "country": "Czechia",
+                "year": 2019,
+                "safety": 88.91999816894531,
+                "education": 99.06999969482422,
+                "health": 79.79000091552734,
+                "environmental_quality": 84.25,
+                "inclusiveness": 59.97000122070313,
+                "code": "CZ",
+                "avg": 82.4
+            },
+            {
+                "country": "Denmark",
+                "year": 2019,
+                "safety": 88.23999786376953,
+                "education": 97.36000061035156,
+                "health": 83.23999786376953,
+                "environmental_quality": 88.66000366210938,
+                "inclusiveness": 83.87999725341797,
+                "code": "DK",
+                "avg": 88.2759994506836
+            },
+            {
+                "country": "Estonia",
+                "year": 2019,
+                "safety": 80.05000305175781,
+                "education": 98.31999969482422,
+                "health": 77.80000305175781,
+                "environmental_quality": 93.69000244140624,
+                "inclusiveness": 56.56000137329102,
+                "code": "EE",
+                "avg": 81.28400192260742
+            },
+            {
+                "country": "Finland",
+                "year": 2019,
+                "safety": 87.9800033569336,
+                "education": 97.38999938964844,
+                "health": 84.55999755859375,
+                "environmental_quality": 91.51000213623048,
+                "inclusiveness": 80.79000091552734,
+                "code": "FI",
+                "avg": 88.44600067138671
+            },
+            {
+                "country": "France",
+                "year": 2019,
+                "safety": 81.51000213623047,
+                "education": 94.37999725341795,
+                "health": 88.56999969482422,
+                "environmental_quality": 90.12999725341795,
+                "inclusiveness": 65.01000213623047,
+                "code": "FR",
+                "avg": 83.91999969482421
+            },
+            {
+                "country": "Georgia",
+                "year": 2019,
+                "safety": 70.26999664306639,
+                "education": 95.7300033569336,
+                "health": 62.40999984741211,
+                "environmental_quality": 73.88999938964844,
+                "inclusiveness": 43.36000061035156,
+                "code": "GE",
+                "avg": 69.13199996948242
+            },
+            {
+                "country": "Germany",
+                "year": 2019,
+                "safety": 88.48999786376953,
+                "education": 97.08000183105469,
+                "health": 83.11000061035156,
+                "environmental_quality": 85.5,
+                "inclusiveness": 76.2699966430664,
+                "code": "DE",
+                "avg": 86.08999938964844
+            },
+            {
+                "country": "Greece",
+                "year": 2019,
+                "safety": 81.12999725341797,
+                "education": 90.54000091552734,
+                "health": 81.98999786376953,
+                "environmental_quality": 86.0199966430664,
+                "inclusiveness": 70.02999877929689,
+                "code": "GR",
+                "avg": 81.94199829101562
+            },
+            {
+                "country": "Hungary",
+                "year": 2019,
+                "safety": 79.41000366210938,
+                "education": 92.66000366210938,
+                "health": 67.51999664306639,
+                "environmental_quality": 84.26000213623047,
+                "inclusiveness": 50.93999862670898,
+                "code": "HU",
+                "avg": 74.95800094604492
+            },
+            {
+                "country": "Iceland",
+                "year": 2019,
+                "safety": 94.77999877929688,
+                "education": 98.98999786376952,
+                "health": 88.05000305175781,
+                "environmental_quality": 91.68000030517578,
+                "inclusiveness": 81.95999908447266,
+                "code": "IS",
+                "avg": 91.09199981689453
+            },
+            {
+                "country": "Ireland",
+                "year": 2019,
+                "safety": 88.12999725341797,
+                "education": 95.76000213623048,
+                "health": 84.55999755859375,
+                "environmental_quality": 90.01000213623047,
+                "inclusiveness": 77.13999938964844,
+                "code": "IE",
+                "avg": 87.11999969482422
+            },
+            {
+                "country": "Italy",
+                "year": 2019,
+                "safety": 76.72000122070312,
+                "education": 92.2699966430664,
+                "health": 88.16000366210938,
+                "environmental_quality": 87.16000366210938,
+                "inclusiveness": 70.11000061035156,
+                "code": "IT",
+                "avg": 82.88400115966797
+            },
+            {
+                "country": "Kazakhstan",
+                "year": 2019,
+                "safety": 65.80000305175781,
+                "education": 94.51000213623048,
+                "health": 61.11000061035156,
+                "environmental_quality": 70.47000122070312,
+                "inclusiveness": 31.270000457763672,
+                "code": "KZ",
+                "avg": 64.63200149536132
+            },
+            {
+                "country": "Latvia",
+                "year": 2019,
+                "safety": 75.94000244140625,
+                "education": 96.52999877929688,
+                "health": 69.5,
+                "environmental_quality": 84.91999816894531,
+                "inclusiveness": 50.75,
+                "code": "LV",
+                "avg": 75.52799987792969
+            },
+            {
+                "country": "Lithuania",
+                "year": 2019,
+                "safety": 75.93000030517578,
+                "education": 95.76000213623048,
+                "health": 70.37000274658203,
+                "environmental_quality": 84.66999816894531,
+                "inclusiveness": 60.7400016784668,
+                "code": "LT",
+                "avg": 77.49400100708007
+            },
+            {
+                "country": "Luxembourg",
+                "year": 2019,
+                "safety": 86.37000274658203,
+                "education": 99,
+                "health": 85.93000030517578,
+                "environmental_quality": 91.6500015258789,
+                "inclusiveness": 77.33000183105469,
+                "code": "LU",
+                "avg": 88.05600128173828
+            },
+            {
+                "country": "Malta",
+                "year": 2019,
+                "safety": 78.01000213623047,
+                "education": 92.88999938964844,
+                "health": 84.0199966430664,
+                "environmental_quality": 87.80000305175781,
+                "inclusiveness": 67.76999664306639,
+                "code": "MT",
+                "avg": 82.0979995727539
+            },
+            {
+                "country": "Moldova",
+                "year": 2019,
+                "safety": 68.91999816894531,
+                "education": 91.4800033569336,
+                "health": 59.90999984741211,
+                "environmental_quality": 69.75,
+                "inclusiveness": 35.93000030517578,
+                "code": "MD",
+                "avg": 65.19800033569337
+            },
+            {
+                "country": "Montenegro",
+                "year": 2019,
+                "safety": 69.05999755859375,
+                "education": 94.04000091552734,
+                "health": 68.83000183105469,
+                "environmental_quality": 75.6500015258789,
+                "inclusiveness": 34.540000915527344,
+                "code": "ME",
+                "avg": 68.4240005493164
+            },
+            {
+                "country": "Netherlands",
+                "year": 2019,
+                "safety": 89.4800033569336,
+                "education": 95.36000061035156,
+                "health": 85.6500015258789,
+                "environmental_quality": 89.30000305175781,
+                "inclusiveness": 73.75,
+                "code": "NL",
+                "avg": 86.70800170898437
+            },
+            {
+                "country": "Norway",
+                "year": 2019,
+                "safety": 90.3499984741211,
+                "education": 98.44000244140624,
+                "health": 87.77999877929688,
+                "environmental_quality": 91.8000030517578,
+                "inclusiveness": 83.80999755859375,
+                "code": "NO",
+                "avg": 90.43600006103516
+            },
+            {
+                "country": "Poland",
+                "year": 2019,
+                "safety": 86.83999633789062,
+                "education": 94.05999755859376,
+                "health": 74.45999908447266,
+                "environmental_quality": 80.66999816894531,
+                "inclusiveness": 58.97000122070313,
+                "code": "PL",
+                "avg": 78.9999984741211
+            },
+            {
+                "country": "Portugal",
+                "year": 2019,
+                "safety": 88.9800033569336,
+                "education": 88.80999755859375,
+                "health": 83.81999969482422,
+                "environmental_quality": 92.5999984741211,
+                "inclusiveness": 71.69000244140625,
+                "code": "PT",
+                "avg": 85.18000030517578
+            },
+            {
+                "country": "Macedonia",
+                "year": 2019,
+                "safety": 71.94999694824219,
+                "education": 78.45999908447266,
+                "health": 68.08999633789061,
+                "environmental_quality": 71,
+                "inclusiveness": 36.65999984741211,
+                "code": "MK",
+                "avg": 65.23199844360352
+            },
+            {
+                "country": "Romania",
+                "year": 2019,
+                "safety": 79.38999938964844,
+                "education": 83.22000122070312,
+                "health": 64.04000091552734,
+                "environmental_quality": 83.75,
+                "inclusiveness": 47.54999923706055,
+                "code": "RO",
+                "avg": 71.59000015258789
+            },
+            {
+                "country": "Russia",
+                "year": 2019,
+                "safety": 55.11000061035156,
+                "education": 93.95999908447266,
+                "health": 63.66999816894531,
+                "environmental_quality": 63.40999984741211,
+                "inclusiveness": 33.31999969482422,
+                "code": "RU",
+                "avg": 61.89399948120117
+            },
+            {
+                "country": "Serbia",
+                "year": 2019,
+                "safety": 73.3499984741211,
+                "education": 90.63999938964844,
+                "health": 65.08000183105469,
+                "environmental_quality": 71.41000366210938,
+                "inclusiveness": 43,
+                "code": "RS",
+                "avg": 68.69600067138671
+            },
+            {
+                "country": "Slovakia",
+                "year": 2019,
+                "safety": 84.73999786376953,
+                "education": 91.9499969482422,
+                "health": 72.62999725341797,
+                "environmental_quality": 82.45999908447266,
+                "inclusiveness": 51.16999816894531,
+                "code": "SK",
+                "avg": 76.58999786376953
+            },
+            {
+                "country": "Slovenia",
+                "year": 2019,
+                "safety": 88.16999816894531,
+                "education": 98.9800033569336,
+                "health": 81.27999877929688,
+                "environmental_quality": 88.81999969482422,
+                "inclusiveness": 64.55000305175781,
+                "code": "SI",
+                "avg": 84.36000061035156
+            },
+            {
+                "country": "Spain",
+                "year": 2019,
+                "safety": 83.93000030517578,
+                "education": 90.62999725341795,
+                "health": 87.77999877929688,
+                "environmental_quality": 91.12000274658205,
+                "inclusiveness": 68.83999633789061,
+                "code": "ES",
+                "avg": 84.45999908447266
+            },
+            {
+                "country": "Sweden",
+                "year": 2019,
+                "safety": 88.94000244140625,
+                "education": 94.22000122070312,
+                "health": 86.08999633789062,
+                "environmental_quality": 89.79000091552734,
+                "inclusiveness": 80.5,
+                "code": "SE",
+                "avg": 87.90800018310547
+            },
+            {
+                "country": "Switzerland",
+                "year": 2019,
+                "safety": 90.47000122070312,
+                "education": 98.1500015258789,
+                "health": 90.4499969482422,
+                "environmental_quality": 85.41000366210938,
+                "inclusiveness": 76.52999877929688,
+                "code": "CH",
+                "avg": 88.20200042724609
+            },
+            {
+                "country": "Turkey",
+                "year": 2019,
+                "safety": 62.04999923706055,
+                "education": 68.62999725341797,
+                "health": 70.38999938964844,
+                "environmental_quality": 54.290000915527344,
+                "inclusiveness": 31.43000030517578,
+                "code": "TR",
+                "avg": 57.35799942016602
+            },
+            {
+                "country": "Ukraine",
+                "year": 2019,
+                "safety": 59.86999893188477,
+                "education": 91,
+                "health": 56.54999923706055,
+                "environmental_quality": 59.68999862670898,
+                "inclusiveness": 37.560001373291016,
+                "code": "UA",
+                "avg": 60.933999633789064
+            },
+            {
+                "country": "United K.",
+                "year": 2019,
+                "safety": 82.20999908447266,
+                "education": 93.5999984741211,
+                "health": 83.54000091552734,
+                "environmental_quality": 88.3499984741211,
+                "inclusiveness": 63.6500015258789,
+                "code": "GB",
+                "avg": 82.26999969482422
+            }
+        ];
+
+        function addRow(data, allValues, i) {
+            const finalValue = (data.value / Math.max(...allValues.map(v => v.value))) * 100;
+            const rowTemplate = `
+                <tr>
+                    <td class="country-cell">${(i + 1)}. ${data.country} <img data-value="${data.code}" data-index="${i}" class="table-bar-row" width="15px" src="/assets/flags/${(data.code.toLowerCase())}.svg"></td>
+                    <td class="stacked-bar-cell">
+                        <div>
+                            <div data-value="${data.code}" data-index="${i}" class="table-bar-row bar" style="width: ${(finalValue - 15)}%;">&nbsp;</div><span class="bar-value">${finalValue.toFixed(2)}</span>
+                        </div>
+                    </td>
+                </tr>
+            `;
+            $('#table-countries').append(rowTemplate);
+        }
+
+        var selected_props = ['safety', 'education', 'health', 'inclusiveness', 'environmental_quality'];
+        var selected_index = 0;
+
+        function betterName(name) {
+            return {
+                'safety': 'Safety',
+                'education': 'Education',
+                'health': 'Health',
+                'inclusiveness': 'Inclusiveness',
+                'environmental_quality': 'Environment'
+            }[name];
+        }
+
+        function calculatedata() {
+            let values = data.map(d => ({ ...d, value: (selected_props.map(p => d[p])).reduce((a, b) => a + b, 0) }));
+            values.sort((a, b) => b.value - a.value);
+            return values;
+        }
+
+        function loadBars() {
+            $('#table-countries').empty();
+            const values = calculatedata();
+            values.forEach((v, i) => {
+                addRow(v, values, i);
+            });
+
+            if (selected_props.length == 1) {
+                $(`#${selected_props[0]}`).attr('disabled', true);
+            } else {
+                selected_props.forEach(p => {
+                    $(`#${p}`).removeAttr("disabled");
+                });
+            }
+
+            $('.table-bar-row').click(el => {
+                const idx = $(el.target).attr('data-index');
+                selected_index = idx;
+                buildDonutChart();
+                buildComparisonChart();
+            });
+        }
+
+        function updateFilterDescription() {
+            const filters = `<span>${selected_props.map(p => `<strong>${betterName(p)}</strong>`).join(', ')}</span>`;
+            $('#selected-filter').html(filters);
+            $('#selected-country').html(`<span><img style="border: 1px solid #ccc" width="25px" src="/assets/flags/${calculatedata()[selected_index].code.toLowerCase()}.svg"> <strong>${calculatedata()[selected_index].country}</strong></span>`);
+        }
+
+        function addRemoveProp(prop) {
+            if (selected_props.indexOf(prop) != -1) {
+                selected_props = selected_props.filter(p => p != prop);
+            } else {
+                selected_props.push(prop);
+            }
+            selected_index = 0;
+
+            updateFilterDescription();
+            loadBars();
+            buildDonutChart();
+            buildComparisonChart();
+        }
+
+        function buildDonutChart() {
+            const values = calculatedata();
+            const countryData = values[selected_index];
+            const total = selected_props.map(p => countryData[p]).reduce((a, b) => a + b, 0)
+
+            $('.right-name').empty();
+            $('.right-name').html(`<h2 style="width: 400px;"><span><img style="border: 1px solid #ccc" width="20px" src="/assets/flags/${countryData.code.toLowerCase()}.svg"></span> ${countryData.country}: Percentual values in relation to the other countries</h2>`);
+
+            google.charts.setOnLoadCallback(drawChart);
+            function drawChart() {
+                var gdata = google.visualization.arrayToDataTable([
+                    ['City', 'Value',],
+                    ...selected_props.map(p => [betterName(p), (countryData[p] / Math.max(...data.map(d => d[p]))) * 100]),
+                ]);
+
+                var options = {
+                    title: '',
+                    //chartArea: { width: '100%' },
+                    hAxis: {
+                        title: '',
+                        minValue: 0
+                    },
+                    vAxis: {
+                        title: ''
+                    },
+                    legend: 'none',
+                    colors: ['#7fa7d3', '#bebb9a', '#f2efd2']
+                };
+
+                var chart = new google.visualization.BarChart(document.getElementById('chart_div'));
+
+                chart.draw(gdata, options);
+            }
+        }
+
+        function buildComparisonChart() {
+            const values = calculatedata();
+            const countryData = values[selected_index];
+            const total = selected_props.map(p => countryData[p]).reduce((a, b) => a + b, 0)
+
+            if (values[0].country == countryData.country) {
+                $('#comparison_chart_div').empty();
+                $('.second-name').empty();
+                return;
+            }
+
+            $('.second-name').empty();
+            $('.second-name').html(`<h2 style="width: 400px;"><span><img style="border: 1px solid #ccc" width="20px" src="/assets/flags/${countryData.code.toLowerCase()}.svg"></span> ${countryData.country} vs <img style="border: 1px solid #ccc" width="20px" src="/assets/flags/${values[0].code.toLowerCase()}.svg"></span> ${values[0].country}: Percentual values comparison</h2>`);
+
+            google.charts.setOnLoadCallback(drawTitleSubtitle);
+
+            function drawTitleSubtitle() {
+                var gdata = google.visualization.arrayToDataTable([
+                    ['', countryData.country, values[0].country],
+
+                    ...selected_props.map(p => [
+                        betterName(p),
+                        (countryData[p] / Math.max(...data.map(d => d[p]))) * 100,
+                        (values[0][p] / Math.max(...data.map(d => d[p]))) * 100
+                    ]),
+                ]);
+
+                var materialOptions = {
+                    hAxis: {
+                        title: '',
+                        minValue: 0
+                    },
+                    vAxis: {
+                        title: ''
+                    },
+                    bars: 'horizontal',
+                    colors: ['#bebb9a', '#7fa7d3', '#f2efd2']
+                };
+                var materialChart = new google.charts.Bar(document.getElementById('comparison_chart_div'));
+                materialChart.draw(gdata, materialOptions);
+            }
+        }
+
+        $(() => {
+            $('#safety').click(() => {
+                addRemoveProp('safety');
+            });
+            $('#education').click(() => {
+                addRemoveProp('education');
+            });
+            $('#health').click(() => {
+                addRemoveProp('health');
+            });
+            $('#inclusiveness').click(() => {
+                addRemoveProp('inclusiveness');
+            });
+            $('#environmental_quality').click(() => {
+                addRemoveProp('environmental_quality');
+            });
+
+            updateFilterDescription();
+            loadBars();
+            buildDonutChart();
+        });
+
+    </script>
+
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+        google.charts.load('current', { packages: ['corechart', 'bar'] });
+    </script>
+</body>
+
+</html>
