@@ -88,27 +88,27 @@
                             <table>
                                 <tr>
                                     <td><strong>Safety</strong></td>
-                                    <td><img style="border: 1px solid #ccc" width="10px" src="/assets/flags/is.svg">
+                                    <td><img style="border: 1px solid #ccc" width="10px" src="./assets/flags/is.svg">
                                         Iceland</td>
                                 </tr>
                                 <tr>
                                     <td><strong>Education</strong></td>
-                                    <td><img style="border: 1px solid #ccc" width="10px" src="/assets/flags/cz.svg">
+                                    <td><img style="border: 1px solid #ccc" width="10px" src="./assets/flags/cz.svg">
                                         Czechia</td>
                                 </tr>
                                 <tr>
                                     <td><strong>Health</strong></td>
-                                    <td><img style="border: 1px solid #ccc" width="10px" src="/assets/flags/ch.svg">
+                                    <td><img style="border: 1px solid #ccc" width="10px" src="./assets/flags/ch.svg">
                                         Switzerland</td>
                                 </tr>
                                 <tr>
                                     <td><strong>Inclusiveness</strong></td>
-                                    <td><img style="border: 1px solid #ccc" width="10px" src="/assets/flags/dk.svg">
+                                    <td><img style="border: 1px solid #ccc" width="10px" src="./assets/flags/dk.svg">
                                         Denmark</td>
                                 </tr>
                                 <tr>
                                     <td><strong>Environmental quality</strong></td>
-                                    <td><img style="border: 1px solid #ccc" width="10px" src="/assets/flags/ee.svg">
+                                    <td><img style="border: 1px solid #ccc" width="10px" src="./assets/flags/ee.svg">
                                         Estonia</td>
                                 </tr>
                             </table>
@@ -847,7 +847,7 @@
             const finalValue = (data.value / Math.max(...allValues.map(v => v.value))) * 100;
             const rowTemplate = `
                 <tr>
-                    <td class="country-cell">${(i + 1)}. ${data.country} <img data-value="${data.code}" data-index="${i}" class="table-bar-row" width="15px" src="/assets/flags/${(data.code.toLowerCase())}.svg"></td>
+                    <td class="country-cell">${(i + 1)}. ${data.country} <img data-value="${data.code}" data-index="${i}" class="table-bar-row" width="15px" src="./assets/flags/${(data.code.toLowerCase())}.svg"></td>
                     <td class="stacked-bar-cell">
                         <div>
                             <div data-value="${data.code}" data-index="${i}" class="table-bar-row bar" style="width: ${(finalValue - 15)}%;">&nbsp;</div><span class="bar-value">${finalValue.toFixed(2)}</span>
@@ -903,7 +903,7 @@
         function updateFilterDescription() {
             const filters = `<span>${selected_props.map(p => `<strong>${betterName(p)}</strong>`).join(', ')}</span>`;
             $('#selected-filter').html(filters);
-            $('#selected-country').html(`<span><img style="border: 1px solid #ccc" width="25px" src="/assets/flags/${calculatedata()[selected_index].code.toLowerCase()}.svg"> <strong>${calculatedata()[selected_index].country}</strong></span>`);
+            $('#selected-country').html(`<span><img style="border: 1px solid #ccc" width="25px" src="./assets/flags/${calculatedata()[selected_index].code.toLowerCase()}.svg"> <strong>${calculatedata()[selected_index].country}</strong></span>`);
         }
 
         function addRemoveProp(prop) {
@@ -926,7 +926,7 @@
             const total = selected_props.map(p => countryData[p]).reduce((a, b) => a + b, 0)
 
             $('.right-name').empty();
-            $('.right-name').html(`<h2 style="width: 400px;"><span><img style="border: 1px solid #ccc" width="20px" src="/assets/flags/${countryData.code.toLowerCase()}.svg"></span> ${countryData.country}: Percentual values in relation to the other countries</h2>`);
+            $('.right-name').html(`<h2 style="width: 400px;"><span><img style="border: 1px solid #ccc" width="20px" src="./assets/flags/${countryData.code.toLowerCase()}.svg"></span> ${countryData.country}: Percentual values in relation to the other countries</h2>`);
 
             google.charts.setOnLoadCallback(drawChart);
             function drawChart() {
@@ -967,7 +967,7 @@
             }
 
             $('.second-name').empty();
-            $('.second-name').html(`<h2 style="width: 400px;"><span><img style="border: 1px solid #ccc" width="20px" src="/assets/flags/${countryData.code.toLowerCase()}.svg"></span> ${countryData.country} vs <img style="border: 1px solid #ccc" width="20px" src="/assets/flags/${values[0].code.toLowerCase()}.svg"></span> ${values[0].country}: Percentual values comparison</h2>`);
+            $('.second-name').html(`<h2 style="width: 400px;"><span><img style="border: 1px solid #ccc" width="20px" src="./assets/flags/${countryData.code.toLowerCase()}.svg"></span> ${countryData.country} vs <img style="border: 1px solid #ccc" width="20px" src="./assets/flags/${values[0].code.toLowerCase()}.svg"></span> ${values[0].country}: Percentual values comparison</h2>`);
 
             google.charts.setOnLoadCallback(drawTitleSubtitle);
 
