@@ -13,8 +13,9 @@ export const ColorGray04 = "#EDF0F3";
 export const ColorGrapy05 = "#F3F6F9";
 export const ColorDarkPrimary = "#CBD5E1";
 export const ColorDarkGray01 = "#94A3B8";
-export const ColorDatkGray05 = "#334155";
+export const ColorDarkGray03 = "#404E63";
 export const ColorDarkGray04 = "#19222E";
+export const ColorDatkGray05 = "#334155";
 export const ColorDarkGray06 = "#404E63";
 
 export const Elevation01 = "box-shadow: 2px 2px 1px rgba(120, 135, 156, 0.25);";
