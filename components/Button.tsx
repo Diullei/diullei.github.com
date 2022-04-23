@@ -69,7 +69,13 @@ const setButtonType = ({
   }
 };
 
-const StyledButton = styled.button`
+interface StyledButtonProps {
+  isPrimary?: boolean;
+  isDark?: boolean;
+  width?: string | number;
+}
+
+const StyledButton = styled.button<StyledButtonProps>`
   border: 0;
   padding: 8px 16px;
   border-radius: 5px;

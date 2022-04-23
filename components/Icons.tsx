@@ -108,3 +108,23 @@ export const Moon: React.FC<IconProps> = (props) => {
     </BaseIcon>
   );
 };
+
+export const Calendar: React.FC<IconProps> = (props) => {
+  const size = props.size || BASE_ICON_SIZE;
+  return (
+    <BaseIcon {...{ ...props, size }}>
+      <svg
+        width={size}
+        height={size}
+        viewBox="0 0 20 20"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M16.6667 2.50004H15.8333V0.833374H14.1667V2.50004H5.83333V0.833374H4.16666V2.50004H3.33333C2.41666 2.50004 1.66666 3.25004 1.66666 4.16671V17.5C1.66666 18.4167 2.41666 19.1667 3.33333 19.1667H16.6667C17.5833 19.1667 18.3333 18.4167 18.3333 17.5V4.16671C18.3333 3.25004 17.5833 2.50004 16.6667 2.50004ZM16.6667 17.5H3.33333V6.66671H16.6667V17.5Z"
+          fill="currentColor"
+        />
+      </svg>
+    </BaseIcon>
+  );
+};
