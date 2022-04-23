@@ -115,6 +115,7 @@ const Switch: React.FC<SwitchProps> = ({ ariaLabel, isDark, onToggle }) => {
         type="checkbox"
         aria-label={ariaLabel ?? "ThemeToggle"}
         checked={isDark}
+        onChange={() => null}
         onClick={onToggle}
       />
       <StyledSwitchButton isDark={isDark}>
