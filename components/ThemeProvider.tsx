@@ -14,22 +14,21 @@ import {
 } from "../shared/styleTokens";
 import { Moon, Sun } from "./Icons";
 
-interface ThemeToggleContextProps {
+interface ThemeContextProps {
   isDark: boolean;
   onToggle: () => void;
 }
 
-export const ThemeToggleContext = createContext<ThemeToggleContextProps>({
+const ThemeContext = createContext<ThemeContextProps>({
   isDark: false,
   onToggle: () => {},
 });
 
-function useThemeToggleContext() {
-  const context = useContext(ThemeToggleContext);
+export function useThemeContext() {
+  const context = useContext(ThemeContext);
   if (!context) {
     throw new Error(
-      "The ThemeToggle.On, ThemeToggle.Off and ThemeToggle.Button " +
-        "components cannot be used outside a ThemeToggle component"
+      "You are using a componnent that cannot be used outside a ThemeProvider component"
     );
   }
   return context;
@@ -48,7 +47,7 @@ function useEffectAfterMount(callback: () => void, dependencies: any[]) {
 }
 
 const StyledLabel = styled.label`
-  display: block;
+  display: inline-block;
 `;
 
 const StyledInput = styled.input`
@@ -126,13 +125,13 @@ const Switch: React.FC<SwitchProps> = ({ ariaLabel, isDark, onToggle }) => {
   );
 };
 
-interface ThemeToggleProps {
+interface ThemeProviderProps {
   initialValue?: boolean;
   children: React.ReactElement[] | React.ReactElement;
   onToggle?: () => void;
 }
 
-const ThemeToggleComponent: React.FC<ThemeToggleProps> = ({
+const ThemeProviderComponent: React.FC<ThemeProviderProps> = ({
   initialValue = false,
   onToggle,
   children,
@@ -152,9 +151,7 @@ const ThemeToggleComponent: React.FC<ThemeToggleProps> = ({
   }, [isDark]);
 
   return (
-    <ThemeToggleContext.Provider value={value}>
-      {children}
-    </ThemeToggleContext.Provider>
+    <ThemeContext.Provider value={value}>{children}</ThemeContext.Provider>
   );
 };
 
@@ -162,28 +159,28 @@ interface ToggleOnOffProps {
   children?: (React.ReactElement | string)[] | React.ReactElement | string;
 }
 
-const ThemeToggleOn: React.FC<ToggleOnOffProps> = ({ children }) => {
-  const { isDark } = useThemeToggleContext();
+const ThemeProviderDark: React.FC<ToggleOnOffProps> = ({ children }) => {
+  const { isDark } = useThemeContext();
   return isDark && children ? <>{children}</> : null;
 };
 
-const ThemeToggleOff: React.FC<ToggleOnOffProps> = ({ children }) => {
-  const { isDark } = useThemeToggleContext();
+const ThemeProviderLight: React.FC<ToggleOnOffProps> = ({ children }) => {
+  const { isDark } = useThemeContext();
   return !isDark && children ? <>{children}</> : null;
 };
 
-const ThemeToggleButton: React.FC = () => {
-  const { isDark, onToggle } = useThemeToggleContext();
+const ThemePtoviderToggleButton: React.FC = () => {
+  const { isDark, onToggle } = useThemeContext();
   return <Switch isDark={isDark} onToggle={onToggle} />;
 };
 
-type ThemeToggle = React.FC<ThemeToggleProps> & {
-  On: React.FC<ToggleOnOffProps>;
-  Off: React.FC<ToggleOnOffProps>;
-  Button: React.FC;
+type ThemeProvider = React.FC<ThemeProviderProps> & {
+  Dark: React.FC<ToggleOnOffProps>;
+  Light: React.FC<ToggleOnOffProps>;
+  ToggleButton: React.FC;
 };
 
-export const ThemeToggle = ThemeToggleComponent as ThemeToggle;
-ThemeToggle.On = ThemeToggleOn;
-ThemeToggle.Off = ThemeToggleOff;
-ThemeToggle.Button = ThemeToggleButton;
+export const ThemeProvider = ThemeProviderComponent as ThemeProvider;
+ThemeProvider.Dark = ThemeProviderDark;
+ThemeProvider.Light = ThemeProviderLight;
+ThemeProvider.ToggleButton = ThemePtoviderToggleButton;
