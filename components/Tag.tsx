@@ -8,11 +8,6 @@ import {
 } from "../shared/styleTokens";
 import { useThemeContext } from "./ThemeProvider";
 
-interface TagProps {
-  children: string;
-  onClick?: () => void;
-}
-
 interface StyledWrapperProps {
   isDarkTheme: boolean;
 }
@@ -52,6 +47,11 @@ const StyledWrapper = styled.div<StyledWrapperProps>`
     border: 1px solid ${setBorderColor};
   }
 `;
+
+interface TagProps {
+  children: string;
+  onClick?: () => void;
+}
 
 export const Tag: React.FC<TagProps> = ({ children, onClick }) => {
   const { isDark } = useThemeContext();
