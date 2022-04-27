@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { ThemeProvider } from "../../components/ThemeProvider";
 
 export default {
-  title: "Components/ThemeProvider",
+  title: "Components/Theme Provider",
   component: ThemeProvider,
   parameters: {
     backgrounds: {
@@ -17,7 +17,7 @@ const StyledWrapper = styled.div`
   margin-top: 20px;
 `;
 
-export const ThemeProviderComponent = () => (
+export const themeProvider = () => (
   <>
     <ThemeProvider initialValue={true}>
       <ThemeProvider.Dark>On</ThemeProvider.Dark>

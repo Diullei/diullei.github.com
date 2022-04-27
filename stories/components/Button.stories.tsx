@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { ThemeProvider } from "../../components/ThemeProvider";
 import { Button } from "../../components/Button";
+import { BodyColor } from "../../components/BodyColor";
 
 export default {
   title: "Components/Button",
@@ -20,8 +21,9 @@ const StyledWrapper = styled.div`
   margin-top: 30px;
 `;
 
-export const TagComponent = () => (
+export const button = () => (
   <ThemeProvider>
+    <BodyColor />
     <ThemeProvider.ToggleButton />
     <StyledWrapper>
       <Button isPrimary={true}>Click me!</Button>

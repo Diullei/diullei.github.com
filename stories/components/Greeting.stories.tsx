@@ -1,12 +1,12 @@
 import React from "react";
 import styled from "styled-components";
 import { BodyColor } from "../../components/BodyColor";
-import { PostListItem } from "../../components/PostListItem";
+import { Greeting } from "../../components/Greeting";
 import { ThemeProvider } from "../../components/ThemeProvider";
 
 export default {
-  title: "Components/Post List Item",
-  component: PostListItem,
+  title: "Components/Greeting",
+  component: Greeting,
   parameters: {
     backgrounds: {
       default: "figma-bg",
@@ -21,16 +21,12 @@ const StyledWrapper = styled.div`
   margin-top: 30px;
 `;
 
-export const postListItem = () => (
+export const greeting = () => (
   <ThemeProvider>
     <BodyColor />
     <ThemeProvider.ToggleButton />
     <StyledWrapper>
-      <PostListItem
-        title={"Everything you need to know about React 18"}
-        date="2020-05-01T12:43:00Z"
-        tags={["javascript", "react", "typescript"]}
-      />
+      <Greeting />
     </StyledWrapper>
   </ThemeProvider>
 );

@@ -49,7 +49,7 @@ const StyledWrapper = styled.div<StyledWrapperProps>`
 `;
 
 interface TagProps {
-  children: string;
+  children: string | string[];
   onClick?: () => void;
 }
 

@@ -88,17 +88,27 @@ const StyledTagList = styled.div`
   gap: 20px;
 `;
 
-export const PostListItem: React.FC = () => {
+interface PostListItemProps {
+  title: string;
+  date: string;
+  tags: string[];
+}
+
+export const PostListItem: React.FC<PostListItemProps> = ({
+  title,
+  date,
+  tags,
+}) => {
   const { isDark } = useThemeContext();
   return (
     <StyledWrapper isDark={isDark}>
-      <StyledTitle>Everything you need to know about React 18</StyledTitle>
+      <StyledTitle>{title}</StyledTitle>
       <StyledSubSection>
-        <PostDate date="2020-05-01T12:43:00Z" />
+        <PostDate date={date} />
         <StyledTagList>
-          <Tag>#javascript</Tag>
-          <Tag>#react</Tag>
-          <Tag>#typescript</Tag>
+          {tags.map((tag) => (
+            <Tag key={tag}>#{tag}</Tag>
+          ))}
         </StyledTagList>
       </StyledSubSection>
     </StyledWrapper>

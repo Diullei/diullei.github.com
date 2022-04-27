@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { BodyColor } from "../../components/BodyColor";
 import { Tag } from "../../components/Tag";
 import { ThemeProvider } from "../../components/ThemeProvider";
 
@@ -20,8 +21,9 @@ const StyledWrapper = styled.div`
   margin-top: 30px;
 `;
 
-export const TagComponent = () => (
+export const tag = () => (
   <ThemeProvider>
+    <BodyColor />
     <ThemeProvider.ToggleButton />
     <StyledWrapper>
       <Tag>#javascript</Tag>

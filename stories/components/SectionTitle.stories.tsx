@@ -1,10 +1,11 @@
 import React from "react";
 import styled from "styled-components";
+import { BodyColor } from "../../components/BodyColor";
 import { SectionTitle } from "../../components/SectionTitle";
 import { ThemeProvider } from "../../components/ThemeProvider";
 
 export default {
-  title: "Components/SectionTitle",
+  title: "Components/Section Title",
   component: SectionTitle,
   parameters: {
     backgrounds: {
@@ -20,8 +21,9 @@ const StyledWrapper = styled.div`
   margin-top: 30px;
 `;
 
-export const TagComponent = () => (
+export const sectionTitle = () => (
   <ThemeProvider>
+    <BodyColor />
     <ThemeProvider.ToggleButton />
     <StyledWrapper>
       <SectionTitle>This is a title</SectionTitle>

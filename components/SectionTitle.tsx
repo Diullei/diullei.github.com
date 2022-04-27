@@ -48,12 +48,16 @@ const StyledWrapper = styled.h2`
 
 interface SectionTitleProps {
   children: string;
+  className?: string;
 }
 
-export const SectionTitle: React.FC<SectionTitleProps> = ({ children }) => {
+export const SectionTitle: React.FC<SectionTitleProps> = ({
+  children,
+  className,
+}) => {
   const { isDark } = useThemeContext();
   return (
-    <StyledWrapper isDark={isDark}>
+    <StyledWrapper isDark={isDark} className={className}>
       {children}
       <StyledUnderline />
     </StyledWrapper>

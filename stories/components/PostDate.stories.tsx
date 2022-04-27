@@ -2,9 +2,10 @@ import React from "react";
 import styled from "styled-components";
 import { ThemeProvider } from "../../components/ThemeProvider";
 import { PostDate } from "../../components/PostDate";
+import { BodyColor } from "../../components/BodyColor";
 
 export default {
-  title: "Components/PostDate",
+  title: "Components/Post Date",
   component: PostDate,
   parameters: {
     backgrounds: {
@@ -20,8 +21,9 @@ const StyledWrapper = styled.div`
   margin-top: 30px;
 `;
 
-export const PostDateComponent = () => (
+export const postDate = () => (
   <ThemeProvider>
+    <BodyColor />
     <ThemeProvider.ToggleButton />
     <StyledWrapper>
       <PostDate date="2021-04-23T18:25:43.511Z" />
