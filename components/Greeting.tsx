@@ -1,6 +1,5 @@
 import React from "react";
 import styled, { css } from "styled-components";
-import avatar from "../shared/avatar.jpeg";
 import {
   ColorDarkGray01,
   ColorDarkGreen,
@@ -15,7 +14,7 @@ const StyledAvatarImage = styled.div`
   width: 139px;
   height: 139px;
   border-radius: 10%;
-  background-image: url(${avatar as any});
+  background-image: url(/avatar.jpeg);
   background-size: cover;
   filter: drop-shadow(2px 2px 1px rgba(120, 135, 156, 0.25));
 `;
@@ -190,7 +189,7 @@ export const Greeting: React.FC = () => {
         </StyledHiThere>
         <StyledH1>I’m Diullei Gomes</StyledH1>
         <StyledP>
-          I'm a FullStack Web Developer who loves writing code. In this space I
+          I’m a FullStack Web Developer who loves writing code. In this space I
           share a little of what I learned, I hope you like it and find
           something useful here :)
         </StyledP>
