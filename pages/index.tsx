@@ -1,20 +1,13 @@
 import type { NextPage } from "next";
 import Head from "next/head";
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 import { BodyColor } from "../components/BodyColor";
 import { Greeting } from "../components/Greeting";
-import { Github, LinkedIn, Rss, StackOverflow } from "../components/Icons";
 import { PostListItem } from "../components/PostListItem";
 import { SectionTitle } from "../components/SectionTitle";
-import { ThemeProvider, useThemeContext } from "../components/ThemeProvider";
-import {
-  ColorDarkGray01,
-  ColorDarkGreen,
-  ColorDarkPrimary,
-  ColorGray01,
-  ColorPrimary,
-  ColorYellow,
-} from "../shared/styleTokens";
+import { ThemeProvider } from "../components/ThemeProvider";
+import { Header } from "./Header";
+import { Footer } from "./Footer";
 
 const StyledWrapper = styled.div`
   display: flex;
@@ -26,49 +19,6 @@ const StyledPageContent = styled.div`
   margin-top: 20px;
   width: 90%;
 `;
-
-const StyledTitle = styled.h1`
-  font-family: "Inter";
-  font-style: normal;
-  font-weight: 700;
-  font-size: 24px;
-  line-height: 29px;
-`;
-
-const HeaderThemeLight = css`
-  ${StyledTitle} {
-    color: ${ColorPrimary};
-  }
-`;
-
-const HeaderThemeDark = css`
-  ${StyledTitle} {
-    color: ${ColorDarkPrimary};
-  }
-`;
-
-const setHeaderTheme = ({ isDark }: { isDark: boolean }) => {
-  if (isDark) {
-    return HeaderThemeDark;
-  }
-  return HeaderThemeLight;
-};
-
-const StyledHeader = styled.header`
-  display: flex;
-  justify-content: space-between;
-  ${setHeaderTheme}
-`;
-
-const Header: React.FC = () => {
-  const { isDark } = useThemeContext();
-  return (
-    <StyledHeader isDark={isDark}>
-      <StyledTitle>Diullei&apos;s Blog</StyledTitle>
-      <ThemeProvider.ToggleButton />
-    </StyledHeader>
-  );
-};
 
 const StyledMain = styled.main`
   padding: 60px 180px;
@@ -83,76 +33,6 @@ const StyledPostList = styled.div`
 const StyledSectionTitle = styled(SectionTitle)`
   margin-top: 80px;
 `;
-
-const StyledPoweredBy = styled.div`
-  font-family: "Inter";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 22px;
-
-  a {
-    font-weight: 600;
-  }
-`;
-
-const StyledFooterIcons = styled.div`
-  display: flex;
-  flex-direction: row;
-  gap: 10px;
-`;
-
-const PoweredByThemeLight = css`
-  ${StyledPoweredBy} {
-    color: ${ColorPrimary};
-
-    a {
-      color: ${ColorDarkGreen};
-    }
-  }
-`;
-
-const PoweredByThemeDark = css`
-  ${StyledPoweredBy} {
-    color: ${ColorDarkPrimary};
-
-    a {
-      color: ${ColorYellow};
-    }
-  }
-`;
-
-const setPoweredByTheme = ({ isDark }: { isDark: boolean }) => {
-  if (isDark) {
-    return PoweredByThemeDark;
-  }
-  return PoweredByThemeLight;
-};
-
-const StyledFooter = styled.footer`
-  display: flex;
-  justify-content: space-between;
-  margin: 30px 0;
-  ${setPoweredByTheme}
-`;
-
-const Footer: React.FC = () => {
-  const { isDark } = useThemeContext();
-  return (
-    <StyledFooter isDark={isDark}>
-      <StyledPoweredBy>
-        Powered by <a href="https://nextjs.org">Next.js</a> and{" "}
-        <a href="https://pages.github.com/">Github pages</a>
-      </StyledPoweredBy>
-      <StyledFooterIcons>
-        <Github color={isDark ? ColorDarkGray01 : ColorGray01} />
-        <StackOverflow color={isDark ? ColorDarkGray01 : ColorGray01} />
-        <LinkedIn color={isDark ? ColorDarkGray01 : ColorGray01} />
-        <Rss color={isDark ? ColorDarkGray01 : ColorGray01} />
-      </StyledFooterIcons>
-    </StyledFooter>
-  );
-};
 
 const Home: NextPage = () => {
   return (
