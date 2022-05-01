@@ -22,6 +22,7 @@ const StyledWrapper = styled.div`
   font-weight: 500;
   font-size: 16px;
   line-height: 19px;
+  font-size: 14px;
   color: ${({ isDark }: { isDark?: boolean }) =>
     isDark ? ColorDarkGray01 : ColorGray01};
 `;

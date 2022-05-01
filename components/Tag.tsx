@@ -41,6 +41,7 @@ const StyledWrapper = styled.div<StyledWrapperProps>`
   border: 1px solid ${setBaseColor};
   border-radius: 5px;
   user-select: none;
+  font-size: 12px;
 
   :hover {
     cursor: pointer;
